@@ -347,14 +347,14 @@ def get_correction_with_session(correction_id):
         SELECT c.*, s.messages, s.summary, s.staff_name
         FROM corrections c
         LEFT JOIN sessions s ON c.session_id = s.session_id
-        WHERE c.correction_id = ?
+        WHERE c.id = ?
     """, (correction_id,))
     
     result = cursor.fetchone()
     conn.close()
     
     if result:
-        columns = ['correction_id', 'session_id', 'changed_fields', 'reason', 'corrected_by', 
+        columns = ['id', 'session_id', 'changed_fields', 'reason', 'corrected_by', 
                    'status', 'created_at', 'messages', 'summary', 'staff_name']
         return dict(zip(columns, result))
     return None

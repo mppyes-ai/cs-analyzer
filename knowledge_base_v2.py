@@ -618,19 +618,8 @@ def sync_rule_to_vector_db(rule_id: str, embedding_model = None) -> bool:
         print(f"⚠️ 同步到向量库失败: {e}")
         return False
 
-# ========== 全局Embedding模型缓存 ==========
-_embedding_model_instance = None
-
-def get_global_embedding_model():
-    """获取全局单例Embedding模型（延迟加载）"""
-    global _embedding_model_instance
-    if _embedding_model_instance is None:
-        from sentence_transformers import SentenceTransformer
-        _embedding_model_instance = SentenceTransformer(
-            'paraphrase-multilingual-MiniLM-L12-v2',
-            device='cpu'
-        )
-    return _embedding_model_instance
+# ========== 使用统一Embedding单例 ==========
+from embedding_utils import get_embedding_model as get_global_embedding_model
 
 
 # ========== 检索接口 ==========

@@ -84,7 +84,7 @@ class SentimentAnalyzer:
             return self._fallback_result()
         
         # 提取用户消息（最多前5条，控制token）
-        user_messages = [m for m in messages if m.get('role') == 'customer'][:5]
+        user_messages = [m for m in messages if m.get('role') in ['customer', 'user']][:5]
         if not user_messages:
             return self._fallback_result()
         

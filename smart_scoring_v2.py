@@ -40,21 +40,8 @@ except ImportError:
     print("⚠️ 混合检索模块未导入，将使用基础向量检索")
 
 
-# ========== 全局单例：Embedding模型缓存 ==========
-_embedding_model_singleton = None
-
-def get_embedding_model():
-    """获取全局单例Embedding模型（延迟加载）"""
-    global _embedding_model_singleton
-    if _embedding_model_singleton is None:
-        print("🔄 首次加载Embedding模型...")
-        from sentence_transformers import SentenceTransformer
-        _embedding_model_singleton = SentenceTransformer(
-            'paraphrase-multilingual-MiniLM-L12-v2',
-            device='cpu'  # 使用CPU避免MPS兼容问题
-        )
-        print("✅ Embedding模型加载完成")
-    return _embedding_model_singleton
+# ========== 使用统一Embedding单例 ==========
+from embedding_utils import get_embedding_model
 
 # ========== 自定义异常类 ==========
 

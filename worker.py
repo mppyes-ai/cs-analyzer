@@ -29,9 +29,11 @@ import time
 import argparse
 import signal
 import threading
+import errno
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
 from collections import defaultdict
+from typing import Dict, List
 
 sys.path.insert(0, os.path.dirname(__file__))
 
@@ -43,6 +45,71 @@ from intent_classifier_v3 import RobustIntentClassifier
 from smart_scoring_v2 import SmartScoringEngine
 import sqlite3
 import json
+
+# ========== 单例锁机制（使用 PID 文件）==========
+import os
+import signal
+
+PID_FILE = '/tmp/cs_analyzer_worker.pid'
+
+def acquire_lock():
+    """获取单例锁，防止多个 worker 同时运行
+    
+    使用 PID 文件机制，可以检测残留锁并自动清理
+    """
+    # 检查是否已有 PID 文件
+    if os.path.exists(PID_FILE):
+        try:
+            with open(PID_FILE, 'r') as f:
+                old_pid = int(f.read().strip())
+            
+            # 检查进程是否真实存在
+            try:
+                os.kill(old_pid, 0)  # 信号0用于检测进程是否存在
+                print(f"❌ Worker 已在运行 (PID: {old_pid})")
+                print(f"   如需重启，请先执行: pkill -f 'python3 worker.py'")
+                return False
+            except ProcessLookupError:
+                # 进程不存在，清理残留
+                print(f"🧹 清理残留锁文件 (PID {old_pid} 已不存在)")
+                os.unlink(PID_FILE)
+        except (ValueError, IOError) as e:
+            # PID 文件损坏，清理
+            print(f"🧹 清理损坏的锁文件: {e}")
+            try:
+                os.unlink(PID_FILE)
+            except:
+                pass
+    
+    # 创建新的 PID 文件
+    try:
+        with open(PID_FILE, 'w') as f:
+            f.write(str(os.getpid()))
+        print(f"✅ 获取锁成功 (PID: {os.getpid()})")
+        return True
+    except Exception as e:
+        print(f"⚠️ 创建锁文件失败: {e}")
+        return False
+
+def release_lock():
+    """释放单例锁"""
+    try:
+        if os.path.exists(PID_FILE):
+            with open(PID_FILE, 'r') as f:
+                pid_in_file = int(f.read().strip())
+            
+            # 只有当前进程才能释放锁
+            if pid_in_file == os.getpid():
+                os.unlink(PID_FILE)
+                print("✅ 锁已释放")
+            else:
+                print(f"⚠️ 锁被其他进程持有 (PID: {pid_in_file})，不释放")
+    except Exception as e:
+        print(f"⚠️ 释放锁失败: {e}")
+
+# 兼容旧代码的 socket 锁变量
+_lock_socket = None
+# ==========
 
 # 全局变量
 running = True
@@ -476,27 +543,7 @@ def process_task(task: dict, window_minutes: int = MERGE_WINDOW_MINUTES) -> bool
             intent_latency = getattr(intent, 'latency_ms', 0)
             print(f"   📊 意图来源: {display_source} ({intent_latency:.0f}ms)")
             
-            complete_task(task_id, {
-                'intent': {
-                    'scene': intent.scene,
-                    'sub_scene': intent.sub_scene,
-                    'sentiment': intent.sentiment,
-                    'source': intent_source,
-                    'latency_ms': intent_latency,
-                    'confidence': getattr(intent, 'confidence', 0),
-                    'is_complaint': getattr(intent, 'is_complaint', False)
-                },
-                'scores': {
-                    'professionalism': prof,
-                    'standardization': std,
-                    'policy_execution': pol,
-                    'conversion': conv,
-                    'total': total
-                },
-                'processing_time': time.time() - start_time,
-                'is_merged': is_merged,
-                'session_count': session_count
-            })
+            complete_task(task_id, result)  # 直接保存完整的评分结果
             
             print(f"   ✅ 完成 (耗时: {time.time()-start_time:.1f}s)")
             return True
@@ -671,22 +718,7 @@ def process_single_task_parallel(task: dict) -> dict:
             # 3. 保存结果（线程安全）
             with db_lock:
                 _save_result_parallel(session_id, session_data, intent, result, total)
-                complete_task(task_id, {
-                    'intent': {
-                        'scene': intent.scene,
-                        'sub_scene': intent.sub_scene,
-                        'sentiment': intent.sentiment,
-                        'source': getattr(intent, 'source', 'unknown'),
-                        'latency_ms': getattr(intent, 'latency_ms', 0),
-                    },
-                    'scores': {
-                        'professionalism': prof,
-                        'standardization': std,
-                        'policy_execution': pol,
-                        'conversion': conv,
-                        'total': total
-                    }
-                })
+                complete_task(task_id, result)  # 直接保存完整的评分结果
             
             print(f"   ✅ 任务#{task_id}完成: {total}/20分")
             return {'success': True, 'task_id': task_id}
@@ -739,8 +771,9 @@ def _save_result_parallel(session_id: str, session_data: dict, intent, result: d
             INSERT OR REPLACE INTO sessions 
             (session_id, user_id, staff_name, messages, summary, 
              professionalism_score, standardization_score, policy_execution_score, conversion_score,
-             total_score, analysis_json, strengths, issues, suggestions, session_count, start_time, end_time, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
+             total_score, analysis_json, strengths, issues, suggestions, session_count, start_time, end_time, created_at,
+             is_transfer, transfer_from, transfer_to, transfer_reason, related_sessions)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             session_id,
             next((m.get('sender') for m in messages if m.get('role') in ('user', 'customer')), 'unknown'),
@@ -754,7 +787,12 @@ def _save_result_parallel(session_id: str, session_data: dict, intent, result: d
             json.dumps(suggestions, ensure_ascii=False),
             start_time,
             end_time,
-            datetime.now().isoformat()
+            datetime.now().isoformat(),
+            1 if is_transfer else 0,
+            transfer_from,
+            transfer_to,
+            transfer_reason,
+            json.dumps(related_sessions, ensure_ascii=False)
         ))
         
         conn.commit()
@@ -770,6 +808,10 @@ def run_worker(once: bool = False, interval: float = 2.0, window_minutes: int = 
         interval: 轮询间隔（秒）
         window_minutes: 会话合并窗口（分钟）
     """
+    # 获取单例锁
+    if not acquire_lock():
+        return
+    
     global running, MERGE_WINDOW_MINUTES
     
     MERGE_WINDOW_MINUTES = window_minutes
@@ -837,6 +879,7 @@ def run_worker(once: bool = False, interval: float = 2.0, window_minutes: int = 
         # 清理资源
         if classifier:
             classifier.close()
+        release_lock()
         
         print("\n" + "=" * 60)
         print("📊 工作进程结束")
@@ -856,6 +899,10 @@ def run_parallel_worker(max_workers: int = MAX_WORKERS, batch_size: int = 10):
     global running, MAX_WORKERS
     
     MAX_WORKERS = max_workers
+    
+    # 获取单例锁
+    if not acquire_lock():
+        return
     
     # 注册信号处理器
     signal.signal(signal.SIGINT, signal_handler)
@@ -912,6 +959,7 @@ def run_parallel_worker(max_workers: int = MAX_WORKERS, batch_size: int = 10):
     finally:
         if classifier:
             classifier.close()
+        release_lock()
         
         print("\n" + "=" * 60)
         print("📊 并行工作进程结束")
@@ -941,9 +989,8 @@ def fetch_and_group_tasks(batch_size: int = 20) -> Dict[str, List[Dict]]:
         LIMIT ?
     """, conn, params=(batch_size,))
     
-    conn.close()
-    
     if df.empty:
+        conn.close()
         return {}
     
     # 标记为 processing 状态（防止其他worker重复获取）
@@ -996,11 +1043,17 @@ def process_group(user_id: str, tasks: List[Dict], window_minutes: int = MERGE_W
             success = process_task(task, window_minutes)
             if success:
                 processed += 1
-                # 检查是否合并
-                if task.get('session_data', {}).get('is_merged'):
+                # 检查是否合并 - 需要处理 session_data 可能是字符串的情况
+                session_data = task.get('session_data', {})
+                if isinstance(session_data, str):
+                    import json
+                    session_data = json.loads(session_data)
+                if session_data.get('is_merged'):
                     merged += 1
         except Exception as e:
+            import traceback
             print(f"   ❌ 任务 {task['task_id']} 处理失败: {e}")
+            print(f"   📍 Traceback: {traceback.format_exc()}")
             fail_task(task['task_id'], str(e))
     
     print(f"   ✅ 用户 {user_id[:8]}... 完成: {processed}/{len(tasks)}, 合并: {merged}")
@@ -1019,6 +1072,10 @@ def run_grouped_parallel_worker(max_groups: int = 4, batch_size: int = 20,
     global running, MERGE_WINDOW_MINUTES
     
     MERGE_WINDOW_MINUTES = window_minutes
+    
+    # 获取单例锁
+    if not acquire_lock():
+        return
     
     # 注册信号处理器
     signal.signal(signal.SIGINT, signal_handler)
@@ -1088,6 +1145,7 @@ def run_grouped_parallel_worker(max_groups: int = 4, batch_size: int = 20,
     finally:
         if classifier:
             classifier.close()
+        release_lock()
         
         print("\n" + "=" * 60)
         print("📊 预分组并行工作进程结束")
