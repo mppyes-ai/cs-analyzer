@@ -1,17 +1,21 @@
-"""智能评分引擎 v2 - 基于规则知识库的4维度评分
+"""智能评分引擎 v2.6.1 - 基于规则知识库的4维度评分
 
 核心功能：
 1. 会话预分析（scene/intent/sentiment）
 2. 规则检索（SQLite + LanceDB混合）
 3. CoT评分输出（命中规则 + 判定过程）
 4. 结果可解释化
+5. 【v2.4】批量评分支持
+6. 【v2.6.1】跨场景合并评分（不再按场景分组）
 
 作者: 小虾米
-更新: 2026-03-18（优化：Embedding模型单例缓存）
+更新: 2026-04-04（v2.6.1: 跨场景合并优化）
 """
 
 import json
 import os
+import asyncio
+import re
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
 
@@ -157,10 +161,64 @@ SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，负责对
 直接输出JSON，不要Markdown代码块。"""
 
 
+BATCH_SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，请对以下{count}个客服会话分别进行4维度质量评分。
+
+## 评分维度（每个会话单独评分）
+1. **专业性** - 产品知识准确性
+2. **标准化** - 服务规范
+3. **政策执行** - 政策传达
+4. **转化能力** - 销售引导
+
+## 评分规则（适用于所有会话）
+
+{retrieved_rules}
+
+## 会话内容
+
+{sessions_content}
+
+## 输出格式
+
+请严格返回JSON数组，数组长度必须为{count}，每个元素对应一个会话的评分结果：
+
+```json
+[
+  {{
+    "session_analysis": {{
+      "theme": "会话主题（20-30字）",
+      "user_intent": "用户意图",
+      "user_sentiment": "用户情绪",
+      "key_moments": ["关键轮次1"]
+    }},
+    "dimension_scores": {{
+      "professionalism": {{"score": 3, "reasoning": "...", "evidence": [], "referenced_rules": []}},
+      "standardization": {{"score": 3, "reasoning": "...", "evidence": [], "referenced_rules": []}},
+      "policy_execution": {{"score": 3, "reasoning": "...", "evidence": [], "referenced_rules": []}},
+      "conversion": {{"score": 3, "reasoning": "...", "evidence": [], "referenced_rules": []}}
+    }},
+    "summary": {{
+      "total_score": 12,
+      "risk_level": "中风险",
+      "strengths": ["亮点1"],
+      "issues": ["问题1"],
+      "suggestions": ["建议1"]
+    }}
+  }},
+  ... // 共{count}个元素
+]
+```
+
+注意：
+1. 必须返回JSON数组，数组长度严格等于{count}
+2. 数组元素顺序与输入会话顺序一致
+3. 每个会话独立评分，互不影响
+4. 直接输出JSON数组，不要Markdown代码块。"""
+
+
 # ========== 核心评分类 ==========
 
 class SmartScoringEngine:
-    """智能评分引擎 v2"""
+    """智能评分引擎 v2.4 - 支持异步批量评分"""
     
     def __init__(self, api_key: str = None, embedding_model=None, use_local_intent: bool = True):
         """
@@ -376,6 +434,8 @@ class SmartScoringEngine:
         
         return "\n---\n".join(formatted)
     
+    # ========== 单通评分（保留兼容） ==========
+    
     def score_session(self, session_data: Dict) -> Dict:
         """对会话进行智能评分
         
@@ -406,62 +466,58 @@ class SmartScoringEngine:
             session_data=json.dumps(session_data, ensure_ascii=False, indent=2)
         )
         
-        # 4. 调用Kimi API（保留内置重试+外层429限流重试）
+        # 4. 调用Kimi API
         try:
             import openai
             import time
             
-            # 初始化客户端（保留2次内置重试，处理网络错误）
             client = openai.OpenAI(
                 api_key=self.api_key,
                 base_url="https://api.moonshot.cn/v1",
-                max_retries=2  # 保留内置重试处理网络错误
+                max_retries=2
             )
             
-            # 外层重试：专门处理429限流（指数退避）
+            model = os.getenv('KIMI_MODEL', 'kimi-k1.5')
+            
             max_retries = 3
-            base_delay = 2.0  # 基础延迟2秒
+            base_delay = 2.0
             last_exception = None
             
             for attempt in range(max_retries):
                 try:
+                    # 【v2.5】添加120秒超时保护，防止Worker僵死
                     response = client.chat.completions.create(
-                        model="kimi-k2.5",
+                        model=model,
                         messages=[
                             {"role": "system", "content": "你是专业的客服质检专家，严格按JSON格式输出评分结果。"},
                             {"role": "user", "content": prompt}
                         ],
                         temperature=1,
-                        max_tokens=int(os.getenv('KIMI_MAX_TOKENS', 16000))
+                        max_tokens=int(os.getenv('KIMI_MAX_TOKENS', 16000)),
+                        timeout=int(os.getenv('KIMI_API_TIMEOUT', 300))  # 【v2.5】从.env读取超时时间（默认300秒）
                     )
-                    
-                    # 成功，跳出重试循环
                     break
                     
                 except Exception as e:
                     last_exception = e
                     error_msg = str(e)
                     
-                    # 检查是否是429限流错误
                     if "429" in error_msg or "Too Many Requests" in error_msg:
                         if attempt < max_retries - 1:
-                            delay = base_delay * (2 ** attempt)  # 2, 4, 8秒
+                            delay = base_delay * (2 ** attempt)
                             print(f"   ⏳ API限流(429)，等待 {delay:.1f}s 后重试 (第{attempt+1}/{max_retries}次)...")
                             time.sleep(delay)
                             continue
                         else:
                             print(f"   ⚠️ 限流重试耗尽，最后一次错误: {error_msg[:100]}")
-                            raise  # 重试耗尽，抛出异常
+                            raise
                     else:
-                        # 其他错误（非429），直接抛出让上层处理
                         raise
             else:
-                # 所有重试都失败了
                 raise last_exception if last_exception else Exception("API调用失败")
             
             content = response.choices[0].message.content
             
-            # 解析JSON（使用健壮解析器）
             result = self._parse_json_robust(content)
             
             if result is None:
@@ -471,12 +527,11 @@ class SmartScoringEngine:
                     details={"content_preview": content[:1000]}
                 )
             
-            # 补充元数据
             result['_metadata'] = {
                 'scored_at': datetime.now().isoformat(),
                 'retrieved_rules': [r['rule_id'] for r in retrieved_rules],
                 'pre_analysis': pre_analysis,
-                'model': 'kimi-k2.5',
+                'model': model,
             }
             
             return result
@@ -489,6 +544,315 @@ class SmartScoringEngine:
                 error_type="api_error",
                 details={"original_error": str(e)}
             )
+    
+    # ========== 批量评分方法（v2.4新增） ==========
+    
+    async def score_sessions_batch_async(self, sessions: List[Dict], pre_analyses: List[Dict] = None) -> List[Dict]:
+        """【v2.6.1】异步批量评分 - 跨场景合并优化
+        
+        核心变更：
+        - 不再按场景分组，所有会话统一批量处理
+        - 场景信息通过pre_analysis传入，由模型自行处理
+        - 检索规则时使用混合策略（覆盖所有场景）
+        
+        Args:
+            sessions: 会话数据列表（20-40通）
+            pre_analyses: 预分析结果列表（包含场景信息）
+            
+        Returns:
+            评分结果列表（与输入顺序一致）
+        """
+        print(f"[DEBUG] score_sessions_batch_async START - {len(sessions)} sessions", flush=True)
+        
+        if not sessions:
+            print(f"[DEBUG] No sessions, returning empty list", flush=True)
+            return []
+        
+        # 如果未提供预分析结果，快速分析
+        if pre_analyses is None:
+            print(f"[DEBUG] Running pre-analysis for {len(sessions)} sessions...", flush=True)
+            loop = asyncio.get_event_loop()
+            pre_analyses = await asyncio.gather(*[
+                loop.run_in_executor(None, self._analyze_session_pre, s.get('messages', []))
+                for s in sessions
+            ])
+            print(f"[DEBUG] Pre-analysis completed", flush=True)
+        
+        # 【v2.6.1】跨场景统一评分（不再分组）
+        print(f"[DEBUG] Processing {len(sessions)} sessions cross-scene", flush=True)
+        results = await self._score_batch_cross_scene(sessions, pre_analyses)
+        
+        print(f"[DEBUG] score_sessions_batch_async END - returning {len([r for r in results if r is not None])} results", flush=True)
+        return results
+    
+    async def _score_batch_cross_scene(self, sessions: List[Dict], 
+                                          pre_analyses: List[Dict]) -> List[Dict]:
+        """【v2.6.1】跨场景批量评分
+        
+        不再限制同一场景，支持混合场景的批量评分
+        场景信息直接标注在每个会话前，由模型自行处理
+        """
+        if not sessions:
+            return []
+        
+        # 收集所有场景
+        scenes = list(set(p.get('scene', '其他') for p in pre_analyses))
+        print(f"   📚 跨场景评分: {len(sessions)}通会话, 场景: {scenes}")
+        
+        # 检索所有相关场景的规则（混合检索）
+        messages_text = '\n'.join([
+            f"会话{i+1}({p.get('scene', '其他')}): " + '\n'.join([
+                f"{m.get('role')}: {m.get('content')}" 
+                for m in session.get('messages', [])[:3]
+            ])
+            for i, (session, p) in enumerate(zip(sessions, pre_analyses))
+        ])
+        
+        # 检索规则：不限制场景，获取最相关的规则
+        retrieved_rules = self._retrieve_rules_cross_scene(scenes, messages_text)
+        rules_text = self._format_rules_for_prompt(retrieved_rules)
+        
+        # 构建跨场景批量Prompt（标注场景信息）
+        sessions_json = '\n\n'.join([
+            f"=== 会话{i+1} [场景: {pre_analyses[i].get('scene', '其他')}] ===\n{json.dumps(s, ensure_ascii=False, indent=2)}"
+            for i, s in enumerate(sessions)
+        ])
+        
+        prompt = BATCH_SCORING_PROMPT_TEMPLATE.format(
+            count=len(sessions),
+            retrieved_rules=rules_text,
+            sessions_content=sessions_json
+        )
+        
+        # 调用API
+        result = await self._call_kimi_async(prompt, len(sessions), pre_analyses)
+        return result
+    
+    def _retrieve_rules_cross_scene(self, scenes: List[str], messages_text: str) -> List[Dict]:
+        """检索多个场景的规则
+        
+        策略：
+        1. 优先使用混合检索（无场景过滤，获取最相关的规则）
+        2. 回退到各场景分别检索 + 去重
+        """
+        all_rules = []
+        seen_ids = set()
+        
+        # 1. 先尝试混合检索（全局搜索，不限制场景）
+        if HYBRID_RETRIEVER_AVAILABLE:
+            try:
+                retriever = HybridRuleRetriever(embedding_model=self.embedding_model)
+                rules = retriever.search(
+                    query=messages_text,
+                    top_k=10,  # 获取更多规则
+                    use_hybrid=True
+                    # 不设置scene_filter，全局搜索
+                )
+                for r in rules:
+                    if r['rule_id'] not in seen_ids:
+                        all_rules.append(r)
+                        seen_ids.add(r['rule_id'])
+                if all_rules:
+                    print(f"   📚 混合检索返回 {len(all_rules)} 条规则")
+                    return all_rules[:8]  # 返回最多8条
+            except Exception as e:
+                print(f"   ⚠️ 混合检索失败: {e}，回退到场景分别检索")
+        
+        # 2. 回退：各场景分别检索
+        for scene in scenes:
+            try:
+                scene_rules = get_approved_rules(scene_category=scene)
+                for r in scene_rules:
+                    if r['rule_id'] not in seen_ids:
+                        all_rules.append(r)
+                        seen_ids.add(r['rule_id'])
+            except Exception as e:
+                print(f"   ⚠️ 检索场景'{scene}'规则失败: {e}")
+        
+        # 3. 向量检索补充（全局）
+        try:
+            vector_rules = search_rules_by_vector(
+                query_text=messages_text,
+                top_k=5,
+                embedding_model=self.embedding_model
+            )
+            for vr in vector_rules:
+                if vr['rule_id'] not in seen_ids:
+                    all_rules.append(vr)
+                    seen_ids.add(vr['rule_id'])
+        except Exception as e:
+            print(f"   ⚠️ 向量检索失败: {e}")
+        
+        print(f"   📚 跨场景检索共 {len(all_rules)} 条规则")
+        return all_rules[:8]  # 最多8条
+    
+    async def _score_batch_same_scene(self, sessions: List[Dict], 
+                                       pre_analyses: List[Dict],
+                                       scene: str) -> List[Dict]:
+        """对同一场景的会话进行批量评分（保留兼容）"""
+        if not sessions:
+            return []
+        
+        # 统一检索规则（同一场景用相同规则）
+        messages_text = '\n'.join([
+            f"会话{i+1}: " + '\n'.join([
+                f"{m.get('role')}: {m.get('content')}" 
+                for m in session.get('messages', [])[:5]
+            ])
+            for i, session in enumerate(sessions)
+        ])
+        
+        retrieved_rules = self._retrieve_rules({'scene': scene}, messages_text)
+        rules_text = self._format_rules_for_prompt(retrieved_rules)
+        
+        # 构建批量Prompt
+        sessions_json = '\n\n'.join([
+            f"=== 会话{i+1} ===\n{json.dumps(s, ensure_ascii=False, indent=2)}"
+            for i, s in enumerate(sessions)
+        ])
+        
+        prompt = BATCH_SCORING_PROMPT_TEMPLATE.format(
+            count=len(sessions),
+            retrieved_rules=rules_text,
+            sessions_content=sessions_json
+        )
+        
+        # 调用API（异步）
+        result = await self._call_kimi_async(prompt, len(sessions), pre_analyses)
+        return result
+    
+    async def _call_kimi_async(self, prompt: str, expected_count: int, pre_analyses: List[Dict] = None) -> List[Dict]:
+        """异步调用Kimi API（带httpx精细超时控制）"""
+        import logging
+        logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s')
+        logger = logging.getLogger(__name__)
+        
+        logger.info(f"[DEBUG] _call_kimi_async START - expected_count={expected_count}")
+        print(f"   [DEBUG] === _call_kimi_async START ===", flush=True)
+        print(f"   [DEBUG] expected_count={expected_count}", flush=True)
+        
+        try:
+            import openai
+            import asyncio
+            import httpx
+            
+            timeout_seconds = 300  # 【v2.5】硬编码 300 秒
+            import sys
+            print(f"   [DEBUG] API Timeout: {timeout_seconds}s", file=sys.stderr, flush=True)
+            print(f"   [DEBUG] Worker PID: {os.getpid()}", file=sys.stderr, flush=True)
+            print(f"   [DEBUG] API Key exists: {bool(self.api_key)}", flush=True)
+            
+            client = openai.AsyncOpenAI(
+                api_key=self.api_key,
+                base_url="https://api.moonshot.cn/v1",
+                max_retries=2,
+                timeout=httpx.Timeout(
+                    connect=30.0,           # 连接超时30秒
+                    read=timeout_seconds,   # 读取超时从.env读取
+                    write=30.0,             # 写入超时30秒
+                    pool=30.0               # 连接池超时30秒
+                )
+            )
+            
+            model = os.getenv('KIMI_MODEL', 'kimi-k1.5')
+            print(f"   [DEBUG] Using model: {model}", flush=True)
+            
+            # 【v2.5】添加超时保护（从.env读取，默认300秒）
+            print(f"   [DEBUG] Calling API with timeout={timeout_seconds}s...", flush=True)
+            start_time = datetime.now()
+            
+            async with asyncio.timeout(timeout_seconds):
+                response = await client.chat.completions.create(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": "你是专业的客服质检专家，严格按JSON格式输出评分结果。"},
+                        {"role": "user", "content": prompt}
+                    ],
+                    temperature=1,
+                    max_tokens=int(os.getenv('KIMI_MAX_TOKENS', 16000))
+                )
+            
+            elapsed = (datetime.now() - start_time).total_seconds()
+            print(f"   [DEBUG] API call completed in {elapsed:.1f}s", flush=True)
+            
+            content = response.choices[0].message.content
+            results = self._parse_batch_response(content, expected_count)
+            print(f"   [DEBUG] Parsed {len(results)} results", flush=True)
+            
+            # 补充元数据（包含预分析数据）
+            for i, r in enumerate(results):
+                # 【Bug修复】确保r是字典，不是列表或其他类型
+                if not isinstance(r, dict):
+                    print(f"   ⚠️ 结果{i}类型错误: {type(r)}, 转换为错误字典", flush=True)
+                    r = {"error": f"解析结果类型错误: {type(r)}", "_raw": str(r)[:200]}
+                    results[i] = r
+                # 确保基本字段存在
+                if 'error' not in r:
+                    r.setdefault('professionalism_score', 0)
+                    r.setdefault('standardization_score', 0)
+                    r.setdefault('policy_execution_score', 0)
+                    r.setdefault('conversion_score', 0)
+                if '_metadata' not in r:
+                    r['_metadata'] = {}
+                r['_metadata']['model'] = model
+                r['_metadata']['scored_at'] = datetime.now().isoformat()
+                # 添加预分析数据（从pre_analyses获取）
+                if pre_analyses and i < len(pre_analyses):
+                    r['_metadata']['pre_analysis'] = pre_analyses[i]
+            
+            print(f"   [DEBUG] === _call_kimi_async END (success) ===", flush=True)
+            return results
+            
+        except asyncio.TimeoutError:
+            timeout_val = os.getenv('KIMI_API_TIMEOUT', '300')
+            print(f"⚠️ 批量评分超时: Kimi API调用超过{timeout_val}秒", flush=True)
+            print(f"   [DEBUG] === _call_kimi_async END (timeout) ===", flush=True)
+            return [{"error": f"API调用超时({timeout_val}s)"} for _ in range(expected_count)]
+        except Exception as e:
+            print(f"⚠️ 批量评分失败: {e}", flush=True)
+            print(f"   [DEBUG] === _call_kimi_async END (error) ===", flush=True)
+            return [{"error": str(e)} for _ in range(expected_count)]
+    
+    def _parse_batch_response(self, content: str, expected_count: int) -> List[Dict]:
+        """解析批量评分响应"""
+        # 清理Markdown代码块
+        cleaned = content
+        if cleaned.startswith("```json"):
+            cleaned = cleaned[7:]
+        elif cleaned.startswith("```"):
+            cleaned = cleaned[3:]
+        if cleaned.endswith("```"):
+            cleaned = cleaned[:-3]
+        cleaned = cleaned.strip()
+        
+        try:
+            results = json.loads(cleaned)
+            if isinstance(results, list) and len(results) == expected_count:
+                return results
+            elif isinstance(results, dict):
+                if 'results' in results:
+                    return results['results']
+                return [results] + [{} for _ in range(expected_count - 1)]
+        except json.JSONDecodeError:
+            pass
+        
+        # 尝试逐个解析JSON对象
+        try:
+            pattern = r'\{[^{}]*"session_analysis"[^{}]*(?:\{[^{}]*\}[^{}]*)*\}'
+            matches = re.findall(pattern, cleaned, re.DOTALL)
+            if len(matches) >= expected_count:
+                return [json.loads(m) for m in matches[:expected_count]]
+        except:
+            pass
+        
+        # 回退：尝试用单条解析器
+        single_result = self._parse_json_robust(cleaned)
+        if single_result:
+            return [single_result] + [{} for _ in range(expected_count - 1)]
+        
+        return [{} for _ in range(expected_count)]
+    
+    # ========== 通用工具方法 ==========
     
     def _parse_json_robust(self, content: str) -> Optional[Dict]:
         """健壮JSON解析 - 处理截断和不完整JSON
@@ -553,13 +917,10 @@ class SmartScoringEngine:
         fixed = content.strip()
         
         # 如果最后是不完整的字符串（在引号内截断）
-        # 检测方法：最后一个"后面没有跟着:, }或]
         last_quote = fixed.rfind('"')
         if last_quote > 0:
             after_quote = fixed[last_quote+1:].strip()
-            # 如果"后面没有跟着这些符号，说明字符串未闭合
             if after_quote and after_quote[0] not in [',', ':', '}', ']']:
-                # 在截断处补全字符串
                 fixed = fixed + '"'
         
         # 统计开闭符号

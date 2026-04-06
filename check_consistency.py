@@ -8,9 +8,9 @@
 4. 数据库 Schema 与代码查询不一致
 
 用法:
-    python check_consistency.py          # 全量检查
-    python check_consistency.py --fix    # 尝试自动修复简单问题
-    python check_consistency.py --ci     # CI模式（有错误时退出码1）
+    python3 check_consistency.py          # 全量检查
+    python3 check_consistency.py --fix    # 尝试自动修复简单问题
+    python3 check_consistency.py --ci     # CI模式（有错误时退出码1）
 
 作者: 小虾米
 更新: 2026-03-21

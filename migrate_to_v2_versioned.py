@@ -3,7 +3,7 @@
 将v2引擎评分结果保存到独立的analysis_runs表，保留历史分析记录。
 支持新旧版本对比、效果评估、回滚追溯。
 
-用法: python migrate_to_v2_versioned.py [--limit 10] [--session_id xxx]
+用法: python3 migrate_to_v2_versioned.py [--limit 10] [--session_id xxx]
 
 作者: 小虾米
 更新: 2026-03-17（修复：版本化写入，不覆盖原分数）

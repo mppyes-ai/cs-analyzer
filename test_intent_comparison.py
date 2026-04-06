@@ -3,7 +3,7 @@
 
 对比两种分类方式的效果差异。
 
-用法: python test_intent_comparison.py
+用法: python3 test_intent_comparison.py
 """
 
 import sys

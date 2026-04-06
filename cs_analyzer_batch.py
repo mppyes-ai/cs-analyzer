@@ -2,7 +2,7 @@
 """CS-Analyzer 批量分析入口 - 支持后台子代理模式
 
 用法:
-    python cs_analyzer_batch.py /path/to/logfile.log
+    python3 cs_analyzer_batch.py /path/to/logfile.log
     
 环境变量配置 (.env):
     WORKER_MODE=grouped              # Worker模式
@@ -39,7 +39,11 @@ def main():
     
     parser = argparse.ArgumentParser(description='CS-Analyzer 批量分析')
     parser.add_argument('log_file', help='日志文件路径')
-    parser.add_argument('--foreground', action='store_true', help='前台模式（阻塞等待）')
+    parser.add_argument('--foreground', action='store_true', 
+                        help='前台模式（阻塞等待，仅调试使用，不推荐生产环境）')
+    parser.add_argument('--mode', choices=['auto', 'foreground', 'background'], 
+                        default='auto',
+                        help='执行模式：auto=根据文件大小自动选择(默认), foreground=前台, background=后台')
     
     args = parser.parse_args()
     
@@ -48,11 +52,20 @@ def main():
     
     analyzer = BatchAnalyzer()
     
-    if args.foreground:
-        # 前台模式：主会话阻塞等待
+    # 模式决策逻辑
+    if args.mode == 'foreground' or args.foreground:
+        # 前台模式：显式确认
+        print("⚠️  前台模式已选择（--foreground）")
+        print("   特点：阻塞等待、控制台输出、适合调试")
+        print("   注意：不会接收飞书进度推送")
         analyzer.run_foreground(args.log_file)
+    elif args.mode == 'background':
+        # 后台模式
+        result = analyzer.run_background(args.log_file)
+        print(result)
     else:
-        # 后台模式：启动子代理
+        # auto模式：根据文件大小自动选择（小文件<10会话可用前台）
+        # 但默认推荐后台模式
         result = analyzer.run_background(args.log_file)
         print(result)
 

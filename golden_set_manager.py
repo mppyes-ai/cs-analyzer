@@ -5,7 +5,7 @@
 2. 计算AI评分 vs 人工评分的MAE（平均绝对误差）
 3. 统计各维度准确率
 
-用法: python golden_set_manager.py [command] [options]
+用法: python3 golden_set_manager.py [command] [options]
 """
 
 import sys

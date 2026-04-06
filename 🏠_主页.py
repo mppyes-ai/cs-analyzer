@@ -82,6 +82,6 @@ st.markdown("""
 
 1. **查看会话分析** → 点击左侧「个人表现」或「会话明细_v2」
 2. **提交矫正** → 进入「矫正中心」，选择会话修改评分
-3. **提取规则** → 命令行运行 `python rule_extractor_v2.py process <correction_id>`
+3. **提取规则** → 命令行运行 `python3 rule_extractor_v2.py process <correction_id>`
 4. **审核规则** → 进入「规则审核_v2」确认提取的结构化规则
 """)

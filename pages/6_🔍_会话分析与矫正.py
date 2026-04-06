@@ -120,7 +120,50 @@ with st.sidebar:
     st.markdown(f"##### 📋 会话列表（{len(filtered_df)}条）")
     st.markdown('<style>.stButton>button {padding: 0.15rem 0.3rem !important; font-size: 11px !important; margin: 1px 0 !important; min-height: 28px !important;}</style>', unsafe_allow_html=True)
     
-    for _, row in filtered_df.iterrows():
+    # ===== 分页功能 =====
+    ITEMS_PER_PAGE = 20  # 每页显示20条
+    total_items = len(filtered_df)
+    total_pages = (total_items + ITEMS_PER_PAGE - 1) // ITEMS_PER_PAGE  # 向上取整
+    
+    # 分页显示逻辑（超过20条才显示分页）
+    if total_items > ITEMS_PER_PAGE:
+        # 初始化当前页码
+        if 'session_list_page' not in st.session_state:
+            st.session_state.session_list_page = 0
+        
+        # 确保页码在有效范围内
+        current_page = min(st.session_state.session_list_page, max(0, total_pages - 1))
+        st.session_state.session_list_page = current_page
+        
+        # 计算当前页的数据范围
+        start_idx = current_page * ITEMS_PER_PAGE
+        end_idx = min(start_idx + ITEMS_PER_PAGE, total_items)
+        page_df = filtered_df.iloc[start_idx:end_idx]
+        
+        # 分页栏：单行三列布局 [上一页] [页码] [下一页]
+        prev_col, page_col, next_col = st.columns([1, 1, 1])
+        
+        with prev_col:
+            if st.button("◀", key="prev_page", use_container_width=True, disabled=(current_page <= 0)):
+                st.session_state.session_list_page = max(0, current_page - 1)
+                st.rerun()
+        
+        with page_col:
+            st.markdown(f"<div style='text-align:center;font-size:14px;font-weight:bold;padding:8px 0;'>{current_page + 1}/{total_pages}</div>", unsafe_allow_html=True)
+        
+        with next_col:
+            if st.button("▶", key="next_page", use_container_width=True, disabled=(current_page >= total_pages - 1)):
+                st.session_state.session_list_page = min(total_pages - 1, current_page + 1)
+                st.rerun()
+        
+        # 分隔线
+        st.markdown("<hr style='margin: 6px 0; border: none; border-top: 1px solid rgba(128,128,128,0.2);'>", unsafe_allow_html=True)
+    else:
+        # 不足20条，显示全部
+        page_df = filtered_df
+    
+    # 渲染当前页的会话按钮
+    for _, row in page_df.iterrows():
         sid = row['session_id']
         score = row['total_score']
         risk_tag = "🔴" if score <= 8 else "🟡" if score <= 12 else "🟢"

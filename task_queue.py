@@ -33,6 +33,7 @@ def init_queue_tables():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS analysis_tasks (
             task_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            batch_id TEXT DEFAULT '',
             session_id TEXT NOT NULL,
             session_data TEXT NOT NULL,
             status TEXT DEFAULT 'pending',
@@ -50,6 +51,10 @@ def init_queue_tables():
     ''')
     
     cursor.execute('''
+        CREATE INDEX IF NOT EXISTS idx_batch_status ON analysis_tasks(batch_id, status)
+    ''')
+    
+    cursor.execute('''
         CREATE INDEX IF NOT EXISTS idx_session ON analysis_tasks(session_id)
     ''')
     
@@ -57,12 +62,13 @@ def init_queue_tables():
     conn.close()
 
 
-def submit_task(session_id: str, session_data: Dict) -> int:
+def submit_task(session_id: str, session_data: Dict, batch_id: str = '') -> int:
     """提交分析任务到队列
     
     Args:
         session_id: 会话ID
         session_data: 会话数据（含messages等）
+        batch_id: 批次ID，用于区分不同分析任务
         
     Returns:
         任务ID
@@ -73,9 +79,9 @@ def submit_task(session_id: str, session_data: Dict) -> int:
     cursor = conn.cursor()
     
     cursor.execute('''
-        INSERT INTO analysis_tasks (session_id, session_data, status, created_at)
-        VALUES (?, ?, 'pending', ?)
-    ''', (session_id, json.dumps(session_data, ensure_ascii=False), datetime.now().isoformat()))
+        INSERT INTO analysis_tasks (session_id, session_data, batch_id, status, created_at)
+        VALUES (?, ?, ?, 'pending', ?)
+    ''', (session_id, json.dumps(session_data, ensure_ascii=False), batch_id, datetime.now().isoformat()))
     
     task_id = cursor.lastrowid
     conn.commit()
@@ -196,9 +202,12 @@ def fail_task(task_id: int, error: str):
     conn.close()
 
 
-def get_queue_stats() -> Dict:
+def get_queue_stats(batch_id: str = '') -> Dict:
     """获取队列统计信息
     
+    Args:
+        batch_id: 批次ID，为空时返回全局统计
+        
     Returns:
         统计字典
     """
@@ -207,11 +216,19 @@ def get_queue_stats() -> Dict:
     conn = sqlite3.connect(QUEUE_DB_PATH)
     cursor = conn.cursor()
     
-    cursor.execute('''
-        SELECT status, COUNT(*)
-        FROM analysis_tasks
-        GROUP BY status
-    ''')
+    if batch_id:
+        cursor.execute('''
+            SELECT status, COUNT(*)
+            FROM analysis_tasks
+            WHERE batch_id = ?
+            GROUP BY status
+        ''', (batch_id,))
+    else:
+        cursor.execute('''
+            SELECT status, COUNT(*)
+            FROM analysis_tasks
+            GROUP BY status
+        ''')
     
     stats = dict(cursor.fetchall())
     conn.close()
@@ -266,18 +283,19 @@ def clear_completed_tasks(days: int = 7):
 
 # ========== 便捷函数 ==========
 
-def submit_sessions_batch(sessions: List[Dict]) -> List[int]:
+def submit_sessions_batch(sessions: List[Dict], batch_id: str = '') -> List[int]:
     """批量提交会话到队列
     
     Args:
         sessions: 会话列表
+        batch_id: 批次ID
         
     Returns:
         任务ID列表
     """
     task_ids = []
     for session in sessions:
-        task_id = submit_task(session['session_id'], session)
+        task_id = submit_task(session['session_id'], session, batch_id)
         task_ids.append(task_id)
     return task_ids
 

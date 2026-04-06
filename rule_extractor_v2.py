@@ -649,9 +649,9 @@ if __name__ == "__main__":
                 print(f"\n统计: {stats}")
         else:
             print("用法:")
-            print("  python rule_extractor_v2.py test [correction_id]     - 测试提取")
-            print("  python rule_extractor_v2.py process [correction_id]  - 处理单条/所有")
-            print("  python rule_extractor_v2.py process --force           - 强制处理（跳过去重）")
+            print("  python3 rule_extractor_v2.py test [correction_id]     - 测试提取")
+            print("  python3 rule_extractor_v2.py process [correction_id]  - 处理单条/所有")
+            print("  python3 rule_extractor_v2.py process --force           - 强制处理（跳过去重）")
     else:
         print("用法:")
         print("  python rule_extractor_v2.py test [correction_id]     - 测试提取")

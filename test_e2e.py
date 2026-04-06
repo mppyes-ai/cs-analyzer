@@ -9,7 +9,7 @@
 6. 智能评分（含CoT输出）
 7. 版本化迁移
 
-用法: python test_e2e.py [--verbose]
+用法: python3 test_e2e.py [--verbose]
 
 作者: 小虾米
 更新: 2026-03-17
@@ -289,8 +289,8 @@ def main():
     
     print("\n💡 下一步建议:")
     if success:
-        print("  1. 运行 python intent_classifier_v3.py 测试分类器性能")
-        print("  2. 运行 python migrate_to_v2_versioned.py migrate --limit 5 测试迁移")
+        print("  1. 运行 python3 intent_classifier_v3.py 测试分类器性能")
+        print("  2. 运行 python3 migrate_to_v2_versioned.py migrate --limit 5 测试迁移")
         print("  3. 启动Streamlit测试前端页面")
     else:
         print("  请修复失败项后再继续")

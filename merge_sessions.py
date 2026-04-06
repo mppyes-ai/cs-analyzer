@@ -8,9 +8,9 @@
 4. 合并后保留最早的 session_id，session_count 累加
 
 用法:
-    python merge_sessions.py              # 执行合并
-    python merge_sessions.py --dry-run    # 预览合并结果，不实际执行
-    python merge_sessions.py --window 60  # 设置合并窗口为60分钟
+    python3 merge_sessions.py              # 执行合并
+    python3 merge_sessions.py --dry-run    # 预览合并结果，不实际执行
+    python3 merge_sessions.py --window 60  # 设置合并窗口为60分钟
 """
 
 import sqlite3
@@ -333,7 +333,7 @@ def main():
     
     if args.dry_run:
         print("\n⚠️ 这是预览模式，未实际执行合并")
-        print("   执行合并请运行: python merge_sessions.py")
+        print("   执行合并请运行: python3 merge_sessions.py")
 
 
 if __name__ == '__main__':
