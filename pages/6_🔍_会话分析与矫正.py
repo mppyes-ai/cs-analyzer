@@ -20,8 +20,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import db_utils
 importlib.reload(db_utils)
 
-from db_utils import load_sessions, get_corrected_ids, get_correction_by_session, save_correction_v2, is_session_corrected
+from db_utils import load_sessions, get_corrected_ids, get_correction_by_session, save_correction_v2, is_session_corrected, init_correction_tables
 from knowledge_base_v2 import get_rule_by_id
+
+# 初始化矫正系统表
+init_correction_tables()
 
 st.set_page_config(page_title="会话分析与矫正", page_icon="🔍", layout="wide")
 
