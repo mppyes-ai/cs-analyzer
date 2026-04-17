@@ -27,13 +27,18 @@ from datetime import datetime
 from typing import Optional, Dict, Any
 
 # ============ 配置 ============
-MSG_FILE = Path('/tmp/cs_analyzer_messages.jsonl')
-MSG_FILE_PROCESSED = Path('/tmp/cs_analyzer_messages_processed.jsonl')
-MSG_FILE_FAILED = Path('/tmp/cs_analyzer_messages_failed.jsonl')  # 新增：失败消息暂存
-PID_FILE = Path('/tmp/cs_analyzer_message_poller.pid')  # 新增：自身PID文件
+# ============ 配置 ============
+LOGS_DIR = Path(os.path.join(os.path.dirname(__file__), 'logs'))
+LOGS_DIR.mkdir(exist_ok=True)
+
+MSG_FILE = LOGS_DIR / 'cs_analyzer_messages.jsonl'
+MSG_FILE_PROCESSED = LOGS_DIR / 'cs_analyzer_messages_processed.jsonl'
+MSG_FILE_FAILED = LOGS_DIR / 'cs_analyzer_messages_failed.jsonl'
+PID_FILE = LOGS_DIR / 'cs_analyzer_message_poller.pid'
 POLL_INTERVAL = 3  # 秒
 MUST_DELIVER_KEYWORDS = ['完成', '100%', '质检报告', '分析完成']  # 必达消息关键词
 MAX_RETRY_COUNT = 3  # 单条消息最大重试次数
+IDLE_EXIT_MINUTES = 5  # 【修复】空闲5分钟后退出（原30分钟太长）
 
 
 class MessagePoller:
@@ -63,10 +68,34 @@ class MessagePoller:
         self._load_failed_messages()
 
     def _write_pid_file(self):
-        """写入PID文件供外部监控"""
+        """写入PID文件供外部监控，带单例检查（增强版）"""
         try:
+            # 【修复】先检查文件修改时间，如果是最近10秒内创建的，可能是并发启动
+            if PID_FILE.exists():
+                try:
+                    file_mtime = PID_FILE.stat().st_mtime
+                    if time.time() - file_mtime < 10:
+                        # 文件是最近10秒内创建的，可能另一个实例正在启动中
+                        print(f"⚠️ PID文件最近创建，可能有其他实例正在启动，本实例等待...")
+                        time.sleep(2)  # 等待2秒让另一个实例完成启动
+                        
+                    old_pid = int(PID_FILE.read_text().strip())
+                    # 检查旧进程是否仍在运行
+                    os.kill(old_pid, 0)
+                    # 如果运行到这里，说明旧进程存在
+                    print(f"⚠️ 已有消息轮询服务在运行 (PID: {old_pid})，本实例退出")
+                    sys.exit(0)
+                except (ValueError, ProcessLookupError, OSError):
+                    # PID文件损坏或进程不存在，清理后重新创建
+                    print(f"🧹 清理残留PID文件")
+                    PID_FILE.unlink()
+            
             PID_FILE.write_text(str(os.getpid()))
+            # 【修复】立即刷新文件系统，确保其他实例能看到
+            os.sync()
             print(f"📝 PID文件已创建: {PID_FILE} ({os.getpid()})")
+        except SystemExit:
+            raise
         except Exception as e:
             print(f"⚠️ PID文件写入失败: {e}")
 
@@ -290,8 +319,9 @@ class MessagePoller:
             # 如果消息文件为空且连续空轮询超过阈值，则考虑退出
             if MSG_FILE.exists() and MSG_FILE.stat().st_size == 0:
                 empty_count += 1
-                if empty_count > 600:  # 约30分钟无消息（600 * 3秒）
-                    print("\n⏰ 30分钟无新消息，消息服务正常退出")
+                # 【修复】5分钟无消息退出 (300 * 3秒 / 60 = 5分钟)
+                if empty_count > 300:
+                    print("\n⏰ 5分钟无新消息，消息服务正常退出")
                     break
             else:
                 empty_count = 0

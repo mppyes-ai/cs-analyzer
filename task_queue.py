@@ -36,6 +36,7 @@ def init_queue_tables():
             batch_id TEXT DEFAULT '',
             session_id TEXT NOT NULL,
             session_data TEXT NOT NULL,
+            scene TEXT DEFAULT '售前阶段',
             status TEXT DEFAULT 'pending',
             result TEXT,
             error TEXT,
@@ -62,13 +63,14 @@ def init_queue_tables():
     conn.close()
 
 
-def submit_task(session_id: str, session_data: Dict, batch_id: str = '') -> int:
+def submit_task(session_id: str, session_data: Dict, batch_id: str = '', scene: str = '售前阶段') -> int:
     """提交分析任务到队列
     
     Args:
         session_id: 会话ID
         session_data: 会话数据（含messages等）
         batch_id: 批次ID，用于区分不同分析任务
+        scene: 场景分类（售前阶段/售中阶段/售后阶段/客诉处理）
         
     Returns:
         任务ID
@@ -79,9 +81,9 @@ def submit_task(session_id: str, session_data: Dict, batch_id: str = '') -> int:
     cursor = conn.cursor()
     
     cursor.execute('''
-        INSERT INTO analysis_tasks (session_id, session_data, batch_id, status, created_at)
-        VALUES (?, ?, ?, 'pending', ?)
-    ''', (session_id, json.dumps(session_data, ensure_ascii=False), batch_id, datetime.now().isoformat()))
+        INSERT INTO analysis_tasks (session_id, session_data, batch_id, scene, status, created_at)
+        VALUES (?, ?, ?, ?, 'pending', ?)
+    ''', (session_id, json.dumps(session_data, ensure_ascii=False), batch_id, scene, datetime.now().isoformat()))
     
     task_id = cursor.lastrowid
     conn.commit()
@@ -242,25 +244,132 @@ def get_queue_stats(batch_id: str = '') -> Dict:
     }
 
 
-def retry_failed_tasks():
-    """重试失败任务（最多3次）"""
+def retry_failed_tasks(max_retries: int = 3, base_delay: int = 30) -> int:
+    """重试失败任务（带指数退避策略）
+    
+    策略：
+    - 第1次重试：立即执行（delay=0）
+    - 第2次重试：30秒后（delay=30s）
+    - 第3次重试：60秒后（delay=60s）
+    - 超过max_retries次的任务不再重试
+    
+    Args:
+        max_retries: 最大重试次数（默认3次）
+        base_delay: 基础延迟秒数（默认30秒）
+        
+    Returns:
+        重试的任务数量
+    """
+    import time
+    
     conn = sqlite3.connect(QUEUE_DB_PATH)
     cursor = conn.cursor()
     
+    # 获取所有失败任务及其重试次数
     cursor.execute('''
-        UPDATE analysis_tasks
-        SET status = 'pending',
-            error = NULL,
-            started_at = NULL
+        SELECT task_id, retry_count, error
+        FROM analysis_tasks
         WHERE status = 'failed'
-        AND retry_count < 3
-    ''')
+        AND retry_count < ?
+        ORDER BY retry_count ASC, created_at ASC
+    ''', (max_retries,))
     
-    count = cursor.rowcount
+    failed_tasks = cursor.fetchall()
+    
+    if not failed_tasks:
+        conn.close()
+        return 0
+    
+    retried_count = 0
+    
+    for task_id, retry_count, error in failed_tasks:
+        # 计算延迟时间（指数退避）
+        if retry_count == 0:
+            delay = 0  # 首次失败立即重试
+        else:
+            # 指数退避：30s, 60s, 120s...
+            delay = base_delay * (2 ** (retry_count - 1))
+        
+        # 检查是否已达到重试时间（基于completed_at时间）
+        cursor.execute('''
+            SELECT completed_at FROM analysis_tasks WHERE task_id = ?
+        ''', (task_id,))
+        result = cursor.fetchone()
+        
+        if result and result[0]:
+            completed_time = datetime.fromisoformat(result[0])
+            elapsed_seconds = (datetime.now() - completed_time).total_seconds()
+            
+            if elapsed_seconds < delay:
+                # 还未到重试时间，跳过
+                print(f"  ⏳ 任务 {task_id} 还需等待 {int(delay - elapsed_seconds)}s 后重试")
+                continue
+        
+        # 重置任务状态为pending
+        cursor.execute('''
+            UPDATE analysis_tasks
+            SET status = 'pending',
+                error = NULL,
+                started_at = NULL
+            WHERE task_id = ?
+        ''', (task_id,))
+        
+        retried_count += 1
+        print(f"  🔄 任务 {task_id} 第 {retry_count + 1} 次重试（延迟 {delay}s）")
+    
     conn.commit()
     conn.close()
     
-    return count
+    if retried_count > 0:
+        print(f"✅ 已重置 {retried_count}/{len(failed_tasks)} 个失败任务为pending状态")
+    
+    return retried_count
+
+
+def force_retry_all_failed(max_retries: int = 3) -> int:
+    """【修复】强制立即重试所有可重试的失败任务（不等待延迟时间）
+    
+    用于--once模式，确保Worker退出前处理完所有可重试任务
+    
+    Args:
+        max_retries: 最大重试次数（默认3次）
+        
+    Returns:
+        重试的任务数量
+    """
+    conn = sqlite3.connect(QUEUE_DB_PATH)
+    cursor = conn.cursor()
+    
+    # 获取所有可重试的失败任务（忽略延迟时间）
+    cursor.execute('''
+        SELECT task_id, retry_count
+        FROM analysis_tasks
+        WHERE status = 'failed'
+        AND retry_count < ?
+    ''', (max_retries,))
+    
+    failed_tasks = cursor.fetchall()
+    
+    if not failed_tasks:
+        conn.close()
+        return 0
+    
+    for task_id, retry_count in failed_tasks:
+        # 直接重置为pending，不检查延迟
+        cursor.execute('''
+            UPDATE analysis_tasks
+            SET status = 'pending',
+                error = NULL,
+                started_at = NULL
+            WHERE task_id = ?
+        ''', (task_id,))
+        print(f"  🔄 强制重试任务 {task_id}（第 {retry_count + 1} 次）")
+    
+    conn.commit()
+    conn.close()
+    
+    print(f"✅ 强制重置 {len(failed_tasks)} 个失败任务为pending状态")
+    return len(failed_tasks)
 
 
 def clear_completed_tasks(days: int = 7):

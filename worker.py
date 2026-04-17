@@ -13,7 +13,7 @@
   - 废弃 WORKER_BATCH_SIZE，改用 WORKER_MAX_BATCH_SIZE
   - 自适应批量：根据Token估算自动调整5-50通/批
   - Token安全上限：200K（可配置）
-  - Kimi并发提升至90（可配置）
+  - Kimi并发提升至100（可配置）
 
 用法:
     python3 worker.py                    # 默认模式（异步批量）
@@ -28,8 +28,8 @@
 环境变量配置 (.env):
     BATCH_SCORE_SIZE=30              # 基础批量大小
     MAX_TOKENS_PER_BATCH=200000      # Token安全上限
-    ADAPTIVE_BATCH_MIN=10            # 最小批量
-    ADAPTIVE_BATCH_MAX=50            # 最大批量
+    ADAPTIVE_BATCH_MIN=3            # 最小批量
+    ADAPTIVE_BATCH_MAX=5             # 最大批量
     KIMI_MAX_CONCURRENT=90           # Kimi并发数
 
 作者: 小虾米
@@ -94,8 +94,10 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from task_queue import (
     init_queue_tables, get_pending_task, get_pending_tasks, complete_task, fail_task,
-    get_queue_stats, retry_failed_tasks, cancel_task, mark_processing, QUEUE_DB_PATH
+    get_queue_stats, retry_failed_tasks, cancel_task, mark_processing, QUEUE_DB_PATH,
+    force_retry_all_failed  # 【修复】导入强制重试函数
 )
+from db_utils import init_sessions_table
 from intent_classifier_v3 import RobustIntentClassifier
 from smart_scoring_v2 import SmartScoringEngine
 import sqlite3
@@ -105,9 +107,9 @@ import json
 TOKENS_PER_CHAR = float(os.getenv('TOKENS_PER_CHAR', '0.67'))
 OUTPUT_TOKENS_PER_SESSION = int(os.getenv('OUTPUT_TOKENS_PER_SESSION', '600'))
 SYSTEM_PROMPT_TOKENS = int(os.getenv('SYSTEM_PROMPT_TOKENS', '900'))
-MAX_TOKENS_PER_BATCH = int(os.getenv('MAX_TOKENS_PER_BATCH', '200000'))
-ADAPTIVE_BATCH_MIN = int(os.getenv('ADAPTIVE_BATCH_MIN', '10'))
-ADAPTIVE_BATCH_MAX = int(os.getenv('ADAPTIVE_BATCH_MAX', '50'))
+MAX_TOKENS_PER_BATCH = int(os.getenv('MAX_TOKENS_PER_BATCH', '300000'))
+ADAPTIVE_BATCH_MIN = int(os.getenv('ADAPTIVE_BATCH_MIN', '3'))
+ADAPTIVE_BATCH_MAX = int(os.getenv('ADAPTIVE_BATCH_MAX', '5'))  # 【修复】强制限制最大5通/批，避免API超时
 
 
 def estimate_session_tokens(session_data: Dict) -> int:
@@ -142,17 +144,21 @@ def calculate_adaptive_batch_size(sessions: List[Dict], base_size: int = 30) -> 
     # 计算平均单通token
     avg_tokens = base_tokens / base_size
     
-    # 如果平均token较低，尝试扩大批量，但不超过20（避免API返回截断）
+    # 如果平均token较低，尝试扩大批量，但不超过ADAPTIVE_BATCH_MAX (5通)
     if avg_tokens < 3000:  # 短会话
         potential_size = int(MAX_TOKENS_PER_BATCH / avg_tokens * 0.9)
-        return min(potential_size, 20, len(sessions))  # 【v2.6.2】限制最大20
+        return min(potential_size, ADAPTIVE_BATCH_MAX, len(sessions))
     
-    # 默认使用base_size，但不超过20
-    return min(base_size, 20, len(sessions))  # 【v2.6.2】限制最大20
+    # 默认使用base_size，但不超过ADAPTIVE_BATCH_MAX (5通)
+    return min(base_size, ADAPTIVE_BATCH_MAX, len(sessions))
 
 
 # ========== 单例锁机制（使用 PID 文件）==========
-PID_FILE = '/tmp/cs_analyzer_worker.pid'
+# ========== 日志目录配置 ==========
+LOGS_DIR = os.path.join(os.path.dirname(__file__), 'logs')
+os.makedirs(LOGS_DIR, exist_ok=True)
+
+PID_FILE = os.path.join(LOGS_DIR, 'cs_analyzer_worker.pid')
 
 def acquire_lock():
     """获取单例锁，防止多个 worker 同时运行"""
@@ -204,8 +210,8 @@ classifier = None
 scorer = None
 MERGE_WINDOW_MINUTES = 30
 MAX_WORKERS = 3
-BATCH_SCORE_SIZE = int(os.getenv('BATCH_SCORE_SIZE', '3'))
-KIMI_MAX_CONCURRENT = int(os.getenv('KIMI_MAX_CONCURRENT', '5'))
+BATCH_SCORE_SIZE = int(os.getenv('BATCH_SCORE_SIZE', '20'))
+KIMI_MAX_CONCURRENT = int(os.getenv('KIMI_MAX_CONCURRENT', '100'))
 kimi_semaphore = None  # 在init_engines中初始化
 db_lock = threading.Lock()
 
@@ -680,17 +686,19 @@ def process_task_sync(task: dict, window_minutes: int = MERGE_WINDOW_MINUTES) ->
         return False
 
 
-def fetch_and_group_tasks(max_batch_size: int = 150) -> Dict[str, List[Dict]]:
+def fetch_and_group_tasks(max_batch_size: int = 150, once: bool = False) -> Dict[str, List[Dict]]:
     """【v2.6.2】智能获取待处理任务并按 user_id 分组
     
     优化点：
     - 先count队列中pending任务总数
     - 如果总数 <= max_batch_size，一次性全取
     - 如果总数 > max_batch_size，取max_batch_size个
+    - 【v2.6.3修复】--once模式下取全部任务，不受max_batch_size限制
     - 实现"看人数打饭"策略，避免多次轮询
     
     Args:
         max_batch_size: 单次处理上限（默认150），防止内存溢出
+        once: 是否为--once模式（True时取全部任务）
     """
     import pandas as pd
     
@@ -701,13 +709,16 @@ def fetch_and_group_tasks(max_batch_size: int = 150) -> Dict[str, List[Dict]]:
     cursor.execute("SELECT COUNT(*) FROM analysis_tasks WHERE status = 'pending'")
     total_pending = cursor.fetchone()[0]
     
-    # 如果总数 <= max_batch_size，全取；否则取max_batch_size
-    limit = total_pending if total_pending <= max_batch_size else max_batch_size
-    
-    if total_pending > max_batch_size:
-        print(f"   📊 队列共有 {total_pending} 个任务，本次处理前 {limit} 个")
-    else:
+    # 【v2.6.3修复】--once模式下取全部任务，不受max_batch_size限制
+    if once:
+        limit = total_pending
+        print(f"   📊 --once模式：队列共有 {total_pending} 个任务，全部取出处理")
+    elif total_pending <= max_batch_size:
+        limit = total_pending
         print(f"   📊 队列共有 {total_pending} 个任务，全部取出处理")
+    else:
+        limit = max_batch_size
+        print(f"   📊 队列共有 {total_pending} 个任务，本次处理前 {limit} 个")
     
     df = pd.read_sql_query("""
         SELECT * FROM analysis_tasks 
@@ -765,6 +776,7 @@ def run_grouped_parallel_worker(max_groups: int = 4, max_batch_size: int = 150,
     print("=" * 60)
     
     init_queue_tables()
+    init_sessions_table()
     init_engines()
     
     total_processed = 0
@@ -875,7 +887,9 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
             # 【v2.5】构建预分析结果（从task的_scene字段）
             pre_analyses = []
             for task in batch:
-                scene = task.get('_scene', '售前阶段')
+                # 【修复】优先使用数据库中的 scene 字段（已持久化）
+                scene = task.get('scene', task.get('_scene', '售前阶段'))
+                task['_scene'] = scene  # 确保内部字段也设置
                 pre_analyses.append({
                     'scene': scene,
                     'sub_scene': '其他',
@@ -925,7 +939,8 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
 
 async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
                                   window_minutes: int = MERGE_WINDOW_MINUTES,
-                                  score_batch_size: int = 30):
+                                  score_batch_size: int = 30,
+                                  once: bool = False):
     """【v2.6.1】运行异步批量工作进程 - 跨场景合并优化
     
     核心优化：
@@ -953,6 +968,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     print("=" * 60)
     
     init_queue_tables()
+    init_sessions_table()
     init_engines()
     
     total_processed = 0
@@ -960,12 +976,39 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     
     try:
         while running:
-            groups = fetch_and_group_tasks(max_batch_size=max_batch_size)
+            groups = fetch_and_group_tasks(max_batch_size=max_batch_size, once=once)
             
             if not groups:
-                retry_failed_tasks()
-                print("⏳ 队列已空，等待新任务...")
-                await asyncio.sleep(2.0)
+                # 【修复】--once模式下，先尝试重试失败任务，然后再次检查队列
+                if once:
+                    # 强制立即重试所有可重试的失败任务（不等待延迟）
+                    retried = force_retry_all_failed()
+                    if retried > 0:
+                        print(f"🔄 --once模式：强制重试 {retried} 个失败任务")
+                        # 重试后立即继续循环，重新获取任务
+                        continue
+                    # 【修复】检查是否还有processing任务卡住
+                    conn = sqlite3.connect(QUEUE_DB_PATH)
+                    cursor = conn.cursor()
+                    cursor.execute("SELECT COUNT(*) FROM analysis_tasks WHERE status='processing'")
+                    processing_count = cursor.fetchone()[0]
+                    conn.close()
+                    if processing_count > 0:
+                        print(f"🔄 --once模式：还有 {processing_count} 个processing任务，重置为pending")
+                        conn = sqlite3.connect(QUEUE_DB_PATH)
+                        cursor = conn.cursor()
+                        cursor.execute("UPDATE analysis_tasks SET status='pending', started_at=NULL WHERE status='processing'")
+                        conn.commit()
+                        conn.close()
+                        continue
+                    # 没有可重试任务且队列为空，可以安全退出
+                    print("⏳ 队列已空，--once模式：准备退出")
+                    break
+                else:
+                    # 非--once模式，使用普通重试策略
+                    retry_failed_tasks()
+                    print("⏳ 队列已空，等待新任务...")
+                    await asyncio.sleep(2.0)
                 continue
             
             # 收集所有任务（跨用户）
@@ -976,15 +1019,19 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
             
             print(f"\n📦 获取 {len(all_tasks)} 个任务，来自 {len(groups)} 个用户")
             
-            # 【v2.6.1优化】跨场景合并：不再按场景分组，统一批量处理
-            # 场景信息已通过 _scene 字段保存在 task 中，会传给 pre_analysis
-            print(f"\n🔍 对 {len(all_tasks)} 通会话进行快速场景分类...")
+            # 【修复】优先使用数据库中的 scene 字段，缺失时才重新分类
+            print(f"\n🔍 对 {len(all_tasks)} 通会话进行场景检查...")
             for task in all_tasks:
                 session_data = task.get('session_data', {})
                 if isinstance(session_data, str):
                     session_data = json.loads(session_data)
                 messages = session_data.get('messages', [])
-                task['_scene'] = _fast_scene_classify(messages)
+                
+                # 优先使用数据库持久化的 scene，缺失时才重新分类
+                scene = task.get('scene')
+                if not scene:
+                    scene = _fast_scene_classify(messages)
+                task['_scene'] = scene
             
             # 统计场景分布（仅用于日志）
             scene_groups = defaultdict(list)
@@ -1077,7 +1124,7 @@ def main():
                '--max-batch-size', str(args.max_batch_size)]
         if mode == 'async-batch':
             cmd.extend(['--score-batch-size', str(args.score_batch_size)])
-        subprocess.Popen(cmd, stdout=open('/tmp/worker.log', 'a'), stderr=subprocess.STDOUT)
+        subprocess.Popen(cmd, stdout=open(os.path.join(LOGS_DIR, 'worker.log'), 'a'), stderr=subprocess.STDOUT)
         print(f"🚀 工作进程已在后台启动 [{mode}模式]")
     else:
         if mode == 'async-batch':
@@ -1085,7 +1132,8 @@ def main():
                 max_groups=args.max_groups,
                 max_batch_size=args.max_batch_size,
                 window_minutes=args.window,
-                score_batch_size=args.score_batch_size
+                score_batch_size=args.score_batch_size,
+                once=args.once
             ))
         elif mode == 'grouped':
             run_grouped_parallel_worker(

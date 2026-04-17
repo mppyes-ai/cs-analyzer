@@ -11,6 +11,42 @@ def get_connection():
     """获取数据库连接"""
     return sqlite3.connect(DB_PATH, check_same_thread=False)
 
+def init_sessions_table():
+    """初始化会话表（如果不存在）"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS sessions (
+            session_id TEXT PRIMARY KEY,
+            user_id TEXT,
+            staff_name TEXT,
+            messages TEXT,
+            summary TEXT,
+            professionalism_score INTEGER,
+            standardization_score INTEGER,
+            policy_execution_score INTEGER,
+            conversion_score INTEGER,
+            total_score INTEGER,
+            analysis_json TEXT,
+            strengths TEXT,
+            issues TEXT,
+            suggestions TEXT,
+            session_count INTEGER DEFAULT 1,
+            start_time TEXT,
+            end_time TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            is_transfer INTEGER DEFAULT 0,
+            transfer_from TEXT,
+            transfer_to TEXT,
+            transfer_reason TEXT,
+            related_sessions TEXT
+        )
+    """)
+    
+    conn.commit()
+    conn.close()
+
 def load_sessions():
     """加载所有会话"""
     conn = get_connection()

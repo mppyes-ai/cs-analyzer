@@ -151,7 +151,8 @@ SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，负责对
 
 ### 引用规则说明
 1. **使用知识库规则时**：`referenced_rules`填写具体的规则ID（如：`["rule_xxx"]`）
-2. **知识库未覆盖时**：`referenced_rules`填写空数组（`[]`），表示基于电商/客服/售后等行业通用标准评判
+2. **知识库未覆盖时**：`referenced_rules`必须填写空数组（`[]`），严禁自行编造规则名称或描述
+3. **检查方式**：如果本次评分参考的规则列表为空，则所有维度的`referenced_rules`都必须是`[]`
 
 ### 通用标准定义
 - **电商行业通用标准**：响应时效、服务态度、问题闭环等电商客服基本规范
@@ -477,7 +478,7 @@ class SmartScoringEngine:
                 max_retries=2
             )
             
-            model = os.getenv('KIMI_MODEL', 'kimi-k1.5')
+            model = os.getenv('KIMI_MODEL', 'kimi-k2.5')
             
             max_retries = 3
             base_delay = 2.0
@@ -519,6 +520,10 @@ class SmartScoringEngine:
             content = response.choices[0].message.content
             
             result = self._parse_json_robust(content)
+            
+            # 【修复】截断各维度分数到有效范围
+            if result:
+                result = self._clamp_scores(result)
             
             if result is None:
                 raise ScoringError(
@@ -629,62 +634,57 @@ class SmartScoringEngine:
         return result
     
     def _retrieve_rules_cross_scene(self, scenes: List[str], messages_text: str) -> List[Dict]:
-        """检索多个场景的规则
+        """【方案B】按场景分别检索规则
         
-        策略：
-        1. 优先使用混合检索（无场景过滤，获取最相关的规则）
-        2. 回退到各场景分别检索 + 去重
+        策略变更：
+        1. 移除混合检索（混合场景下失效）
+        2. 为每个场景分别检索规则（售前→售前规则，售中→售中规则...）
+        3. 合并去重后返回
+        
+        这样即使20通混合批次，也能获取所有场景的规则。
         """
         all_rules = []
         seen_ids = set()
         
-        # 1. 先尝试混合检索（全局搜索，不限制场景）
-        if HYBRID_RETRIEVER_AVAILABLE:
-            try:
-                retriever = HybridRuleRetriever(embedding_model=self.embedding_model)
-                rules = retriever.search(
-                    query=messages_text,
-                    top_k=10,  # 获取更多规则
-                    use_hybrid=True
-                    # 不设置scene_filter，全局搜索
-                )
-                for r in rules:
-                    if r['rule_id'] not in seen_ids:
-                        all_rules.append(r)
-                        seen_ids.add(r['rule_id'])
-                if all_rules:
-                    print(f"   📚 混合检索返回 {len(all_rules)} 条规则")
-                    return all_rules[:8]  # 返回最多8条
-            except Exception as e:
-                print(f"   ⚠️ 混合检索失败: {e}，回退到场景分别检索")
+        # 去重场景列表
+        unique_scenes = list(set(scenes))
+        print(f"   📚 为 {len(unique_scenes)} 个场景分别检索规则: {unique_scenes}")
         
-        # 2. 回退：各场景分别检索
-        for scene in scenes:
+        # 为每个场景分别检索规则
+        for scene in unique_scenes:
             try:
+                # 1. 从知识库获取该场景的已批准规则
                 scene_rules = get_approved_rules(scene_category=scene)
                 for r in scene_rules:
                     if r['rule_id'] not in seen_ids:
                         all_rules.append(r)
                         seen_ids.add(r['rule_id'])
+                
+                if scene_rules:
+                    print(f"     ✓ 场景'{scene}': {len(scene_rules)}条规则")
+                
+                # 2. 向量检索补充（带场景过滤）
+                try:
+                    # 构建该场景的查询文本
+                    scene_query = f"{scene} 客服服务标准"
+                    vector_rules = search_rules_by_vector(
+                        query_text=scene_query,
+                        top_k=3,
+                        embedding_model=self.embedding_model
+                    )
+                    # 过滤：只保留匹配当前场景的规则
+                    for vr in vector_rules:
+                        if vr['rule_id'] not in seen_ids and vr.get('scene_category') == scene:
+                            all_rules.append(vr)
+                            seen_ids.add(vr['rule_id'])
+                except Exception as e:
+                    print(f"     ⚠️ 场景'{scene}'向量检索失败: {e}")
+                    
             except Exception as e:
                 print(f"   ⚠️ 检索场景'{scene}'规则失败: {e}")
         
-        # 3. 向量检索补充（全局）
-        try:
-            vector_rules = search_rules_by_vector(
-                query_text=messages_text,
-                top_k=5,
-                embedding_model=self.embedding_model
-            )
-            for vr in vector_rules:
-                if vr['rule_id'] not in seen_ids:
-                    all_rules.append(vr)
-                    seen_ids.add(vr['rule_id'])
-        except Exception as e:
-            print(f"   ⚠️ 向量检索失败: {e}")
-        
-        print(f"   📚 跨场景检索共 {len(all_rules)} 条规则")
-        return all_rules[:8]  # 最多8条
+        print(f"   📚 跨场景检索共 {len(all_rules)} 条规则（来自{len(unique_scenes)}个场景）")
+        return all_rules[:10]  # 最多10条，避免Prompt过长
     
     async def _score_batch_same_scene(self, sessions: List[Dict], 
                                        pre_analyses: List[Dict],
@@ -736,7 +736,7 @@ class SmartScoringEngine:
             import asyncio
             import httpx
             
-            timeout_seconds = 300  # 【v2.5】硬编码 300 秒
+            timeout_seconds = int(os.getenv('KIMI_API_TIMEOUT', '300'))  # 【v2.5】从环境变量读取，默认300秒
             import sys
             print(f"   [DEBUG] API Timeout: {timeout_seconds}s", file=sys.stderr, flush=True)
             print(f"   [DEBUG] Worker PID: {os.getpid()}", file=sys.stderr, flush=True)
@@ -754,7 +754,7 @@ class SmartScoringEngine:
                 )
             )
             
-            model = os.getenv('KIMI_MODEL', 'kimi-k1.5')
+            model = os.getenv('KIMI_MODEL', 'kimi-k2.5')
             print(f"   [DEBUG] Using model: {model}", flush=True)
             
             # 【v2.5】添加超时保护（从.env读取，默认300秒）
@@ -778,6 +778,9 @@ class SmartScoringEngine:
             content = response.choices[0].message.content
             results = self._parse_batch_response(content, expected_count)
             print(f"   [DEBUG] Parsed {len(results)} results", flush=True)
+            
+            # 【修复】截断各维度分数到有效范围
+            results = [self._clamp_scores(r) if isinstance(r, dict) else r for r in results]
             
             # 补充元数据（包含预分析数据）
             for i, r in enumerate(results):
@@ -854,6 +857,46 @@ class SmartScoringEngine:
     
     # ========== 通用工具方法 ==========
     
+    def _clamp_scores(self, result: Dict) -> Dict:
+        """【修复】截断各维度分数到有效范围（1-5分）
+        
+        AI模型有时会给出超出1-5分范围的分数，需要截断
+        """
+        if not isinstance(result, dict):
+            return result
+        
+        dims = ['professionalism', 'standardization', 'policy_execution', 'conversion']
+        dim_scores = result.get('dimension_scores', {})
+        
+        for dim in dims:
+            if dim in dim_scores and isinstance(dim_scores[dim], dict):
+                score = dim_scores[dim].get('score', 3)
+                # 截断到1-5分范围
+                original_score = score
+                clamped_score = max(1, min(5, score))
+                if original_score != clamped_score:
+                    print(f"   ⚠️ {dim}分数截断: {original_score} -> {clamped_score}")
+                    dim_scores[dim]['score'] = clamped_score
+                    # 添加截断标记
+                    dim_scores[dim]['_clamped'] = True
+                    dim_scores[dim]['_original_score'] = original_score
+        
+        # 重新计算总分
+        total = sum(dim_scores.get(d, {}).get('score', 3) for d in dims)
+        if 'summary' not in result:
+            result['summary'] = {}
+        result['summary']['total_score'] = total
+        
+        # 更新风险等级
+        if total <= 8:
+            result['summary']['risk_level'] = "高风险"
+        elif total <= 12:
+            result['summary']['risk_level'] = "中风险"
+        else:
+            result['summary']['risk_level'] = "正常"
+        
+        return result
+
     def _parse_json_robust(self, content: str) -> Optional[Dict]:
         """健壮JSON解析 - 处理截断和不完整JSON
         

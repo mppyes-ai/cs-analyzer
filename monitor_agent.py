@@ -48,9 +48,13 @@ SELF_TIMEOUT_MINUTES = int(os.getenv('MONITOR_SELF_TIMEOUT_MINUTES', '240'))
 PROGRESS_INTERVAL = int(os.getenv('PROGRESS_INTERVAL_PERCENT', '10'))
 MIN_INTERVAL_SECONDS = int(os.getenv('PROGRESS_MIN_INTERVAL_SECONDS', '60'))
 
+# 日志目录配置
+LOGS_DIR = Path(os.path.join(os.path.dirname(__file__), 'logs'))
+LOGS_DIR.mkdir(exist_ok=True)
+
 # 取消信号文件
-CANCEL_FILE = Path('/tmp/cs_analyzer_cancel')
-MONITOR_PID_FILE = Path('/tmp/cs_analyzer_monitor.pid')
+CANCEL_FILE = LOGS_DIR / 'cs_analyzer_cancel'
+MONITOR_PID_FILE = LOGS_DIR / 'cs_analyzer_monitor.pid'
 
 
 class MonitorAgent:
@@ -76,7 +80,7 @@ class MonitorAgent:
     
     def check_message_poller_health(self) -> bool:
         """检查消息轮询服务健康状态"""
-        PID_FILE = Path('/tmp/cs_analyzer_message_poller.pid')
+        PID_FILE = LOGS_DIR / 'cs_analyzer_message_poller.pid'
         
         if not PID_FILE.exists():
             return False
@@ -111,7 +115,7 @@ class MonitorAgent:
         try:
             proc = subprocess.Popen(
                 cmd,
-                stdout=open('/tmp/message_poller.log', 'a'),
+                stdout=open(LOGS_DIR / 'message_poller.log', 'a'),
                 stderr=subprocess.STDOUT,
                 start_new_session=True
             )
@@ -326,8 +330,19 @@ class MonitorAgent:
         # 这里使用环境变量或配置文件获取目标chat_id
         try:
             import hashlib
-            # 【v2.3新增】发送端去重检查
-            msg_fingerprint = hashlib.md5(message.encode()).hexdigest()[:16]
+            import re
+            
+            # 【v2.3.1修复】使用纯进度值作为指纹，避免时间戳导致去重失效
+            # 提取进度百分比（如"20%"）
+            progress_match = re.search(r'进度:\s*(\d+)%', message)
+            if progress_match and 'CS-Analyzer 进度更新' in message:
+                # 进度消息：使用 log_name + progress 作为指纹
+                progress_val = progress_match.group(1)
+                msg_fingerprint = f"{self.log_name}:{progress_val}"
+            else:
+                # 其他消息（如完成报告）：使用内容MD5
+                msg_fingerprint = hashlib.md5(message.encode()).hexdigest()[:16]
+            
             if msg_fingerprint in self._sent_message_fingerprints:
                 print(f"  [去重] 跳过重复消息: {message[:30]}...")
                 return True  # 返回True表示已处理（跳过）
@@ -337,7 +352,7 @@ class MonitorAgent:
             chat_id = os.getenv('FEISHU_CHAT_ID', 'ou_7a8de0e44d0870581478030fb08b1021')
             
             # 写入消息到文件，由主进程读取发送
-            msg_file = Path('/tmp/cs_analyzer_messages.jsonl')
+            msg_file = LOGS_DIR / 'cs_analyzer_messages.jsonl'
             with open(msg_file, 'a') as f:
                 f.write(json.dumps({
                     'timestamp': datetime.now().isoformat(),

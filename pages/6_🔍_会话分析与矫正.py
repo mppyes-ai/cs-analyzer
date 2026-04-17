@@ -1096,44 +1096,60 @@ with right_col:
                 tooltip_text = dimension_tooltips.get(key, '')
                 
                 with st.container(border=True):
-                    # 标题行：图标+名称  分数+星级（同一行flex布局）
+                    # 标题行：图标+名称+问号tooltip  分数+星级（同一行flex布局）
                     st.markdown(
                         f'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">'
-                        f'<span style="font-size:16px;font-weight:bold;">{icon} {name}</span>'
-                        f'<span><span style="font-size:14px;color:#888;margin-right:8px;">{score}/5</span><span style="font-size:16px;">{stars}</span></span>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
-                    # 副标题 + tooltip
-                    st.markdown(
-                        f'<div style="font-size:12px;color:#888;margin-bottom:4px;">'
-                        f'{desc}'
+                        f'<span style="font-size:16px;font-weight:bold;">'
+                        f'{icon} {name}'
                         f'<span class="tooltip">'
                         f'<span class="tooltip-icon">?</span>'
                         f'<span class="tooltiptext">{tooltip_text}</span>'
                         f'</span>'
+                        f'</span>'
+                        f'<span><span style="font-size:14px;color:#888;margin-right:8px;">{score}/5</span><span style="font-size:16px;">{stars}</span></span>'
                         f'</div>',
                         unsafe_allow_html=True
                     )
+                    # 副标题已删除
                     
-                    # 判定过程：固定标题 + 带边框滚动内容区域（100px，删除padding，底部缩进1）
-                    # 检查是否为知识库未覆盖的情况（根据 referenced_rules 数组是否为空判断）
+                    # 【修改】判定过程和证据引用使用标签页展示
+                    evidence = dim_info.get('evidence', [])
+                    
+                    # 检查是否为知识库未覆盖的情况
                     referenced_rules = dim_info.get('referenced_rules', [])
-                    is_generic_reasoning = len(referenced_rules) == 0
+                    # 【修复】确保 referenced_rules 是列表且为空时才标记为通用标准
+                    is_generic_reasoning = isinstance(referenced_rules, list) and len(referenced_rules) == 0
                     warning_icon = "⚠️ " if is_generic_reasoning else ""
-                    reasoning_style = (
-                        'height:100px;overflow-y:auto;padding:0.5rem;border:1px solid rgba(255,255,255,0.2);background-color:rgba(250,173,20,0.15);'
-                        if is_generic_reasoning else
-                        'height:100px;overflow-y:auto;padding:0.5rem;border:1px solid rgba(255,255,255,0.2);'
-                    )
                     
-                    st.markdown(
-                        f'<div style="margin-top:6px;margin-bottom:1px;">'
-                        f'<div style="font-size:13px;font-weight:bold;margin-bottom:4px;">{warning_icon}判定过程：</div>'
-                        f'<div style="{reasoning_style}border-radius:4px;font-size:13px;line-height:1.5;">{reasoning}</div>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
+                    if evidence:
+                        # 有证据引用时，使用标签页（自定义样式让证据引用靠右）
+                        st.markdown('<style>.stTabs [data-baseweb="tab-list"] { justify-content: space-between; }</style>', unsafe_allow_html=True)
+                        tab1, tab2 = st.tabs([f"{warning_icon}判定过程", "📎 证据引用"])
+                        with tab1:
+                            reasoning_style = (
+                                'height:100px;overflow-y:auto;padding:0.5rem;border:1px solid rgba(255,255,255,0.2);background-color:rgba(250,173,20,0.15);border-radius:4px;font-size:13px;line-height:1.5;'
+                                if is_generic_reasoning else
+                                'height:100px;overflow-y:auto;padding:0.5rem;border:1px solid rgba(255,255,255,0.2);border-radius:4px;font-size:13px;line-height:1.5;'
+                            )
+                            st.markdown(f'<div style="{reasoning_style}">{reasoning}</div>', unsafe_allow_html=True)
+                        with tab2:
+                            evidence_style = 'height:100px;overflow-y:auto;padding:0.5rem;border:1px solid rgba(255,255,255,0.2);border-radius:4px;font-size:13px;line-height:1.5;color:#666;'
+                            evidence_html = ''.join([f'<div style="margin-bottom:4px;">• {e}</div>' for e in evidence[:3]])
+                            st.markdown(f'<div style="{evidence_style}">{evidence_html}</div>', unsafe_allow_html=True)
+                    else:
+                        # 无证据引用时，只显示判定过程
+                        reasoning_style = (
+                            'height:100px;overflow-y:auto;padding:0.5rem;border:1px solid rgba(255,255,255,0.2);background-color:rgba(250,173,20,0.15);border-radius:4px;font-size:13px;line-height:1.5;'
+                            if is_generic_reasoning else
+                            'height:100px;overflow-y:auto;padding:0.5rem;border:1px solid rgba(255,255,255,0.2);border-radius:4px;font-size:13px;line-height:1.5;'
+                        )
+                        st.markdown(
+                            f'<div style="margin-top:6px;">'
+                            f'<div style="font-size:13px;font-weight:bold;margin-bottom:4px;">{warning_icon}判定过程：</div>'
+                            f'<div style="{reasoning_style}">{reasoning}</div>'
+                            f'</div>',
+                            unsafe_allow_html=True
+                        )
     
     # 获取当前会话的最新矫正状态（从顶部移下来的逻辑）
     latest_correction = None

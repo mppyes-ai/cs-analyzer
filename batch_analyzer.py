@@ -26,7 +26,39 @@ sys.path.insert(0, os.path.dirname(__file__))
 from log_parser import parse_log_file
 from task_queue import submit_task, get_queue_stats, get_task_detail, init_queue_tables
 
+
+# ========== 场景分类函数 ==========
+def _fast_scene_classify(messages: List[Dict]) -> str:
+    """快速场景分类（关键词规则，不调用Ollama）"""
+    # 取前3条消息作为判断依据
+    text = ' '.join([m.get('content', '') for m in messages[:3]]).lower()
+    
+    # 售中阶段关键词（用户已下单）
+    if any(k in text for k in ['订单', '发货', '物流', '退款', '取消订单', '改地址', '我的订单']):
+        return '售中阶段'
+    
+    # 售后阶段关键词
+    if any(k in text for k in ['安装', '维修', '故障', '售后', '保修', '坏了', '不工作']):
+        return '售后阶段'
+    
+    # 客诉处理关键词（高优先级）
+    if any(k in text for k in ['投诉', '差评', '退货', '举报', '欺骗', '骗子', '虚假宣传']):
+        return '客诉处理'
+    
+    # 默认售前阶段
+    return '售前阶段'
+
 # 加载环境变量
+import os
+from pathlib import Path
+
+sys.path.insert(0, os.path.dirname(__file__))
+
+# ========== 日志目录配置 ==========
+LOGS_DIR = os.path.join(os.path.dirname(__file__), 'logs')
+os.makedirs(LOGS_DIR, exist_ok=True)
+
+# 加载.env文件
 def load_env():
     env_path = Path(__file__).parent / '.env'
     if env_path.exists():
@@ -41,8 +73,8 @@ load_env()
 
 # 配置项（从环境变量读取）
 CONFIG = {
-    'worker_mode': os.getenv('WORKER_MODE', 'grouped'),
-    'max_groups': int(os.getenv('WORKER_MAX_GROUPS', '4')),
+    'worker_mode': os.getenv('WORKER_MODE', 'async-batch'),
+    'max_groups': int(os.getenv('WORKER_MAX_GROUPS', '10')),
     'max_workers': int(os.getenv('WORKER_MAX_WORKERS', '3')),
     # 【v2.6.2】废弃 WORKER_BATCH_SIZE，改为 WORKER_MAX_BATCH_SIZE
     'batch_size': int(os.getenv('WORKER_MAX_BATCH_SIZE', 
@@ -124,7 +156,7 @@ class BatchAnalyzer:
         """检查Worker是否在运行（PID文件 + 进程存在性双重检测）"""
         import os
         
-        PID_FILE = '/tmp/cs_analyzer_worker.pid'
+        PID_FILE = os.path.join(LOGS_DIR, 'cs_analyzer_worker.pid')
         
         if os.path.exists(PID_FILE):
             try:
@@ -154,8 +186,8 @@ class BatchAnalyzer:
     def _clear_message_files(self):
         """清理旧消息文件，避免残留消息干扰新分析"""
         import os
-        msg_file = '/tmp/cs_analyzer_messages.jsonl'
-        processed_file = '/tmp/cs_analyzer_messages_processed.jsonl'
+        msg_file = os.path.join(LOGS_DIR, 'cs_analyzer_messages.jsonl')
+        processed_file = os.path.join(LOGS_DIR, 'cs_analyzer_messages_processed.jsonl')
         
         for f in [msg_file, processed_file]:
             if os.path.exists(f):
@@ -195,7 +227,7 @@ class BatchAnalyzer:
         try:
             proc = subprocess.Popen(
                 cmd,
-                stdout=open('/tmp/worker.log', 'a', buffering=1),
+                stdout=open(os.path.join(LOGS_DIR, 'worker.log'), 'a', buffering=1),
                 stderr=subprocess.STDOUT,
                 start_new_session=True
             )
@@ -210,7 +242,7 @@ class BatchAnalyzer:
                 # 进程已退出，启动失败
                 error_msg = f"Worker启动后立即退出（退出码: {exit_code}）"
                 print(f"❌ {error_msg}")
-                print("   请检查 /tmp/worker.log 查看详细错误")
+                print("   请检查 logs/worker.log 查看详细错误")
                 
                 # 发送飞书通知
                 self._send_failure_notification(error_msg)
@@ -227,7 +259,7 @@ class BatchAnalyzer:
     def _send_failure_notification(self, error_msg: str):
         """发送启动失败通知到飞书"""
         try:
-            msg_file = Path('/tmp/cs_analyzer_messages.jsonl')
+            msg_file = Path(os.path.join(LOGS_DIR, 'cs_analyzer_messages.jsonl'))
             import json
             from datetime import datetime
             
@@ -237,7 +269,7 @@ class BatchAnalyzer:
 
 请检查：
 1. 运行环境依赖是否完整
-2. /tmp/worker.log 中的详细错误
+2. logs/worker.log 中的详细错误
 3. .env 文件配置是否正确
 
 建议修复命令：
@@ -252,7 +284,7 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
             pass  # 通知失败不影响主流程
     
     def submit_sessions(self, sessions: List[Dict], batch_id: str = '') -> Dict:
-        """批量提交会话，带幂等性检查"""
+        """批量提交会话，带幂等性检查和场景分类"""
         submitted = 0
         skipped = 0
         task_ids = []
@@ -265,8 +297,17 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
                 skipped += 1
                 continue
             
-            # 提交任务
-            task_id = submit_task(session_id=session_id, session_data=session, batch_id=batch_id)
+            # 【修复】场景分类并持久化
+            messages = session.get('messages', [])
+            scene = _fast_scene_classify(messages)
+            
+            # 提交任务（带场景）
+            task_id = submit_task(
+                session_id=session_id, 
+                session_data=session, 
+                batch_id=batch_id,
+                scene=scene
+            )
             task_ids.append(task_id)
             submitted += 1
             
@@ -314,7 +355,6 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
         print("⏳ 等待分析完成...")
         total = result['submitted']
         last_progress = -1
-        import time
         start_time = time.time()
         max_wait_seconds = 30 * 60  # 30分钟超时
         
@@ -407,6 +447,7 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
     def spawn_monitor_agent(self, total_tasks: int, log_file: str, batch_id: str = ''):
         """启动后台监控子代理和消息轮询服务"""
         import subprocess
+        import os
         
         # 构建子代理命令
         monitor_script = Path(__file__).parent / 'monitor_agent.py'
@@ -419,12 +460,18 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
             batch_id
         ]
         
+        # 【修复】设置UTF-8编码环境变量，避免中文路径乱码
+        env = os.environ.copy()
+        env['PYTHONIOENCODING'] = 'utf-8'
+        env['LC_ALL'] = 'en_US.UTF-8'
+        
         # 启动子代理（独立进程，无限超时）
         monitor_proc = subprocess.Popen(
             cmd,
-            stdout=open('/tmp/monitor.log', 'a'),
+            stdout=open(os.path.join(LOGS_DIR, 'monitor.log'), 'a'),
             stderr=subprocess.STDOUT,
-            start_new_session=True
+            start_new_session=True,
+            env=env  # 【修复】传递编码环境变量
         )
         
         # 启动消息轮询服务（传递 monitor_agent 的 PID）
@@ -452,7 +499,7 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
         # 启动消息轮询服务
         proc = subprocess.Popen(
             cmd,
-            stdout=open('/tmp/message_poller.log', 'a'),
+            stdout=open(os.path.join(LOGS_DIR, 'message_poller.log'), 'a'),
             stderr=subprocess.STDOUT,
             start_new_session=True
         )
@@ -462,7 +509,7 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
     
     def check_message_poller_running(self) -> bool:
         """检查消息轮询服务是否在运行（PID文件 + 进程存在性检测）"""
-        PID_FILE = '/tmp/cs_analyzer_message_poller.pid'
+        PID_FILE = os.path.join(LOGS_DIR, 'cs_analyzer_message_poller.pid')
         
         if os.path.exists(PID_FILE):
             try:
