@@ -50,27 +50,21 @@ def get_pending_tasks_by_user(user_id: str) -> List[Dict]:
     """
     conn = get_queue_connection()
     try:
+        # 【P1-6修复】添加%通配符确保JSON字段匹配
         cursor = conn.execute(
             """SELECT task_id, session_id, session_data 
                FROM analysis_tasks 
                WHERE status = 'pending' AND session_data LIKE ?
             """,
-            (f'"user_id": "{user_id}"',)
+            (f'%"user_id": "{user_id}"%',)
         )
         return [dict(row) for row in cursor.fetchall()]
     finally:
         conn.close()
 
 
-def get_queue_connection():
-    """获取队列数据库连接，启用WAL模式提升并发性能"""
-    conn = sqlite3.connect(QUEUE_DB_PATH, check_same_thread=False)
-    
-    # 【P1-2修复】启用WAL模式，减少database is locked错误
-    conn.execute("PRAGMA journal_mode=WAL")
-    conn.execute("PRAGMA synchronous=NORMAL")
-    
-    return conn
+# 【P1-6修复】删除重复的 get_queue_connection 定义
+# 该函数已在文件顶部定义
 
 
 def init_queue_tables():

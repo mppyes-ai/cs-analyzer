@@ -879,10 +879,6 @@ def run_grouped_parallel_worker(max_groups: int = 4, max_batch_size: int = 150,
         print("=" * 60)
 
 
-from scene_utils import classify_scene_by_keywords
-# 删除本地的 _fast_scene_classify 函数，使用 scene_utils 中的版本
-
-
 async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) -> List[Dict]:
     """【v2.6 Phase 2】带限流的批量评分（自适应批量大小）
     
@@ -948,7 +944,7 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
                 )
                 if has_valid_scores:
                     await loop.run_in_executor(None, _save_result_sync, task, result)
-                    complete_task(task['task_id'], result)
+                    # 【修复】complete_task 已在 _save_result_sync 内部调用，此处删除重复调用
                 else:
                     error_msg = result.get('error', '评分结果不完整（缺少dimension_scores或summary）')
                     print(f"   ⚠️ 任务 {str(task['task_id'])[:20]}... 评分无效: {error_msg}")

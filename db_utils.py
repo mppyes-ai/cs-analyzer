@@ -168,7 +168,8 @@ def save_correction_v2(session_id, changed_fields, reason, other_reason="", corr
                             'policy_execution_score', 'conversion_score', 'total_score'}
             if field_name not in ALLOWED_FIELDS:
                 raise ValueError(f"非法字段: {field_name}")
-            if field_name in ALLOWED_FIELDS and new_value is not None and new_value != old_value:
+            # 【修复】移除冗余的 field_name in ALLOWED_FIELDS 检查，前面已确保
+            if new_value is not None and new_value != old_value:
                 cursor.execute(f"""
                     UPDATE sessions SET {field_name} = ? WHERE session_id = ?
                 """, (new_value, session_id))
