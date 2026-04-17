@@ -25,9 +25,57 @@ sys.path.insert(0, os.path.dirname(__file__))
 QUEUE_DB_PATH = os.path.join(os.path.dirname(__file__), 'data', 'task_queue.db')
 
 
+def get_queue_connection():
+    """获取队列数据库连接，启用WAL模式提升并发性能"""
+    conn = sqlite3.connect(QUEUE_DB_PATH, check_same_thread=False)
+    
+    # 【P1-2修复】启用WAL模式，减少database is locked错误
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA synchronous=NORMAL")
+    
+    return conn
+
+
+def get_pending_tasks_by_user(user_id: str) -> List[Dict]:
+    """
+    获取指定用户的待处理任务（P1-6封装方法）
+    
+    用于 find_related_sessions，避免直接硬编码数据库路径
+    
+    Args:
+        user_id: 用户ID
+        
+    Returns:
+        任务列表
+    """
+    conn = get_queue_connection()
+    try:
+        cursor = conn.execute(
+            """SELECT task_id, session_id, session_data 
+               FROM analysis_tasks 
+               WHERE status = 'pending' AND session_data LIKE ?
+            """,
+            (f'"user_id": "{user_id}"',)
+        )
+        return [dict(row) for row in cursor.fetchall()]
+    finally:
+        conn.close()
+
+
+def get_queue_connection():
+    """获取队列数据库连接，启用WAL模式提升并发性能"""
+    conn = sqlite3.connect(QUEUE_DB_PATH, check_same_thread=False)
+    
+    # 【P1-2修复】启用WAL模式，减少database is locked错误
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA synchronous=NORMAL")
+    
+    return conn
+
+
 def init_queue_tables():
     """初始化队列表"""
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -77,7 +125,7 @@ def submit_task(session_id: str, session_data: Dict, batch_id: str = '', scene: 
     """
     init_queue_tables()
     
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -98,7 +146,7 @@ def get_pending_task() -> Optional[Dict]:
     Returns:
         任务字典，如果没有待处理任务返回None
     """
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     # 获取最老的待处理任务
@@ -143,7 +191,7 @@ def complete_task(task_id: int, result: Dict):
         task_id: 任务ID
         result: 分析结果
     """
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -165,7 +213,7 @@ def cancel_task(task_id: int, reason: str = 'merged'):
         task_id: 任务ID
         reason: 取消原因，默认'merged'
     """
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -188,7 +236,7 @@ def fail_task(task_id: int, error: str):
         task_id: 任务ID
         error: 错误信息
     """
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -215,7 +263,7 @@ def get_queue_stats(batch_id: str = '') -> Dict:
     """
     init_queue_tables()
     
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     if batch_id:
@@ -262,7 +310,7 @@ def retry_failed_tasks(max_retries: int = 3, base_delay: int = 30) -> int:
     """
     import time
     
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     # 获取所有失败任务及其重试次数
@@ -337,7 +385,7 @@ def force_retry_all_failed(max_retries: int = 3) -> int:
     Returns:
         重试的任务数量
     """
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     # 获取所有可重试的失败任务（忽略延迟时间）
@@ -374,7 +422,7 @@ def force_retry_all_failed(max_retries: int = 3) -> int:
 
 def clear_completed_tasks(days: int = 7):
     """清理已完成任务（默认保留7天）"""
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -418,7 +466,7 @@ def get_task_detail(task_id: int) -> Optional[Dict]:
     Returns:
         任务详情字典
     """
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -455,7 +503,7 @@ def get_pending_tasks(limit: int = 10) -> List[Dict]:
     Returns:
         任务字典列表
     """
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -488,7 +536,7 @@ def mark_processing(task_id: int):
     Args:
         task_id: 任务ID
     """
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''

@@ -8,8 +8,14 @@ import os
 DB_PATH = os.path.join(os.path.dirname(__file__), "data", "cs_analyzer_new.db")
 
 def get_connection():
-    """获取数据库连接"""
-    return sqlite3.connect(DB_PATH, check_same_thread=False)
+    """获取数据库连接，启用WAL模式提升并发性能"""
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
+    
+    # 【P1-2修复】启用WAL模式，减少database is locked错误
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA synchronous=NORMAL")
+    
+    return conn
 
 def init_sessions_table():
     """初始化会话表（如果不存在）"""
@@ -160,6 +166,8 @@ def save_correction_v2(session_id, changed_fields, reason, other_reason="", corr
             # 白名单校验，防止SQL注入
             ALLOWED_FIELDS = {'professionalism_score', 'standardization_score', 
                             'policy_execution_score', 'conversion_score', 'total_score'}
+            if field_name not in ALLOWED_FIELDS:
+                raise ValueError(f"非法字段: {field_name}")
             if field_name in ALLOWED_FIELDS and new_value is not None and new_value != old_value:
                 cursor.execute(f"""
                     UPDATE sessions SET {field_name} = ? WHERE session_id = ?

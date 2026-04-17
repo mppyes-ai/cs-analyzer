@@ -100,6 +100,7 @@ from task_queue import (
 from db_utils import init_sessions_table
 from intent_classifier_v3 import RobustIntentClassifier
 from smart_scoring_v2 import SmartScoringEngine
+from scene_utils import classify_scene_by_keywords  # 【P1-1修复】提取到独立模块
 import sqlite3
 import json
 
@@ -591,12 +592,16 @@ async def _batch_score_with_limit(tasks: List[Dict], batch_size: int) -> List[Di
 
 
 def _save_result_sync(task: Dict, result: Dict):
-    """同步保存结果"""
+    """同步保存结果（带事务一致性检查）"""
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    task_id = task.get('task_id', 'unknown')
+    session_id = task['session_id']
+    session_data = task['session_data']
+    
     try:
-        session_id = task['session_id']
-        session_data = task['session_data']
-        
-        # 构造意图对象
+        # 构造意图对象（保留原有逻辑）
         intent_data = result.get('_metadata', {}).get('pre_analysis', {})
         class MockIntent:
             pass
@@ -604,10 +609,56 @@ def _save_result_sync(task: Dict, result: Dict):
         for k, v in intent_data.items():
             setattr(intent, k, v)
         
+        # 1. 先保存分析结果
         save_to_database(session_id, session_data, intent, result, 
                         session_data.get('session_count', 1))
+        
+        # 2. 成功后更新任务状态
+        complete_task(task_id, result)
+        
+        logger.info(f"✅ 任务 {task_id} 结果保存成功")
+        
     except Exception as e:
-        print(f"   ❌ 保存结果失败: {e}")
+        error_msg = str(e)
+        logger.error(f"❌ 任务 {task_id} 保存失败: {error_msg}")
+        
+        # 【P1-3修复】检查是否部分成功（结果已保存但任务状态未更新）
+        try:
+            from db_utils import get_connection
+            conn = get_connection()
+            cursor = conn.execute(
+                "SELECT 1 FROM sessions WHERE session_id = ?", 
+                (session_id,)
+            )
+            result_exists = cursor.fetchone() is not None
+            conn.close()
+            
+            if result_exists:
+                # 结果已保存但任务状态失败
+                logger.error(f"🚨 数据不一致: 会话 {session_id} 结果已保存但任务 {task_id} 状态更新失败")
+                # 记录到日志文件
+                _log_inconsistency(session_id, task_id, error_msg, "result_saved_task_failed")
+            
+        except Exception as check_error:
+            logger.error(f"无法检查数据一致性: {check_error}")
+        
+        # 重新抛出异常，让上层处理
+        raise
+
+def _log_inconsistency(session_id: str, task_id: str, error: str, inconsistency_type: str):
+    """记录数据不一致到日志文件"""
+    import datetime
+    import os
+    
+    timestamp = datetime.datetime.now().isoformat()
+    log_entry = f"[{timestamp}] {inconsistency_type} | session_id={session_id} | task_id={task_id} | error={error}\n"
+    
+    log_file = os.path.join(os.path.dirname(__file__), 'data', 'inconsistency.log')
+    try:
+        with open(log_file, "a") as f:
+            f.write(log_entry)
+    except Exception as e:
+        print(f"⚠️ 无法写入不一致日志: {e}")
 
 
 # ========== 原有模式（串行/并行/分组） ==========
@@ -828,25 +879,8 @@ def run_grouped_parallel_worker(max_groups: int = 4, max_batch_size: int = 150,
         print("=" * 60)
 
 
-def _fast_scene_classify(messages: List[Dict]) -> str:
-    """快速场景分类（关键词规则，不调用Ollama）"""
-    # 取前3条消息作为判断依据
-    text = ' '.join([m.get('content', '') for m in messages[:3]]).lower()
-    
-    # 售中阶段关键词（用户已下单）
-    if any(k in text for k in ['订单', '发货', '物流', '退款', '取消订单', '改地址', '我的订单']):
-        return '售中阶段'
-    
-    # 售后阶段关键词
-    if any(k in text for k in ['安装', '维修', '故障', '售后', '保修', '坏了', '不工作']):
-        return '售后阶段'
-    
-    # 客诉处理关键词（高优先级）
-    if any(k in text for k in ['投诉', '差评', '退货', '举报', '欺骗', '骗子', '虚假宣传']):
-        return '客诉处理'
-    
-    # 默认售前阶段
-    return '售前阶段'
+from scene_utils import classify_scene_by_keywords
+# 删除本地的 _fast_scene_classify 函数，使用 scene_utils 中的版本
 
 
 async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) -> List[Dict]:
@@ -1030,7 +1064,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
                 # 优先使用数据库持久化的 scene，缺失时才重新分类
                 scene = task.get('scene')
                 if not scene:
-                    scene = _fast_scene_classify(messages)
+                    scene = classify_scene_by_keywords(messages)
                 task['_scene'] = scene
             
             # 统计场景分布（仅用于日志）

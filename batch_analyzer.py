@@ -25,28 +25,11 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from log_parser import parse_log_file
 from task_queue import submit_task, get_queue_stats, get_task_detail, init_queue_tables
+from scene_utils import classify_scene_by_keywords  # 【P1-1修复】提取到独立模块
 
 
-# ========== 场景分类函数 ==========
-def _fast_scene_classify(messages: List[Dict]) -> str:
-    """快速场景分类（关键词规则，不调用Ollama）"""
-    # 取前3条消息作为判断依据
-    text = ' '.join([m.get('content', '') for m in messages[:3]]).lower()
-    
-    # 售中阶段关键词（用户已下单）
-    if any(k in text for k in ['订单', '发货', '物流', '退款', '取消订单', '改地址', '我的订单']):
-        return '售中阶段'
-    
-    # 售后阶段关键词
-    if any(k in text for k in ['安装', '维修', '故障', '售后', '保修', '坏了', '不工作']):
-        return '售后阶段'
-    
-    # 客诉处理关键词（高优先级）
-    if any(k in text for k in ['投诉', '差评', '退货', '举报', '欺骗', '骗子', '虚假宣传']):
-        return '客诉处理'
-    
-    # 默认售前阶段
-    return '售前阶段'
+# ========== 场景分类函数已提取到 scene_utils.py ==========
+# 删除本地的 _fast_scene_classify 函数，使用 scene_utils.classify_scene_by_keywords
 
 # 加载环境变量
 import os
@@ -299,7 +282,7 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
             
             # 【修复】场景分类并持久化
             messages = session.get('messages', [])
-            scene = _fast_scene_classify(messages)
+            scene = classify_scene_by_keywords(messages)
             
             # 提交任务（带场景）
             task_id = submit_task(
