@@ -224,11 +224,12 @@ def release_lock():
 db_write_queue = queue.Queue()
 db_writer_thread = None
 db_writer_running = False
+MAX_WRITE_RETRIES = 3  # 【v2.6.5-fix】最大重试次数，防止无限循环
 
 def _db_writer_loop():
     """【v2.6.5】独立线程处理所有数据库写入
     
-    从队列中获取 (task, result) 元组并同步写入数据库
+    从队列中获取 (task, result, retry_count) 元组并同步写入数据库
     这是一个守护线程，会持续运行直到收到 None 作为退出信号
     """
     global db_writer_running
@@ -243,15 +244,21 @@ def _db_writer_loop():
                 db_writer_running = False
                 break
             
-            task, result = item
+            task, result, retry_count = item  # 【v2.6.5-fix】解包重试计数器
             try:
                 _save_result_sync(task, result)
             except Exception as e:
                 task_id = task.get('task_id', 'unknown')
-                print(f"⚠️ 写入失败 (任务 {task_id}): {e}")
-                # 重新入队稍后重试
-                time.sleep(0.1)
-                db_write_queue.put((task, result))
+                if retry_count < MAX_WRITE_RETRIES:
+                    print(f"⚠️ 写入重试 {retry_count + 1}/{MAX_WRITE_RETRIES} (任务 {task_id}): {e}")
+                    time.sleep(0.5 * (retry_count + 1))  # 递增退避
+                    db_write_queue.put((task, result, retry_count + 1))
+                else:
+                    print(f"❌ 写入彻底失败 (任务 {task_id}): {e}")
+                    try:
+                        fail_task(task_id, f"DB write failed after {MAX_WRITE_RETRIES} retries: {e}")
+                    except:
+                        pass  # fail_task 本身也可能失败
             finally:
                 db_write_queue.task_done()
                 
@@ -284,7 +291,7 @@ def queue_save_result(task: Dict, result: Dict):
     
     非阻塞操作，立即返回，由后台线程处理数据库写入
     """
-    db_write_queue.put((task, result))
+    db_write_queue.put((task, result, 0))  # 【v2.6.5-fix】初始 retry_count = 0
     return True
 
 def wait_for_db_writes(timeout: Optional[float] = None) -> bool:
@@ -296,7 +303,15 @@ def wait_for_db_writes(timeout: Optional[float] = None) -> bool:
     Returns:
         是否在超时前完成
     """
-    return db_write_queue.join() is None or True  # queue.join()没有返回值，成功即返回None
+    # 【v2.6.5-fix】使用轮询模式支持timeout
+    if timeout is None:
+        db_write_queue.join()
+        return True
+    
+    deadline = time.time() + timeout
+    while not db_write_queue.empty() and time.time() < deadline:
+        time.sleep(0.1)
+    return db_write_queue.empty()
 
 # ========== 全局变量 ==========
 running = True
@@ -402,7 +417,7 @@ def find_related_sessions(main_task: dict, window_minutes: int = MERGE_WINDOW_MI
     cursor.execute('''
         SELECT task_id, session_id, session_data 
         FROM analysis_tasks 
-        WHERE status = 'pending' AND task_id != ?
+        WHERE status IN ('pending', 'processing') AND task_id != ?
     ''', (main_task.get('task_id'),))
     
     result = {'mergeable': [], 'transfer_chain': [], 'same_user': []}
