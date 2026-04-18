@@ -101,9 +101,8 @@ from db_utils import init_sessions_table
 from intent_classifier_v3 import RobustIntentClassifier
 from smart_scoring_v2 import SmartScoringEngine
 from scene_utils import classify_scene_by_keywords  # 【P1-1修复】提取到独立模块
+import sqlite3  # 【N-5修复保留】用于 --once 模式检查 processing 任务
 import json
-
-# 【N-5修复】删除未使用的 import sqlite3，数据库连接统一使用 get_queue_connection()/get_connection()
 
 # ========== v2.6 Phase 2: 自适应批量配置 ==========
 TOKENS_PER_CHAR = float(os.getenv('TOKENS_PER_CHAR', '0.67'))
@@ -1092,16 +1091,32 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
             print(f"   ✅ 批次 {batch_idx+1}/{total_batches} 完成")
             return batch_results
     
-    # 【v2.5.1修复】所有批次同时启动，真正并行竞争信号量
-    print(f"\n🚀 启动 {total_batches} 个评分批次（并发限制: {KIMI_MAX_CONCURRENT}）")
-    all_results_nested = await asyncio.gather(*[
-        score_one_batch(i, batch) for i, batch in enumerate(batches)
-    ])
+    # 【Opus修复】使用 as_completed 替代 gather，避免木桶效应
+    print(f"\n🚀 启动 {total_batches} 个评分批次（并发限制: {KIMI_MAX_CONCURRENT}，as_completed优化）")
     
-    # 展平结果
+    # 创建任务并立即启动
+    batch_tasks_map = {}  # coro -> (batch_idx, batch)
+    for i, batch in enumerate(batches):
+        coro = score_one_batch(i, batch)
+        batch_tasks_map[coro] = (i, batch)
+    
     all_results = []
-    for batch_results in all_results_nested:
-        all_results.extend(batch_results)
+    completed_count = 0
+    
+    # as_completed: 先完成的先处理，避免等待最慢批次
+    for coro in asyncio.as_completed(batch_tasks_map.keys()):
+        batch_idx, batch = batch_tasks_map[coro]
+        try:
+            batch_results = await coro
+            all_results.extend(batch_results)
+            completed_count += 1
+            print(f"   📊 进度: {completed_count}/{total_batches} 批次完成")
+        except Exception as e:
+            print(f"   ❌ 批次 {batch_idx+1} 异常: {e}")
+            # 为失败批次生成错误结果
+            for task in batch:
+                all_results.append({'error': str(e)})
+            completed_count += 1
     
     return all_results
 
@@ -1152,15 +1167,20 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
             groups = fetch_and_group_tasks(max_batch_size=max_batch_size, once=once)
             
             if not groups:
-                # 【N-8修复】优先直接获取失败任务并单通重试（不走pending中转）
+                # 【Opus修复】优先直接获取失败任务并单通重试（并发执行）
                 failed_groups = _fetch_failed_tasks_for_retry(max_retries=3)
                 if failed_groups:
                     all_failed_tasks = [t for tasks in failed_groups.values() for t in tasks]
-                    print(f"🔄 发现 {len(all_failed_tasks)} 个失败任务，逐条重试...")
-                    for task in all_failed_tasks:
-                        result = await _retry_single_task(task)
-                        if result and 'error' not in result:
-                            total_processed += 1
+                    print(f"🔄 发现 {len(all_failed_tasks)} 个失败任务，并发重试...")
+                    
+                    # 【Opus修复】改为并发重试，而非串行
+                    retry_coros = [_retry_single_task(task) for task in all_failed_tasks]
+                    retry_results = await asyncio.gather(*retry_coros, return_exceptions=True)
+                    
+                    # 统计成功数
+                    successful_retries = sum(1 for r in retry_results if r and isinstance(r, dict) and 'error' not in r)
+                    total_processed += successful_retries
+                    print(f"   ✅ 重试完成: {successful_retries}/{len(all_failed_tasks)} 成功")
                     continue  # 重试完成后继续主循环
                 
                 # 【修复】--once模式下，检查是否还有processing任务卡住
