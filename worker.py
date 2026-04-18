@@ -101,8 +101,9 @@ from db_utils import init_sessions_table
 from intent_classifier_v3 import RobustIntentClassifier
 from smart_scoring_v2 import SmartScoringEngine
 from scene_utils import classify_scene_by_keywords  # 【P1-1修复】提取到独立模块
-import sqlite3
 import json
+
+# 【N-5修复】删除未使用的 import sqlite3，数据库连接统一使用 get_queue_connection()/get_connection()
 
 # ========== v2.6 Phase 2: 自适应批量配置 ==========
 TOKENS_PER_CHAR = float(os.getenv('TOKENS_PER_CHAR', '0.67'))
@@ -548,7 +549,19 @@ def _prepare_merged_tasks_sync(tasks: List[Dict], window_minutes: int) -> List[D
 
 
 async def _batch_score_with_limit(tasks: List[Dict], batch_size: int) -> List[Dict]:
-    """带限流的批量评分"""
+    """【N-6】带限流的批量评分（旧版，已废弃）
+    
+    ⚠️ Deprecated: 请使用 _batch_score_with_limit_v2()，支持自适应批量大小
+    
+    保留原因：向后兼容，部分旧代码可能调用此函数
+    """
+    import warnings
+    warnings.warn(
+        "_batch_score_with_limit is deprecated, use _batch_score_with_limit_v2 instead",
+        DeprecationWarning,
+        stacklevel=2
+    )
+    
     global kimi_semaphore
     
     if not tasks:
@@ -1133,40 +1146,25 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     
     total_processed = 0
     total_api_calls = 0
-    retry_phase = False  # 【Opus修复】标记是否处于重试阶段
     
     try:
         while running:
-            # 【Opus修复】--once模式下，优先直接获取失败任务进行重试（不走pending中转）
-            if once and retry_phase:
-                failed_groups = _fetch_failed_tasks_for_retry(max_retries=3)
-                if failed_groups:
-                    print(f"\n🔄 --once重试阶段：{sum(len(v) for v in failed_groups.values())} 个失败任务直接重试")
-                    # 降级为单通评分，避免批次连锁失败
-                    for user_id, tasks in failed_groups.items():
-                        print(f"   用户 {user_id[:8]}...: {len(tasks)} 通会话")
-                        for task in tasks:
-                            result = await _retry_single_task(task)
-                            if result and 'error' not in result:
-                                total_processed += 1
-                    continue  # 重试后继续检查是否还有失败任务
-                else:
-                    print("✅ 所有失败任务已处理完毕")
-                    retry_phase = False  # 退出重试阶段
-            
             groups = fetch_and_group_tasks(max_batch_size=max_batch_size, once=once)
             
             if not groups:
-                # 【修复】--once模式下，先尝试重试失败任务，然后再次检查队列
+                # 【N-8修复】优先直接获取失败任务并单通重试（不走pending中转）
+                failed_groups = _fetch_failed_tasks_for_retry(max_retries=3)
+                if failed_groups:
+                    all_failed_tasks = [t for tasks in failed_groups.values() for t in tasks]
+                    print(f"🔄 发现 {len(all_failed_tasks)} 个失败任务，逐条重试...")
+                    for task in all_failed_tasks:
+                        result = await _retry_single_task(task)
+                        if result and 'error' not in result:
+                            total_processed += 1
+                    continue  # 重试完成后继续主循环
+                
+                # 【修复】--once模式下，检查是否还有processing任务卡住
                 if once:
-                    # 【Opus修复】进入重试阶段，直接获取失败任务
-                    failed_groups = _fetch_failed_tasks_for_retry(max_retries=3)
-                    if failed_groups:
-                        retry_phase = True
-                        print(f"\n🔄 --once模式：发现 {sum(len(v) for v in failed_groups.values())} 个失败任务，进入重试阶段")
-                        continue  # 回到循环顶部，由重试逻辑处理
-                    
-                    # 【修复】检查是否还有processing任务卡住
                     conn = sqlite3.connect(QUEUE_DB_PATH)
                     cursor = conn.cursor()
                     cursor.execute("SELECT COUNT(*) FROM analysis_tasks WHERE status='processing'")
@@ -1184,8 +1182,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
                     print("⏳ 队列已空，--once模式：准备退出")
                     break
                 else:
-                    # 非--once模式，使用普通重试策略
-                    retry_failed_tasks()
+                    # 非--once模式，继续等待新任务
                     print("⏳ 队列已空，等待新任务...")
                     await asyncio.sleep(2.0)
                 continue

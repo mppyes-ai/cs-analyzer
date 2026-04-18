@@ -282,12 +282,20 @@ class MonitorAgent:
         print("  推送完成报告")
     
     def _get_analysis_stats(self) -> dict:
-        """从数据库获取分析统计"""
-        import sqlite3
+        """【N-1修复】从数据库获取分析统计 - 使用WAL模式连接"""
         from pathlib import Path
         
-        db_path = Path(__file__).parent / 'data' / 'cs_analyzer_new.db'
-        conn = sqlite3.connect(str(db_path))
+        # 【N-1修复】使用 db_utils.get_connection() 获取WAL模式连接
+        # 避免与worker的数据库写入产生锁竞争
+        try:
+            from db_utils import get_connection
+            conn = get_connection()
+        except ImportError:
+            # 降级：直接连接（旧方式，不推荐）
+            import sqlite3
+            db_path = Path(__file__).parent / 'data' / 'cs_analyzer_new.db'
+            conn = sqlite3.connect(str(db_path))
+        
         cursor = conn.cursor()
         
         # 获取最近分析的一批数据（按created_at倒序，限制为本次分析的数量）

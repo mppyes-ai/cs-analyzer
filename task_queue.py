@@ -38,9 +38,15 @@ def get_queue_connection():
 
 def get_pending_tasks_by_user(user_id: str) -> List[Dict]:
     """
-    获取指定用户的待处理任务（P1-6封装方法）
+    【N-7】获取指定用户的待处理任务（⚠️ 当前未被调用，死代码）
     
-    用于 find_related_sessions，避免直接硬编码数据库路径
+    注意：该函数当前未被任何代码调用。如需使用，需修复：
+    1. LIKE 查询存在注入风险（user_id 包含特殊字符时）
+    2. JSON 空格差异可能导致匹配失败
+    
+    如需启用，建议改为：
+    - 使用 JSON 函数提取 user_id 进行比较（SQLite 3.38+ 支持）
+    - 或建立 user_id 索引列
     
     Args:
         user_id: 用户ID
@@ -48,6 +54,12 @@ def get_pending_tasks_by_user(user_id: str) -> List[Dict]:
     Returns:
         任务列表
     """
+    import warnings
+    warnings.warn(
+        "get_pending_tasks_by_user is dead code and has SQL injection risks. "
+        "Consider using JSON_EXTRACT or a dedicated user_id column instead of LIKE.",
+        UserWarning
+    )
     conn = get_queue_connection()
     try:
         # 【P1-6修复】添加%通配符确保JSON字段匹配

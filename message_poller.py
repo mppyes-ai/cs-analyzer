@@ -210,8 +210,25 @@ class MessagePoller:
             return False
 
     def process_messages(self) -> int:
-        """处理消息文件中的待发送消息（增强版）"""
-        if not MSG_FILE.exists():
+        """【N-4修复】处理消息文件中的待发送消息（原子读写）
+        
+        修复：使用 rename-and-process 方案避免竞态
+        1. 先将 MSG_FILE rename 为 _processing
+        2. 处理完后再处理未发送的消息
+        """
+        if not MSG_FILE.exists() or MSG_FILE.stat().st_size == 0:
+            return 0
+
+        # 【N-4修复】原子操作：先 rename 文件，避免与写入进程竞态
+        processing_file = LOGS_DIR / 'cs_analyzer_messages_processing.jsonl'
+        try:
+            # 如果上次处理残留存在，先清理
+            if processing_file.exists():
+                processing_file.unlink()
+            # 原子 rename
+            MSG_FILE.rename(processing_file)
+        except Exception as e:
+            print(f"  ⚠️ 消息文件重命名失败: {e}")
             return 0
 
         processed = 0
@@ -219,7 +236,7 @@ class MessagePoller:
         failed_to_save = []
 
         try:
-            with open(MSG_FILE, 'r') as f:
+            with open(processing_file, 'r') as f:
                 lines = f.readlines()
 
             for line in lines:
@@ -237,7 +254,7 @@ class MessagePoller:
                     # 【v2.3新增】检查是否最近已发送过（去重）
                     if self._is_recently_sent(msg_fingerprint):
                         print(f"  🔄 跳过重复消息: {message[:30]}...")
-                        processed += 1  # 计为已处理，但不实际发送
+                        processed += 1
                         continue
 
                     # 获取当前重试次数
@@ -275,13 +292,11 @@ class MessagePoller:
                     print(f"  ⚠️ 跳过无效消息行: {line[:50]}...")
                     continue
 
-            # 重写消息文件（保留未处理的）
+            # 【N-4修复】将未处理的消息写回 MSG_FILE（追加模式，避免覆盖期间的新消息）
             if new_messages:
-                with open(MSG_FILE, 'w') as f:
+                with open(MSG_FILE, 'a') as f:
                     for line in new_messages:
                         f.write(line + '\n')
-            else:
-                MSG_FILE.write_text('')
 
             # 保存失败消息
             if failed_to_save:
@@ -289,10 +304,18 @@ class MessagePoller:
                     for line in failed_to_save:
                         f.write(line + '\n')
 
+            # 清理 processing 文件
+            processing_file.unlink(missing_ok=True)
             return processed
 
         except Exception as e:
             print(f"  ❌ 处理消息文件失败: {e}")
+            # 【N-4修复】异常时将未处理消息写回
+            if new_messages:
+                with open(MSG_FILE, 'a') as f:
+                    for line in new_messages:
+                        f.write(line + '\n')
+            processing_file.unlink(missing_ok=True)
             return 0
 
     def run(self):
