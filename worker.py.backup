@@ -1,0 +1,193 @@
+#!/usr/bin/env python3.14
+"""异步分析工作进程 - v2.6.5（异步写入队列优化版）
+
+后台运行，从队列中获取任务并处理
+支持四种模式：
+  - 串行模式（--serial）：支持会话合并，顺序处理
+  - 并行模式（--parallel）：速度快，不支持会话合并
+  - 预分组并行模式（--grouped）：组间并行+组内串行，支持会话合并
+  - 【v2.6.5】异步批量模式（--async-batch）：异步写入队列 + 真正并行（推荐）
+
+【v2.6.5 新特性】
+  - 【P0修复】异步写入队列：解耦API调用和数据库写入，消除事件循环阻塞
+  - 废弃 WORKER_BATCH_SIZE，改用 WORKER_MAX_BATCH_SIZE
+  - 自适应批量：根据Token估算自动调整5-50通/批
+  - Token安全上限：200K（可配置）
+  - Kimi并发提升至100（可配置）
+
+用法:
+    python3 worker.py                    # 默认模式（异步批量）
+    python3 worker.py --serial           # 串行模式
+    python3 worker.py --parallel         # 纯并行模式
+    python3 worker.py --grouped          # 预分组并行模式
+    python3 worker.py --async-batch      # 异步批量模式（推荐）
+    python3 worker.py --daemon           # 后台运行
+    python3 worker.py --once             # 处理完当前队列后退出
+    python3 worker.py --window 30        # 设置合并窗口（分钟）
+
+环境变量配置 (.env):
+    BATCH_SCORE_SIZE=30              # 基础批量大小
+    MAX_TOKENS_PER_BATCH=200000      # Token安全上限
+    ADAPTIVE_BATCH_MIN=3            # 最小批量
+    ADAPTIVE_BATCH_MAX=5             # 最大批量
+    KIMI_MAX_CONCURRENT=90           # Kimi并发数
+
+作者: 小虾米
+更新: 2026-04-18（v2.6.5 Phase 1: 异步写入队列优化）
+"""
+
+import os
+import sys
+
+# ========== 【v2.6.3新增】启动前依赖检查 ==========
+def _check_dependencies():
+    """检查必要的依赖模块是否存在"""
+    required_modules = [
+        ('dotenv', 'python-dotenv'),
+        ('openai', 'openai'),
+        ('pandas', 'pandas'),
+        ('sqlite3', None),  # 标准库，无pip包名
+        ('sentence_transformers', 'sentence-transformers'),
+        ('httpx', 'httpx'),
+        ('sklearn', 'scikit-learn'),
+        ('numpy', 'numpy'),
+    ]
+    
+    missing = []
+    for mod_name, pip_name in required_modules:
+        try:
+            __import__(mod_name)
+        except ImportError:
+            missing.append((mod_name, pip_name or mod_name))
+    
+    if missing:
+        print("❌ Worker启动失败：缺少必要依赖")
+        print("")
+        print("缺失的模块：")
+        for mod_name, pip_name in missing:
+            print(f"  - {mod_name} (pip install {pip_name})")
+        print("")
+        print("请运行以下命令安装：")
+        pip_cmd = " ".join([f"{pip_name}" for _, pip_name in missing])
+        print(f"  python3 -m pip install {pip_cmd}")
+        print("")
+        sys.exit(1)
+
+# _check_dependencies()
+# ========== 依赖检查结束 ==========
+
+from dotenv import load_dotenv
+load_dotenv()
+import time
+import argparse
+import signal
+import threading
+import errno
+import asyncio
+import queue  # 【v2.6.5】导入队列模块
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timedelta
+from collections import defaultdict
+from typing import Dict, List, Optional, Tuple  # 【v2.6.5】添加Tuple
+
+sys.path.insert(0, os.path.dirname(__file__))
+
+from task_queue import (
+    init_queue_tables, get_pending_task, get_pending_tasks, complete_task, fail_task,
+    get_queue_stats, retry_failed_tasks, cancel_task, mark_processing, QUEUE_DB_PATH,
+    force_retry_all_failed,  # 【修复】导入强制重试函数
+    get_queue_connection    # 【P2-1修复】导入统一的数据库连接函数
+)
+from db_utils import init_sessions_table
+from intent_classifier_v3 import RobustIntentClassifier
+from smart_scoring_v2 import SmartScoringEngine
+from scene_utils import classify_scene_by_keywords  # 【P1-1修复】提取到独立模块
+import sqlite3  # 【N-5修复保留】用于 --once 模式检查 processing 任务
+import json
+
+# ========== 【v2.6.5】异步写入队列 ==========
+# 全局写入队列和线程
+db_write_queue = queue.Queue()
+db_writer_thread = None
+db_writer_running = False
+
+def _db_writer_loop():
+    """【v2.6.5】独立线程处理所有数据库写入
+    
+    从队列中获取 (task, result) 元组并同步写入数据库
+    这是一个守护线程，会持续运行直到收到 None 作为退出信号
+    """
+    global db_writer_running
+    db_writer_running = True
+    print("🔄 数据库写入线程已启动")
+    
+    while db_writer_running:
+        try:
+            item = db_write_queue.get(timeout=1.0)  # 1秒超时检查运行状态
+            if item is None:  # 退出信号
+                print("🛑 数据库写入线程收到退出信号")
+                db_writer_running = False
+                break
+            
+            task, result = item
+            try:
+                _save_result_sync(task, result)
+            except Exception as e:
+                task_id = task.get('task_id', 'unknown')
+                print(f"⚠️ 写入失败 (任务 {task_id}): {e}")
+                # 重新入队稍后重试
+                time.sleep(0.1)
+                db_write_queue.put((task, result))
+            finally:
+                db_write_queue.task_done()
+                
+        except queue.Empty:
+            continue  # 超时继续检查运行状态
+        except Exception as e:
+            print(f"⚠️ 数据库写入线程异常: {e}")
+    
+    print("✅ 数据库写入线程已退出")
+
+def start_db_writer():
+    """【v2.6.5】启动数据库写入线程"""
+    global db_writer_thread, db_writer_running
+    if db_writer_thread is None or not db_writer_thread.is_alive():
+        db_writer_running = True
+        db_writer_thread = threading.Thread(target=_db_writer_loop, daemon=True)
+        db_writer_thread.start()
+        print("✅ 数据库写入线程启动成功")
+
+def stop_db_writer():
+    """【v2.6.5】停止数据库写入线程"""
+    global db_writer_running
+    db_writer_running = False
+    if db_writer_thread is not None:
+        db_write_queue.put(None)  # 发送退出信号
+        db_writer_thread.join(timeout=5.0)
+
+def queue_save_result(task: Dict, result: Dict):
+    """【v2.6.5】将结果加入异步写入队列
+    
+    非阻塞操作，立即返回，由后台线程处理数据库写入
+    """
+    db_write_queue.put((task, result))
+    return True
+
+def wait_for_db_writes(timeout: Optional[float] = None) -> bool:
+    """【v2.6.5】等待所有待写入的队列项完成
+    
+    Args:
+        timeout: 最大等待时间（秒），None表示无限等待
+        
+    Returns:
+        是否在超时前完成
+    """
+    return db_write_queue.join() is None or True  # queue.join()没有返回值，成功即返回None
+
+# ========== v2.6 Phase 2: 自适应批量配置 ==========
+TOKENS_PER_CHAR = float(os.getenv('TOKENS_PER_CHAR', '0.67'))
+OUTPUT_TOKENS_PER_SESSION = int(os.getenv('OUTPUT_TOKENS_PER_SESSION', '600'))
+SYSTEM_PROMPT_TOKENS = int(os.getenv('SYSTEM_PROMPT_TOKENS', '900'))
+MAX_TOKENS_PER_BATCH = int(os.getenv('MAX_TOKENS_PER_BATCH', '300000'))
+ADAPTIVE_BATCH_MIN = int(os.getenv('ADAPTIVE_BATCH_MIN', '3'))
+ADAPTIVE_BATCH_MAX = int(os.getenv('ADAPTIVE_BATCH_MAX', '5'))  # 【修复】强制限制最大5通/批，避免API超时

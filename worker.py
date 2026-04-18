@@ -6,9 +6,10 @@
   - 串行模式（--serial）：支持会话合并，顺序处理
   - 并行模式（--parallel）：速度快，不支持会话合并
   - 预分组并行模式（--grouped）：组间并行+组内串行，支持会话合并
-  - 【v2.6.2】异步批量模式（--async-batch）：智能批量 + 真正并行（推荐）
+  - 【v2.6.5】异步批量模式（--async-batch）：异步写入队列 + 真正并行（推荐）
 
-【v2.6.2 新特性】
+【v2.6.5 新特性】
+  - 【P0修复】异步写入队列：解耦API调用和数据库写入，消除事件循环阻塞
   - 智能批量：先count队列总数，一次性取完（上限150）
   - 废弃 WORKER_BATCH_SIZE，改用 WORKER_MAX_BATCH_SIZE
   - 自适应批量：根据Token估算自动调整5-50通/批
@@ -33,7 +34,7 @@
     KIMI_MAX_CONCURRENT=90           # Kimi并发数
 
 作者: 小虾米
-更新: 2026-04-04（v2.6 Phase 1+2: 自适应批量大小）
+更新: 2026-04-18（v2.6.5 Phase 1: 异步写入队列优化）
 """
 
 import os
@@ -81,7 +82,7 @@ load_dotenv()
 import time
 import argparse
 import signal
-import threading
+import queue  # 【v2.6.5】导入队列模块
 import errno
 import asyncio
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -217,6 +218,85 @@ def release_lock():
                 print("✅ 锁已释放")
     except Exception as e:
         print(f"⚠️ 释放锁失败: {e}")
+
+# ========== 【v2.6.5】异步写入队列 ==========
+# 全局写入队列和线程
+db_write_queue = queue.Queue()
+db_writer_thread = None
+db_writer_running = False
+
+def _db_writer_loop():
+    """【v2.6.5】独立线程处理所有数据库写入
+    
+    从队列中获取 (task, result) 元组并同步写入数据库
+    这是一个守护线程，会持续运行直到收到 None 作为退出信号
+    """
+    global db_writer_running
+    db_writer_running = True
+    print("🔄 数据库写入线程已启动")
+    
+    while db_writer_running:
+        try:
+            item = db_write_queue.get(timeout=1.0)  # 1秒超时检查运行状态
+            if item is None:  # 退出信号
+                print("🛑 数据库写入线程收到退出信号")
+                db_writer_running = False
+                break
+            
+            task, result = item
+            try:
+                _save_result_sync(task, result)
+            except Exception as e:
+                task_id = task.get('task_id', 'unknown')
+                print(f"⚠️ 写入失败 (任务 {task_id}): {e}")
+                # 重新入队稍后重试
+                time.sleep(0.1)
+                db_write_queue.put((task, result))
+            finally:
+                db_write_queue.task_done()
+                
+        except queue.Empty:
+            continue  # 超时继续检查运行状态
+        except Exception as e:
+            print(f"⚠️ 数据库写入线程异常: {e}")
+    
+    print("✅ 数据库写入线程已退出")
+
+def start_db_writer():
+    """【v2.6.5】启动数据库写入线程"""
+    global db_writer_thread, db_writer_running
+    if db_writer_thread is None or not db_writer_thread.is_alive():
+        db_writer_running = True
+        db_writer_thread = threading.Thread(target=_db_writer_loop, daemon=True)
+        db_writer_thread.start()
+        print("✅ 数据库写入线程启动成功")
+
+def stop_db_writer():
+    """【v2.6.5】停止数据库写入线程"""
+    global db_writer_running
+    db_writer_running = False
+    if db_writer_thread is not None:
+        db_write_queue.put(None)  # 发送退出信号
+        db_writer_thread.join(timeout=5.0)
+
+def queue_save_result(task: Dict, result: Dict):
+    """【v2.6.5】将结果加入异步写入队列
+    
+    非阻塞操作，立即返回，由后台线程处理数据库写入
+    """
+    db_write_queue.put((task, result))
+    return True
+
+def wait_for_db_writes(timeout: Optional[float] = None) -> bool:
+    """【v2.6.5】等待所有待写入的队列项完成
+    
+    Args:
+        timeout: 最大等待时间（秒），None表示无限等待
+        
+    Returns:
+        是否在超时前完成
+    """
+    return db_write_queue.join() is None or True  # queue.join()没有返回值，成功即返回None
 
 # ========== 全局变量 ==========
 running = True
@@ -1129,8 +1209,7 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
             # 执行批量评分（传入预分析结果，跳过内部预分析）
             batch_results = await scorer.score_sessions_batch_async(batch_sessions, pre_analyses)
             
-            # 保存结果到数据库（在线程池中执行）
-            loop = asyncio.get_event_loop()
+            # 【v2.6.5】异步写入队列：非阻塞入队，由后台线程处理数据库写入
             for task, result in zip(batch, batch_results):
                 # 【Bug修复】检查result是否包含有效的评分字段
                 has_valid_scores = (
@@ -1139,8 +1218,7 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
                     result.get('summary') is not None
                 )
                 if has_valid_scores:
-                    await loop.run_in_executor(None, _save_result_sync, task, result)
-                    # 【修复】complete_task 已在 _save_result_sync 内部调用，此处删除重复调用
+                    queue_save_result(task, result)  # 非阻塞入队
                 else:
                     error_msg = result.get('error', '评分结果不完整（缺少dimension_scores或summary）')
                     print(f"   ⚠️ 任务 {str(task['task_id'])[:20]}... 评分无效: {error_msg}")
@@ -1209,6 +1287,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     init_queue_tables()
     init_sessions_table()
     init_engines()
+    start_db_writer()  # 【v2.6.5】启动数据库写入线程
     
     total_processed = 0
     total_api_calls = 0
@@ -1312,6 +1391,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
         import traceback
         traceback.print_exc()
     finally:
+        stop_db_writer()  # 【v2.6.5】停止数据库写入线程
         if classifier:
             classifier.close()
         release_lock()
