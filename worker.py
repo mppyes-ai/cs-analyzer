@@ -1094,28 +1094,21 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
     # 【Opus修复】使用 as_completed 替代 gather，避免木桶效应
     print(f"\n🚀 启动 {total_batches} 个评分批次（并发限制: {KIMI_MAX_CONCURRENT}，as_completed优化）")
     
-    # 创建任务并立即启动
-    batch_tasks_map = {}  # coro -> (batch_idx, batch)
-    for i, batch in enumerate(batches):
-        coro = score_one_batch(i, batch)
-        batch_tasks_map[coro] = (i, batch)
+    # 【修复】创建Task对象，as_completed会按完成顺序返回
+    batch_tasks = [score_one_batch(i, batch) for i, batch in enumerate(batches)]
     
     all_results = []
     completed_count = 0
     
     # as_completed: 先完成的先处理，避免等待最慢批次
-    for coro in asyncio.as_completed(batch_tasks_map.keys()):
-        batch_idx, batch = batch_tasks_map[coro]
+    for task in asyncio.as_completed(batch_tasks):
         try:
-            batch_results = await coro
+            batch_results = await task
             all_results.extend(batch_results)
             completed_count += 1
             print(f"   📊 进度: {completed_count}/{total_batches} 批次完成")
         except Exception as e:
-            print(f"   ❌ 批次 {batch_idx+1} 异常: {e}")
-            # 为失败批次生成错误结果
-            for task in batch:
-                all_results.append({'error': str(e)})
+            print(f"   ❌ 批次异常: {e}")
             completed_count += 1
     
     return all_results
