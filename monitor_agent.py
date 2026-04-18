@@ -101,10 +101,25 @@ class MonitorAgent:
             return False
     
     def restart_message_poller(self):
-        """重启消息轮询服务"""
+        """重启消息轮询服务（带单例检查）"""
         import subprocess
+        from pathlib import Path
         
         poller_script = Path(__file__).parent / 'message_poller.py'
+        
+        # 【P0修复】使用文件锁方式严格检查是否已有实例
+        PID_FILE = LOGS_DIR / 'cs_analyzer_message_poller.pid'
+        if PID_FILE.exists():
+            try:
+                with open(PID_FILE, 'r') as f:
+                    old_pid = int(f.read().strip())
+                os.kill(old_pid, 0)  # 检查进程是否存在
+                print(f"  ⚠️ 消息服务已在运行 (PID: {old_pid})，跳过重启")
+                return True
+            except (ValueError, ProcessLookupError, OSError):
+                # 进程不存在，清理残留文件后继续启动
+                print(f"  🧹 清理残留PID文件")
+                PID_FILE.unlink(missing_ok=True)
         
         cmd = [
             sys.executable,
@@ -124,6 +139,7 @@ class MonitorAgent:
             return True
         except Exception as e:
             print(f"  ❌ 消息服务重启失败: {e}")
+            return False
             return False
     
     def check_existing_monitor(self) -> bool:

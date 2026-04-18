@@ -458,15 +458,22 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
         self.spawn_message_poller(monitor_proc.pid)
     
     def spawn_message_poller(self, monitor_pid: int) -> subprocess.Popen:
-        """启动消息轮询服务（增强版：返回进程对象供监控）
+        """启动消息轮询服务（增强版：单例检查 + 返回进程对象）
+        
+        【P0修复】启动前检查是否已有实例在运行，防止多实例竞态
         
         Args:
             monitor_pid: monitor_agent 的进程ID，用于生命周期检测
             
         Returns:
-            subprocess.Popen: 消息轮询服务进程对象
+            subprocess.Popen: 消息轮询服务进程对象（如果已有实例则返回None）
         """
         import subprocess
+        
+        # 【P0修复】检查是否已有 poller 在运行
+        if self.check_message_poller_running():
+            print("⚠️ 消息轮询服务已在运行，跳过重复启动")
+            return None
         
         poller_script = Path(__file__).parent / 'message_poller.py'
         
