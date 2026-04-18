@@ -24,18 +24,12 @@ import subprocess
 sys.path.insert(0, os.path.dirname(__file__))
 
 from log_parser import parse_log_file
-from task_queue import submit_task, get_queue_stats, get_task_detail, init_queue_tables
+from task_queue import submit_task, get_queue_stats, get_task_detail, init_queue_tables, get_queue_connection
 from scene_utils import classify_scene_by_keywords  # 【P1-1修复】提取到独立模块
 
 
 # ========== 场景分类函数已提取到 scene_utils.py ==========
 # 删除本地的 _fast_scene_classify 函数，使用 scene_utils.classify_scene_by_keywords
-
-# 加载环境变量
-import os
-from pathlib import Path
-
-sys.path.insert(0, os.path.dirname(__file__))
 
 # ========== 日志目录配置 ==========
 LOGS_DIR = os.path.join(os.path.dirname(__file__), 'logs')
@@ -82,7 +76,7 @@ class BatchAnalyzer:
         
         防止重复提交，同时处理Worker崩溃导致的processing任务残留
         """
-        conn = sqlite3.connect(self.queue_db_path)
+        conn = get_queue_connection()
         cursor = conn.cursor()
         
         # 1. 检查是否已完成
@@ -115,7 +109,7 @@ class BatchAnalyzer:
         Returns:
             重置的任务数量
         """
-        conn = sqlite3.connect(self.queue_db_path)
+        conn = get_queue_connection()
         cursor = conn.cursor()
         
         cursor.execute('''
@@ -325,16 +319,18 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
                 return "❌ Worker启动失败，无法继续分析。请检查依赖安装。"
             time.sleep(2)  # 等待Worker启动
         
-        # 3. 提交任务
+        # 3. 生成批次ID并提交任务（前台模式也需要batch_id）
+        import uuid
+        batch_id = str(uuid.uuid4())[:8]
         print("📤 提交任务到队列...")
-        result = self.submit_sessions(sessions, batch_id='')
+        result = self.submit_sessions(sessions, batch_id=batch_id)
         print(f"✅ 提交完成: {result['submitted']} 个新任务, {result['skipped']} 个已存在")
         
         # 4. 前台模式不启动监控代理（前台自己管理进度显示）
         # 后台模式才需要监控代理推送进度
         pass
         
-        # 5. 轮询等待（使用全局队列统计，前台模式是独占式的）
+        # 5. 轮询等待（使用当前批次队列统计）
         print("⏳ 等待分析完成...")
         total = result['submitted']
         last_progress = -1
@@ -342,19 +338,20 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
         max_wait_seconds = 30 * 60  # 30分钟超时
         
         while True:
-            # 超时保护
-            if time.time() - start_time > max_wait_seconds:
-                print(f"\n❌ 分析超时（30分钟）")
-                print(f"   当前队列状态: pending={stats.get('pending', 'N/A')}, processing={stats.get('processing', 'N/A')}, completed={stats.get('completed', 'N/A')}")
-                print(f"   可能原因: Worker未正常运行或任务处理卡住")
-                return "❌ 分析超时（30分钟），Worker可能未正常运行。"
-            
-            stats = get_queue_stats()
+            # 获取当前批次统计
+            stats = get_queue_stats(batch_id=batch_id)
             completed = stats.get('completed', 0)
             pending = stats.get('pending', 0)
             processing = stats.get('processing', 0)
             
-            # 计算进度（使用全局completed，前台模式独占运行）
+            # 超时保护
+            if time.time() - start_time > max_wait_seconds:
+                print(f"\n❌ 分析超时（30分钟）")
+                print(f"   当前队列状态: pending={pending}, processing={processing}, completed={completed}")
+                print(f"   可能原因: Worker未正常运行或任务处理卡住")
+                return "❌ 分析超时（30分钟），Worker可能未正常运行。"
+            
+            # 计算进度（使用当前批次completed）
             if total > 0:
                 progress = int((completed / total) * 100)
             else:
@@ -365,8 +362,8 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
                 print(f"  进度: {progress}% ({completed}/{total})")
                 last_progress = progress
             
-            # 完成检查：等待所有任务完成 + 额外等待确保数据写入完成
-            if pending == 0 and processing == 0 and completed >= total:
+            # 完成检查：只看当前批次的 pending 和 processing
+            if pending == 0 and processing == 0:
                 # 额外等待3秒，确保Worker完成数据库写入
                 print(f"  所有任务已标记完成，等待数据写入...")
                 time.sleep(3)

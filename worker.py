@@ -78,7 +78,6 @@ def _check_dependencies():
 
 from dotenv import load_dotenv
 load_dotenv()
-import sys
 import time
 import argparse
 import signal
@@ -95,7 +94,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 from task_queue import (
     init_queue_tables, get_pending_task, get_pending_tasks, complete_task, fail_task,
     get_queue_stats, retry_failed_tasks, cancel_task, mark_processing, QUEUE_DB_PATH,
-    force_retry_all_failed  # 【修复】导入强制重试函数
+    force_retry_all_failed,  # 【修复】导入强制重试函数
+    get_queue_connection    # 【P2-1修复】导入统一的数据库连接函数
 )
 from db_utils import init_sessions_table
 from intent_classifier_v3 import RobustIntentClassifier
@@ -303,8 +303,7 @@ def find_related_sessions(main_task: dict, window_minutes: int = MERGE_WINDOW_MI
     if not main_start or not main_end:
         return {'mergeable': [], 'transfer_chain': [], 'same_user': []}
     
-    db_path = os.path.join(os.path.dirname(__file__), 'data', 'task_queue.db')
-    conn = sqlite3.connect(db_path)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -580,7 +579,7 @@ async def _batch_score_with_limit(tasks: List[Dict], batch_size: int) -> List[Di
                 )
                 if has_valid_scores:
                     await loop.run_in_executor(None, _save_result_sync, task, result)
-                    complete_task(task['task_id'], result)
+                    # 【P2-2修复】complete_task 已在 _save_result_sync 内部调用，删除此处重复调用
                 else:
                     error_msg = result.get('error', '评分结果不完整（缺少dimension_scores或summary）')
                     print(f"   ⚠️ 任务 {str(task['task_id'])[:20]}... 评分无效: {error_msg}")
@@ -753,7 +752,7 @@ def fetch_and_group_tasks(max_batch_size: int = 150, once: bool = False) -> Dict
     """
     import pandas as pd
     
-    conn = sqlite3.connect(QUEUE_DB_PATH)
+    conn = get_queue_connection()
     cursor = conn.cursor()
     
     # 【v2.6.2】智能感知：先count pending任务总数
