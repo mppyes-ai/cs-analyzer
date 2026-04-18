@@ -1,0 +1,1376 @@
+{
+  "single_role": [
+    {
+      "task_id": 816,
+      "session_id": "session_0015_8024c76c",
+      "role": "user",
+      "msg_count": 90,
+      "first_msg": "您好，我是林内采暖专员，请问有什么可以帮到您？"
+    },
+    {
+      "task_id": 822,
+      "session_id": "session_0021_8024c76c",
+      "role": "user",
+      "msg_count": 15,
+      "first_msg": "您好，我是林内采暖专员，请问有什么可以帮到您？"
+    },
+    {
+      "task_id": 831,
+      "session_id": "session_0030_44df2de8",
+      "role": "staff",
+      "msg_count": 1,
+      "first_msg": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 832,
+      "session_id": "session_0031_616028fb",
+      "role": "user",
+      "msg_count": 99,
+      "first_msg": "你们图里不是标的420，320嘛"
+    },
+    {
+      "task_id": 884,
+      "session_id": "session_0083_da0e610b",
+      "role": "staff",
+      "msg_count": 2,
+      "first_msg": "您好，专属人工客服林内林小珂将竭诚为您服务~"
+    },
+    {
+      "task_id": 901,
+      "session_id": "session_0100_443a2780",
+      "role": "user",
+      "msg_count": 8,
+      "first_msg": "保修有吗"
+    },
+    {
+      "task_id": 904,
+      "session_id": "session_0103_d5d7c6d1",
+      "role": "staff",
+      "msg_count": 3,
+      "first_msg": "您好，专属人工客服林内林小肖将竭诚为您服务~"
+    },
+    {
+      "task_id": 922,
+      "session_id": "session_0121_ac2c8f13",
+      "role": "staff",
+      "msg_count": 4,
+      "first_msg": "好"
+    },
+    {
+      "task_id": 927,
+      "session_id": "session_0126_da0e610b",
+      "role": "staff",
+      "msg_count": 2,
+      "first_msg": "您好，专属人工客服林内林小珂将竭诚为您服务~"
+    },
+    {
+      "task_id": 930,
+      "session_id": "session_0129_d5d7c6d1",
+      "role": "staff",
+      "msg_count": 5,
+      "first_msg": "您好，专属人工客服林内林小肖将竭诚为您服务~"
+    },
+    {
+      "task_id": 935,
+      "session_id": "session_0134_0fe63888",
+      "role": "user",
+      "msg_count": 3,
+      "first_msg": "https://item.jd.com/100024539022.html?sdx=ehi-lLxF"
+    },
+    {
+      "task_id": 954,
+      "session_id": "session_0153_8024c76c",
+      "role": "user",
+      "msg_count": 20,
+      "first_msg": "您好，我是林内采暖专员，请问有什么可以帮到您？"
+    },
+    {
+      "task_id": 967,
+      "session_id": "session_0166_8024c76c",
+      "role": "user",
+      "msg_count": 20,
+      "first_msg": "您好，我是林内采暖专员，请问有什么可以帮到您？"
+    },
+    {
+      "task_id": 988,
+      "session_id": "session_0187_44df2de8",
+      "role": "staff",
+      "msg_count": 1,
+      "first_msg": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 991,
+      "session_id": "session_0190_44df2de8",
+      "role": "staff",
+      "msg_count": 1,
+      "first_msg": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 1012,
+      "session_id": "session_0211_d5d7c6d1",
+      "role": "staff",
+      "msg_count": 4,
+      "first_msg": "您好，专属人工客服林内林小肖将竭诚为您服务~"
+    },
+    {
+      "task_id": 1014,
+      "session_id": "session_0213_d5d7c6d1",
+      "role": "staff",
+      "msg_count": 4,
+      "first_msg": "您好，专属人工客服林内林小肖将竭诚为您服务~"
+    },
+    {
+      "task_id": 1021,
+      "session_id": "session_0220_da0e610b",
+      "role": "staff",
+      "msg_count": 3,
+      "first_msg": "您好，专属人工客服林内林小珂将竭诚为您服务~"
+    },
+    {
+      "task_id": 1052,
+      "session_id": "session_0251_fe9d81e7",
+      "role": "user",
+      "msg_count": 17,
+      "first_msg": "请问这款和24G58那款有什么区别呢"
+    },
+    {
+      "task_id": 1071,
+      "session_id": "session_0270_44df2de8",
+      "role": "staff",
+      "msg_count": 1,
+      "first_msg": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 1086,
+      "session_id": "session_0285_bceda942",
+      "role": "staff",
+      "msg_count": 4,
+      "first_msg": "人工客服【林小立】将为您竭诚服务。"
+    },
+    {
+      "task_id": 1098,
+      "session_id": "session_0297_da0e610b",
+      "role": "staff",
+      "msg_count": 2,
+      "first_msg": "您好，专属人工客服林内林小珂将竭诚为您服务~"
+    },
+    {
+      "task_id": 1124,
+      "session_id": "session_0323_8024c76c",
+      "role": "user",
+      "msg_count": 13,
+      "first_msg": "您好，我是林内采暖专员，请问有什么可以帮到您？"
+    },
+    {
+      "task_id": 1127,
+      "session_id": "session_0326_250ba95c",
+      "role": "staff",
+      "msg_count": 1,
+      "first_msg": "安装在橱柜中需要您注意以下几点:\n\n1.橱柜宽度需大于机身宽度20厘米。\n2.橱柜上下面不得完全密封"
+    },
+    {
+      "task_id": 1138,
+      "session_id": "session_0337_8024c76c",
+      "role": "user",
+      "msg_count": 10,
+      "first_msg": "您好，我是林内采暖专员，请问有什么可以帮到您？"
+    },
+    {
+      "task_id": 1181,
+      "session_id": "session_0380_f0f70123",
+      "role": "user",
+      "msg_count": 13,
+      "first_msg": "https://item.jd.com/100018537972.html?sdx=ehi-lLxF"
+    },
+    {
+      "task_id": 1191,
+      "session_id": "session_0390_da0e610b",
+      "role": "staff",
+      "msg_count": 3,
+      "first_msg": "您好，专属人工客服林内林小珂将竭诚为您服务~"
+    }
+  ],
+  "auto_messages": [
+    {
+      "task_id": 831,
+      "session_id": "session_0030_44df2de8",
+      "content": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 988,
+      "session_id": "session_0187_44df2de8",
+      "content": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 991,
+      "session_id": "session_0190_44df2de8",
+      "content": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 1071,
+      "session_id": "session_0270_44df2de8",
+      "content": "宝，喜欢就赶紧下单吧！"
+    }
+  ],
+  "very_short": [
+    {
+      "task_id": 802,
+      "session_id": "session_0001_902a9de4",
+      "msg_count": 2,
+      "first_msg": "怎么说怎么说"
+    },
+    {
+      "task_id": 807,
+      "session_id": "session_0006_e6d0779a",
+      "msg_count": 2,
+      "first_msg": "这个保修多久"
+    },
+    {
+      "task_id": 808,
+      "session_id": "session_0007_1eed3695",
+      "msg_count": 2,
+      "first_msg": "你们没有室外机，哪来的订单\n引用：您好，还没有收到您的订单，有什么顾虑吗，可以给我说下的呢，非常乐意"
+    },
+    {
+      "task_id": 831,
+      "session_id": "session_0030_44df2de8",
+      "msg_count": 1,
+      "first_msg": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 857,
+      "session_id": "session_0056_e7e99943",
+      "msg_count": 2,
+      "first_msg": "这个还送的吗\n引用：亲爱哒，您咨询的这款JSQ31-GD72燃气热水器30分钟内下单购买，安装晒单后"
+    },
+    {
+      "task_id": 865,
+      "session_id": "session_0064_375ec885",
+      "msg_count": 2,
+      "first_msg": "好的"
+    },
+    {
+      "task_id": 871,
+      "session_id": "session_0070_f6b362e6",
+      "msg_count": 2,
+      "first_msg": "人工"
+    },
+    {
+      "task_id": 884,
+      "session_id": "session_0083_da0e610b",
+      "msg_count": 2,
+      "first_msg": "您好，专属人工客服林内林小珂将竭诚为您服务~"
+    },
+    {
+      "task_id": 885,
+      "session_id": "session_0084_3ff1ebe0",
+      "msg_count": 2,
+      "first_msg": "家电和破壁机是还需要等核实是吗"
+    },
+    {
+      "task_id": 927,
+      "session_id": "session_0126_da0e610b",
+      "msg_count": 2,
+      "first_msg": "您好，专属人工客服林内林小珂将竭诚为您服务~"
+    },
+    {
+      "task_id": 950,
+      "session_id": "session_0149_19953703",
+      "msg_count": 2,
+      "first_msg": "没有了，怎么办！\n引用：您看一下里面有没有追评呢"
+    },
+    {
+      "task_id": 952,
+      "session_id": "session_0151_f6b362e6",
+      "msg_count": 2,
+      "first_msg": "人工"
+    },
+    {
+      "task_id": 956,
+      "session_id": "session_0155_40f8f02f",
+      "msg_count": 2,
+      "first_msg": "https://item.jd.com/100193575851.html?sdx=ehi-lLxF"
+    },
+    {
+      "task_id": 969,
+      "session_id": "session_0168_11fbe49b",
+      "msg_count": 2,
+      "first_msg": "预约时间可以修改吧"
+    },
+    {
+      "task_id": 980,
+      "session_id": "session_0179_bdda1c89",
+      "msg_count": 2,
+      "first_msg": "明天收到货免费安装的师傅是不是会主动联系我呀？"
+    },
+    {
+      "task_id": 986,
+      "session_id": "session_0185_10e5a9e5",
+      "msg_count": 2,
+      "first_msg": "不能手机预约定时的零冷水吗"
+    },
+    {
+      "task_id": 988,
+      "session_id": "session_0187_44df2de8",
+      "msg_count": 1,
+      "first_msg": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 991,
+      "session_id": "session_0190_44df2de8",
+      "msg_count": 1,
+      "first_msg": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 996,
+      "session_id": "session_0195_5fb975c6",
+      "msg_count": 2,
+      "first_msg": "您好请问核实了吗\n引用：麻烦尽快核实"
+    },
+    {
+      "task_id": 1024,
+      "session_id": "session_0223_8fa30a81",
+      "msg_count": 2,
+      "first_msg": "https://item.jd.com/100048028257.html?sdx=ehi-lLxF"
+    },
+    {
+      "task_id": 1027,
+      "session_id": "session_0226_5d942f41",
+      "msg_count": 2,
+      "first_msg": "上门指导怎么预约"
+    },
+    {
+      "task_id": 1042,
+      "session_id": "session_0241_4b922e8d",
+      "msg_count": 2,
+      "first_msg": "是这个红包#E-s20\n引用：亲爱哒，您咨询的这款JSQ26-GD31燃气热水器现在下单购买，前五百"
+    },
+    {
+      "task_id": 1071,
+      "session_id": "session_0270_44df2de8",
+      "msg_count": 1,
+      "first_msg": "宝，喜欢就赶紧下单吧！"
+    },
+    {
+      "task_id": 1079,
+      "session_id": "session_0278_133da5ab",
+      "msg_count": 2,
+      "first_msg": "请问我的订单已经发货了吗？"
+    },
+    {
+      "task_id": 1084,
+      "session_id": "session_0283_07dd45cc",
+      "msg_count": 2,
+      "first_msg": "预约有点不懂烦人"
+    },
+    {
+      "task_id": 1098,
+      "session_id": "session_0297_da0e610b",
+      "msg_count": 2,
+      "first_msg": "您好，专属人工客服林内林小珂将竭诚为您服务~"
+    },
+    {
+      "task_id": 1107,
+      "session_id": "session_0306_bf06195b",
+      "msg_count": 2,
+      "first_msg": "机器运行过程中有气味是怎么回事"
+    },
+    {
+      "task_id": 1127,
+      "session_id": "session_0326_250ba95c",
+      "msg_count": 1,
+      "first_msg": "安装在橱柜中需要您注意以下几点:\n\n1.橱柜宽度需大于机身宽度20厘米。\n2.橱柜上下面不得完全密封"
+    },
+    {
+      "task_id": 1156,
+      "session_id": "session_0355_46b78633",
+      "msg_count": 2,
+      "first_msg": "https://item.jd.com/100007725035.html?sdx=ehi-lLxF"
+    },
+    {
+      "task_id": 1163,
+      "session_id": "session_0362_1d461ea6",
+      "msg_count": 2,
+      "first_msg": "Pro plus和经典款什么区别"
+    },
+    {
+      "task_id": 1178,
+      "session_id": "session_0377_a32fab50",
+      "msg_count": 2,
+      "first_msg": "安装好了今天"
+    },
+    {
+      "task_id": 1186,
+      "session_id": "session_0385_6fe9647d",
+      "msg_count": 2,
+      "first_msg": "产品质保是几年？"
+    },
+    {
+      "task_id": 1189,
+      "session_id": "session_0388_f261f711",
+      "msg_count": 2,
+      "first_msg": "你好这个回收以旧换新跟你们是没有关系的是么"
+    }
+  ],
+  "duplicate_content": [
+    {
+      "fingerprint": "https://dd-static.jd.com/ddimg | https://dd-static.jd.com/ddimg",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 803,
+          "session_id": "session_0002_4486812c",
+          "msg_count": 24
+        },
+        {
+          "task_id": 902,
+          "session_id": "session_0101_e2afece4",
+          "msg_count": 31
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1000397069 | 亲爱的，目前小客服在短时间内进线量较多导致回复略有怠慢，我正",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 804,
+          "session_id": "session_0003_b66fca9d",
+          "msg_count": 15
+        },
+        {
+          "task_id": 1091,
+          "session_id": "session_0290_c6540262",
+          "msg_count": 9
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1001099037 | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 810,
+          "session_id": "session_0009_447dbb68",
+          "msg_count": 28
+        },
+        {
+          "task_id": 990,
+          "session_id": "session_0189_eacc9a6f",
+          "msg_count": 11
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://dd-static.jd.com/ddimg | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 4,
+      "sessions": [
+        {
+          "task_id": 811,
+          "session_id": "session_0010_c1e103f7",
+          "msg_count": 24
+        },
+        {
+          "task_id": 976,
+          "session_id": "session_0175_395533a9",
+          "msg_count": 21
+        },
+        {
+          "task_id": 1150,
+          "session_id": "session_0349_a232b103",
+          "msg_count": 31
+        },
+        {
+          "task_id": 1182,
+          "session_id": "session_0381_f0f7ddda",
+          "msg_count": 9
+        }
+      ]
+    },
+    {
+      "fingerprint": "宝，喜欢就赶紧下单吧！",
+      "count": 4,
+      "sessions": [
+        {
+          "task_id": 831,
+          "session_id": "session_0030_44df2de8",
+          "msg_count": 1
+        },
+        {
+          "task_id": 988,
+          "session_id": "session_0187_44df2de8",
+          "msg_count": 1
+        },
+        {
+          "task_id": 991,
+          "session_id": "session_0190_44df2de8",
+          "msg_count": 1
+        },
+        {
+          "task_id": 1071,
+          "session_id": "session_0270_44df2de8",
+          "msg_count": 1
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://dd-static.jd.com/ddimg | ~ 亲爱的，请您稍等，我需要仔细看一下您的图片哦~",
+      "count": 3,
+      "sessions": [
+        {
+          "task_id": 842,
+          "session_id": "session_0041_16e9abc8",
+          "msg_count": 24
+        },
+        {
+          "task_id": 993,
+          "session_id": "session_0192_25818473",
+          "msg_count": 10
+        },
+        {
+          "task_id": 1028,
+          "session_id": "session_0227_581d3ba5",
+          "msg_count": 26
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1000567361 | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 845,
+          "session_id": "session_0044_af248727",
+          "msg_count": 18
+        },
+        {
+          "task_id": 1123,
+          "session_id": "session_0322_f0d6a341",
+          "msg_count": 14
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1001405370 | 感谢莅临林内京东自营官方旗舰店",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 848,
+          "session_id": "session_0047_d285458d",
+          "msg_count": 7
+        },
+        {
+          "task_id": 1170,
+          "session_id": "session_0369_e5eab026",
+          "msg_count": 14
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://dd-static.jd.com/ddimg | 亲爱哒，请问有什么可以帮您的呢",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 850,
+          "session_id": "session_0049_4f71c8b8",
+          "msg_count": 6
+        },
+        {
+          "task_id": 937,
+          "session_id": "session_0136_72495336",
+          "msg_count": 4
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1000397069 | 小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 851,
+          "session_id": "session_0050_d78a5499",
+          "msg_count": 14
+        },
+        {
+          "task_id": 853,
+          "session_id": "session_0052_d78a5499",
+          "msg_count": 6
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1001405370 | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 8,
+      "sessions": [
+        {
+          "task_id": 854,
+          "session_id": "session_0053_86ca9e10",
+          "msg_count": 32
+        },
+        {
+          "task_id": 860,
+          "session_id": "session_0059_89deaf88",
+          "msg_count": 6
+        },
+        {
+          "task_id": 882,
+          "session_id": "session_0081_35c98fd7",
+          "msg_count": 12
+        },
+        {
+          "task_id": 933,
+          "session_id": "session_0132_ab2845a5",
+          "msg_count": 48
+        },
+        {
+          "task_id": 1059,
+          "session_id": "session_0258_cab01388",
+          "msg_count": 19
+        },
+        {
+          "task_id": 1149,
+          "session_id": "session_0348_69c21f9f",
+          "msg_count": 25
+        },
+        {
+          "task_id": 1159,
+          "session_id": "session_0358_da653d5e",
+          "msg_count": 31
+        },
+        {
+          "task_id": 1167,
+          "session_id": "session_0366_bd65a70a",
+          "msg_count": 15
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1001099037 | 人工客服【林小平】将为您竭诚服务",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 856,
+          "session_id": "session_0055_87b8e101",
+          "msg_count": 12
+        },
+        {
+          "task_id": 1197,
+          "session_id": "session_0396_00581a64",
+          "msg_count": 9
+        }
+      ]
+    },
+    {
+      "fingerprint": "人工 | 您的问题【智能客服】暂时无法帮助您处理，请您稍等我帮您呼叫客",
+      "count": 4,
+      "sessions": [
+        {
+          "task_id": 869,
+          "session_id": "session_0068_f6b362e6",
+          "msg_count": 10
+        },
+        {
+          "task_id": 871,
+          "session_id": "session_0070_f6b362e6",
+          "msg_count": 2
+        },
+        {
+          "task_id": 949,
+          "session_id": "session_0148_f6b362e6",
+          "msg_count": 5
+        },
+        {
+          "task_id": 952,
+          "session_id": "session_0151_f6b362e6",
+          "msg_count": 2
+        }
+      ]
+    },
+    {
+      "fingerprint": "你好 | ~ 您好，我在哒，我将竭尽全力为您解决您的问题哦~",
+      "count": 3,
+      "sessions": [
+        {
+          "task_id": 870,
+          "session_id": "session_0069_7eca689f",
+          "msg_count": 13
+        },
+        {
+          "task_id": 1075,
+          "session_id": "session_0274_7eca689f",
+          "msg_count": 39
+        },
+        {
+          "task_id": 1076,
+          "session_id": "session_0275_7eca689f",
+          "msg_count": 8
+        }
+      ]
+    },
+    {
+      "fingerprint": "在吗 | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 879,
+          "session_id": "session_0078_cdb1bf9a",
+          "msg_count": 23
+        },
+        {
+          "task_id": 1132,
+          "session_id": "session_0331_cdb1bf9a",
+          "msg_count": 12
+        }
+      ]
+    },
+    {
+      "fingerprint": "您好，专属人工客服林内林小珂将竭诚为您服务~ | 不用",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 884,
+          "session_id": "session_0083_da0e610b",
+          "msg_count": 2
+        },
+        {
+          "task_id": 1191,
+          "session_id": "session_0390_da0e610b",
+          "msg_count": 3
+        }
+      ]
+    },
+    {
+      "fingerprint": "您好，专属人工客服林内林小肖将竭诚为您服务~ | 您好，请问有什么可以帮到您的",
+      "count": 6,
+      "sessions": [
+        {
+          "task_id": 898,
+          "session_id": "session_0097_d5d7c6d1",
+          "msg_count": 9
+        },
+        {
+          "task_id": 904,
+          "session_id": "session_0103_d5d7c6d1",
+          "msg_count": 3
+        },
+        {
+          "task_id": 930,
+          "session_id": "session_0129_d5d7c6d1",
+          "msg_count": 5
+        },
+        {
+          "task_id": 1012,
+          "session_id": "session_0211_d5d7c6d1",
+          "msg_count": 4
+        },
+        {
+          "task_id": 1014,
+          "session_id": "session_0213_d5d7c6d1",
+          "msg_count": 4
+        },
+        {
+          "task_id": 1073,
+          "session_id": "session_0272_d5d7c6d1",
+          "msg_count": 6
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1001935758 | 小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 903,
+          "session_id": "session_0102_bd0846b5",
+          "msg_count": 13
+        },
+        {
+          "task_id": 905,
+          "session_id": "session_0104_bd0846b5",
+          "msg_count": 4
+        }
+      ]
+    },
+    {
+      "fingerprint": "这一款可以装在橱柜吗 | ~ 燃气热水器安装相关要求：\n【气源】务必符合“天然气12T",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 915,
+          "session_id": "session_0114_6b54b4f3",
+          "msg_count": 24
+        },
+        {
+          "task_id": 917,
+          "session_id": "session_0116_6b54b4f3",
+          "msg_count": 6
+        }
+      ]
+    },
+    {
+      "fingerprint": "可以帮忙登记下 延迟发货吗 | 小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 926,
+          "session_id": "session_0125_af422bf4",
+          "msg_count": 6
+        },
+        {
+          "task_id": 945,
+          "session_id": "session_0144_af422bf4",
+          "msg_count": 4
+        }
+      ]
+    },
+    {
+      "fingerprint": "没有了，怎么办！\n引用：您看一下里面有没有追评呢 | 您的问题【智能客服】暂时无法帮助您处理，请您稍等我帮您呼叫客",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 941,
+          "session_id": "session_0140_19953703",
+          "msg_count": 4
+        },
+        {
+          "task_id": 950,
+          "session_id": "session_0149_19953703",
+          "msg_count": 2
+        }
+      ]
+    },
+    {
+      "fingerprint": "你好 | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 4,
+      "sessions": [
+        {
+          "task_id": 946,
+          "session_id": "session_0145_7eca689f",
+          "msg_count": 5
+        },
+        {
+          "task_id": 1031,
+          "session_id": "session_0230_7eca689f",
+          "msg_count": 7
+        },
+        {
+          "task_id": 1063,
+          "session_id": "session_0262_7eca689f",
+          "msg_count": 10
+        },
+        {
+          "task_id": 1110,
+          "session_id": "session_0309_7eca689f",
+          "msg_count": 3
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1000397070 | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 4,
+      "sessions": [
+        {
+          "task_id": 947,
+          "session_id": "session_0146_142c71aa",
+          "msg_count": 7
+        },
+        {
+          "task_id": 983,
+          "session_id": "session_0182_e8bff492",
+          "msg_count": 17
+        },
+        {
+          "task_id": 1094,
+          "session_id": "session_0293_da8ec74d",
+          "msg_count": 15
+        },
+        {
+          "task_id": 1180,
+          "session_id": "session_0379_3b24e82c",
+          "msg_count": 19
+        }
+      ]
+    },
+    {
+      "fingerprint": "你好 | 您好小主，请问有什么可以帮您的呢！",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 953,
+          "session_id": "session_0152_7eca689f",
+          "msg_count": 13
+        },
+        {
+          "task_id": 1131,
+          "session_id": "session_0330_7eca689f",
+          "msg_count": 13
+        }
+      ]
+    },
+    {
+      "fingerprint": "人工 | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 3,
+      "sessions": [
+        {
+          "task_id": 959,
+          "session_id": "session_0158_f6b362e6",
+          "msg_count": 5
+        },
+        {
+          "task_id": 1168,
+          "session_id": "session_0367_f6b362e6",
+          "msg_count": 8
+        },
+        {
+          "task_id": 1171,
+          "session_id": "session_0370_f6b362e6",
+          "msg_count": 5
+        }
+      ]
+    },
+    {
+      "fingerprint": "人工 | 安装",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 960,
+          "session_id": "session_0159_f6b362e6",
+          "msg_count": 5
+        },
+        {
+          "task_id": 1166,
+          "session_id": "session_0365_f6b362e6",
+          "msg_count": 7
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1001405370 | 人工客服【林小平】将为您竭诚服务",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 961,
+          "session_id": "session_0160_474e33a0",
+          "msg_count": 17
+        },
+        {
+          "task_id": 1199,
+          "session_id": "session_0398_ebc00029",
+          "msg_count": 35
+        }
+      ]
+    },
+    {
+      "fingerprint": "有安装在屋外的款吗 | ~ .林内（Rinnai）【小蛮腰】16升燃气热水器天然气热",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 964,
+          "session_id": "session_0163_cb1ae17d",
+          "msg_count": 16
+        },
+        {
+          "task_id": 972,
+          "session_id": "session_0171_cb1ae17d",
+          "msg_count": 4
+        }
+      ]
+    },
+    {
+      "fingerprint": "店铺 | 小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 971,
+          "session_id": "session_0170_295713f5",
+          "msg_count": 19
+        },
+        {
+          "task_id": 974,
+          "session_id": "session_0173_295713f5",
+          "msg_count": 7
+        }
+      ]
+    },
+    {
+      "fingerprint": "两千和四千的有什么区别 | 小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 973,
+          "session_id": "session_0172_64fea49c",
+          "msg_count": 9
+        },
+        {
+          "task_id": 977,
+          "session_id": "session_0176_64fea49c",
+          "msg_count": 4
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1000397069 | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 978,
+          "session_id": "session_0177_e406d6ea",
+          "msg_count": 48
+        },
+        {
+          "task_id": 1049,
+          "session_id": "session_0248_dd2008fd",
+          "msg_count": 27
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1001017134 | 您好 有什么需要帮助您的呢",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 989,
+          "session_id": "session_0188_e97e9203",
+          "msg_count": 10
+        },
+        {
+          "task_id": 1067,
+          "session_id": "session_0266_1ec65768",
+          "msg_count": 30
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1000397070 | 人工客服【林小孔】将为您竭诚服务",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1000,
+          "session_id": "session_0199_db678018",
+          "msg_count": 14
+        },
+        {
+          "task_id": 1121,
+          "session_id": "session_0320_e5a6ddff",
+          "msg_count": 7
+        }
+      ]
+    },
+    {
+      "fingerprint": "你好，有没有不用电的，老房子没电插座 | 小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1006,
+          "session_id": "session_0205_29f85dad",
+          "msg_count": 13
+        },
+        {
+          "task_id": 1018,
+          "session_id": "session_0217_29f85dad",
+          "msg_count": 4
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1000397069 | 人工客服【林小平】将为您竭诚服务",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1037,
+          "session_id": "session_0236_2f76ba62",
+          "msg_count": 8
+        },
+        {
+          "task_id": 1148,
+          "session_id": "session_0347_bb34546a",
+          "msg_count": 15
+        }
+      ]
+    },
+    {
+      "fingerprint": "售后 | ~ 还麻烦问您一下哈~您具体遇到的是那个问题呢？",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1055,
+          "session_id": "session_0254_59bd6897",
+          "msg_count": 16
+        },
+        {
+          "task_id": 1072,
+          "session_id": "session_0271_59bd6897",
+          "msg_count": 6
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1000338162 | 欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1057,
+          "session_id": "session_0256_8417643d",
+          "msg_count": 5
+        },
+        {
+          "task_id": 1125,
+          "session_id": "session_0324_a7e91936",
+          "msg_count": 4
+        }
+      ]
+    },
+    {
+      "fingerprint": "热水器保修是几年？ | ~ 您好，这款壁挂炉整机保修三年，有问题拨打24小时热线40",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1112,
+          "session_id": "session_0311_38569af0",
+          "msg_count": 40
+        },
+        {
+          "task_id": 1145,
+          "session_id": "session_0344_38569af0",
+          "msg_count": 10
+        }
+      ]
+    },
+    {
+      "fingerprint": "小蛮腰什么区别 | 小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1137,
+          "session_id": "session_0336_a7902d6b",
+          "msg_count": 20
+        },
+        {
+          "task_id": 1142,
+          "session_id": "session_0341_a7902d6b",
+          "msg_count": 4
+        }
+      ]
+    },
+    {
+      "fingerprint": "https://item.jd.com/1000031525 | 小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1139,
+          "session_id": "session_0338_0accdf37",
+          "msg_count": 7
+        },
+        {
+          "task_id": 1141,
+          "session_id": "session_0340_0accdf37",
+          "msg_count": 6
+        }
+      ]
+    },
+    {
+      "fingerprint": "在吗 | ~ 您好，我在哒，我将竭尽全力为您解决您的问题哦~",
+      "count": 3,
+      "sessions": [
+        {
+          "task_id": 1147,
+          "session_id": "session_0346_cdb1bf9a",
+          "msg_count": 12
+        },
+        {
+          "task_id": 1154,
+          "session_id": "session_0353_cdb1bf9a",
+          "msg_count": 4
+        },
+        {
+          "task_id": 1196,
+          "session_id": "session_0395_cdb1bf9a",
+          "msg_count": 8
+        }
+      ]
+    },
+    {
+      "fingerprint": "您好，专属人工客服林内林小琳将竭诚为您服务~ | 欢迎光临，我是您的专属人工客服，请问有什么可以帮您？",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1157,
+          "session_id": "session_0356_a92c2105",
+          "msg_count": 25
+        },
+        {
+          "task_id": 1193,
+          "session_id": "session_0392_a92c2105",
+          "msg_count": 9
+        }
+      ]
+    },
+    {
+      "fingerprint": "请问有没有活动 | 小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“",
+      "count": 2,
+      "sessions": [
+        {
+          "task_id": 1176,
+          "session_id": "session_0375_4131f34f",
+          "msg_count": 34
+        },
+        {
+          "task_id": 1179,
+          "session_id": "session_0378_4131f34f",
+          "msg_count": 4
+        }
+      ]
+    }
+  ],
+  "all_abnormal_ids": [
+    "session_0353_cdb1bf9a",
+    "session_0176_64fea49c",
+    "session_0132_ab2845a5",
+    "session_0010_c1e103f7",
+    "session_0070_f6b362e6",
+    "session_0346_cdb1bf9a",
+    "session_0146_142c71aa",
+    "session_0199_db678018",
+    "session_0236_2f76ba62",
+    "session_0227_581d3ba5",
+    "session_0326_250ba95c",
+    "session_0205_29f85dad",
+    "session_0144_af422bf4",
+    "session_0187_44df2de8",
+    "session_0190_44df2de8",
+    "session_0348_69c21f9f",
+    "session_0064_375ec885",
+    "session_0293_da8ec74d",
+    "session_0100_443a2780",
+    "session_0248_dd2008fd",
+    "session_0366_bd65a70a",
+    "session_0230_7eca689f",
+    "session_0381_f0f7ddda",
+    "session_0324_a7e91936",
+    "session_0153_8024c76c",
+    "session_0306_bf06195b",
+    "session_0175_395533a9",
+    "session_0355_46b78633",
+    "session_0055_87b8e101",
+    "session_0152_7eca689f",
+    "session_0053_86ca9e10",
+    "session_0337_8024c76c",
+    "session_0185_10e5a9e5",
+    "session_0340_0accdf37",
+    "session_0367_f6b362e6",
+    "session_0078_cdb1bf9a",
+    "session_0311_38569af0",
+    "session_0044_af248727",
+    "session_0116_6b54b4f3",
+    "session_0362_1d461ea6",
+    "session_0375_4131f34f",
+    "session_0188_e97e9203",
+    "session_0323_8024c76c",
+    "session_0272_d5d7c6d1",
+    "session_0380_f0f70123",
+    "session_0009_447dbb68",
+    "session_0358_da653d5e",
+    "session_0271_59bd6897",
+    "session_0266_1ec65768",
+    "session_0297_da0e610b",
+    "session_0114_6b54b4f3",
+    "session_0396_00581a64",
+    "session_0182_e8bff492",
+    "session_0136_72495336",
+    "session_0278_133da5ab",
+    "session_0309_7eca689f",
+    "session_0274_7eca689f",
+    "session_0322_f0d6a341",
+    "session_0052_d78a5499",
+    "session_0283_07dd45cc",
+    "session_0385_6fe9647d",
+    "session_0256_8417643d",
+    "session_0160_474e33a0",
+    "session_0395_cdb1bf9a",
+    "session_0081_35c98fd7",
+    "session_0145_7eca689f",
+    "session_0001_902a9de4",
+    "session_0151_f6b362e6",
+    "session_0365_f6b362e6",
+    "session_0336_a7902d6b",
+    "session_0031_616028fb",
+    "session_0338_0accdf37",
+    "session_0330_7eca689f",
+    "session_0002_4486812c",
+    "session_0168_11fbe49b",
+    "session_0125_af422bf4",
+    "session_0030_44df2de8",
+    "session_0166_8024c76c",
+    "session_0149_19953703",
+    "session_0377_a32fab50",
+    "session_0290_c6540262",
+    "session_0270_44df2de8",
+    "session_0211_d5d7c6d1",
+    "session_0041_16e9abc8",
+    "session_0159_f6b362e6",
+    "session_0241_4b922e8d",
+    "session_0320_e5a6ddff",
+    "session_0103_d5d7c6d1",
+    "session_0275_7eca689f",
+    "session_0379_3b24e82c",
+    "session_0163_cb1ae17d",
+    "session_0097_d5d7c6d1",
+    "session_0195_5fb975c6",
+    "session_0262_7eca689f",
+    "session_0084_3ff1ebe0",
+    "session_0347_bb34546a",
+    "session_0251_fe9d81e7",
+    "session_0378_4131f34f",
+    "session_0220_da0e610b",
+    "session_0285_bceda942",
+    "session_0102_bd0846b5",
+    "session_0015_8024c76c",
+    "session_0331_cdb1bf9a",
+    "session_0104_bd0846b5",
+    "session_0226_5d942f41",
+    "session_0370_f6b362e6",
+    "session_0003_b66fca9d",
+    "session_0158_f6b362e6",
+    "session_0049_4f71c8b8",
+    "session_0341_a7902d6b",
+    "session_0083_da0e610b",
+    "session_0179_bdda1c89",
+    "session_0140_19953703",
+    "session_0356_a92c2105",
+    "session_0148_f6b362e6",
+    "session_0398_ebc00029",
+    "session_0217_29f85dad",
+    "session_0126_da0e610b",
+    "session_0344_38569af0",
+    "session_0155_40f8f02f",
+    "session_0006_e6d0779a",
+    "session_0390_da0e610b",
+    "session_0254_59bd6897",
+    "session_0059_89deaf88",
+    "session_0047_d285458d",
+    "session_0258_cab01388",
+    "session_0121_ac2c8f13",
+    "session_0369_e5eab026",
+    "session_0007_1eed3695",
+    "session_0171_cb1ae17d",
+    "session_0172_64fea49c",
+    "session_0021_8024c76c",
+    "session_0223_8fa30a81",
+    "session_0101_e2afece4",
+    "session_0192_25818473",
+    "session_0068_f6b362e6",
+    "session_0050_d78a5499",
+    "session_0069_7eca689f",
+    "session_0213_d5d7c6d1",
+    "session_0134_0fe63888",
+    "session_0392_a92c2105",
+    "session_0189_eacc9a6f",
+    "session_0056_e7e99943",
+    "session_0349_a232b103",
+    "session_0170_295713f5",
+    "session_0129_d5d7c6d1",
+    "session_0388_f261f711",
+    "session_0173_295713f5",
+    "session_0177_e406d6ea"
+  ]
+}

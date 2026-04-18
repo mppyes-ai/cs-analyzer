@@ -130,9 +130,22 @@ def calculate_adaptive_batch_size(sessions: List[Dict], base_size: int = 30) -> 
     策略：
     1. 先按base_size估算总token
     2. 如果超过MAX_TOKENS_PER_BATCH，按比例缩减
-    3. 如果远低于上限且会话很短，尝试增加批量
+    3. 【Opus修复】检查单任务Token是否超限，超长会话单通处理
     4. 始终在[ADAPTIVE_BATCH_MIN, ADAPTIVE_BATCH_MAX]范围内
     """
+    # 【Opus修复】P1: 检查是否有超长会话（单通>10K tokens）
+    MAX_TOKENS_PER_TASK = 10000
+    for s in sessions[:base_size]:
+        if estimate_session_tokens(s) > MAX_TOKENS_PER_TASK:
+            print(f"   ⚠️ 检测到超长会话({estimate_session_tokens(s)} tokens)，降级为单通处理")
+            return 1  # 单通处理超长会话
+    
+    # 【Opus修复】P1: 检查消息数是否过多（>25条）
+    for s in sessions[:base_size]:
+        if len(s.get('messages', [])) > 25:
+            print(f"   ⚠️ 检测到超多消息会话({len(s.get('messages', []))}条)，降级为单通处理")
+            return 1  # 单通处理超长对话
+    
     # 估算base_size的token
     base_tokens = sum(estimate_session_tokens(s) for s in sessions[:base_size])
     
@@ -517,8 +530,49 @@ async def process_group_async(user_id: str, tasks: List[Dict],
     return {'processed': processed, 'total': len(tasks), 'merged': merged}
 
 
+def deduplicate_sessions(tasks: List[Dict]) -> List[Dict]:
+    """【Opus修复-P0】在送入模型前去重，保留最早的任务
+    
+    消除批次77的重复会话问题（任务164/172同session_id）
+    
+    Args:
+        tasks: 任务列表
+        
+    Returns:
+        去重后的任务列表
+    """
+    seen_sessions = {}
+    unique_tasks = []
+    
+    # 按created_at排序，保留最早的任务
+    for task in sorted(tasks, key=lambda x: x.get('created_at', '')):
+        session_id = task.get('session_id')
+        task_id = task.get('task_id')
+        
+        if session_id in seen_sessions:
+            # 重复会话，取消重复任务
+            kept_task_id = seen_sessions[session_id]
+            cancel_task(task_id, reason=f"Duplicate session (kept task {kept_task_id})")
+            print(f"   🔄 去重: 取消重复任务 {task_id} (保留 {kept_task_id}, session: {session_id})")
+        else:
+            # 首次出现，记录并保留
+            seen_sessions[session_id] = task_id
+            unique_tasks.append(task)
+    
+    if len(unique_tasks) < len(tasks):
+        print(f"   ✅ 去重完成: {len(tasks)} → {len(unique_tasks)} 个任务 (去除 {len(tasks) - len(unique_tasks)} 个重复)")
+    
+    return unique_tasks
+
+
 def _prepare_merged_tasks_sync(tasks: List[Dict], window_minutes: int) -> List[Dict]:
-    """同步准备合并任务（在线程池中执行）"""
+    """同步准备合并任务（在线程池中执行）
+    
+    【Opus修复】添加去重步骤，消除重复会话问题
+    """
+    # 【Opus修复-P0】先去重，避免同一session_id重复处理
+    tasks = deduplicate_sessions(tasks)
+    
     merged_tasks = []
     
     for task in tasks:
@@ -813,6 +867,10 @@ def fetch_and_group_tasks(max_batch_size: int = 150, once: bool = False) -> Dict
         
         user_id = session_data.get('user_id', 'unknown')
         groups[user_id].append(task.to_dict())
+    
+    # 【Opus修复-P0】跨批次去重：同一用户可能有重复session_id
+    for user_id in groups:
+        groups[user_id] = deduplicate_sessions(groups[user_id])
     
     return dict(groups)
 

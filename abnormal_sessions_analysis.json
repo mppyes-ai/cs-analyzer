@@ -1,0 +1,74 @@
+{
+  "abnormal_sessions": [
+    {
+      "type": "单方会话（只有staff）",
+      "count": 27,
+      "description": "只有客服发言，无用户互动",
+      "sessions": [
+        "session_0030_44df2de8", "session_0083_da0e610b", "session_0103_d5d7c6d1",
+        "session_0121_ac2c8f13", "session_0126_da0e610b", "session_0129_d5d7c6d1",
+        "session_0211_d5d7c6d1", "session_0213_d5d7c6d1", "session_0220_da0e610b",
+        "session_0285_bceda942", "session_0297_da0e610b", "session_0326_250ba95c",
+        "session_0390_da0e610b", "session_0150_bb0e83c3", "session_0135_e6b29ea8",
+        "session_0134_0fe63888", "session_0148_f6b362e6", "session_0152_7eca689f",
+        "session_0153_8024c76c", "session_0170_295713f5", "session_0174_b4f0823f",
+        "session_0177_e406d6ea", "session_0179_bdda1c89", "session_0194_c0ab777b",
+        "session_0195_5fb975c6", "session_0212_da0e610b", "session_0245_d5d7c6d1"
+      ]
+    },
+    {
+      "type": "单方会话（只有user）",
+      "count": 10,
+      "description": "只有用户发言，无客服回复",
+      "sessions": [
+        "session_0015_8024c76c", "session_0021_8024c76c", "session_0031_616028fb",
+        "session_0100_443a2780", "session_0151_f6b362e6", "session_0154_3eba9414",
+        "session_0155_40f8f02f", "session_0157_edd485e7", "session_0158_f6b362e6",
+        "session_0215_e9fcc037"
+      ]
+    },
+    {
+      "type": "系统机器人消息",
+      "count": 4,
+      "description": "自动发送的系统催促消息",
+      "sessions": [
+        "session_0030_44df2de8", "session_0187_44df2de8",
+        "session_0190_44df2de8", "session_0270_44df2de8"
+      ]
+    },
+    {
+      "type": "内容重复会话",
+      "count": 43,
+      "description": "多组内容高度相似的会话",
+      "duplicate_groups": [
+        {
+          "fingerprint": "宝，喜欢就赶紧下单吧！",
+          "sessions": ["session_0030_44df2de8", "session_0187_44df2de8", "session_0190_44df2de8", "session_0270_44df2de8"]
+        },
+        {
+          "fingerprint": "https://dd-static.jd.com/ddimg + 欢迎莅临林内京东自营旗舰店",
+          "sessions": ["session_0010_c1e103f7", "session_0175_395533a9", "session_0349_a232b103", "session_0381_f0f7ddda"]
+        },
+        {
+          "fingerprint": "没有了，怎么办！引用：您看一下里面有没有追评呢",
+          "sessions": ["session_0140_19953703", "session_0149_19953703"]
+        },
+        {
+          "fingerprint": "https://dd-static.jd.com/ddimg (图片链接重复)",
+          "sessions": ["session_0002_4486812c", "session_0101_e2afece4"]
+        },
+        {
+          "fingerprint": "https://item.jd.com/1000397069 + 客服怠慢提示",
+          "sessions": ["session_0003_b66fca9d", "session_0290_c6540262"]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_tasks": 400,
+    "abnormal_count": 149,
+    "abnormal_percentage": "37.2%",
+    "normal_count": 251,
+    "test_suggestion": "用这149个异常会话单独测试，验证是否会导致API耗时增加"
+  }
+}
