@@ -402,8 +402,8 @@ def merge_session_data(main_task: dict, mergeable_tasks: list) -> dict:
 
 def save_to_database(session_id: str, session_data: dict, intent, result: dict, session_count: int = 1):
     """保存分析结果到数据库"""
-    db_path = os.path.join(os.path.dirname(__file__), 'data', 'cs_analyzer_new.db')
-    conn = sqlite3.connect(db_path)
+    from db_utils import get_connection
+    conn = get_connection()
     cursor = conn.cursor()
     
     ds = result.get('dimension_scores', {})
