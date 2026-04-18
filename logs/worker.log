@@ -4856,3 +4856,3731 @@ INFO:__main__:✅ 任务 746 结果保存成功
    成功处理: 396
    总API调用: 42次
 ============================================================
+INFO:embedding_utils:🔄 首次加载Embedding模型...
+INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: mps
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/README.md "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/sentence_bert_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+✅ 获取锁成功 (PID: 20847)
+============================================================
+🚀 客服分析工作进程启动 [异步批量模式 v2.6.2 - 智能批量]
+   最大并发组: 6
+   单次处理上限: 150
+   基础批量评分: 10通/批
+   自适应范围: [10, 5]
+   Token上限: 200,000
+   Kimi并发: 90
+============================================================
+🔄 初始化分析引擎...
+✅ Kimi并发控制: 最大90并发
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 7574.59it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+INFO:embedding_utils:✅ Embedding模型加载完成
+✅ 漏斗式意图分类器已初始化 (规则优先，qwen2.5兜底)
+✅ 引擎初始化完成
+   📊 --once模式：队列共有 200 个任务，全部取出处理
+
+📦 获取 200 个任务，来自 148 个用户
+
+🔍 对 200 通会话进行场景检查...
+
+📊 场景分布: {'售后阶段': 41, '售中阶段': 25, '售前阶段': 132, '客诉处理': 2}
+
+🚀 跨场景合并处理: 200 通会话
+
+   📊 自适应批量: 基础=10, 优化后=5, 总任务=200
+   💾 预估总Token: 378,899 (上限: 200,000)
+
+🚀 启动 40 个评分批次（并发限制: 90）
+   🔄 批次 1/40 (5通, ~8,464tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  4.39it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  4.39it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 105.28it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 103.69it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 2/40 (5通, ~9,309tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 56.66it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 3/40 (5通, ~9,761tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.64it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 137.78it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 150.17it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 4/40 (5通, ~9,332tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.84it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.53it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 165.21it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 5/40 (5通, ~9,312tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.01it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 114.73it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 6/40 (5通, ~11,426tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.47it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 145.09it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 7/40 (5通, ~9,077tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.63it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.12it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 8/40 (5通, ~9,709tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.21it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 134.05it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 9/40 (5通, ~7,948tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.09it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 147.26it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 146.03it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 10/40 (5通, ~9,642tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.92it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 91.26it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 11/40 (5通, ~11,575tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.16it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 12/40 (5通, ~10,889tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 118.05it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 123.93it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 13/40 (5通, ~10,084tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '客诉处理', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '客诉处理', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 118.30it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 118.69it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 148.59it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 14/40 (5通, ~8,819tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 115.79it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 15/40 (5通, ~9,465tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 105.88it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 121.02it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 16/40 (5通, ~8,872tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 104.93it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 17/40 (5通, ~8,930tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 97.62it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 104.54it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 18/40 (5通, ~9,362tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 92.30it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 81.10it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 19/40 (5通, ~9,195tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.60it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 74.76it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 160.82it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 20/40 (5通, ~8,298tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 81.93it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 153.12it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 21/40 (5通, ~10,309tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.66it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 146.47it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 22/40 (5通, ~9,541tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.71it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 97.36it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 23/40 (5通, ~10,936tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.04it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 76.60it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 24/40 (5通, ~8,760tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.19it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 76.04it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 25/40 (5通, ~10,178tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.50it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 75.62it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 26/40 (5通, ~9,684tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.70it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 27/40 (5通, ~9,494tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.07it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.74it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 28/40 (5通, ~8,576tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 63.48it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 160.54it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 29/40 (5通, ~9,693tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '客诉处理']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '客诉处理']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 150.72it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.39it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 80.89it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 30/40 (5通, ~9,220tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.14it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 31/40 (5通, ~9,055tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 112.54it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 119.33it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 32/40 (5通, ~9,382tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 123.61it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 120.61it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 33/40 (5通, ~9,148tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 115.17it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 125.39it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 118.54it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 34/40 (5通, ~9,620tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 117.18it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 111.79it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 106.69it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 35/40 (5通, ~8,999tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 88.24it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 120.79it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 36/40 (5通, ~9,186tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 101.90it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 37/40 (5通, ~9,449tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 73.57it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.79it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 38/40 (5通, ~9,058tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.14it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.74it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 39/40 (5通, ~9,107tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.65it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.95it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 40/40 (5通, ~10,035tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.93it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 74.70it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 79.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 190 结果保存成功
+INFO:__main__:✅ 任务 191 结果保存成功
+INFO:__main__:✅ 任务 192 结果保存成功
+INFO:__main__:✅ 任务 193 结果保存成功
+INFO:__main__:✅ 任务 194 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 39/40 完成
+   [DEBUG] API call completed in 84.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 59 结果保存成功
+INFO:__main__:✅ 任务 61 结果保存成功
+INFO:__main__:✅ 任务 62 结果保存成功
+INFO:__main__:✅ 任务 183 结果保存成功
+INFO:__main__:✅ 任务 188 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 15/40 完成
+   [DEBUG] API call completed in 94.8s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 200 结果保存成功
+INFO:__main__:✅ 任务 184 结果保存成功
+INFO:__main__:✅ 任务 185 结果保存成功
+INFO:__main__:✅ 任务 187 结果保存成功
+INFO:__main__:✅ 任务 189 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 38/40 完成
+   [DEBUG] API call completed in 97.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 63 结果保存成功
+INFO:__main__:✅ 任务 64 结果保存成功
+INFO:__main__:✅ 任务 65 结果保存成功
+INFO:__main__:✅ 任务 66 结果保存成功
+INFO:__main__:✅ 任务 101 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 16/40 完成
+   [DEBUG] API call completed in 100.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 158 结果保存成功
+INFO:__main__:✅ 任务 159 结果保存成功
+INFO:__main__:✅ 任务 160 结果保存成功
+INFO:__main__:✅ 任务 161 结果保存成功
+INFO:__main__:✅ 任务 162 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 34/40 完成
+   [DEBUG] API call completed in 105.8s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 87 结果保存成功
+INFO:__main__:✅ 任务 88 结果保存成功
+INFO:__main__:✅ 任务 89 结果保存成功
+INFO:__main__:✅ 任务 90 结果保存成功
+INFO:__main__:✅ 任务 91 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 21/40 完成
+   [DEBUG] API call completed in 107.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 28 结果保存成功
+INFO:__main__:✅ 任务 26 结果保存成功
+INFO:__main__:✅ 任务 27 结果保存成功
+INFO:__main__:✅ 任务 41 结果保存成功
+INFO:__main__:✅ 任务 29 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 7/40 完成
+   [DEBUG] API call completed in 108.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 105 结果保存成功
+INFO:__main__:✅ 任务 104 结果保存成功
+INFO:__main__:✅ 任务 106 结果保存成功
+INFO:__main__:✅ 任务 107 结果保存成功
+INFO:__main__:✅ 任务 108 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 24/40 完成
+   [DEBUG] API call completed in 109.3s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 73 结果保存成功
+INFO:__main__:✅ 任务 75 结果保存成功
+INFO:__main__:✅ 任务 76 结果保存成功
+INFO:__main__:✅ 任务 77 结果保存成功
+INFO:__main__:✅ 任务 78 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 18/40 完成
+   [DEBUG] API call completed in 110.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+   [DEBUG] API call completed in 111.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 127 结果保存成功
+INFO:__main__:✅ 任务 53 结果保存成功
+INFO:__main__:✅ 任务 128 结果保存成功
+INFO:__main__:✅ 任务 55 结果保存成功
+INFO:__main__:✅ 任务 56 结果保存成功
+INFO:__main__:✅ 任务 99 结果保存成功
+INFO:__main__:✅ 任务 175 结果保存成功
+INFO:__main__:✅ 任务 57 结果保存成功
+INFO:__main__:✅ 任务 129 结果保存成功
+INFO:__main__:✅ 任务 136 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 14/40 完成
+   ✅ 批次 28/40 完成
+   [DEBUG] API call completed in 110.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 152 结果保存成功
+INFO:__main__:✅ 任务 154 结果保存成功
+INFO:__main__:✅ 任务 155 结果保存成功
+INFO:__main__:✅ 任务 156 结果保存成功
+INFO:__main__:✅ 任务 157 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 33/40 完成
+   [DEBUG] API call completed in 112.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 33... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 46... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 126... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 174... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 34... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 9/40 完成
+   [DEBUG] API call completed in 113.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 60 结果保存成功
+INFO:__main__:✅ 任务 4 结果保存成功
+INFO:__main__:✅ 任务 6 结果保存成功
+INFO:__main__:✅ 任务 7 结果保存成功
+INFO:__main__:✅ 任务 8 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 2/40 完成
+   [DEBUG] API call completed in 111.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 141 结果保存成功
+INFO:__main__:✅ 任务 142 结果保存成功
+INFO:__main__:✅ 任务 144 结果保存成功
+INFO:__main__:✅ 任务 145 结果保存成功
+INFO:__main__:✅ 任务 146 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 31/40 完成
+   [DEBUG] API call completed in 120.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 1 结果保存成功
+INFO:__main__:✅ 任务 5 结果保存成功
+INFO:__main__:✅ 任务 2 结果保存成功
+INFO:__main__:✅ 任务 3 结果保存成功
+INFO:__main__:✅ 任务 54 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 1/40 完成
+   [DEBUG] API call completed in 120.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 67 结果保存成功
+INFO:__main__:✅ 任务 68 结果保存成功
+INFO:__main__:✅ 任务 69 结果保存成功
+INFO:__main__:✅ 任务 71 结果保存成功
+INFO:__main__:✅ 任务 72 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 17/40 完成
+   [DEBUG] API call completed in 121.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 163 结果保存成功
+INFO:__main__:✅ 任务 164 结果保存成功
+INFO:__main__:✅ 任务 165 结果保存成功
+INFO:__main__:✅ 任务 167 结果保存成功
+INFO:__main__:✅ 任务 169 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 35/40 完成
+   [DEBUG] API call completed in 125.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 13 结果保存成功
+INFO:__main__:✅ 任务 14 结果保存成功
+INFO:__main__:✅ 任务 16 结果保存成功
+INFO:__main__:✅ 任务 15 结果保存成功
+INFO:__main__:✅ 任务 17 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 4/40 完成
+   [DEBUG] API call completed in 130.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 118 结果保存成功
+INFO:__main__:✅ 任务 122 结果保存成功
+INFO:__main__:✅ 任务 119 结果保存成功
+INFO:__main__:✅ 任务 120 结果保存成功
+INFO:__main__:✅ 任务 123 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 27/40 完成
+   [DEBUG] API call completed in 133.5s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 18 结果保存成功
+INFO:__main__:✅ 任务 19 结果保存成功
+INFO:__main__:✅ 任务 20 结果保存成功
+INFO:__main__:✅ 任务 21 结果保存成功
+INFO:__main__:✅ 任务 74 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 5/40 完成
+   [DEBUG] API call completed in 134.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 45 结果保存成功
+INFO:__main__:✅ 任务 47 结果保存成功
+INFO:__main__:✅ 任务 151 结果保存成功
+INFO:__main__:✅ 任务 48 结果保存成功
+INFO:__main__:✅ 任务 58 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 12/40 完成
+   [DEBUG] API call completed in 138.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 130 结果保存成功
+INFO:__main__:✅ 任务 132 结果保存成功
+INFO:__main__:✅ 任务 131 结果保存成功
+INFO:__main__:✅ 任务 135 结果保存成功
+INFO:__main__:✅ 任务 134 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 29/40 完成
+   [DEBUG] API call completed in 140.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 9 结果保存成功
+INFO:__main__:✅ 任务 10 结果保存成功
+INFO:__main__:✅ 任务 11 结果保存成功
+INFO:__main__:✅ 任务 12 结果保存成功
+INFO:__main__:✅ 任务 70 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 3/40 完成
+   [DEBUG] API call completed in 139.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 177 结果保存成功
+INFO:__main__:✅ 任务 178 结果保存成功
+INFO:__main__:✅ 任务 179 结果保存成功
+INFO:__main__:✅ 任务 181 结果保存成功
+INFO:__main__:✅ 任务 182 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 37/40 完成
+   [DEBUG] API call completed in 141.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 195 结果保存成功
+INFO:__main__:✅ 任务 196 结果保存成功
+INFO:__main__:✅ 任务 197 结果保存成功
+INFO:__main__:✅ 任务 198 结果保存成功
+INFO:__main__:✅ 任务 199 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 40/40 完成
+   [DEBUG] API call completed in 141.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 137 结果保存成功
+INFO:__main__:✅ 任务 138 结果保存成功
+INFO:__main__:✅ 任务 143 结果保存成功
+INFO:__main__:✅ 任务 139 结果保存成功
+INFO:__main__:✅ 任务 140 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 30/40 完成
+   [DEBUG] API call completed in 145.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 93... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 94... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 95... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 96... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 97... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 22/40 完成
+   [DEBUG] API call completed in 146.5s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 124 结果保存成功
+INFO:__main__:✅ 任务 35 结果保存成功
+INFO:__main__:✅ 任务 36 结果保存成功
+INFO:__main__:✅ 任务 37 结果保存成功
+INFO:__main__:✅ 任务 38 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 10/40 完成
+   [DEBUG] API call completed in 147.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 186 结果保存成功
+INFO:__main__:✅ 任务 30 结果保存成功
+INFO:__main__:✅ 任务 31 结果保存成功
+INFO:__main__:✅ 任务 32 结果保存成功
+INFO:__main__:✅ 任务 153 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 8/40 完成
+   [DEBUG] API call completed in 147.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 49 结果保存成功
+INFO:__main__:✅ 任务 112 结果保存成功
+INFO:__main__:✅ 任务 50 结果保存成功
+INFO:__main__:✅ 任务 51 结果保存成功
+INFO:__main__:✅ 任务 52 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 13/40 完成
+   [DEBUG] API call completed in 146.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 148 结果保存成功
+INFO:__main__:✅ 任务 149 结果保存成功
+INFO:__main__:✅ 任务 147 结果保存成功
+INFO:__main__:✅ 任务 150 结果保存成功
+INFO:__main__:✅ 任务 180 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 32/40 完成
+   [DEBUG] API call completed in 155.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 121 结果保存成功
+INFO:__main__:✅ 任务 22 结果保存成功
+INFO:__main__:✅ 任务 23 结果保存成功
+INFO:__main__:✅ 任务 24 结果保存成功
+INFO:__main__:✅ 任务 25 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 6/40 完成
+   [DEBUG] API call completed in 160.8s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 173 结果保存成功
+INFO:__main__:✅ 任务 109 结果保存成功
+INFO:__main__:✅ 任务 110 结果保存成功
+INFO:__main__:✅ 任务 111 结果保存成功
+INFO:__main__:✅ 任务 113 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 25/40 完成
+   [DEBUG] API call completed in 167.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 98 结果保存成功
+INFO:__main__:✅ 任务 170 结果保存成功
+INFO:__main__:✅ 任务 100 结果保存成功
+INFO:__main__:✅ 任务 102 结果保存成功
+INFO:__main__:✅ 任务 103 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 23/40 完成
+   [DEBUG] API call completed in 175.5s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 79... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 133... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 80... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 81... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 82... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 19/40 完成
+   [DEBUG] API call completed in 176.4s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 83 结果保存成功
+INFO:__main__:✅ 任务 84 结果保存成功
+INFO:__main__:✅ 任务 85 结果保存成功
+INFO:__main__:✅ 任务 86 结果保存成功
+INFO:__main__:✅ 任务 92 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 20/40 完成
+   [DEBUG] API call completed in 179.0s
+   [DEBUG] Parsed 5 results
+   ⚠️ professionalism分数截断: 0 -> 1
+   ⚠️ standardization分数截断: 0 -> 1
+   ⚠️ policy_execution分数截断: 0 -> 1
+   ⚠️ conversion分数截断: 0 -> 1
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 166 结果保存成功
+INFO:__main__:✅ 任务 168 结果保存成功
+INFO:__main__:✅ 任务 171 结果保存成功
+INFO:__main__:✅ 任务 172 结果保存成功
+INFO:__main__:✅ 任务 176 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 36/40 完成
+   [DEBUG] API call completed in 180.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 114 结果保存成功
+INFO:__main__:✅ 任务 115 结果保存成功
+INFO:__main__:✅ 任务 116 结果保存成功
+INFO:__main__:✅ 任务 117 结果保存成功
+INFO:__main__:✅ 任务 125 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 26/40 完成
+   [DEBUG] API call completed in 186.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+   ⚠️ 任务 39... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 40... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 42... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 43... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 44... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 11/40 完成
+
+   ✅ 本批完成: 200通, API调用: 20次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+  🔄 强制重试任务 33（第 2 次）
+  🔄 强制重试任务 34（第 2 次）
+  🔄 强制重试任务 39（第 2 次）
+  🔄 强制重试任务 40（第 2 次）
+  🔄 强制重试任务 42（第 2 次）
+  🔄 强制重试任务 43（第 2 次）
+  🔄 强制重试任务 44（第 2 次）
+  🔄 强制重试任务 46（第 2 次）
+  🔄 强制重试任务 79（第 2 次）
+  🔄 强制重试任务 80（第 2 次）
+  🔄 强制重试任务 81（第 2 次）
+  🔄 强制重试任务 82（第 2 次）
+  🔄 强制重试任务 93（第 2 次）
+  🔄 强制重试任务 94（第 2 次）
+  🔄 强制重试任务 95（第 2 次）
+  🔄 强制重试任务 96（第 2 次）
+  🔄 强制重试任务 97（第 2 次）
+  🔄 强制重试任务 126（第 2 次）
+  🔄 强制重试任务 133（第 2 次）
+  🔄 强制重试任务 174（第 2 次）
+✅ 强制重置 20 个失败任务为pending状态
+🔄 --once模式：强制重试 20 个失败任务
+   📊 --once模式：队列共有 20 个任务，全部取出处理
+
+📦 获取 20 个任务，来自 15 个用户
+
+🔍 对 20 通会话进行场景检查...
+
+📊 场景分布: {'售后阶段': 6, '售前阶段': 12, '售中阶段': 2}
+
+🚀 跨场景合并处理: 20 通会话
+
+   📊 自适应批量: 基础=10, 优化后=5, 总任务=20
+   💾 预估总Token: 38,259 (上限: 200,000)
+
+🚀 启动 4 个评分批次（并发限制: 90）
+   🔄 批次 1/4 (5通, ~7,948tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  2.83it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  2.82it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 79.58it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 88.17it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 2/4 (5通, ~11,575tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 106.92it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 3/4 (5通, ~9,195tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售后阶段', '售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 106.36it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 103.08it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 98.75it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 4/4 (5通, ~9,541tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售后阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售后阶段', '售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 101.58it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 102.50it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 20847
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 108.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 79 结果保存成功
+INFO:__main__:✅ 任务 133 结果保存成功
+INFO:__main__:✅ 任务 80 结果保存成功
+INFO:__main__:✅ 任务 81 结果保存成功
+INFO:__main__:✅ 任务 82 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 3/4 完成
+   [DEBUG] API call completed in 155.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 39 结果保存成功
+INFO:__main__:✅ 任务 40 结果保存成功
+INFO:__main__:✅ 任务 42 结果保存成功
+INFO:__main__:✅ 任务 43 结果保存成功
+INFO:__main__:✅ 任务 44 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 2/4 完成
+   [DEBUG] API call completed in 161.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 33 结果保存成功
+INFO:__main__:✅ 任务 46 结果保存成功
+INFO:__main__:✅ 任务 126 结果保存成功
+INFO:__main__:✅ 任务 174 结果保存成功
+INFO:__main__:✅ 任务 34 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 1/4 完成
+   [DEBUG] API call completed in 217.3s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 93 结果保存成功
+INFO:__main__:✅ 任务 94 结果保存成功
+INFO:__main__:✅ 任务 95 结果保存成功
+INFO:__main__:✅ 任务 96 结果保存成功
+INFO:__main__:✅ 任务 97 结果保存成功
+   ✅ 批次 4/4 完成
+
+   ✅ 本批完成: 20通, API调用: 22次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+⏳ 队列已空，--once模式：准备退出
+✅ 锁已释放
+
+============================================================
+📊 异步批量工作进程结束
+   成功处理: 220
+   总API调用: 22次
+============================================================
+INFO:embedding_utils:🔄 首次加载Embedding模型...
+INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: mps
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/README.md "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/sentence_bert_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+✅ 获取锁成功 (PID: 22971)
+============================================================
+🚀 客服分析工作进程启动 [异步批量模式 v2.6.2 - 智能批量]
+   最大并发组: 6
+   单次处理上限: 150
+   基础批量评分: 10通/批
+   自适应范围: [10, 5]
+   Token上限: 200,000
+   Kimi并发: 90
+============================================================
+🔄 初始化分析引擎...
+✅ Kimi并发控制: 最大90并发
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 8253.24it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+INFO:embedding_utils:✅ Embedding模型加载完成
+✅ 漏斗式意图分类器已初始化 (规则优先，qwen2.5兜底)
+✅ 引擎初始化完成
+   📊 --once模式：队列共有 398 个任务，全部取出处理
+
+📦 获取 382 个任务，来自 260 个用户
+
+🔍 对 382 通会话进行场景检查...
+
+📊 场景分布: {'售前阶段': 245, '售后阶段': 108, '售中阶段': 27, '客诉处理': 2}
+
+🚀 跨场景合并处理: 382 通会话
+
+   📊 自适应批量: 基础=10, 优化后=5, 总任务=382
+   💾 预估总Token: 714,761 (上限: 200,000)
+
+🚀 启动 77 个评分批次（并发限制: 90）
+   🔄 批次 1/77 (5通, ~8,375tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  2.10it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  2.10it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 33.97it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 64.94it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 2/77 (5通, ~9,653tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 60.83it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.68it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 3/77 (5通, ~9,881tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.82it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 76.78it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 4/77 (5通, ~11,492tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.86it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 108.62it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 132.94it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 5/77 (5通, ~9,932tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.47it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 146.03it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 6/77 (5通, ~8,890tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 73.97it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 122.33it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 7/77 (5通, ~10,284tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.64it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 73.49it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 8/77 (5通, ~9,771tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.93it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 80.03it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 9/77 (5通, ~7,896tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.13it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.75it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 10/77 (5通, ~9,697tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 65.68it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 81.20it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 163.80it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 11/77 (5通, ~8,278tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.96it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.84it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 12/77 (5通, ~8,857tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.44it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 65.70it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 13/77 (5通, ~10,286tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 63.26it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.54it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 14/77 (5通, ~9,388tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.35it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 62.01it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 63.46it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 15/77 (5通, ~9,581tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 65.84it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.32it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 16/77 (5通, ~9,318tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.21it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.73it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 17/77 (5通, ~9,550tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.19it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 18/77 (5通, ~8,573tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.04it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.86it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 19/77 (5通, ~8,876tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.51it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 138.67it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 20/77 (5通, ~10,502tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 64.65it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 149.68it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 146.05it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 21/77 (5通, ~9,688tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.84it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 22/77 (5通, ~8,841tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.07it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 74.91it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 23/77 (5通, ~9,372tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.66it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 151.30it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 24/77 (5通, ~9,051tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.82it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 114.51it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 25/77 (5通, ~9,603tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.36it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 76.84it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 26/77 (5通, ~9,063tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.20it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 75.30it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 132.50it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 27/77 (5通, ~9,767tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.69it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.93it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 147.02it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 28/77 (5通, ~8,324tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.89it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.14it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 29/77 (5通, ~8,876tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.70it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 151.64it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 145.14it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 30/77 (5通, ~8,769tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段', '客诉处理']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '客诉处理']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.50it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 138.14it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 139.78it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 31/77 (5通, ~11,601tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.22it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 112.08it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 32/77 (5通, ~9,626tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.07it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 81.10it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 154.94it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 33/77 (5通, ~9,068tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.18it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.61it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 34/77 (5通, ~8,958tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.58it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 143.60it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 35/77 (5通, ~9,384tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 76.10it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 153.21it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 36/77 (5通, ~9,159tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.09it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 145.63it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 37/77 (5通, ~9,190tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.05it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 105.76it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 38/77 (5通, ~8,968tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.29it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 76.81it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 39/77 (5通, ~10,721tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.21it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 156.86it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 40/77 (5通, ~9,318tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.35it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.85it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 41/77 (5通, ~9,970tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.35it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 73.03it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 42/77 (5通, ~9,191tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.50it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 43/77 (5通, ~9,343tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.14it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.10it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 44/77 (5通, ~9,200tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.96it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 50.57it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 45/77 (5通, ~8,854tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 64.45it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.57it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 46/77 (5通, ~9,337tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.75it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.16it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 47/77 (5通, ~8,577tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.93it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.72it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.01it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 48/77 (5通, ~8,834tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 63.34it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.18it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 49/77 (5通, ~9,133tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.04it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 59.64it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 50/77 (5通, ~8,294tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.96it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.95it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 51/77 (5通, ~8,270tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.39it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 52/77 (5通, ~9,299tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.91it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.90it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 53/77 (5通, ~10,504tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.28it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.87it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 54/77 (5通, ~9,042tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 65.82it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 31.71it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 65.04it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 55/77 (5通, ~9,189tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 65.47it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 62.86it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 56/77 (5通, ~10,336tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 59.13it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.18it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 57/77 (5通, ~8,983tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 63.10it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.77it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 60.65it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 58/77 (5通, ~9,711tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 62.79it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 48.97it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 64.72it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 59/77 (5通, ~9,272tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.39it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.81it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 60/77 (5通, ~8,563tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.76it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 61/77 (5通, ~9,737tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.48it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 62/77 (5通, ~8,470tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.13it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 73.19it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 63/77 (5通, ~8,896tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.08it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 64.35it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 64/77 (5通, ~8,958tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.94it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.03it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 65/77 (5通, ~9,206tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.41it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 66/77 (5通, ~11,071tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 59.38it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 63.69it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 67/77 (5通, ~9,314tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.76it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 68/77 (5通, ~9,464tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 61.68it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 62.63it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 69/77 (5通, ~9,920tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段', '客诉处理']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '客诉处理']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 60.11it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.85it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 75.42it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 70/77 (5通, ~9,702tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 59.77it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.16it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 71/77 (5通, ~8,901tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.18it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.64it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.94it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 72/77 (5通, ~9,635tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 43.92it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 61.97it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 73/77 (5通, ~8,988tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.21it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.56it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 74/77 (5通, ~9,245tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.19it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.02it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 75/77 (5通, ~8,776tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.83it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.35it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.03it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 76/77 (5通, ~9,427tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.45it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.34it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 77/77 (2通, ~4,722tokens) 启动
+[DEBUG] score_sessions_batch_async START - 2 sessions
+[DEBUG] Processing 2 sessions cross-scene
+   📚 跨场景评分: 2通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.19it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=2
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=2
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 78.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 445 结果保存成功
+INFO:__main__:✅ 任务 520 结果保存成功
+INFO:__main__:✅ 任务 547 结果保存成功
+INFO:__main__:✅ 任务 446 结果保存成功
+INFO:__main__:✅ 任务 447 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 53/77 完成
+   [DEBUG] API call completed in 81.3s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 341 结果保存成功
+INFO:__main__:✅ 任务 349 结果保存成功
+INFO:__main__:✅ 任务 342 结果保存成功
+INFO:__main__:✅ 任务 344 结果保存成功
+INFO:__main__:✅ 任务 345 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 33/77 完成
+   [DEBUG] API call completed in 82.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 292 结果保存成功
+INFO:__main__:✅ 任务 287 结果保存成功
+INFO:__main__:✅ 任务 288 结果保存成功
+INFO:__main__:✅ 任务 289 结果保存成功
+INFO:__main__:✅ 任务 290 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 23/77 完成
+   [DEBUG] API call completed in 81.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 460 结果保存成功
+INFO:__main__:✅ 任务 461 结果保存成功
+INFO:__main__:✅ 任务 462 结果保存成功
+INFO:__main__:✅ 任务 463 结果保存成功
+INFO:__main__:✅ 任务 468 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 56/77 完成
+   [DEBUG] API call completed in 85.4s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 236 结果保存成功
+INFO:__main__:✅ 任务 237 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:__main__:✅ 任务 395 结果保存成功
+   [DEBUG] API call completed in 85.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 238 结果保存成功
+INFO:__main__:✅ 任务 257 结果保存成功
+INFO:__main__:✅ 任务 239 结果保存成功
+INFO:__main__:✅ 任务 258 结果保存成功
+INFO:__main__:✅ 任务 561 结果保存成功
+INFO:__main__:✅ 任务 259 结果保存成功
+INFO:__main__:✅ 任务 261 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 11/77 完成
+   ✅ 批次 17/77 完成
+   [DEBUG] API call completed in 83.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 380 结果保存成功
+INFO:__main__:✅ 任务 443 结果保存成功
+INFO:__main__:✅ 任务 382 结果保存成功
+INFO:__main__:✅ 任务 483 结果保存成功
+INFO:__main__:✅ 任务 485 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 40/77 完成
+   [DEBUG] API call completed in 82.5s
+   [DEBUG] Parsed 5 results
+   ⚠️ professionalism分数截断: 0 -> 1
+   ⚠️ policy_execution分数截断: 0 -> 1
+   ⚠️ conversion分数截断: 0 -> 1
+   ⚠️ policy_execution分数截断: 0 -> 1
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 540 结果保存成功
+INFO:__main__:✅ 任务 482 结果保存成功
+INFO:__main__:✅ 任务 486 结果保存成功
+INFO:__main__:✅ 任务 498 结果保存成功
+INFO:__main__:✅ 任务 488 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 60/77 完成
+   [DEBUG] API call completed in 88.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 429 结果保存成功
+INFO:__main__:✅ 任务 240 结果保存成功
+INFO:__main__:✅ 任务 307 结果保存成功
+INFO:__main__:✅ 任务 241 结果保存成功
+INFO:__main__:✅ 任务 319 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 12/77 完成
+   [DEBUG] API call completed in 91.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 220 结果保存成功
+INFO:__main__:✅ 任务 226 结果保存成功
+INFO:__main__:✅ 任务 221 结果保存成功
+INFO:__main__:✅ 任务 224 结果保存成功
+INFO:__main__:✅ 任务 225 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 7/77 完成
+   [DEBUG] API call completed in 88.3s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 563 结果保存成功
+INFO:__main__:✅ 任务 564 结果保存成功
+INFO:__main__:✅ 任务 565 结果保存成功
+INFO:__main__:✅ 任务 566 结果保存成功
+INFO:__main__:✅ 任务 567 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 71/77 完成
+   [DEBUG] API call completed in 88.4s
+   [DEBUG] Parsed 2 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 2 results
+INFO:__main__:✅ 任务 597 结果保存成功
+INFO:__main__:✅ 任务 598 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 77/77 完成
+   [DEBUG] API call completed in 90.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 503 结果保存成功
+INFO:__main__:✅ 任务 433 结果保存成功
+INFO:__main__:✅ 任务 434 结果保存成功
+INFO:__main__:✅ 任务 435 结果保存成功
+INFO:__main__:✅ 任务 437 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 51/77 完成
+   [DEBUG] API call completed in 94.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 222 结果保存成功
+INFO:__main__:✅ 任务 352 结果保存成功
+INFO:__main__:✅ 任务 365 结果保存成功
+INFO:__main__:✅ 任务 522 结果保存成功
+INFO:__main__:✅ 任务 217 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 5/77 完成
+   [DEBUG] API call completed in 91.4s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 509 结果保存成功
+INFO:__main__:✅ 任务 511 结果保存成功
+INFO:__main__:✅ 任务 512 结果保存成功
+INFO:__main__:✅ 任务 514 结果保存成功
+INFO:__main__:✅ 任务 573 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 63/77 完成
+   [DEBUG] API call completed in 92.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 552 结果保存成功
+INFO:__main__:✅ 任务 546 结果保存成功
+INFO:__main__:✅ 任务 549 结果保存成功
+INFO:__main__:✅ 任务 590 结果保存成功
+INFO:__main__:✅ 任务 550 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 68/77 完成
+   [DEBUG] API call completed in 96.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 500 结果保存成功
+INFO:__main__:✅ 任务 383 结果保存成功
+INFO:__main__:✅ 任务 384 结果保存成功
+INFO:__main__:✅ 任务 548 结果保存成功
+INFO:__main__:✅ 任务 385 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 41/77 完成
+   [DEBUG] API call completed in 98.4s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 299 结果保存成功
+INFO:__main__:✅ 任务 300 结果保存成功
+INFO:__main__:✅ 任务 301 结果保存成功
+INFO:__main__:✅ 任务 303 结果保存成功
+INFO:__main__:✅ 任务 304 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 25/77 完成
+   [DEBUG] API call completed in 98.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 444 结果保存成功
+INFO:__main__:✅ 任务 458 结果保存成功
+INFO:__main__:✅ 任务 431 结果保存成功
+INFO:__main__:✅ 任务 432 结果保存成功
+INFO:__main__:✅ 任务 499 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 50/77 完成
+   [DEBUG] API call completed in 98.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 417 结果保存成功
+INFO:__main__:✅ 任务 418 结果保存成功
+INFO:__main__:✅ 任务 420 结果保存成功
+INFO:__main__:✅ 任务 421 结果保存成功
+INFO:__main__:✅ 任务 422 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 48/77 完成
+   [DEBUG] API call completed in 99.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 423 结果保存成功
+INFO:__main__:✅ 任务 425 结果保存成功
+INFO:__main__:✅ 任务 426 结果保存成功
+INFO:__main__:✅ 任务 427 结果保存成功
+INFO:__main__:✅ 任务 438 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 49/77 完成
+   [DEBUG] API call completed in 101.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 516 结果保存成功
+INFO:__main__:✅ 任务 387 结果保存成功
+INFO:__main__:✅ 任务 388 结果保存成功
+INFO:__main__:✅ 任务 390 结果保存成功
+INFO:__main__:✅ 任务 391 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 42/77 完成
+   [DEBUG] API call completed in 101.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 530 结果保存成功
+INFO:__main__:✅ 任务 531 结果保存成功
+INFO:__main__:✅ 任务 532 结果保存成功
+INFO:__main__:✅ 任务 533 结果保存成功
+INFO:__main__:✅ 任务 534 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 66/77 完成
+   [DEBUG] API call completed in 105.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 325 结果保存成功
+INFO:__main__:✅ 任务 232 结果保存成功
+INFO:__main__:✅ 任务 233 结果保存成功
+INFO:__main__:✅ 任务 235 结果保存成功
+INFO:__main__:✅ 任务 234 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 10/77 完成
+   [DEBUG] API call completed in 103.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 494 结果保存成功
+INFO:__main__:✅ 任务 495 结果保存成功
+INFO:__main__:✅ 任务 497 结果保存成功
+INFO:__main__:✅ 任务 502 结果保存成功
+INFO:__main__:✅ 任务 505 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 62/77 完成
+   [DEBUG] API call completed in 105.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 370 结果保存成功
+INFO:__main__:✅ 任务 366 结果保存成功
+INFO:__main__:✅ 任务 368 结果保存成功
+INFO:__main__:✅ 任务 369 结果保存成功
+INFO:__main__:✅ 任务 372 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 37/77 完成
+   [DEBUG] API call completed in 105.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 508 结果保存成功
+INFO:__main__:✅ 任务 408 结果保存成功
+INFO:__main__:✅ 任务 510 结果保存成功
+INFO:__main__:✅ 任务 543 结果保存成功
+INFO:__main__:✅ 任务 409 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 46/77 完成
+   [DEBUG] API call completed in 104.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 524 结果保存成功
+INFO:__main__:✅ 任务 526 结果保存成功
+INFO:__main__:✅ 任务 527 结果保存成功
+INFO:__main__:✅ 任务 528 结果保存成功
+INFO:__main__:✅ 任务 529 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 65/77 完成
+   [DEBUG] API call completed in 108.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 334 结果保存成功
+INFO:__main__:✅ 任务 335 结果保存成功
+INFO:__main__:✅ 任务 397 结果保存成功
+INFO:__main__:✅ 任务 337 结果保存成功
+INFO:__main__:✅ 任务 340 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 32/77 完成
+   [DEBUG] API call completed in 107.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 489 结果保存成功
+INFO:__main__:✅ 任务 490 结果保存成功
+INFO:__main__:✅ 任务 491 结果保存成功
+INFO:__main__:✅ 任务 492 结果保存成功
+INFO:__main__:✅ 任务 493 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 61/77 完成
+   [DEBUG] API call completed in 112.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 227 结果保存成功
+INFO:__main__:✅ 任务 228 结果保存成功
+INFO:__main__:✅ 任务 229 结果保存成功
+INFO:__main__:✅ 任务 230 结果保存成功
+INFO:__main__:✅ 任务 285 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 8/77 完成
+   [DEBUG] API call completed in 112.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 282... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 284... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 392... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 394... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 286... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 22/77 完成
+   [DEBUG] API call completed in 108.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 537 结果保存成功
+INFO:__main__:✅ 任务 539 结果保存成功
+INFO:__main__:✅ 任务 541 结果保存成功
+INFO:__main__:✅ 任务 544 结果保存成功
+INFO:__main__:✅ 任务 545 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 67/77 完成
+   [DEBUG] API call completed in 110.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 556 结果保存成功
+INFO:__main__:✅ 任务 557 结果保存成功
+INFO:__main__:✅ 任务 559 结果保存成功
+INFO:__main__:✅ 任务 560 结果保存成功
+INFO:__main__:✅ 任务 562 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 70/77 完成
+   [DEBUG] API call completed in 111.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 473 结果保存成功
+INFO:__main__:✅ 任务 474 结果保存成功
+INFO:__main__:✅ 任务 475 结果保存成功
+INFO:__main__:✅ 任务 477 结果保存成功
+INFO:__main__:✅ 任务 476 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 58/77 完成
+   [DEBUG] API call completed in 113.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 405 结果保存成功
+INFO:__main__:✅ 任务 406 结果保存成功
+INFO:__main__:✅ 任务 407 结果保存成功
+INFO:__main__:✅ 任务 506 结果保存成功
+INFO:__main__:✅ 任务 507 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 45/77 完成
+   [DEBUG] API call completed in 114.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 353 结果保存成功
+INFO:__main__:✅ 任务 356 结果保存成功
+INFO:__main__:✅ 任务 354 结果保存成功
+INFO:__main__:✅ 任务 355 结果保存成功
+INFO:__main__:✅ 任务 357 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 35/77 完成
+   [DEBUG] API call completed in 117.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 218 结果保存成功
+INFO:__main__:✅ 任务 219 结果保存成功
+INFO:__main__:✅ 任务 223 结果保存成功
+INFO:__main__:✅ 任务 513 结果保存成功
+INFO:__main__:✅ 任务 515 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 6/77 完成
+   [DEBUG] API call completed in 117.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 265 结果保存成功
+INFO:__main__:✅ 任务 266 结果保存成功
+INFO:__main__:✅ 任务 269 结果保存成功
+INFO:__main__:✅ 任务 449 结果保存成功
+INFO:__main__:✅ 任务 504 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 19/77 完成
+   [DEBUG] API call completed in 116.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 322... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 323... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 542... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 324... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 343... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 29/77 完成
+   [DEBUG] API call completed in 119.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 203 结果保存成功
+INFO:__main__:✅ 任务 204 结果保存成功
+INFO:__main__:✅ 任务 205 结果保存成功
+INFO:__main__:✅ 任务 206 结果保存成功
+INFO:__main__:✅ 任务 207 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 2/77 完成
+   [DEBUG] API call completed in 115.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+   [DEBUG] API call completed in 114.8s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 464 结果保存成功
+INFO:__main__:✅ 任务 517 结果保存成功
+INFO:__main__:✅ 任务 466 结果保存成功
+INFO:__main__:✅ 任务 518 结果保存成功
+INFO:__main__:✅ 任务 467 结果保存成功
+INFO:__main__:✅ 任务 519 结果保存成功
+INFO:__main__:✅ 任务 471 结果保存成功
+INFO:__main__:✅ 任务 521 结果保存成功
+INFO:__main__:✅ 任务 472 结果保存成功
+INFO:__main__:✅ 任务 523 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 57/77 完成
+   ✅ 批次 64/77 完成
+   [DEBUG] API call completed in 117.8s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 358 结果保存成功
+INFO:__main__:✅ 任务 359 结果保存成功
+INFO:__main__:✅ 任务 360 结果保存成功
+INFO:__main__:✅ 任务 361 结果保存成功
+INFO:__main__:✅ 任务 362 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 36/77 完成
+   [DEBUG] API call completed in 115.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 551 结果保存成功
+INFO:__main__:✅ 任务 553 结果保存成功
+INFO:__main__:✅ 任务 554 结果保存成功
+INFO:__main__:✅ 任务 555 结果保存成功
+INFO:__main__:✅ 任务 558 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 69/77 完成
+   [DEBUG] API call completed in 120.4s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 248 结果保存成功
+INFO:__main__:✅ 任务 246 结果保存成功
+INFO:__main__:✅ 任务 381 结果保存成功
+INFO:__main__:✅ 任务 247 结果保存成功
+INFO:__main__:✅ 任务 249 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 14/77 完成
+   [DEBUG] API call completed in 120.3s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 393 结果保存成功
+INFO:__main__:✅ 任务 396 结果保存成功
+INFO:__main__:✅ 任务 398 结果保存成功
+INFO:__main__:✅ 任务 399 结果保存成功
+INFO:__main__:✅ 任务 400 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 43/77 完成
+   [DEBUG] API call completed in 119.8s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 479 结果保存成功
+INFO:__main__:✅ 任务 478 结果保存成功
+INFO:__main__:✅ 任务 480 结果保存成功
+INFO:__main__:✅ 任务 481 结果保存成功
+INFO:__main__:✅ 任务 535 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 59/77 完成
+   [DEBUG] API call completed in 118.6s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:__main__:✅ 任务 591 结果保存成功
+INFO:__main__:✅ 任务 593 结果保存成功
+INFO:__main__:✅ 任务 592 结果保存成功
+INFO:__main__:✅ 任务 595 结果保存成功
+INFO:__main__:✅ 任务 596 结果保存成功
+   ✅ 批次 76/77 完成
+   [DEBUG] API call completed in 124.3s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 538 结果保存成功
+INFO:__main__:✅ 任务 208 结果保存成功
+INFO:__main__:✅ 任务 209 结果保存成功
+INFO:__main__:✅ 任务 210 结果保存成功
+INFO:__main__:✅ 任务 211 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 3/77 完成
+   [DEBUG] API call completed in 121.5s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 411 结果保存成功
+INFO:__main__:✅ 任务 436 结果保存成功
+INFO:__main__:✅ 任务 413 结果保存成功
+INFO:__main__:✅ 任务 414 结果保存成功
+INFO:__main__:✅ 任务 415 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 47/77 完成
+   [DEBUG] API call completed in 122.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 470 结果保存成功
+INFO:__main__:✅ 任务 454 结果保存成功
+INFO:__main__:✅ 任务 570 结果保存成功
+INFO:__main__:✅ 任务 457 结果保存成功
+INFO:__main__:✅ 任务 459 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 55/77 完成
+   [DEBUG] API call completed in 125.8s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 296 结果保存成功
+INFO:__main__:✅ 任务 250 结果保存成功
+INFO:__main__:✅ 任务 252 结果保存成功
+INFO:__main__:✅ 任务 251 结果保存成功
+INFO:__main__:✅ 任务 280 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 15/77 完成
+   [DEBUG] API call completed in 126.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 330 结果保存成功
+INFO:__main__:✅ 任务 338 结果保存成功
+INFO:__main__:✅ 任务 331 结果保存成功
+INFO:__main__:✅ 任务 332 结果保存成功
+INFO:__main__:✅ 任务 333 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 31/77 完成
+   [DEBUG] API call completed in 123.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 568 结果保存成功
+INFO:__main__:✅ 任务 569 结果保存成功
+INFO:__main__:✅ 任务 571 结果保存成功
+INFO:__main__:✅ 任务 572 结果保存成功
+INFO:__main__:✅ 任务 574 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 72/77 完成
+   [DEBUG] API call completed in 128.7s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 374 结果保存成功
+INFO:__main__:✅ 任务 376 结果保存成功
+INFO:__main__:✅ 任务 377 结果保存成功
+INFO:__main__:✅ 任务 378 结果保存成功
+INFO:__main__:✅ 任务 379 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 39/77 完成
+   [DEBUG] API call completed in 127.8s
+   [DEBUG] Parsed 5 results
+   ⚠️ conversion分数截断: 0 -> 1
+   ⚠️ conversion分数截断: 0 -> 1
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 450 结果保存成功
+INFO:__main__:✅ 任务 455 结果保存成功
+INFO:__main__:✅ 任务 452 结果保存成功
+INFO:__main__:✅ 任务 456 结果保存成功
+INFO:__main__:✅ 任务 453 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 54/77 完成
+   [DEBUG] API call completed in 128.0s
+   [DEBUG] Parsed 5 results
+   ⚠️ policy_execution分数截断: 0 -> 1
+   ⚠️ conversion分数截断: 0 -> 1
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 577 结果保存成功
+INFO:__main__:✅ 任务 575 结果保存成功
+INFO:__main__:✅ 任务 576 结果保存成功
+INFO:__main__:✅ 任务 578 结果保存成功
+INFO:__main__:✅ 任务 579 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 73/77 完成
+   [DEBUG] API call completed in 132.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 253 结果保存成功
+INFO:__main__:✅ 任务 254 结果保存成功
+INFO:__main__:✅ 任务 312 结果保存成功
+INFO:__main__:✅ 任务 255 结果保存成功
+INFO:__main__:✅ 任务 256 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 16/77 完成
+   [DEBUG] API call completed in 134.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 305 结果保存成功
+INFO:__main__:✅ 任务 306 结果保存成功
+INFO:__main__:✅ 任务 308 结果保存成功
+INFO:__main__:✅ 任务 310 结果保存成功
+INFO:__main__:✅ 任务 309 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 26/77 完成
+   [DEBUG] API call completed in 134.1s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:__main__:✅ 任务 371 结果保存成功
+INFO:__main__:✅ 任务 375 结果保存成功
+INFO:__main__:✅ 任务 424 结果保存成功
+INFO:__main__:✅ 任务 430 结果保存成功
+   [DEBUG] API call completed in 136.5s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 373 结果保存成功
+INFO:__main__:✅ 任务 212 结果保存成功
+INFO:__main__:✅ 任务 213 结果保存成功
+INFO:__main__:✅ 任务 214 结果保存成功
+INFO:__main__:✅ 任务 215 结果保存成功
+INFO:__main__:✅ 任务 216 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 38/77 完成
+   ✅ 批次 4/77 完成
+   [DEBUG] API call completed in 133.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 580 结果保存成功
+INFO:__main__:✅ 任务 581 结果保存成功
+INFO:__main__:✅ 任务 582 结果保存成功
+INFO:__main__:✅ 任务 584 结果保存成功
+INFO:__main__:✅ 任务 583 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 74/77 完成
+   [DEBUG] API call completed in 135.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 401 结果保存成功
+INFO:__main__:✅ 任务 402 结果保存成功
+INFO:__main__:✅ 任务 403 结果保存成功
+INFO:__main__:✅ 任务 404 结果保存成功
+INFO:__main__:✅ 任务 416 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 44/77 完成
+   [DEBUG] API call completed in 137.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 293 结果保存成功
+INFO:__main__:✅ 任务 294 结果保存成功
+INFO:__main__:✅ 任务 295 结果保存成功
+INFO:__main__:✅ 任务 297 结果保存成功
+INFO:__main__:✅ 任务 298 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 24/77 完成
+   [DEBUG] API call completed in 139.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 317 结果保存成功
+INFO:__main__:✅ 任务 318 结果保存成功
+INFO:__main__:✅ 任务 321 结果保存成功
+INFO:__main__:✅ 任务 364 结果保存成功
+INFO:__main__:✅ 任务 367 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 28/77 完成
+   [DEBUG] API call completed in 142.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 275 结果保存成功
+INFO:__main__:✅ 任务 277 结果保存成功
+INFO:__main__:✅ 任务 278 结果保存成功
+INFO:__main__:✅ 任务 279 结果保存成功
+INFO:__main__:✅ 任务 281 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 21/77 完成
+   [DEBUG] API call completed in 142.8s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 262 结果保存成功
+INFO:__main__:✅ 任务 268 结果保存成功
+INFO:__main__:✅ 任务 270 结果保存成功
+INFO:__main__:✅ 任务 263 结果保存成功
+INFO:__main__:✅ 任务 267 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 18/77 完成
+   [DEBUG] API call completed in 143.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 291 结果保存成功
+INFO:__main__:✅ 任务 231 结果保存成功
+INFO:__main__:✅ 任务 283 结果保存成功
+INFO:__main__:✅ 任务 302 结果保存成功
+INFO:__main__:✅ 任务 320 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 9/77 完成
+   [DEBUG] API call completed in 144.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 311 结果保存成功
+INFO:__main__:✅ 任务 313 结果保存成功
+INFO:__main__:✅ 任务 315 结果保存成功
+INFO:__main__:✅ 任务 314 结果保存成功
+INFO:__main__:✅ 任务 316 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 27/77 完成
+   [DEBUG] API call completed in 147.4s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 440 结果保存成功
+INFO:__main__:✅ 任务 439 结果保存成功
+INFO:__main__:✅ 任务 465 结果保存成功
+INFO:__main__:✅ 任务 441 结果保存成功
+INFO:__main__:✅ 任务 442 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 52/77 完成
+   [DEBUG] API call completed in 148.3s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 594 结果保存成功
+INFO:__main__:✅ 任务 585 结果保存成功
+INFO:__main__:✅ 任务 587 结果保存成功
+INFO:__main__:✅ 任务 586 结果保存成功
+INFO:__main__:✅ 任务 588 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 75/77 完成
+   [DEBUG] API call completed in 152.5s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 428 结果保存成功
+INFO:__main__:✅ 任务 487 结果保存成功
+INFO:__main__:✅ 任务 326 结果保存成功
+INFO:__main__:✅ 任务 327 结果保存成功
+INFO:__main__:✅ 任务 329 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 30/77 完成
+   [DEBUG] API call completed in 164.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 201 结果保存成功
+INFO:__main__:✅ 任务 202 结果保存成功
+INFO:__main__:✅ 任务 260 结果保存成功
+INFO:__main__:✅ 任务 264 结果保存成功
+INFO:__main__:✅ 任务 336 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 1/77 完成
+   [DEBUG] API call completed in 167.9s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 242 结果保存成功
+INFO:__main__:✅ 任务 363 结果保存成功
+INFO:__main__:✅ 任务 243 结果保存成功
+INFO:__main__:✅ 任务 244 结果保存成功
+INFO:__main__:✅ 任务 245 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 13/77 完成
+   [DEBUG] API call completed in 167.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 346 结果保存成功
+INFO:__main__:✅ 任务 501 结果保存成功
+INFO:__main__:✅ 任务 347 结果保存成功
+INFO:__main__:✅ 任务 350 结果保存成功
+INFO:__main__:✅ 任务 351 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 34/77 完成
+   [DEBUG] API call completed in 186.8s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 271 结果保存成功
+INFO:__main__:✅ 任务 272 结果保存成功
+INFO:__main__:✅ 任务 273 结果保存成功
+INFO:__main__:✅ 任务 274 结果保存成功
+INFO:__main__:✅ 任务 276 结果保存成功
+   ✅ 批次 20/77 完成
+
+   ✅ 本批完成: 382通, API调用: 39次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+  🔄 强制重试任务 282（第 2 次）
+  🔄 强制重试任务 284（第 2 次）
+  🔄 强制重试任务 286（第 2 次）
+  🔄 强制重试任务 322（第 2 次）
+  🔄 强制重试任务 323（第 2 次）
+  🔄 强制重试任务 324（第 2 次）
+  🔄 强制重试任务 343（第 2 次）
+  🔄 强制重试任务 392（第 2 次）
+  🔄 强制重试任务 394（第 2 次）
+  🔄 强制重试任务 542（第 2 次）
+✅ 强制重置 10 个失败任务为pending状态
+🔄 --once模式：强制重试 10 个失败任务
+   📊 --once模式：队列共有 10 个任务，全部取出处理
+
+📦 获取 10 个任务，来自 6 个用户
+
+🔍 对 10 通会话进行场景检查...
+
+📊 场景分布: {'售前阶段': 4, '售后阶段': 4, '售中阶段': 2}
+
+🚀 跨场景合并处理: 10 通会话
+
+   📊 自适应批量: 基础=10, 优化后=5, 总任务=10
+   💾 预估总Token: 17,717 (上限: 200,000)
+
+🚀 启动 2 个评分批次（并发限制: 90）
+   🔄 批次 1/2 (5通, ~8,841tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.96it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.95it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 59.79it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 2/2 (5通, ~8,876tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段', '售后阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售中阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 64.23it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.13it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 40.06it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 134.5s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 282 结果保存成功
+INFO:__main__:✅ 任务 284 结果保存成功
+INFO:__main__:✅ 任务 392 结果保存成功
+INFO:__main__:✅ 任务 394 结果保存成功
+INFO:__main__:✅ 任务 286 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 1/2 完成
+   [DEBUG] API call completed in 208.0s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 322 结果保存成功
+INFO:__main__:✅ 任务 323 结果保存成功
+INFO:__main__:✅ 任务 542 结果保存成功
+INFO:__main__:✅ 任务 324 结果保存成功
+INFO:__main__:✅ 任务 343 结果保存成功
+   ✅ 批次 2/2 完成
+
+   ✅ 本批完成: 10通, API调用: 40次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+🔄 --once模式：还有 16 个processing任务，重置为pending
+   📊 --once模式：队列共有 16 个任务，全部取出处理
+
+📦 获取 10 个任务，来自 3 个用户
+
+🔍 对 10 通会话进行场景检查...
+
+📊 场景分布: {'售中阶段': 1, '售前阶段': 7, '售后阶段': 2}
+
+🚀 跨场景合并处理: 10 通会话
+
+   📊 自适应批量: 基础=10, 优化后=5, 总任务=10
+   💾 预估总Token: 16,477 (上限: 200,000)
+
+🚀 启动 2 个评分批次（并发限制: 90）
+   🔄 批次 1/2 (5通, ~7,781tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  2.99it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  2.97it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 42.22it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 2/2 (5通, ~8,696tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.05it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.83it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 110.3s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 328 结果保存成功
+INFO:__main__:✅ 任务 386 结果保存成功
+INFO:__main__:✅ 任务 389 结果保存成功
+INFO:__main__:✅ 任务 410 结果保存成功
+INFO:__main__:✅ 任务 412 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 1/2 完成
+   [DEBUG] API call completed in 175.5s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 339 结果保存成功
+INFO:__main__:✅ 任务 348 结果保存成功
+INFO:__main__:✅ 任务 448 结果保存成功
+INFO:__main__:✅ 任务 451 结果保存成功
+INFO:__main__:✅ 任务 536 结果保存成功
+   ✅ 批次 2/2 完成
+
+   ✅ 本批完成: 10通, API调用: 41次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+🔄 --once模式：还有 6 个processing任务，重置为pending
+   📊 --once模式：队列共有 6 个任务，全部取出处理
+
+📦 获取 5 个任务，来自 1 个用户
+
+🔍 对 5 通会话进行场景检查...
+
+📊 场景分布: {'售后阶段': 2, '售前阶段': 2, '客诉处理': 1}
+
+🚀 跨场景合并处理: 5 通会话
+
+   📊 自适应批量: 基础=10, 优化后=5, 总任务=5
+   💾 预估总Token: 7,790 (上限: 200,000)
+
+🚀 启动 1 个评分批次（并发限制: 90）
+   🔄 批次 1/1 (5通, ~7,790tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段', '客诉处理']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '客诉处理']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.98it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.97it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 51.69it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 58.54it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 100.2s
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 419 结果保存成功
+INFO:__main__:✅ 任务 469 结果保存成功
+INFO:__main__:✅ 任务 484 结果保存成功
+INFO:__main__:✅ 任务 496 结果保存成功
+INFO:__main__:✅ 任务 525 结果保存成功
+   ✅ 批次 1/1 完成
+
+   ✅ 本批完成: 5通, API调用: 42次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+🔄 --once模式：还有 1 个processing任务，重置为pending
+   📊 --once模式：队列共有 1 个任务，全部取出处理
+
+📦 获取 1 个任务，来自 1 个用户
+
+🔍 对 1 通会话进行场景检查...
+
+📊 场景分布: {'售前阶段': 1}
+
+🚀 跨场景合并处理: 1 通会话
+
+   📊 自适应批量: 基础=10, 优化后=1, 总任务=1
+   💾 预估总Token: 1,523 (上限: 200,000)
+
+🚀 启动 1 个评分批次（并发限制: 90）
+   🔄 批次 1/1 (1通, ~1,523tokens) 启动
+[DEBUG] score_sessions_batch_async START - 1 sessions
+[DEBUG] Processing 1 sessions cross-scene
+   📚 跨场景评分: 1通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.44it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.44it/s]
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=1
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=1
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 22971
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 31.7s
+   [DEBUG] Parsed 1 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 1 results
+INFO:__main__:✅ 任务 589 结果保存成功
+   ✅ 批次 1/1 完成
+
+   ✅ 本批完成: 1通, API调用: 43次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+⏳ 队列已空，--once模式：准备退出
+✅ 锁已释放
+
+============================================================
+📊 异步批量工作进程结束
+   成功处理: 408
+   总API调用: 43次
+============================================================
