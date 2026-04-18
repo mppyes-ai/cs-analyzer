@@ -805,6 +805,133 @@ def fetch_and_group_tasks(max_batch_size: int = 150, once: bool = False) -> Dict
     return dict(groups)
 
 
+def _fetch_failed_tasks_for_retry(max_retries: int = 3) -> Dict[str, List[Dict]]:
+    """【Opus修复】直接获取可重试的 failed 任务（不走 pending 中转）
+    
+    避免 --once 模式下失败任务需要重置为 pending 再重新 fetch 的两阶段断层
+    
+    Args:
+        max_retries: 最大重试次数
+        
+    Returns:
+        按 user_id 分组的失败任务字典
+    """
+    from collections import defaultdict
+    
+    conn = get_queue_connection()
+    cursor = conn.cursor()
+    
+    # 【Opus修复】直接查询 failed 任务，不等待延迟时间
+    cursor.execute("""
+        SELECT task_id, session_id, session_data, retry_count
+        FROM analysis_tasks
+        WHERE status = 'failed' AND retry_count < ?
+        ORDER BY retry_count ASC, created_at ASC
+    """, (max_retries,))
+    
+    rows = cursor.fetchall()
+    
+    if not rows:
+        conn.close()
+        return {}
+    
+    # 【Opus修复】直接标记为 processing（不在 pending 中中转）
+    task_ids = [row[0] for row in rows]
+    placeholders = ','.join(['?' for _ in task_ids])
+    cursor.execute(f"""
+        UPDATE analysis_tasks
+        SET status = 'processing', started_at = datetime('now')
+        WHERE task_id IN ({placeholders})
+    """, task_ids)
+    conn.commit()
+    conn.close()
+    
+    # 按 user_id 分组
+    groups = defaultdict(list)
+    for task_id, session_id, session_data_json, retry_count in rows:
+        try:
+            session_data = json.loads(session_data_json) if session_data_json else {}
+        except Exception:
+            session_data = {}
+        user_id = session_data.get('user_id', 'unknown')
+        groups[user_id].append({
+            'task_id': task_id,
+            'session_id': session_id,
+            'session_data': session_data,
+            'retry_count': retry_count
+        })
+    
+    return dict(groups)
+
+
+async def _retry_single_task(task: Dict) -> Optional[Dict]:
+    """【Opus修复】单通重试——避免批次连锁失败
+    
+    当整批失败时，降级为单通评分，给每个任务更长的超时和独立的错误处理
+    
+    Args:
+        task: 任务字典
+        
+    Returns:
+        评分结果，失败返回 None
+    """
+    global kimi_semaphore, scorer
+    
+    task_id = task['task_id']
+    session_data = task['session_data']
+    retry_count = task.get('retry_count', 0)
+    
+    print(f"   🔄 重试任务 {task_id} (第{retry_count + 1}次重试)")
+    
+    try:
+        async with kimi_semaphore:
+            # 【Opus修复】单通评分，超时设置更宽松（600秒）
+            batch_sessions = [session_data]
+            
+            # 构建预分析
+            pre_analysis = {
+                'scene': session_data.get('scene', '售前阶段'),
+                'sub_scene': '其他',
+                'intent': '咨询',
+                'sentiment': 'neutral',
+                'confidence': 0.8,
+                'reasoning': '重试任务单通评分',
+                'source': 'retry_single'
+            }
+            
+            # 调用评分（单通）
+            results = await scorer.score_sessions_batch_async(
+                batch_sessions, 
+                [pre_analysis]
+            )
+            result = results[0] if results else {'error': '空结果'}
+            
+            # 检查结果有效性
+            has_valid_scores = (
+                'error' not in result and
+                result.get('dimension_scores') is not None and
+                result.get('summary') is not None
+            )
+            
+            if has_valid_scores:
+                # 保存结果
+                loop = asyncio.get_event_loop()
+                await loop.run_in_executor(None, _save_result_sync, task, result)
+                print(f"   ✅ 重试成功: 任务 {task_id}")
+                return result
+            else:
+                error_msg = result.get('error', '评分结果不完整')
+                fail_task(task_id, error_msg)
+                print(f"   ❌ 重试失败: {error_msg[:100]}")
+                return None
+                
+    except Exception as e:
+        error_msg = str(e)
+        fail_task(task_id, error_msg)
+        print(f"   ❌ 重试异常: {error_msg[:100]}")
+        return None
+
+
 # ========== Worker运行模式 ==========
 
 def run_grouped_parallel_worker(max_groups: int = 4, max_batch_size: int = 150, 
@@ -970,7 +1097,11 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
                                   window_minutes: int = MERGE_WINDOW_MINUTES,
                                   score_batch_size: int = 30,
                                   once: bool = False):
-    """【v2.6.1】运行异步批量工作进程 - 跨场景合并优化
+    """【v2.6.4】运行异步批量工作进程 - Opus修复版
+    
+    P0修复：
+    1. 同进程内重试失败任务，消除两阶段断层（避免Worker进程重启开销）
+    2. 失败重试降级为单通评分，消除批次连锁失败
     
     核心优化：
     - 不再按场景分组，所有会话统一批量处理
@@ -987,7 +1118,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     signal.signal(signal.SIGTERM, signal_handler)
     
     print("=" * 60)
-    print("🚀 客服分析工作进程启动 [异步批量模式 v2.6.2 - 智能批量]")
+    print("🚀 客服分析工作进程启动 [异步批量模式 v2.6.4 - Opus修复版]")
     print(f"   最大并发组: {max_groups}")
     print(f"   单次处理上限: {max_batch_size}")
     print(f"   基础批量评分: {score_batch_size}通/批")
@@ -1002,20 +1133,39 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     
     total_processed = 0
     total_api_calls = 0
+    retry_phase = False  # 【Opus修复】标记是否处于重试阶段
     
     try:
         while running:
+            # 【Opus修复】--once模式下，优先直接获取失败任务进行重试（不走pending中转）
+            if once and retry_phase:
+                failed_groups = _fetch_failed_tasks_for_retry(max_retries=3)
+                if failed_groups:
+                    print(f"\n🔄 --once重试阶段：{sum(len(v) for v in failed_groups.values())} 个失败任务直接重试")
+                    # 降级为单通评分，避免批次连锁失败
+                    for user_id, tasks in failed_groups.items():
+                        print(f"   用户 {user_id[:8]}...: {len(tasks)} 通会话")
+                        for task in tasks:
+                            result = await _retry_single_task(task)
+                            if result and 'error' not in result:
+                                total_processed += 1
+                    continue  # 重试后继续检查是否还有失败任务
+                else:
+                    print("✅ 所有失败任务已处理完毕")
+                    retry_phase = False  # 退出重试阶段
+            
             groups = fetch_and_group_tasks(max_batch_size=max_batch_size, once=once)
             
             if not groups:
                 # 【修复】--once模式下，先尝试重试失败任务，然后再次检查队列
                 if once:
-                    # 强制立即重试所有可重试的失败任务（不等待延迟）
-                    retried = force_retry_all_failed()
-                    if retried > 0:
-                        print(f"🔄 --once模式：强制重试 {retried} 个失败任务")
-                        # 重试后立即继续循环，重新获取任务
-                        continue
+                    # 【Opus修复】进入重试阶段，直接获取失败任务
+                    failed_groups = _fetch_failed_tasks_for_retry(max_retries=3)
+                    if failed_groups:
+                        retry_phase = True
+                        print(f"\n🔄 --once模式：发现 {sum(len(v) for v in failed_groups.values())} 个失败任务，进入重试阶段")
+                        continue  # 回到循环顶部，由重试逻辑处理
+                    
                     # 【修复】检查是否还有processing任务卡住
                     conn = sqlite3.connect(QUEUE_DB_PATH)
                     cursor = conn.cursor()

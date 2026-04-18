@@ -140,7 +140,6 @@ class MonitorAgent:
         except Exception as e:
             print(f"  ❌ 消息服务重启失败: {e}")
             return False
-            return False
     
     def check_existing_monitor(self) -> bool:
         """检查是否已有monitor在运行"""
