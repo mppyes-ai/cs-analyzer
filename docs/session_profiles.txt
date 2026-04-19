@@ -1,715 +1,1078 @@
-   📊 SESSION_PROFILE|sid=session_0000_a92c210|msgs=7|user=2|staff=5|chars=267|merged=False
-   📊 SESSION_PROFILE|sid=session_0002_4486812|msgs=24|user=13|staff=11|chars=1078|merged=False
-   📊 SESSION_PROFILE|sid=session_0003_b66fca9|msgs=15|user=3|staff=12|chars=1325|merged=False
-   📊 SESSION_PROFILE|sid=session_0004_347befb|msgs=8|user=2|staff=6|chars=310|merged=False
-   📊 SESSION_PROFILE|sid=session_0005_89201e0|msgs=8|user=2|staff=6|chars=396|merged=False
-   📊 SESSION_PROFILE|sid=session_0008_7abde75|msgs=7|user=1|staff=6|chars=449|merged=False
-   📊 SESSION_PROFILE|sid=session_0009_447dbb6|msgs=28|user=9|staff=19|chars=1078|merged=False
-   📊 SESSION_PROFILE|sid=session_0010_c1e103f|msgs=24|user=9|staff=15|chars=1287|merged=False
-   📊 SESSION_PROFILE|sid=session_0011_7923097|msgs=11|user=3|staff=8|chars=746|merged=False
-   📊 SESSION_PROFILE|sid=session_0012_a7c63c2|msgs=8|user=1|staff=7|chars=450|merged=False
-   📊 SESSION_PROFILE|sid=session_0013_2deba05|msgs=7|user=1|staff=6|chars=296|merged=False
-   📊 SESSION_PROFILE|sid=session_0014_91ec92b|msgs=42|user=14|staff=28|chars=1469|merged=False
-   📊 SESSION_PROFILE|sid=session_0015_8024c76|msgs=90|user=90|staff=0|chars=3000|merged=False
-   📊 SESSION_PROFILE|sid=session_0016_12d506a|msgs=10|user=2|staff=8|chars=339|merged=False
-   📊 SESSION_PROFILE|sid=session_0017_043457a|msgs=3|user=1|staff=2|chars=113|merged=False
-   📊 SESSION_PROFILE|sid=session_0018_d5d7c6d|msgs=45|user=22|staff=23|chars=880|merged=False
-   📊 SESSION_PROFILE|sid=session_0019_d5d7c6d|msgs=40|user=18|staff=22|chars=1659|merged=False
-   📊 SESSION_PROFILE|sid=session_0020_76efbc7|msgs=28|user=11|staff=17|chars=1033|merged=False
-   📊 SESSION_PROFILE|sid=session_0021_8024c76|msgs=15|user=15|staff=0|chars=661|merged=False
-   📊 SESSION_PROFILE|sid=session_0022_ea50adc|msgs=7|user=4|staff=3|chars=219|merged=False
-   📊 SESSION_PROFILE|sid=session_0023_4e89bb1|msgs=5|user=4|staff=1|chars=89|merged=False
-   📊 SESSION_PROFILE|sid=session_0024_74e464d|msgs=27|user=10|staff=17|chars=1281|merged=False
-   📊 SESSION_PROFILE|sid=session_0025_7ddda22|msgs=6|user=3|staff=3|chars=97|merged=False
-   📊 SESSION_PROFILE|sid=session_0026_f074a04|msgs=11|user=3|staff=8|chars=339|merged=False
-   📊 SESSION_PROFILE|sid=session_0027_46fd432|msgs=7|user=1|staff=6|chars=449|merged=False
-   📊 SESSION_PROFILE|sid=session_0028_ac29aae|msgs=29|user=6|staff=23|chars=2111|merged=False
-   📊 SESSION_PROFILE|sid=session_0029_5bdbb5b|msgs=4|user=1|staff=3|chars=93|merged=False
-   📊 SESSION_PROFILE|sid=session_0031_616028f|msgs=99|user=99|staff=0|chars=1890|merged=False
-   📊 SESSION_PROFILE|sid=session_0032_da0e610|msgs=8|user=2|staff=6|chars=531|merged=False
-   📊 SESSION_PROFILE|sid=session_0033_e050e03|msgs=11|user=4|staff=7|chars=762|merged=False
-   📊 SESSION_PROFILE|sid=session_0034_9d8f4ab|msgs=3|user=1|staff=2|chars=72|merged=False
-   📊 SESSION_PROFILE|sid=session_0035_bd93f88|msgs=8|user=3|staff=5|chars=270|merged=False
-   📊 SESSION_PROFILE|sid=session_0036_57b4528|msgs=9|user=4|staff=5|chars=205|merged=False
-   📊 SESSION_PROFILE|sid=session_0037_063c4de|msgs=11|user=3|staff=8|chars=381|merged=False
-   📊 SESSION_PROFILE|sid=session_0038_925e3a0|msgs=3|user=2|staff=1|chars=218|merged=False
-   📊 SESSION_PROFILE|sid=session_0039_542522f|msgs=3|user=1|staff=2|chars=101|merged=False
-   📊 SESSION_PROFILE|sid=session_0040_240c8d7|msgs=9|user=3|staff=6|chars=473|merged=False
-   📊 SESSION_PROFILE|sid=session_0041_16e9abc|msgs=24|user=8|staff=16|chars=1045|merged=False
-   📊 SESSION_PROFILE|sid=session_0042_7eca689|msgs=4|user=2|staff=2|chars=231|merged=False
-   📊 SESSION_PROFILE|sid=session_0043_a8ffee2|msgs=5|user=2|staff=3|chars=207|merged=False
-   📊 SESSION_PROFILE|sid=session_0044_af24872|msgs=18|user=5|staff=13|chars=1002|merged=False
-   📊 SESSION_PROFILE|sid=session_0045_a92c210|msgs=14|user=4|staff=10|chars=1127|merged=False
-   📊 SESSION_PROFILE|sid=session_0046_90b41dc|msgs=11|user=4|staff=7|chars=778|merged=False
-   📊 SESSION_PROFILE|sid=session_0047_d285458|msgs=7|user=2|staff=5|chars=612|merged=False
-   📊 SESSION_PROFILE|sid=session_0048_d76c53c|msgs=5|user=2|staff=3|chars=150|merged=False
-   📊 SESSION_PROFILE|sid=session_0049_4f71c8b|msgs=6|user=3|staff=3|chars=279|merged=False
-   📊 SESSION_PROFILE|sid=session_0050_d78a549|msgs=14|user=7|staff=7|chars=1150|merged=False
-   📊 SESSION_PROFILE|sid=session_0051_9935bdc|msgs=7|user=3|staff=4|chars=181|merged=False
-   📊 SESSION_PROFILE|sid=session_0052_d78a549|msgs=6|user=3|staff=3|chars=257|merged=False
-   📊 SESSION_PROFILE|sid=session_0053_86ca9e1|msgs=32|user=10|staff=22|chars=1179|merged=False
-   📊 SESSION_PROFILE|sid=session_0054_35413ad|msgs=5|user=2|staff=3|chars=395|merged=False
-   📊 SESSION_PROFILE|sid=session_0055_87b8e10|msgs=12|user=4|staff=8|chars=434|merged=False
-   📊 SESSION_PROFILE|sid=session_0057_d8b3da0|msgs=18|user=7|staff=11|chars=724|merged=False
-   📊 SESSION_PROFILE|sid=session_0058_1ae024d|msgs=40|user=17|staff=23|chars=1320|merged=False
-   📊 SESSION_PROFILE|sid=session_0059_89deaf8|msgs=6|user=3|staff=3|chars=253|merged=False
-   📊 SESSION_PROFILE|sid=session_0060_a92c210|msgs=12|user=4|staff=8|chars=541|merged=False
-   📊 SESSION_PROFILE|sid=session_0061_7eca689|msgs=10|user=4|staff=6|chars=577|merged=False
-   📊 SESSION_PROFILE|sid=session_0062_a92c210|msgs=17|user=9|staff=8|chars=638|merged=False
-   📊 SESSION_PROFILE|sid=session_0063_d5d7c6d|msgs=8|user=2|staff=6|chars=553|merged=False
-   📊 SESSION_PROFILE|sid=session_0065_06260f5|msgs=11|user=2|staff=9|chars=646|merged=False
-   📊 SESSION_PROFILE|sid=session_0066_2762920|msgs=7|user=2|staff=5|chars=743|merged=False
-   📊 SESSION_PROFILE|sid=session_0067_04247a1|msgs=5|user=2|staff=3|chars=210|merged=False
-   📊 SESSION_PROFILE|sid=session_0068_f6b362e|msgs=10|user=5|staff=5|chars=158|merged=False
-   📊 SESSION_PROFILE|sid=session_0069_7eca689|msgs=13|user=5|staff=8|chars=493|merged=False
-   📊 SESSION_PROFILE|sid=session_0071_7ba182f|msgs=5|user=1|staff=4|chars=716|merged=False
-   📊 SESSION_PROFILE|sid=session_0072_7de7bf5|msgs=18|user=5|staff=13|chars=777|merged=False
-   📊 SESSION_PROFILE|sid=session_0073_2bf486b|msgs=31|user=8|staff=23|chars=2670|merged=False
-   📊 SESSION_PROFILE|sid=session_0074_708178c|msgs=8|user=3|staff=5|chars=216|merged=False
-   📊 SESSION_PROFILE|sid=session_0075_bf51ed2|msgs=18|user=7|staff=11|chars=591|merged=False
-   📊 SESSION_PROFILE|sid=session_0076_348b5d9|msgs=4|user=2|staff=2|chars=106|merged=False
-   📊 SESSION_PROFILE|sid=session_0077_b0532e3|msgs=5|user=2|staff=3|chars=364|merged=False
-   📊 SESSION_PROFILE|sid=session_0078_cdb1bf9|msgs=23|user=7|staff=16|chars=863|merged=False
-   📊 SESSION_PROFILE|sid=session_0079_5450b6e|msgs=15|user=4|staff=11|chars=901|merged=False
-   📊 SESSION_PROFILE|sid=session_0080_7eca689|msgs=31|user=11|staff=20|chars=951|merged=False
-   📊 SESSION_PROFILE|sid=session_0081_35c98fd|msgs=12|user=3|staff=9|chars=551|merged=False
-   📊 SESSION_PROFILE|sid=session_0082_b970de5|msgs=12|user=6|staff=6|chars=199|merged=False
-   📊 SESSION_PROFILE|sid=session_0085_6c7f7fa|msgs=12|user=3|staff=9|chars=400|merged=False
-   📊 SESSION_PROFILE|sid=session_0086_80847d2|msgs=13|user=3|staff=10|chars=644|merged=False
-   📊 SESSION_PROFILE|sid=session_0087_a92c210|msgs=37|user=18|staff=19|chars=1095|merged=False
-   📊 SESSION_PROFILE|sid=session_0088_2c87a6d|msgs=5|user=2|staff=3|chars=205|merged=False
-   📊 SESSION_PROFILE|sid=session_0089_a92c210|msgs=20|user=6|staff=14|chars=1103|merged=False
-   📊 SESSION_PROFILE|sid=session_0090_982c581|msgs=4|user=2|staff=2|chars=84|merged=False
-   📊 SESSION_PROFILE|sid=session_0091_0f921bd|msgs=5|user=1|staff=4|chars=268|merged=False
-   📊 SESSION_PROFILE|sid=session_0092_a5c05a1|msgs=8|user=3|staff=5|chars=309|merged=False
-   📊 SESSION_PROFILE|sid=session_0093_a92c210|msgs=8|user=2|staff=6|chars=579|merged=False
-   📊 SESSION_PROFILE|sid=session_0094_b49c63f|msgs=3|user=2|staff=1|chars=60|merged=False
-   📊 SESSION_PROFILE|sid=session_0095_0585c9e|msgs=10|user=2|staff=8|chars=413|merged=False
-   📊 SESSION_PROFILE|sid=session_0096_960cb70|msgs=10|user=2|staff=8|chars=569|merged=False
-   📊 SESSION_PROFILE|sid=session_0097_d5d7c6d|msgs=9|user=2|staff=7|chars=656|merged=False
-   📊 SESSION_PROFILE|sid=session_0098_da0e610|msgs=20|user=7|staff=13|chars=1058|merged=False
-   📊 SESSION_PROFILE|sid=session_0099_5bc5c29|msgs=4|user=1|staff=3|chars=209|merged=False
-   📊 SESSION_PROFILE|sid=session_0100_443a278|msgs=8|user=8|staff=0|chars=173|merged=False
-   📊 SESSION_PROFILE|sid=session_0101_e2afece|msgs=31|user=12|staff=19|chars=1646|merged=False
-   📊 SESSION_PROFILE|sid=session_0102_bd0846b|msgs=13|user=5|staff=8|chars=944|merged=False
-   📊 SESSION_PROFILE|sid=session_0104_bd0846b|msgs=4|user=2|staff=2|chars=305|merged=False
-   📊 SESSION_PROFILE|sid=session_0105_4b1cf7e|msgs=3|user=1|staff=2|chars=75|merged=False
-   📊 SESSION_PROFILE|sid=session_0106_bfd99b5|msgs=15|user=6|staff=9|chars=617|merged=False
-   📊 SESSION_PROFILE|sid=session_0107_e65a704|msgs=12|user=6|staff=6|chars=615|merged=False
-   📊 SESSION_PROFILE|sid=session_0108_a1e84b6|msgs=11|user=3|staff=8|chars=539|merged=False
-   📊 SESSION_PROFILE|sid=session_0109_cd7fb78|msgs=6|user=2|staff=4|chars=536|merged=False
-   📊 SESSION_PROFILE|sid=session_0110_fe9f3f8|msgs=3|user=1|staff=2|chars=178|merged=False
-   📊 SESSION_PROFILE|sid=session_0111_b2c4979|msgs=7|user=4|staff=3|chars=389|merged=False
-   📊 SESSION_PROFILE|sid=session_0112_f1e1cf5|msgs=21|user=8|staff=13|chars=640|merged=False
-   📊 SESSION_PROFILE|sid=session_0113_ba189dc|msgs=13|user=4|staff=9|chars=626|merged=False
-   📊 SESSION_PROFILE|sid=session_0114_6b54b4f|msgs=24|user=8|staff=16|chars=813|merged=False
-   📊 SESSION_PROFILE|sid=session_0115_bf3b3de|msgs=9|user=2|staff=7|chars=728|merged=False
-   📊 SESSION_PROFILE|sid=session_0116_6b54b4f|msgs=6|user=3|staff=3|chars=259|merged=False
-   📊 SESSION_PROFILE|sid=session_0117_afabba4|msgs=22|user=7|staff=15|chars=948|merged=False
-   📊 SESSION_PROFILE|sid=session_0118_7231cc3|msgs=8|user=1|staff=7|chars=314|merged=False
-   📊 SESSION_PROFILE|sid=session_0119_7deaa07|msgs=15|user=7|staff=8|chars=345|merged=False
-   📊 SESSION_PROFILE|sid=session_0120_09d6c7b|msgs=9|user=1|staff=8|chars=580|merged=False
-   📊 SESSION_PROFILE|sid=session_0122_75cb50f|msgs=16|user=7|staff=9|chars=268|merged=False
-   📊 SESSION_PROFILE|sid=session_0123_28a1b16|msgs=6|user=2|staff=4|chars=243|merged=False
-   📊 SESSION_PROFILE|sid=session_0124_d8a7442|msgs=15|user=6|staff=9|chars=419|merged=False
-   📊 SESSION_PROFILE|sid=session_0125_af422bf|msgs=6|user=2|staff=4|chars=202|merged=False
-   📊 SESSION_PROFILE|sid=session_0127_0342b5a|msgs=10|user=2|staff=8|chars=268|merged=False
-   📊 SESSION_PROFILE|sid=session_0128_f6cac58|msgs=12|user=3|staff=9|chars=785|merged=False
-   📊 SESSION_PROFILE|sid=session_0130_cd8a4c8|msgs=8|user=1|staff=7|chars=349|merged=False
-   📊 SESSION_PROFILE|sid=session_0131_da0e610|msgs=87|user=44|staff=43|chars=3004|merged=False
-   📊 SESSION_PROFILE|sid=session_0132_ab2845a|msgs=48|user=22|staff=26|chars=2216|merged=False
-   📊 SESSION_PROFILE|sid=session_0133_da0e610|msgs=7|user=2|staff=5|chars=611|merged=False
-   📊 SESSION_PROFILE|sid=session_0134_0fe6388|msgs=3|user=3|staff=0|chars=134|merged=False
-   📊 SESSION_PROFILE|sid=session_0135_e6b29ea|msgs=21|user=7|staff=14|chars=1092|merged=False
-   📊 SESSION_PROFILE|sid=session_0136_7249533|msgs=4|user=2|staff=2|chars=202|merged=False
-   📊 SESSION_PROFILE|sid=session_0137_a92c210|msgs=9|user=3|staff=6|chars=425|merged=False
-   📊 SESSION_PROFILE|sid=session_0138_34af484|msgs=5|user=2|staff=3|chars=495|merged=False
-   📊 SESSION_PROFILE|sid=session_0139_4a756f0|msgs=7|user=3|staff=4|chars=161|merged=False
-   📊 SESSION_PROFILE|sid=session_0140_1995370|msgs=4|user=2|staff=2|chars=112|merged=False
-   📊 SESSION_PROFILE|sid=session_0141_a7c9428|msgs=10|user=2|staff=8|chars=536|merged=False
-   📊 SESSION_PROFILE|sid=session_0142_f8ad342|msgs=9|user=1|staff=8|chars=445|merged=False
-   📊 SESSION_PROFILE|sid=session_0143_a92c210|msgs=14|user=5|staff=9|chars=801|merged=False
-   📊 SESSION_PROFILE|sid=session_0144_af422bf|msgs=4|user=2|staff=2|chars=110|merged=False
-   📊 SESSION_PROFILE|sid=session_0145_7eca689|msgs=5|user=2|staff=3|chars=212|merged=False
-   📊 SESSION_PROFILE|sid=session_0146_142c71a|msgs=7|user=2|staff=5|chars=609|merged=False
-   📊 SESSION_PROFILE|sid=session_0147_d1457b7|msgs=29|user=11|staff=18|chars=1225|merged=False
-   📊 SESSION_PROFILE|sid=session_0148_f6b362e|msgs=5|user=2|staff=3|chars=284|merged=False
-   📊 SESSION_PROFILE|sid=session_0150_bb0e83c|msgs=10|user=5|staff=5|chars=275|merged=False
-   📊 SESSION_PROFILE|sid=session_0152_7eca689|msgs=13|user=5|staff=8|chars=486|merged=False
-   📊 SESSION_PROFILE|sid=session_0153_8024c76|msgs=20|user=20|staff=0|chars=877|merged=False
-   📊 SESSION_PROFILE|sid=session_0154_3eba941|msgs=21|user=9|staff=12|chars=1017|merged=False
-   📊 SESSION_PROFILE|sid=session_0156_1cb6d3b|msgs=18|user=4|staff=14|chars=1054|merged=False
-   📊 SESSION_PROFILE|sid=session_0157_edd485e|msgs=5|user=1|staff=4|chars=238|merged=False
-   📊 SESSION_PROFILE|sid=session_0158_f6b362e|msgs=5|user=2|staff=3|chars=363|merged=False
-   📊 SESSION_PROFILE|sid=session_0159_f6b362e|msgs=5|user=2|staff=3|chars=340|merged=False
-   📊 SESSION_PROFILE|sid=session_0160_474e33a|msgs=17|user=5|staff=12|chars=528|merged=False
-   📊 SESSION_PROFILE|sid=session_0161_a4ba1c5|msgs=5|user=1|staff=4|chars=705|merged=False
-   📊 SESSION_PROFILE|sid=session_0162_820ac88|msgs=8|user=1|staff=7|chars=370|merged=False
-   📊 SESSION_PROFILE|sid=session_0163_cb1ae17|msgs=16|user=5|staff=11|chars=538|merged=False
-   📊 SESSION_PROFILE|sid=session_0164_4755767|msgs=11|user=2|staff=9|chars=780|merged=False
-   📊 SESSION_PROFILE|sid=session_0165_eb9b755|msgs=13|user=8|staff=5|chars=290|merged=False
-   📊 SESSION_PROFILE|sid=session_0166_8024c76|msgs=20|user=20|staff=0|chars=1014|merged=False
-   📊 SESSION_PROFILE|sid=session_0167_d8e516b|msgs=14|user=4|staff=10|chars=650|merged=False
-   📊 SESSION_PROFILE|sid=session_0169_33c6325|msgs=4|user=2|staff=2|chars=153|merged=False
-   📊 SESSION_PROFILE|sid=session_0170_295713f|msgs=19|user=5|staff=14|chars=1108|merged=False
-   📊 SESSION_PROFILE|sid=session_0171_cb1ae17|msgs=4|user=2|staff=2|chars=278|merged=False
-   📊 SESSION_PROFILE|sid=session_0172_64fea49|msgs=9|user=4|staff=5|chars=557|merged=False
-   📊 SESSION_PROFILE|sid=session_0173_295713f|msgs=7|user=3|staff=4|chars=337|merged=False
-   📊 SESSION_PROFILE|sid=session_0174_b4f0823|msgs=19|user=4|staff=15|chars=896|merged=False
-   📊 SESSION_PROFILE|sid=session_0175_395533a|msgs=21|user=10|staff=11|chars=1097|merged=False
-   📊 SESSION_PROFILE|sid=session_0176_64fea49|msgs=4|user=2|staff=2|chars=108|merged=False
-   📊 SESSION_PROFILE|sid=session_0177_e406d6e|msgs=48|user=12|staff=36|chars=2697|merged=False
-   📊 SESSION_PROFILE|sid=session_0178_d5d7c6d|msgs=8|user=1|staff=7|chars=789|merged=False
-   📊 SESSION_PROFILE|sid=session_0180_a23459d|msgs=4|user=2|staff=2|chars=154|merged=False
-   📊 SESSION_PROFILE|sid=session_0181_9578bd3|msgs=28|user=12|staff=16|chars=901|merged=False
-   📊 SESSION_PROFILE|sid=session_0182_e8bff49|msgs=17|user=4|staff=13|chars=1002|merged=False
-   📊 SESSION_PROFILE|sid=session_0183_600e4b1|msgs=18|user=9|staff=9|chars=287|merged=False
-   📊 SESSION_PROFILE|sid=session_0184_76f39bf|msgs=7|user=1|staff=6|chars=405|merged=False
-   📊 SESSION_PROFILE|sid=session_0186_00aa8a9|msgs=32|user=12|staff=20|chars=1876|merged=False
-   📊 SESSION_PROFILE|sid=session_0188_e97e920|msgs=10|user=3|staff=7|chars=356|merged=False
-   📊 SESSION_PROFILE|sid=session_0189_eacc9a6|msgs=11|user=3|staff=8|chars=678|merged=False
-   📊 SESSION_PROFILE|sid=session_0191_1590a52|msgs=4|user=1|staff=3|chars=160|merged=False
-   📊 SESSION_PROFILE|sid=session_0192_2581847|msgs=10|user=3|staff=7|chars=981|merged=False
-   📊 SESSION_PROFILE|sid=session_0193_da0e610|msgs=17|user=7|staff=10|chars=1023|merged=False
-   📊 SESSION_PROFILE|sid=session_0194_c0ab777|msgs=5|user=1|staff=4|chars=278|merged=False
-   📊 SESSION_PROFILE|sid=session_0196_a25d2a9|msgs=3|user=1|staff=2|chars=91|merged=False
-   📊 SESSION_PROFILE|sid=session_0197_ee1c2c7|msgs=17|user=5|staff=12|chars=351|merged=False
-   📊 SESSION_PROFILE|sid=session_0198_d1b4ec9|msgs=12|user=3|staff=9|chars=852|merged=False
-   📊 SESSION_PROFILE|sid=session_0199_db67801|msgs=14|user=4|staff=10|chars=763|merged=False
-   📊 SESSION_PROFILE|sid=session_0200_942a5dc|msgs=14|user=5|staff=9|chars=858|merged=False
-   📊 SESSION_PROFILE|sid=session_0201_4e893a5|msgs=27|user=10|staff=17|chars=503|merged=False
-   📊 SESSION_PROFILE|sid=session_0202_03fca76|msgs=4|user=1|staff=3|chars=476|merged=False
-   📊 SESSION_PROFILE|sid=session_0203_2c47130|msgs=13|user=3|staff=10|chars=698|merged=False
-   📊 SESSION_PROFILE|sid=session_0204_7440991|msgs=10|user=3|staff=7|chars=784|merged=False
-   📊 SESSION_PROFILE|sid=session_0205_29f85da|msgs=13|user=3|staff=10|chars=468|merged=False
-   📊 SESSION_PROFILE|sid=session_0206_3855c39|msgs=6|user=2|staff=4|chars=497|merged=False
-   📊 SESSION_PROFILE|sid=session_0207_2394b52|msgs=11|user=2|staff=9|chars=358|merged=False
-   📊 SESSION_PROFILE|sid=session_0208_ec002cf|msgs=5|user=2|staff=3|chars=150|merged=False
-   📊 SESSION_PROFILE|sid=session_0209_3876259|msgs=13|user=7|staff=6|chars=369|merged=False
-   📊 SESSION_PROFILE|sid=session_0210_ea6124c|msgs=6|user=2|staff=4|chars=87|merged=False
-   📊 SESSION_PROFILE|sid=session_0212_da0e610|msgs=8|user=3|staff=5|chars=512|merged=False
-   📊 SESSION_PROFILE|sid=session_0214_00e1cc1|msgs=3|user=1|staff=2|chars=99|merged=False
-   📊 SESSION_PROFILE|sid=session_0215_e9fcc03|msgs=4|user=1|staff=3|chars=200|merged=False
-   📊 SESSION_PROFILE|sid=session_0216_da0e610|msgs=5|user=1|staff=4|chars=471|merged=False
-   📊 SESSION_PROFILE|sid=session_0217_29f85da|msgs=4|user=2|staff=2|chars=115|merged=False
-   📊 SESSION_PROFILE|sid=session_0218_441172e|msgs=3|user=1|staff=2|chars=176|merged=False
-   📊 SESSION_PROFILE|sid=session_0219_7c44ddc|msgs=4|user=1|staff=3|chars=556|merged=False
-   📊 SESSION_PROFILE|sid=session_0221_da0e610|msgs=15|user=5|staff=10|chars=925|merged=False
-   📊 SESSION_PROFILE|sid=session_0222_f6b362e|msgs=5|user=3|staff=2|chars=184|merged=False
-   📊 SESSION_PROFILE|sid=session_0224_76bfc03|msgs=9|user=4|staff=5|chars=269|merged=False
-   📊 SESSION_PROFILE|sid=session_0225_f9e547e|msgs=8|user=2|staff=6|chars=364|merged=False
-   📊 SESSION_PROFILE|sid=session_0227_581d3ba|msgs=26|user=12|staff=14|chars=1156|merged=False
-   📊 SESSION_PROFILE|sid=session_0228_d5d7c6d|msgs=8|user=2|staff=6|chars=636|merged=False
-   📊 SESSION_PROFILE|sid=session_0229_8246f5d|msgs=9|user=4|staff=5|chars=200|merged=False
-   📊 SESSION_PROFILE|sid=session_0230_7eca689|msgs=7|user=2|staff=5|chars=336|merged=False
-   📊 SESSION_PROFILE|sid=session_0231_d77a742|msgs=5|user=1|staff=4|chars=269|merged=False
-   📊 SESSION_PROFILE|sid=session_0232_04585c4|msgs=3|user=1|staff=2|chars=72|merged=False
-   📊 SESSION_PROFILE|sid=session_0233_4e4751f|msgs=4|user=1|staff=3|chars=83|merged=False
-   📊 SESSION_PROFILE|sid=session_0234_4946b66|msgs=4|user=1|staff=3|chars=188|merged=False
-   📊 SESSION_PROFILE|sid=session_0235_06f20f7|msgs=5|user=3|staff=2|chars=141|merged=False
-   📊 SESSION_PROFILE|sid=session_0236_2f76ba6|msgs=8|user=3|staff=5|chars=396|merged=False
-   📊 SESSION_PROFILE|sid=session_0237_707ba2f|msgs=11|user=4|staff=7|chars=327|merged=False
-   📊 SESSION_PROFILE|sid=session_0238_063c4de|msgs=15|user=5|staff=10|chars=351|merged=False
-   📊 SESSION_PROFILE|sid=session_0239_d7900b1|msgs=12|user=4|staff=8|chars=276|merged=False
-   📊 SESSION_PROFILE|sid=session_0240_a92c210|msgs=11|user=3|staff=8|chars=697|merged=False
-   📊 SESSION_PROFILE|sid=session_0242_89f58df|msgs=18|user=4|staff=14|chars=1017|merged=False
-   📊 SESSION_PROFILE|sid=session_0243_4507f8a|msgs=7|user=3|staff=4|chars=159|merged=False
-   📊 SESSION_PROFILE|sid=session_0244_1d3b70d|msgs=7|user=3|staff=4|chars=290|merged=False
-   📊 SESSION_PROFILE|sid=session_0245_d5d7c6d|msgs=7|user=2|staff=5|chars=204|merged=False
-   📊 SESSION_PROFILE|sid=session_0246_570c671|msgs=6|user=3|staff=3|chars=279|merged=False
-   📊 SESSION_PROFILE|sid=session_0247_927da7d|msgs=30|user=12|staff=18|chars=1383|merged=False
-   📊 SESSION_PROFILE|sid=session_0248_dd2008f|msgs=27|user=9|staff=18|chars=1247|merged=False
-   📊 SESSION_PROFILE|sid=session_0249_a92c210|msgs=17|user=5|staff=12|chars=1054|merged=False
-   📊 SESSION_PROFILE|sid=session_0250_86556d3|msgs=6|user=3|staff=3|chars=57|merged=False
-   📊 SESSION_PROFILE|sid=session_0251_fe9d81e|msgs=17|user=17|staff=0|chars=495|merged=False
-   📊 SESSION_PROFILE|sid=session_0253_a92c210|msgs=6|user=1|staff=5|chars=601|merged=False
-   📊 SESSION_PROFILE|sid=session_0254_59bd689|msgs=16|user=6|staff=10|chars=780|merged=False
-   📊 SESSION_PROFILE|sid=session_0255_e995a0a|msgs=23|user=9|staff=14|chars=827|merged=False
-   📊 SESSION_PROFILE|sid=session_0256_8417643|msgs=5|user=2|staff=3|chars=302|merged=False
-   📊 SESSION_PROFILE|sid=session_0257_5300ef1|msgs=5|user=2|staff=3|chars=127|merged=False
-   📊 SESSION_PROFILE|sid=session_0258_cab0138|msgs=19|user=7|staff=12|chars=691|merged=False
-   📊 SESSION_PROFILE|sid=session_0259_313263f|msgs=5|user=2|staff=3|chars=201|merged=False
-   📊 SESSION_PROFILE|sid=session_0260_a8fe145|msgs=3|user=1|staff=2|chars=461|merged=False
-   📊 SESSION_PROFILE|sid=session_0261_0c42164|msgs=9|user=5|staff=4|chars=782|merged=False
-   📊 SESSION_PROFILE|sid=session_0262_7eca689|msgs=10|user=3|staff=7|chars=403|merged=False
-   📊 SESSION_PROFILE|sid=session_0263_3450474|msgs=8|user=1|staff=7|chars=795|merged=False
-   📊 SESSION_PROFILE|sid=session_0264_a92c210|msgs=47|user=19|staff=28|chars=2078|merged=False
-   📊 SESSION_PROFILE|sid=session_0265_a92c210|msgs=8|user=1|staff=7|chars=730|merged=False
-   📊 SESSION_PROFILE|sid=session_0266_1ec6576|msgs=30|user=14|staff=16|chars=691|merged=False
-   📊 SESSION_PROFILE|sid=session_0267_4fecd57|msgs=7|user=3|staff=4|chars=296|merged=False
-   📊 SESSION_PROFILE|sid=session_0268_c955406|msgs=8|user=2|staff=6|chars=402|merged=False
-   📊 SESSION_PROFILE|sid=session_0269_7eca689|msgs=8|user=5|staff=3|chars=178|merged=False
-   📊 SESSION_PROFILE|sid=session_0271_59bd689|msgs=6|user=3|staff=3|chars=127|merged=False
-   📊 SESSION_PROFILE|sid=session_0272_d5d7c6d|msgs=6|user=1|staff=5|chars=609|merged=False
-   📊 SESSION_PROFILE|sid=session_0273_59bd689|msgs=3|user=1|staff=2|chars=179|merged=False
-   📊 SESSION_PROFILE|sid=session_0274_7eca689|msgs=39|user=16|staff=23|chars=1500|merged=False
-   📊 SESSION_PROFILE|sid=session_0275_7eca689|msgs=8|user=4|staff=4|chars=230|merged=False
-   📊 SESSION_PROFILE|sid=session_0276_a92c210|msgs=14|user=5|staff=9|chars=672|merged=False
-   📊 SESSION_PROFILE|sid=session_0277_d5d7c6d|msgs=18|user=7|staff=11|chars=852|merged=False
-   📊 SESSION_PROFILE|sid=session_0279_d431b52|msgs=17|user=7|staff=10|chars=797|merged=False
-   📊 SESSION_PROFILE|sid=session_0280_abe35cf|msgs=5|user=2|staff=3|chars=221|merged=False
-   📊 SESSION_PROFILE|sid=session_0281_0f921bd|msgs=7|user=2|staff=5|chars=462|merged=False
-   📊 SESSION_PROFILE|sid=session_0282_515749a|msgs=6|user=2|staff=4|chars=274|merged=False
-   📊 SESSION_PROFILE|sid=session_0284_d5d7c6d|msgs=27|user=11|staff=16|chars=1091|merged=False
-   📊 SESSION_PROFILE|sid=session_0286_cdb1bf9|msgs=8|user=3|staff=5|chars=148|merged=False
-   📊 SESSION_PROFILE|sid=session_0287_7f32261|msgs=11|user=3|staff=8|chars=344|merged=False
-   📊 SESSION_PROFILE|sid=session_0288_6fc9ead|msgs=4|user=1|staff=3|chars=296|merged=False
-   📊 SESSION_PROFILE|sid=session_0289_2f9d5d6|msgs=25|user=10|staff=15|chars=938|merged=False
-   📊 SESSION_PROFILE|sid=session_0290_c654026|msgs=9|user=4|staff=5|chars=822|merged=False
-   📊 SESSION_PROFILE|sid=session_0291_c34239b|msgs=17|user=8|staff=9|chars=872|merged=False
-   📊 SESSION_PROFILE|sid=session_0292_720b93c|msgs=7|user=2|staff=5|chars=385|merged=False
-   📊 SESSION_PROFILE|sid=session_0293_da8ec74|msgs=15|user=5|staff=10|chars=794|merged=False
-   📊 SESSION_PROFILE|sid=session_0294_82e70b0|msgs=14|user=5|staff=9|chars=471|merged=False
-   📊 SESSION_PROFILE|sid=session_0295_a92c210|msgs=12|user=3|staff=9|chars=1042|merged=False
-   📊 SESSION_PROFILE|sid=session_0296_24ad799|msgs=5|user=4|staff=1|chars=94|merged=False
-   📊 SESSION_PROFILE|sid=session_0298_da0e610|msgs=3|user=1|staff=2|chars=101|merged=False
-   📊 SESSION_PROFILE|sid=session_0299_02d6a03|msgs=5|user=1|staff=4|chars=175|merged=False
-   📊 SESSION_PROFILE|sid=session_0300_d5d7c6d|msgs=17|user=9|staff=8|chars=629|merged=False
-   📊 SESSION_PROFILE|sid=session_0301_847a46f|msgs=9|user=5|staff=4|chars=251|merged=False
-   📊 SESSION_PROFILE|sid=session_0302_1600bb8|msgs=6|user=3|staff=3|chars=138|merged=False
-   📊 SESSION_PROFILE|sid=session_0303_3333d84|msgs=4|user=2|staff=2|chars=89|merged=False
-   📊 SESSION_PROFILE|sid=session_0304_bb626ad|msgs=4|user=2|staff=2|chars=77|merged=False
-   📊 SESSION_PROFILE|sid=session_0305_da1a299|msgs=5|user=3|staff=2|chars=119|merged=False
-   📊 SESSION_PROFILE|sid=session_0307_886c63b|msgs=12|user=3|staff=9|chars=531|merged=False
-   📊 SESSION_PROFILE|sid=session_0308_a92c210|msgs=4|user=1|staff=3|chars=491|merged=False
-   📊 SESSION_PROFILE|sid=session_0309_7eca689|msgs=3|user=1|staff=2|chars=181|merged=False
-   📊 SESSION_PROFILE|sid=session_0310_c63f012|msgs=11|user=5|staff=6|chars=525|merged=False
-   📊 SESSION_PROFILE|sid=session_0311_38569af|msgs=40|user=15|staff=25|chars=1637|merged=False
-   📊 SESSION_PROFILE|sid=session_0312_b070330|msgs=9|user=4|staff=5|chars=364|merged=False
-   📊 SESSION_PROFILE|sid=session_0313_3ecb97f|msgs=20|user=5|staff=15|chars=763|merged=False
-   📊 SESSION_PROFILE|sid=session_0314_d5d7c6d|msgs=9|user=4|staff=5|chars=649|merged=False
-   📊 SESSION_PROFILE|sid=session_0315_3f7bf26|msgs=3|user=1|staff=2|chars=70|merged=False
-   📊 SESSION_PROFILE|sid=session_0316_afe0edd|msgs=6|user=3|staff=3|chars=219|merged=False
-   📊 SESSION_PROFILE|sid=session_0317_8c37651|msgs=9|user=2|staff=7|chars=352|merged=False
-   📊 SESSION_PROFILE|sid=session_0318_dbb20c1|msgs=11|user=4|staff=7|chars=769|merged=False
-   📊 SESSION_PROFILE|sid=session_0319_0a58ae4|msgs=10|user=4|staff=6|chars=186|merged=False
-   📊 SESSION_PROFILE|sid=session_0320_e5a6ddf|msgs=7|user=3|staff=4|chars=199|merged=False
-   📊 SESSION_PROFILE|sid=session_0321_d588164|msgs=8|user=2|staff=6|chars=692|merged=False
-   📊 SESSION_PROFILE|sid=session_0322_f0d6a34|msgs=14|user=3|staff=11|chars=753|merged=False
-   📊 SESSION_PROFILE|sid=session_0323_8024c76|msgs=13|user=13|staff=0|chars=743|merged=False
-   📊 SESSION_PROFILE|sid=session_0324_a7e9193|msgs=4|user=2|staff=2|chars=272|merged=False
-   📊 SESSION_PROFILE|sid=session_0325_66be591|msgs=8|user=2|staff=6|chars=221|merged=False
-   📊 SESSION_PROFILE|sid=session_0327_7eca689|msgs=9|user=5|staff=4|chars=586|merged=False
-   📊 SESSION_PROFILE|sid=session_0328_65591ee|msgs=11|user=4|staff=7|chars=564|merged=False
-   📊 SESSION_PROFILE|sid=session_0329_fb37c10|msgs=6|user=1|staff=5|chars=302|merged=False
-   📊 SESSION_PROFILE|sid=session_0330_7eca689|msgs=13|user=3|staff=10|chars=877|merged=False
-   📊 SESSION_PROFILE|sid=session_0331_cdb1bf9|msgs=12|user=3|staff=9|chars=1136|merged=False
-   📊 SESSION_PROFILE|sid=session_0332_4a3da9c|msgs=19|user=8|staff=11|chars=1091|merged=False
-   📊 SESSION_PROFILE|sid=session_0333_7adbcfe|msgs=5|user=2|staff=3|chars=528|merged=False
-   📊 SESSION_PROFILE|sid=session_0334_842c3f4|msgs=7|user=3|staff=4|chars=457|merged=False
-   📊 SESSION_PROFILE|sid=session_0335_72183f8|msgs=42|user=15|staff=27|chars=2122|merged=False
-   📊 SESSION_PROFILE|sid=session_0336_a7902d6|msgs=20|user=6|staff=14|chars=895|merged=False
-   📊 SESSION_PROFILE|sid=session_0338_0accdf3|msgs=7|user=3|staff=4|chars=271|merged=False
-   📊 SESSION_PROFILE|sid=session_0339_f6b1618|msgs=9|user=2|staff=7|chars=412|merged=False
-   📊 SESSION_PROFILE|sid=session_0340_0accdf3|msgs=6|user=3|staff=3|chars=234|merged=False
-   📊 SESSION_PROFILE|sid=session_0341_a7902d6|msgs=4|user=2|staff=2|chars=113|merged=False
-   📊 SESSION_PROFILE|sid=session_0342_90b0a99|msgs=13|user=2|staff=11|chars=897|merged=False
-   📊 SESSION_PROFILE|sid=session_0343_3207990|msgs=23|user=14|staff=9|chars=1085|merged=False
-   📊 SESSION_PROFILE|sid=session_0344_38569af|msgs=10|user=4|staff=6|chars=471|merged=False
-   📊 SESSION_PROFILE|sid=session_0345_b2865fd|msgs=14|user=1|staff=13|chars=868|merged=False
-   📊 SESSION_PROFILE|sid=session_0346_cdb1bf9|msgs=12|user=4|staff=8|chars=443|merged=False
-   📊 SESSION_PROFILE|sid=session_0347_bb34546|msgs=15|user=4|staff=11|chars=673|merged=False
-   📊 SESSION_PROFILE|sid=session_0348_69c21f9|msgs=25|user=13|staff=12|chars=887|merged=False
-   📊 SESSION_PROFILE|sid=session_0349_a232b10|msgs=31|user=15|staff=16|chars=1138|merged=False
-   📊 SESSION_PROFILE|sid=session_0350_dfe429c|msgs=13|user=7|staff=6|chars=115|merged=False
-   📊 SESSION_PROFILE|sid=session_0351_ebe4a1d|msgs=21|user=5|staff=16|chars=1849|merged=False
-   📊 SESSION_PROFILE|sid=session_0352_694272e|msgs=12|user=3|staff=9|chars=495|merged=False
-   📊 SESSION_PROFILE|sid=session_0353_cdb1bf9|msgs=4|user=2|staff=2|chars=80|merged=False
-   📊 SESSION_PROFILE|sid=session_0354_d5d7c6d|msgs=16|user=5|staff=11|chars=831|merged=False
-   📊 SESSION_PROFILE|sid=session_0356_a92c210|msgs=25|user=7|staff=18|chars=1880|merged=False
-   📊 SESSION_PROFILE|sid=session_0357_f86219b|msgs=13|user=6|staff=7|chars=883|merged=False
-   📊 SESSION_PROFILE|sid=session_0358_da653d5|msgs=31|user=12|staff=19|chars=1480|merged=False
-   📊 SESSION_PROFILE|sid=session_0359_3333d84|msgs=6|user=2|staff=4|chars=252|merged=False
-   📊 SESSION_PROFILE|sid=session_0360_9ee3b2d|msgs=15|user=5|staff=10|chars=406|merged=False
-   📊 SESSION_PROFILE|sid=session_0361_8891ae4|msgs=6|user=3|staff=3|chars=151|merged=False
-   📊 SESSION_PROFILE|sid=session_0363_4b1d845|msgs=5|user=1|staff=4|chars=370|merged=False
-   📊 SESSION_PROFILE|sid=session_0364_f6b362e|msgs=3|user=2|staff=1|chars=29|merged=False
-   📊 SESSION_PROFILE|sid=session_0365_f6b362e|msgs=7|user=2|staff=5|chars=382|merged=False
-   📊 SESSION_PROFILE|sid=session_0366_bd65a70|msgs=15|user=4|staff=11|chars=635|merged=False
-   📊 SESSION_PROFILE|sid=session_0367_f6b362e|msgs=8|user=2|staff=6|chars=507|merged=False
-   📊 SESSION_PROFILE|sid=session_0368_8aa7073|msgs=11|user=5|staff=6|chars=543|merged=False
-   📊 SESSION_PROFILE|sid=session_0369_e5eab02|msgs=14|user=4|staff=10|chars=792|merged=False
-   📊 SESSION_PROFILE|sid=session_0370_f6b362e|msgs=5|user=2|staff=3|chars=350|merged=False
-   📊 SESSION_PROFILE|sid=session_0371_a1339e0|msgs=7|user=2|staff=5|chars=419|merged=False
-   📊 SESSION_PROFILE|sid=session_0372_a9aad14|msgs=10|user=2|staff=8|chars=464|merged=False
-   📊 SESSION_PROFILE|sid=session_0373_77c4089|msgs=7|user=2|staff=5|chars=316|merged=False
-   📊 SESSION_PROFILE|sid=session_0374_3ad63cb|msgs=14|user=6|staff=8|chars=366|merged=False
-   📊 SESSION_PROFILE|sid=session_0375_4131f34|msgs=34|user=14|staff=20|chars=1269|merged=False
-   📊 SESSION_PROFILE|sid=session_0376_d5d7c6d|msgs=20|user=6|staff=14|chars=1267|merged=False
-   📊 SESSION_PROFILE|sid=session_0378_4131f34|msgs=4|user=2|staff=2|chars=104|merged=False
-   📊 SESSION_PROFILE|sid=session_0379_3b24e82|msgs=19|user=7|staff=12|chars=564|merged=False
-   📊 SESSION_PROFILE|sid=session_0380_f0f7012|msgs=13|user=13|staff=0|chars=232|merged=False
-   📊 SESSION_PROFILE|sid=session_0381_f0f7ddd|msgs=9|user=3|staff=6|chars=542|merged=False
-   📊 SESSION_PROFILE|sid=session_0382_7eca689|msgs=21|user=7|staff=14|chars=867|merged=False
-   📊 SESSION_PROFILE|sid=session_0383_da0e610|msgs=5|user=1|staff=4|chars=522|merged=False
-   📊 SESSION_PROFILE|sid=session_0384_a92c210|msgs=8|user=1|staff=7|chars=617|merged=False
-   📊 SESSION_PROFILE|sid=session_0386_da0e610|msgs=16|user=7|staff=9|chars=695|merged=False
-   📊 SESSION_PROFILE|sid=session_0387_625d5e6|msgs=13|user=4|staff=9|chars=345|merged=False
-   📊 SESSION_PROFILE|sid=session_0389_193298b|msgs=8|user=3|staff=5|chars=581|merged=False
-   📊 SESSION_PROFILE|sid=session_0391_4a909d0|msgs=10|user=5|staff=5|chars=219|merged=False
-   📊 SESSION_PROFILE|sid=session_0392_a92c210|msgs=9|user=2|staff=7|chars=608|merged=False
-   📊 SESSION_PROFILE|sid=session_0393_d0fdab4|msgs=17|user=6|staff=11|chars=480|merged=False
-   📊 SESSION_PROFILE|sid=session_0394_7e1979c|msgs=6|user=3|staff=3|chars=317|merged=False
-   📊 SESSION_PROFILE|sid=session_0395_cdb1bf9|msgs=8|user=3|staff=5|chars=212|merged=False
-   📊 SESSION_PROFILE|sid=session_0396_00581a6|msgs=9|user=2|staff=7|chars=408|merged=False
-   📊 SESSION_PROFILE|sid=session_0397_d48f43c|msgs=38|user=17|staff=21|chars=1067|merged=False
-   📊 SESSION_PROFILE|sid=session_0398_ebc0002|msgs=35|user=13|staff=22|chars=1411|merged=False
-   📊 SESSION_PROFILE|sid=session_0399_d5d7c6d|msgs=28|user=10|staff=18|chars=1160|merged=False
-   📊 SESSION_PROFILE|sid=session_0000_a92c210|msgs=7|user=2|staff=5|chars=267|merged=False
-   📊 SESSION_PROFILE|sid=session_0015_8024c76|msgs=90|user=90|staff=0|chars=3000|merged=False
-   📊 SESSION_PROFILE|sid=session_0021_8024c76|msgs=15|user=15|staff=0|chars=661|merged=False
-   📊 SESSION_PROFILE|sid=session_0029_5bdbb5b|msgs=4|user=1|staff=3|chars=93|merged=False
-   📊 SESSION_PROFILE|sid=session_0036_57b4528|msgs=9|user=4|staff=5|chars=205|merged=False
-   📊 SESSION_PROFILE|sid=session_0039_542522f|msgs=3|user=1|staff=2|chars=101|merged=False
-   📊 SESSION_PROFILE|sid=session_0040_240c8d7|msgs=9|user=3|staff=6|chars=473|merged=False
-   📊 SESSION_PROFILE|sid=session_0041_16e9abc|msgs=24|user=8|staff=16|chars=1045|merged=False
-   📊 SESSION_PROFILE|sid=session_0046_90b41dc|msgs=11|user=4|staff=7|chars=778|merged=False
-   📊 SESSION_PROFILE|sid=session_0049_4f71c8b|msgs=6|user=3|staff=3|chars=279|merged=False
-   📊 SESSION_PROFILE|sid=session_0054_35413ad|msgs=5|user=2|staff=3|chars=395|merged=False
-   📊 SESSION_PROFILE|sid=session_0060_a92c210|msgs=12|user=4|staff=8|chars=541|merged=False
-   📊 SESSION_PROFILE|sid=session_0091_0f921bd|msgs=5|user=1|staff=4|chars=268|merged=False
-   📊 SESSION_PROFILE|sid=session_0096_960cb70|msgs=10|user=2|staff=8|chars=569|merged=False
-   📊 SESSION_PROFILE|sid=session_0108_a1e84b6|msgs=11|user=3|staff=8|chars=539|merged=False
-   📊 SESSION_PROFILE|sid=session_0113_ba189dc|msgs=13|user=4|staff=9|chars=626|merged=False
-   📊 SESSION_PROFILE|sid=session_0120_09d6c7b|msgs=9|user=1|staff=8|chars=580|merged=False
-   📊 SESSION_PROFILE|sid=session_0122_75cb50f|msgs=16|user=7|staff=9|chars=268|merged=False
-   📊 SESSION_PROFILE|sid=session_0136_7249533|msgs=4|user=2|staff=2|chars=202|merged=False
-   📊 SESSION_PROFILE|sid=session_0137_a92c210|msgs=9|user=3|staff=6|chars=425|merged=False
-   📊 SESSION_PROFILE|sid=session_0153_8024c76|msgs=20|user=20|staff=0|chars=877|merged=False
-   📊 SESSION_PROFILE|sid=session_0164_4755767|msgs=11|user=2|staff=9|chars=780|merged=False
-   📊 SESSION_PROFILE|sid=session_0165_eb9b755|msgs=13|user=8|staff=5|chars=290|merged=False
-   📊 SESSION_PROFILE|sid=session_0166_8024c76|msgs=20|user=20|staff=0|chars=1014|merged=False
-   📊 SESSION_PROFILE|sid=session_0172_64fea49|msgs=9|user=4|staff=5|chars=557|merged=False
-   📊 SESSION_PROFILE|sid=session_0181_9578bd3|msgs=28|user=12|staff=16|chars=901|merged=False
-   📊 SESSION_PROFILE|sid=session_0182_e8bff49|msgs=17|user=4|staff=13|chars=1002|merged=False
-   📊 SESSION_PROFILE|sid=session_0183_600e4b1|msgs=18|user=9|staff=9|chars=287|merged=False
-   📊 SESSION_PROFILE|sid=session_0186_00aa8a9|msgs=32|user=12|staff=20|chars=1876|merged=False
-   📊 SESSION_PROFILE|sid=session_0196_a25d2a9|msgs=3|user=1|staff=2|chars=91|merged=False
-   📊 SESSION_PROFILE|sid=session_0198_d1b4ec9|msgs=12|user=3|staff=9|chars=852|merged=False
-   📊 SESSION_PROFILE|sid=session_0208_ec002cf|msgs=5|user=2|staff=3|chars=150|merged=False
-   📊 SESSION_PROFILE|sid=session_0209_3876259|msgs=13|user=7|staff=6|chars=369|merged=False
-   📊 SESSION_PROFILE|sid=session_0225_f9e547e|msgs=8|user=2|staff=6|chars=364|merged=False
-   📊 SESSION_PROFILE|sid=session_0228_d5d7c6d|msgs=8|user=2|staff=6|chars=636|merged=False
-   📊 SESSION_PROFILE|sid=session_0233_4e4751f|msgs=4|user=1|staff=3|chars=83|merged=False
-   📊 SESSION_PROFILE|sid=session_0239_d7900b1|msgs=12|user=4|staff=8|chars=276|merged=False
-   📊 SESSION_PROFILE|sid=session_0244_1d3b70d|msgs=7|user=3|staff=4|chars=290|merged=False
-   📊 SESSION_PROFILE|sid=session_0245_d5d7c6d|msgs=7|user=2|staff=5|chars=204|merged=False
-   📊 SESSION_PROFILE|sid=session_0246_570c671|msgs=6|user=3|staff=3|chars=279|merged=False
-   📊 SESSION_PROFILE|sid=session_0249_a92c210|msgs=17|user=5|staff=12|chars=1054|merged=False
-   📊 SESSION_PROFILE|sid=session_0250_86556d3|msgs=6|user=3|staff=3|chars=57|merged=False
-   📊 SESSION_PROFILE|sid=session_0252_33db0a0|msgs=4|user=2|staff=2|chars=89|merged=False
-   📊 SESSION_PROFILE|sid=session_0255_e995a0a|msgs=23|user=9|staff=14|chars=827|merged=False
-   📊 SESSION_PROFILE|sid=session_0259_313263f|msgs=5|user=2|staff=3|chars=201|merged=False
-   📊 SESSION_PROFILE|sid=session_0282_515749a|msgs=6|user=2|staff=4|chars=274|merged=False
-   📊 SESSION_PROFILE|sid=session_0284_d5d7c6d|msgs=27|user=11|staff=16|chars=1091|merged=False
-   📊 SESSION_PROFILE|sid=session_0286_cdb1bf9|msgs=8|user=3|staff=5|chars=148|merged=False
-   📊 SESSION_PROFILE|sid=session_0296_24ad799|msgs=5|user=4|staff=1|chars=94|merged=False
-   📊 SESSION_PROFILE|sid=session_0300_d5d7c6d|msgs=17|user=9|staff=8|chars=629|merged=False
-   📊 SESSION_PROFILE|sid=session_0301_847a46f|msgs=9|user=5|staff=4|chars=251|merged=False
-   📊 SESSION_PROFILE|sid=session_0303_3333d84|msgs=4|user=2|staff=2|chars=89|merged=False
-   📊 SESSION_PROFILE|sid=session_0305_da1a299|msgs=5|user=3|staff=2|chars=119|merged=False
-   📊 SESSION_PROFILE|sid=session_0307_886c63b|msgs=12|user=3|staff=9|chars=531|merged=False
-   📊 SESSION_PROFILE|sid=session_0309_7eca689|msgs=3|user=1|staff=2|chars=181|merged=False
-   📊 SESSION_PROFILE|sid=session_0311_38569af|msgs=40|user=15|staff=25|chars=1637|merged=False
-   📊 SESSION_PROFILE|sid=session_0315_3f7bf26|msgs=3|user=1|staff=2|chars=70|merged=False
-   📊 SESSION_PROFILE|sid=session_0317_8c37651|msgs=9|user=2|staff=7|chars=352|merged=False
-   📊 SESSION_PROFILE|sid=session_0321_d588164|msgs=8|user=2|staff=6|chars=692|merged=False
-   📊 SESSION_PROFILE|sid=session_0336_a7902d6|msgs=20|user=6|staff=14|chars=895|merged=False
-   📊 SESSION_PROFILE|sid=session_0350_dfe429c|msgs=13|user=7|staff=6|chars=115|merged=False
-   📊 SESSION_PROFILE|sid=session_0371_a1339e0|msgs=7|user=2|staff=5|chars=419|merged=False
-   📊 SESSION_PROFILE|sid=session_0374_3ad63cb|msgs=14|user=6|staff=8|chars=366|merged=False
-   📊 SESSION_PROFILE|sid=session_0391_4a909d0|msgs=10|user=5|staff=5|chars=219|merged=False
-   📊 SESSION_PROFILE|sid=session_0002_4486812|msgs=24|user=13|staff=11|chars=1078|merged=False
-   📊 SESSION_PROFILE|sid=session_0003_b66fca9|msgs=15|user=3|staff=12|chars=1325|merged=False
-   📊 SESSION_PROFILE|sid=session_0004_347befb|msgs=8|user=2|staff=6|chars=310|merged=False
-   📊 SESSION_PROFILE|sid=session_0005_89201e0|msgs=8|user=2|staff=6|chars=396|merged=False
-   📊 SESSION_PROFILE|sid=session_0008_7abde75|msgs=7|user=1|staff=6|chars=449|merged=False
-   📊 SESSION_PROFILE|sid=session_0009_447dbb6|msgs=28|user=9|staff=19|chars=1078|merged=False
-   📊 SESSION_PROFILE|sid=session_0010_c1e103f|msgs=24|user=9|staff=15|chars=1287|merged=False
-   📊 SESSION_PROFILE|sid=session_0011_7923097|msgs=11|user=3|staff=8|chars=746|merged=False
-   📊 SESSION_PROFILE|sid=session_0012_a7c63c2|msgs=8|user=1|staff=7|chars=450|merged=False
-   📊 SESSION_PROFILE|sid=session_0013_2deba05|msgs=7|user=1|staff=6|chars=296|merged=False
-   📊 SESSION_PROFILE|sid=session_0014_91ec92b|msgs=42|user=14|staff=28|chars=1469|merged=False
-   📊 SESSION_PROFILE|sid=session_0016_12d506a|msgs=10|user=2|staff=8|chars=339|merged=False
-   📊 SESSION_PROFILE|sid=session_0017_043457a|msgs=3|user=1|staff=2|chars=113|merged=False
-   📊 SESSION_PROFILE|sid=session_0018_d5d7c6d|msgs=45|user=22|staff=23|chars=880|merged=False
-   📊 SESSION_PROFILE|sid=session_0019_d5d7c6d|msgs=40|user=18|staff=22|chars=1659|merged=False
-   📊 SESSION_PROFILE|sid=session_0020_76efbc7|msgs=28|user=11|staff=17|chars=1033|merged=False
-   📊 SESSION_PROFILE|sid=session_0022_ea50adc|msgs=7|user=4|staff=3|chars=219|merged=False
-   📊 SESSION_PROFILE|sid=session_0023_4e89bb1|msgs=5|user=4|staff=1|chars=89|merged=False
-   📊 SESSION_PROFILE|sid=session_0024_74e464d|msgs=27|user=10|staff=17|chars=1281|merged=False
-   📊 SESSION_PROFILE|sid=session_0025_7ddda22|msgs=6|user=3|staff=3|chars=97|merged=False
-   📊 SESSION_PROFILE|sid=session_0026_f074a04|msgs=11|user=3|staff=8|chars=339|merged=False
-   📊 SESSION_PROFILE|sid=session_0027_46fd432|msgs=7|user=1|staff=6|chars=449|merged=False
-   📊 SESSION_PROFILE|sid=session_0028_ac29aae|msgs=29|user=6|staff=23|chars=2111|merged=False
-   📊 SESSION_PROFILE|sid=session_0031_616028f|msgs=99|user=99|staff=0|chars=1890|merged=False
-   📊 SESSION_PROFILE|sid=session_0032_da0e610|msgs=8|user=2|staff=6|chars=531|merged=False
-   📊 SESSION_PROFILE|sid=session_0033_e050e03|msgs=11|user=4|staff=7|chars=762|merged=False
-   📊 SESSION_PROFILE|sid=session_0034_9d8f4ab|msgs=3|user=1|staff=2|chars=72|merged=False
-   📊 SESSION_PROFILE|sid=session_0035_bd93f88|msgs=8|user=3|staff=5|chars=270|merged=False
-   📊 SESSION_PROFILE|sid=session_0037_063c4de|msgs=11|user=3|staff=8|chars=381|merged=False
-   📊 SESSION_PROFILE|sid=session_0038_925e3a0|msgs=3|user=2|staff=1|chars=218|merged=False
-   📊 SESSION_PROFILE|sid=session_0042_7eca689|msgs=4|user=2|staff=2|chars=231|merged=False
-   📊 SESSION_PROFILE|sid=session_0043_a8ffee2|msgs=5|user=2|staff=3|chars=207|merged=False
-   📊 SESSION_PROFILE|sid=session_0044_af24872|msgs=18|user=5|staff=13|chars=1002|merged=False
-   📊 SESSION_PROFILE|sid=session_0045_a92c210|msgs=14|user=4|staff=10|chars=1127|merged=False
-   📊 SESSION_PROFILE|sid=session_0047_d285458|msgs=7|user=2|staff=5|chars=612|merged=False
-   📊 SESSION_PROFILE|sid=session_0048_d76c53c|msgs=5|user=2|staff=3|chars=150|merged=False
-   📊 SESSION_PROFILE|sid=session_0050_d78a549|msgs=14|user=7|staff=7|chars=1150|merged=False
-   📊 SESSION_PROFILE|sid=session_0051_9935bdc|msgs=7|user=3|staff=4|chars=181|merged=False
-   📊 SESSION_PROFILE|sid=session_0052_d78a549|msgs=6|user=3|staff=3|chars=257|merged=False
-   📊 SESSION_PROFILE|sid=session_0053_86ca9e1|msgs=32|user=10|staff=22|chars=1179|merged=False
-   📊 SESSION_PROFILE|sid=session_0055_87b8e10|msgs=12|user=4|staff=8|chars=434|merged=False
-   📊 SESSION_PROFILE|sid=session_0057_d8b3da0|msgs=18|user=7|staff=11|chars=724|merged=False
-   📊 SESSION_PROFILE|sid=session_0058_1ae024d|msgs=40|user=17|staff=23|chars=1320|merged=False
-   📊 SESSION_PROFILE|sid=session_0059_89deaf8|msgs=6|user=3|staff=3|chars=253|merged=False
-   📊 SESSION_PROFILE|sid=session_0061_7eca689|msgs=10|user=4|staff=6|chars=577|merged=False
-   📊 SESSION_PROFILE|sid=session_0062_a92c210|msgs=17|user=9|staff=8|chars=638|merged=False
-   📊 SESSION_PROFILE|sid=session_0063_d5d7c6d|msgs=8|user=2|staff=6|chars=553|merged=False
-   📊 SESSION_PROFILE|sid=session_0065_06260f5|msgs=11|user=2|staff=9|chars=646|merged=False
-   📊 SESSION_PROFILE|sid=session_0066_2762920|msgs=7|user=2|staff=5|chars=743|merged=False
-   📊 SESSION_PROFILE|sid=session_0067_04247a1|msgs=5|user=2|staff=3|chars=210|merged=False
-   📊 SESSION_PROFILE|sid=session_0068_f6b362e|msgs=10|user=5|staff=5|chars=158|merged=False
-   📊 SESSION_PROFILE|sid=session_0069_7eca689|msgs=13|user=5|staff=8|chars=493|merged=False
-   📊 SESSION_PROFILE|sid=session_0071_7ba182f|msgs=5|user=1|staff=4|chars=716|merged=False
-   📊 SESSION_PROFILE|sid=session_0072_7de7bf5|msgs=18|user=5|staff=13|chars=777|merged=False
-   📊 SESSION_PROFILE|sid=session_0073_2bf486b|msgs=31|user=8|staff=23|chars=2670|merged=False
-   📊 SESSION_PROFILE|sid=session_0074_708178c|msgs=8|user=3|staff=5|chars=216|merged=False
-   📊 SESSION_PROFILE|sid=session_0075_bf51ed2|msgs=18|user=7|staff=11|chars=591|merged=False
-   📊 SESSION_PROFILE|sid=session_0076_348b5d9|msgs=4|user=2|staff=2|chars=106|merged=False
-   📊 SESSION_PROFILE|sid=session_0077_b0532e3|msgs=5|user=2|staff=3|chars=364|merged=False
-   📊 SESSION_PROFILE|sid=session_0078_cdb1bf9|msgs=23|user=7|staff=16|chars=863|merged=False
-   📊 SESSION_PROFILE|sid=session_0079_5450b6e|msgs=15|user=4|staff=11|chars=901|merged=False
-   📊 SESSION_PROFILE|sid=session_0080_7eca689|msgs=31|user=11|staff=20|chars=951|merged=False
-   📊 SESSION_PROFILE|sid=session_0081_35c98fd|msgs=12|user=3|staff=9|chars=551|merged=False
-   📊 SESSION_PROFILE|sid=session_0082_b970de5|msgs=12|user=6|staff=6|chars=199|merged=False
-   📊 SESSION_PROFILE|sid=session_0085_6c7f7fa|msgs=12|user=3|staff=9|chars=400|merged=False
-   📊 SESSION_PROFILE|sid=session_0086_80847d2|msgs=13|user=3|staff=10|chars=644|merged=False
-   📊 SESSION_PROFILE|sid=session_0087_a92c210|msgs=37|user=18|staff=19|chars=1095|merged=False
-   📊 SESSION_PROFILE|sid=session_0088_2c87a6d|msgs=5|user=2|staff=3|chars=205|merged=False
-   📊 SESSION_PROFILE|sid=session_0089_a92c210|msgs=20|user=6|staff=14|chars=1103|merged=False
-   📊 SESSION_PROFILE|sid=session_0090_982c581|msgs=4|user=2|staff=2|chars=84|merged=False
-   📊 SESSION_PROFILE|sid=session_0092_a5c05a1|msgs=8|user=3|staff=5|chars=309|merged=False
-   📊 SESSION_PROFILE|sid=session_0093_a92c210|msgs=8|user=2|staff=6|chars=579|merged=False
-   📊 SESSION_PROFILE|sid=session_0094_b49c63f|msgs=3|user=2|staff=1|chars=60|merged=False
-   📊 SESSION_PROFILE|sid=session_0095_0585c9e|msgs=10|user=2|staff=8|chars=413|merged=False
-   📊 SESSION_PROFILE|sid=session_0097_d5d7c6d|msgs=9|user=2|staff=7|chars=656|merged=False
-   📊 SESSION_PROFILE|sid=session_0098_da0e610|msgs=20|user=7|staff=13|chars=1058|merged=False
-   📊 SESSION_PROFILE|sid=session_0099_5bc5c29|msgs=4|user=1|staff=3|chars=209|merged=False
-   📊 SESSION_PROFILE|sid=session_0100_443a278|msgs=8|user=8|staff=0|chars=173|merged=False
-   📊 SESSION_PROFILE|sid=session_0101_e2afece|msgs=31|user=12|staff=19|chars=1646|merged=False
-   📊 SESSION_PROFILE|sid=session_0102_bd0846b|msgs=13|user=5|staff=8|chars=944|merged=False
-   📊 SESSION_PROFILE|sid=session_0104_bd0846b|msgs=4|user=2|staff=2|chars=305|merged=False
-   📊 SESSION_PROFILE|sid=session_0105_4b1cf7e|msgs=3|user=1|staff=2|chars=75|merged=False
-   📊 SESSION_PROFILE|sid=session_0106_bfd99b5|msgs=15|user=6|staff=9|chars=617|merged=False
-   📊 SESSION_PROFILE|sid=session_0107_e65a704|msgs=12|user=6|staff=6|chars=615|merged=False
-   📊 SESSION_PROFILE|sid=session_0109_cd7fb78|msgs=6|user=2|staff=4|chars=536|merged=False
-   📊 SESSION_PROFILE|sid=session_0110_fe9f3f8|msgs=3|user=1|staff=2|chars=178|merged=False
-   📊 SESSION_PROFILE|sid=session_0111_b2c4979|msgs=7|user=4|staff=3|chars=389|merged=False
-   📊 SESSION_PROFILE|sid=session_0112_f1e1cf5|msgs=21|user=8|staff=13|chars=640|merged=False
-   📊 SESSION_PROFILE|sid=session_0114_6b54b4f|msgs=24|user=8|staff=16|chars=813|merged=False
-   📊 SESSION_PROFILE|sid=session_0115_bf3b3de|msgs=9|user=2|staff=7|chars=728|merged=False
-   📊 SESSION_PROFILE|sid=session_0116_6b54b4f|msgs=6|user=3|staff=3|chars=259|merged=False
-   📊 SESSION_PROFILE|sid=session_0117_afabba4|msgs=22|user=7|staff=15|chars=948|merged=False
-   📊 SESSION_PROFILE|sid=session_0118_7231cc3|msgs=8|user=1|staff=7|chars=314|merged=False
-   📊 SESSION_PROFILE|sid=session_0119_7deaa07|msgs=15|user=7|staff=8|chars=345|merged=False
-   📊 SESSION_PROFILE|sid=session_0123_28a1b16|msgs=6|user=2|staff=4|chars=243|merged=False
-   📊 SESSION_PROFILE|sid=session_0124_d8a7442|msgs=15|user=6|staff=9|chars=419|merged=False
-   📊 SESSION_PROFILE|sid=session_0125_af422bf|msgs=6|user=2|staff=4|chars=202|merged=False
-   📊 SESSION_PROFILE|sid=session_0127_0342b5a|msgs=10|user=2|staff=8|chars=268|merged=False
-   📊 SESSION_PROFILE|sid=session_0128_f6cac58|msgs=12|user=3|staff=9|chars=785|merged=False
-   📊 SESSION_PROFILE|sid=session_0130_cd8a4c8|msgs=8|user=1|staff=7|chars=349|merged=False
-   📊 SESSION_PROFILE|sid=session_0131_da0e610|msgs=87|user=44|staff=43|chars=3004|merged=False
-   📊 SESSION_PROFILE|sid=session_0132_ab2845a|msgs=48|user=22|staff=26|chars=2216|merged=False
-   📊 SESSION_PROFILE|sid=session_0133_da0e610|msgs=7|user=2|staff=5|chars=611|merged=False
-   📊 SESSION_PROFILE|sid=session_0134_0fe6388|msgs=3|user=3|staff=0|chars=134|merged=False
-   📊 SESSION_PROFILE|sid=session_0135_e6b29ea|msgs=21|user=7|staff=14|chars=1092|merged=False
-   📊 SESSION_PROFILE|sid=session_0138_34af484|msgs=5|user=2|staff=3|chars=495|merged=False
-   📊 SESSION_PROFILE|sid=session_0139_4a756f0|msgs=7|user=3|staff=4|chars=161|merged=False
-   📊 SESSION_PROFILE|sid=session_0141_a7c9428|msgs=10|user=2|staff=8|chars=536|merged=False
-   📊 SESSION_PROFILE|sid=session_0142_f8ad342|msgs=9|user=1|staff=8|chars=445|merged=False
-   📊 SESSION_PROFILE|sid=session_0143_a92c210|msgs=14|user=5|staff=9|chars=801|merged=False
-   📊 SESSION_PROFILE|sid=session_0144_af422bf|msgs=4|user=2|staff=2|chars=110|merged=False
-   📊 SESSION_PROFILE|sid=session_0145_7eca689|msgs=5|user=2|staff=3|chars=212|merged=False
-   📊 SESSION_PROFILE|sid=session_0146_142c71a|msgs=7|user=2|staff=5|chars=609|merged=False
-   📊 SESSION_PROFILE|sid=session_0147_d1457b7|msgs=29|user=11|staff=18|chars=1225|merged=False
-   📊 SESSION_PROFILE|sid=session_0148_f6b362e|msgs=5|user=2|staff=3|chars=284|merged=False
-   📊 SESSION_PROFILE|sid=session_0150_bb0e83c|msgs=10|user=5|staff=5|chars=275|merged=False
-   📊 SESSION_PROFILE|sid=session_0152_7eca689|msgs=13|user=5|staff=8|chars=486|merged=False
-   📊 SESSION_PROFILE|sid=session_0154_3eba941|msgs=21|user=9|staff=12|chars=1017|merged=False
-   📊 SESSION_PROFILE|sid=session_0156_1cb6d3b|msgs=18|user=4|staff=14|chars=1054|merged=False
-   📊 SESSION_PROFILE|sid=session_0157_edd485e|msgs=5|user=1|staff=4|chars=238|merged=False
-   📊 SESSION_PROFILE|sid=session_0158_f6b362e|msgs=5|user=2|staff=3|chars=363|merged=False
-   📊 SESSION_PROFILE|sid=session_0159_f6b362e|msgs=5|user=2|staff=3|chars=340|merged=False
-   📊 SESSION_PROFILE|sid=session_0160_474e33a|msgs=17|user=5|staff=12|chars=528|merged=False
-   📊 SESSION_PROFILE|sid=session_0161_a4ba1c5|msgs=5|user=1|staff=4|chars=705|merged=False
-   📊 SESSION_PROFILE|sid=session_0162_820ac88|msgs=8|user=1|staff=7|chars=370|merged=False
-   📊 SESSION_PROFILE|sid=session_0163_cb1ae17|msgs=16|user=5|staff=11|chars=538|merged=False
-   📊 SESSION_PROFILE|sid=session_0167_d8e516b|msgs=14|user=4|staff=10|chars=650|merged=False
-   📊 SESSION_PROFILE|sid=session_0169_33c6325|msgs=4|user=2|staff=2|chars=153|merged=False
-   📊 SESSION_PROFILE|sid=session_0170_295713f|msgs=19|user=5|staff=14|chars=1108|merged=False
-   📊 SESSION_PROFILE|sid=session_0171_cb1ae17|msgs=4|user=2|staff=2|chars=278|merged=False
-   📊 SESSION_PROFILE|sid=session_0173_295713f|msgs=7|user=3|staff=4|chars=337|merged=False
-   📊 SESSION_PROFILE|sid=session_0174_b4f0823|msgs=19|user=4|staff=15|chars=896|merged=False
-   📊 SESSION_PROFILE|sid=session_0175_395533a|msgs=21|user=10|staff=11|chars=1097|merged=False
-   📊 SESSION_PROFILE|sid=session_0176_64fea49|msgs=4|user=2|staff=2|chars=108|merged=False
-   📊 SESSION_PROFILE|sid=session_0177_e406d6e|msgs=48|user=12|staff=36|chars=2697|merged=False
-   📊 SESSION_PROFILE|sid=session_0178_d5d7c6d|msgs=8|user=1|staff=7|chars=789|merged=False
-   📊 SESSION_PROFILE|sid=session_0180_a23459d|msgs=4|user=2|staff=2|chars=154|merged=False
-   📊 SESSION_PROFILE|sid=session_0184_76f39bf|msgs=7|user=1|staff=6|chars=405|merged=False
-   📊 SESSION_PROFILE|sid=session_0188_e97e920|msgs=10|user=3|staff=7|chars=356|merged=False
-   📊 SESSION_PROFILE|sid=session_0189_eacc9a6|msgs=11|user=3|staff=8|chars=678|merged=False
-   📊 SESSION_PROFILE|sid=session_0191_1590a52|msgs=4|user=1|staff=3|chars=160|merged=False
-   📊 SESSION_PROFILE|sid=session_0192_2581847|msgs=10|user=3|staff=7|chars=981|merged=False
-   📊 SESSION_PROFILE|sid=session_0193_da0e610|msgs=17|user=7|staff=10|chars=1023|merged=False
-   📊 SESSION_PROFILE|sid=session_0194_c0ab777|msgs=5|user=1|staff=4|chars=278|merged=False
-   📊 SESSION_PROFILE|sid=session_0197_ee1c2c7|msgs=17|user=5|staff=12|chars=351|merged=False
-   📊 SESSION_PROFILE|sid=session_0199_db67801|msgs=14|user=4|staff=10|chars=763|merged=False
-   📊 SESSION_PROFILE|sid=session_0200_942a5dc|msgs=14|user=5|staff=9|chars=858|merged=False
-   📊 SESSION_PROFILE|sid=session_0201_4e893a5|msgs=27|user=10|staff=17|chars=503|merged=False
-   📊 SESSION_PROFILE|sid=session_0202_03fca76|msgs=4|user=1|staff=3|chars=476|merged=False
-   📊 SESSION_PROFILE|sid=session_0203_2c47130|msgs=13|user=3|staff=10|chars=698|merged=False
-   📊 SESSION_PROFILE|sid=session_0204_7440991|msgs=10|user=3|staff=7|chars=784|merged=False
-   📊 SESSION_PROFILE|sid=session_0205_29f85da|msgs=13|user=3|staff=10|chars=468|merged=False
-   📊 SESSION_PROFILE|sid=session_0206_3855c39|msgs=6|user=2|staff=4|chars=497|merged=False
-   📊 SESSION_PROFILE|sid=session_0207_2394b52|msgs=11|user=2|staff=9|chars=358|merged=False
-   📊 SESSION_PROFILE|sid=session_0210_ea6124c|msgs=6|user=2|staff=4|chars=87|merged=False
-   📊 SESSION_PROFILE|sid=session_0212_da0e610|msgs=8|user=3|staff=5|chars=512|merged=False
-   📊 SESSION_PROFILE|sid=session_0214_00e1cc1|msgs=3|user=1|staff=2|chars=99|merged=False
-   📊 SESSION_PROFILE|sid=session_0215_e9fcc03|msgs=4|user=1|staff=3|chars=200|merged=False
-   📊 SESSION_PROFILE|sid=session_0216_da0e610|msgs=5|user=1|staff=4|chars=471|merged=False
-   📊 SESSION_PROFILE|sid=session_0217_29f85da|msgs=4|user=2|staff=2|chars=115|merged=False
-   📊 SESSION_PROFILE|sid=session_0218_441172e|msgs=3|user=1|staff=2|chars=176|merged=False
-   📊 SESSION_PROFILE|sid=session_0219_7c44ddc|msgs=4|user=1|staff=3|chars=556|merged=False
-   📊 SESSION_PROFILE|sid=session_0221_da0e610|msgs=15|user=5|staff=10|chars=925|merged=False
-   📊 SESSION_PROFILE|sid=session_0222_f6b362e|msgs=5|user=3|staff=2|chars=184|merged=False
-   📊 SESSION_PROFILE|sid=session_0224_76bfc03|msgs=9|user=4|staff=5|chars=269|merged=False
-   📊 SESSION_PROFILE|sid=session_0227_581d3ba|msgs=26|user=12|staff=14|chars=1156|merged=False
-   📊 SESSION_PROFILE|sid=session_0229_8246f5d|msgs=9|user=4|staff=5|chars=200|merged=False
-   📊 SESSION_PROFILE|sid=session_0230_7eca689|msgs=7|user=2|staff=5|chars=336|merged=False
-   📊 SESSION_PROFILE|sid=session_0231_d77a742|msgs=5|user=1|staff=4|chars=269|merged=False
-   📊 SESSION_PROFILE|sid=session_0232_04585c4|msgs=3|user=1|staff=2|chars=72|merged=False
-   📊 SESSION_PROFILE|sid=session_0234_4946b66|msgs=4|user=1|staff=3|chars=188|merged=False
-   📊 SESSION_PROFILE|sid=session_0235_06f20f7|msgs=5|user=3|staff=2|chars=141|merged=False
-   📊 SESSION_PROFILE|sid=session_0236_2f76ba6|msgs=8|user=3|staff=5|chars=396|merged=False
-   📊 SESSION_PROFILE|sid=session_0237_707ba2f|msgs=11|user=4|staff=7|chars=327|merged=False
-   📊 SESSION_PROFILE|sid=session_0238_063c4de|msgs=15|user=5|staff=10|chars=351|merged=False
-   📊 SESSION_PROFILE|sid=session_0240_a92c210|msgs=11|user=3|staff=8|chars=697|merged=False
-   📊 SESSION_PROFILE|sid=session_0242_89f58df|msgs=18|user=4|staff=14|chars=1017|merged=False
-   📊 SESSION_PROFILE|sid=session_0243_4507f8a|msgs=7|user=3|staff=4|chars=159|merged=False
-   📊 SESSION_PROFILE|sid=session_0247_927da7d|msgs=30|user=12|staff=18|chars=1383|merged=False
-   📊 SESSION_PROFILE|sid=session_0248_dd2008f|msgs=27|user=9|staff=18|chars=1247|merged=False
-   📊 SESSION_PROFILE|sid=session_0251_fe9d81e|msgs=17|user=17|staff=0|chars=495|merged=False
-   📊 SESSION_PROFILE|sid=session_0253_a92c210|msgs=6|user=1|staff=5|chars=601|merged=False
-   📊 SESSION_PROFILE|sid=session_0254_59bd689|msgs=16|user=6|staff=10|chars=780|merged=False
-   📊 SESSION_PROFILE|sid=session_0256_8417643|msgs=5|user=2|staff=3|chars=302|merged=False
-   📊 SESSION_PROFILE|sid=session_0257_5300ef1|msgs=5|user=2|staff=3|chars=127|merged=False
-   📊 SESSION_PROFILE|sid=session_0258_cab0138|msgs=19|user=7|staff=12|chars=691|merged=False
-   📊 SESSION_PROFILE|sid=session_0260_a8fe145|msgs=3|user=1|staff=2|chars=461|merged=False
-   📊 SESSION_PROFILE|sid=session_0261_0c42164|msgs=9|user=5|staff=4|chars=782|merged=False
-   📊 SESSION_PROFILE|sid=session_0262_7eca689|msgs=10|user=3|staff=7|chars=403|merged=False
-   📊 SESSION_PROFILE|sid=session_0263_3450474|msgs=8|user=1|staff=7|chars=795|merged=False
-   📊 SESSION_PROFILE|sid=session_0264_a92c210|msgs=47|user=19|staff=28|chars=2078|merged=False
-   📊 SESSION_PROFILE|sid=session_0265_a92c210|msgs=8|user=1|staff=7|chars=730|merged=False
-   📊 SESSION_PROFILE|sid=session_0266_1ec6576|msgs=30|user=14|staff=16|chars=691|merged=False
-   📊 SESSION_PROFILE|sid=session_0267_4fecd57|msgs=7|user=3|staff=4|chars=296|merged=False
-   📊 SESSION_PROFILE|sid=session_0268_c955406|msgs=8|user=2|staff=6|chars=402|merged=False
-   📊 SESSION_PROFILE|sid=session_0269_7eca689|msgs=8|user=5|staff=3|chars=178|merged=False
-   📊 SESSION_PROFILE|sid=session_0271_59bd689|msgs=6|user=3|staff=3|chars=127|merged=False
-   📊 SESSION_PROFILE|sid=session_0272_d5d7c6d|msgs=6|user=1|staff=5|chars=609|merged=False
-   📊 SESSION_PROFILE|sid=session_0273_59bd689|msgs=3|user=1|staff=2|chars=179|merged=False
-   📊 SESSION_PROFILE|sid=session_0274_7eca689|msgs=39|user=16|staff=23|chars=1500|merged=False
-   📊 SESSION_PROFILE|sid=session_0275_7eca689|msgs=8|user=4|staff=4|chars=230|merged=False
-   📊 SESSION_PROFILE|sid=session_0276_a92c210|msgs=14|user=5|staff=9|chars=672|merged=False
-   📊 SESSION_PROFILE|sid=session_0277_d5d7c6d|msgs=18|user=7|staff=11|chars=852|merged=False
-   📊 SESSION_PROFILE|sid=session_0279_d431b52|msgs=17|user=7|staff=10|chars=797|merged=False
-   📊 SESSION_PROFILE|sid=session_0280_abe35cf|msgs=5|user=2|staff=3|chars=221|merged=False
-   📊 SESSION_PROFILE|sid=session_0281_0f921bd|msgs=7|user=2|staff=5|chars=462|merged=False
-   📊 SESSION_PROFILE|sid=session_0287_7f32261|msgs=11|user=3|staff=8|chars=344|merged=False
-   📊 SESSION_PROFILE|sid=session_0288_6fc9ead|msgs=4|user=1|staff=3|chars=296|merged=False
-   📊 SESSION_PROFILE|sid=session_0289_2f9d5d6|msgs=25|user=10|staff=15|chars=938|merged=False
-   📊 SESSION_PROFILE|sid=session_0290_c654026|msgs=9|user=4|staff=5|chars=822|merged=False
-   📊 SESSION_PROFILE|sid=session_0291_c34239b|msgs=17|user=8|staff=9|chars=872|merged=False
-   📊 SESSION_PROFILE|sid=session_0292_720b93c|msgs=7|user=2|staff=5|chars=385|merged=False
-   📊 SESSION_PROFILE|sid=session_0293_da8ec74|msgs=15|user=5|staff=10|chars=794|merged=False
-   📊 SESSION_PROFILE|sid=session_0294_82e70b0|msgs=14|user=5|staff=9|chars=471|merged=False
-   📊 SESSION_PROFILE|sid=session_0295_a92c210|msgs=12|user=3|staff=9|chars=1042|merged=False
-   📊 SESSION_PROFILE|sid=session_0298_da0e610|msgs=3|user=1|staff=2|chars=101|merged=False
-   📊 SESSION_PROFILE|sid=session_0299_02d6a03|msgs=5|user=1|staff=4|chars=175|merged=False
-   📊 SESSION_PROFILE|sid=session_0302_1600bb8|msgs=6|user=3|staff=3|chars=138|merged=False
-   📊 SESSION_PROFILE|sid=session_0304_bb626ad|msgs=4|user=2|staff=2|chars=77|merged=False
-   📊 SESSION_PROFILE|sid=session_0308_a92c210|msgs=4|user=1|staff=3|chars=491|merged=False
-   📊 SESSION_PROFILE|sid=session_0310_c63f012|msgs=11|user=5|staff=6|chars=525|merged=False
-   📊 SESSION_PROFILE|sid=session_0312_b070330|msgs=9|user=4|staff=5|chars=364|merged=False
-   📊 SESSION_PROFILE|sid=session_0313_3ecb97f|msgs=20|user=5|staff=15|chars=763|merged=False
-   📊 SESSION_PROFILE|sid=session_0314_d5d7c6d|msgs=9|user=4|staff=5|chars=649|merged=False
-   📊 SESSION_PROFILE|sid=session_0316_afe0edd|msgs=6|user=3|staff=3|chars=219|merged=False
-   📊 SESSION_PROFILE|sid=session_0318_dbb20c1|msgs=11|user=4|staff=7|chars=769|merged=False
-   📊 SESSION_PROFILE|sid=session_0319_0a58ae4|msgs=10|user=4|staff=6|chars=186|merged=False
-   📊 SESSION_PROFILE|sid=session_0320_e5a6ddf|msgs=7|user=3|staff=4|chars=199|merged=False
-   📊 SESSION_PROFILE|sid=session_0322_f0d6a34|msgs=14|user=3|staff=11|chars=753|merged=False
-   📊 SESSION_PROFILE|sid=session_0323_8024c76|msgs=13|user=13|staff=0|chars=743|merged=False
-   📊 SESSION_PROFILE|sid=session_0324_a7e9193|msgs=4|user=2|staff=2|chars=272|merged=False
-   📊 SESSION_PROFILE|sid=session_0325_66be591|msgs=8|user=2|staff=6|chars=221|merged=False
-   📊 SESSION_PROFILE|sid=session_0327_7eca689|msgs=9|user=5|staff=4|chars=586|merged=False
-   📊 SESSION_PROFILE|sid=session_0328_65591ee|msgs=11|user=4|staff=7|chars=564|merged=False
-   📊 SESSION_PROFILE|sid=session_0329_fb37c10|msgs=6|user=1|staff=5|chars=302|merged=False
-   📊 SESSION_PROFILE|sid=session_0330_7eca689|msgs=13|user=3|staff=10|chars=877|merged=False
-   📊 SESSION_PROFILE|sid=session_0331_cdb1bf9|msgs=12|user=3|staff=9|chars=1136|merged=False
-   📊 SESSION_PROFILE|sid=session_0332_4a3da9c|msgs=19|user=8|staff=11|chars=1091|merged=False
-   📊 SESSION_PROFILE|sid=session_0333_7adbcfe|msgs=5|user=2|staff=3|chars=528|merged=False
-   📊 SESSION_PROFILE|sid=session_0334_842c3f4|msgs=7|user=3|staff=4|chars=457|merged=False
-   📊 SESSION_PROFILE|sid=session_0335_72183f8|msgs=42|user=15|staff=27|chars=2122|merged=False
-   📊 SESSION_PROFILE|sid=session_0337_8024c76|msgs=10|user=10|staff=0|chars=463|merged=False
-   📊 SESSION_PROFILE|sid=session_0338_0accdf3|msgs=7|user=3|staff=4|chars=271|merged=False
-   📊 SESSION_PROFILE|sid=session_0339_f6b1618|msgs=9|user=2|staff=7|chars=412|merged=False
-   📊 SESSION_PROFILE|sid=session_0340_0accdf3|msgs=6|user=3|staff=3|chars=234|merged=False
-   📊 SESSION_PROFILE|sid=session_0341_a7902d6|msgs=4|user=2|staff=2|chars=113|merged=False
-   📊 SESSION_PROFILE|sid=session_0342_90b0a99|msgs=13|user=2|staff=11|chars=897|merged=False
-   📊 SESSION_PROFILE|sid=session_0343_3207990|msgs=23|user=14|staff=9|chars=1085|merged=False
-   📊 SESSION_PROFILE|sid=session_0344_38569af|msgs=10|user=4|staff=6|chars=471|merged=False
-   📊 SESSION_PROFILE|sid=session_0345_b2865fd|msgs=14|user=1|staff=13|chars=868|merged=False
-   📊 SESSION_PROFILE|sid=session_0346_cdb1bf9|msgs=12|user=4|staff=8|chars=443|merged=False
-   📊 SESSION_PROFILE|sid=session_0347_bb34546|msgs=15|user=4|staff=11|chars=673|merged=False
-   📊 SESSION_PROFILE|sid=session_0348_69c21f9|msgs=25|user=13|staff=12|chars=887|merged=False
-   📊 SESSION_PROFILE|sid=session_0349_a232b10|msgs=31|user=15|staff=16|chars=1138|merged=False
-   📊 SESSION_PROFILE|sid=session_0351_ebe4a1d|msgs=21|user=5|staff=16|chars=1849|merged=False
-   📊 SESSION_PROFILE|sid=session_0352_694272e|msgs=12|user=3|staff=9|chars=495|merged=False
-   📊 SESSION_PROFILE|sid=session_0353_cdb1bf9|msgs=4|user=2|staff=2|chars=80|merged=False
-   📊 SESSION_PROFILE|sid=session_0354_d5d7c6d|msgs=16|user=5|staff=11|chars=831|merged=False
-   📊 SESSION_PROFILE|sid=session_0356_a92c210|msgs=25|user=7|staff=18|chars=1880|merged=False
-   📊 SESSION_PROFILE|sid=session_0357_f86219b|msgs=13|user=6|staff=7|chars=883|merged=False
-   📊 SESSION_PROFILE|sid=session_0358_da653d5|msgs=31|user=12|staff=19|chars=1480|merged=False
-   📊 SESSION_PROFILE|sid=session_0359_3333d84|msgs=6|user=2|staff=4|chars=252|merged=False
-   📊 SESSION_PROFILE|sid=session_0360_9ee3b2d|msgs=15|user=5|staff=10|chars=406|merged=False
-   📊 SESSION_PROFILE|sid=session_0361_8891ae4|msgs=6|user=3|staff=3|chars=151|merged=False
-   📊 SESSION_PROFILE|sid=session_0363_4b1d845|msgs=5|user=1|staff=4|chars=370|merged=False
-   📊 SESSION_PROFILE|sid=session_0364_f6b362e|msgs=3|user=2|staff=1|chars=29|merged=False
-   📊 SESSION_PROFILE|sid=session_0365_f6b362e|msgs=7|user=2|staff=5|chars=382|merged=False
-   📊 SESSION_PROFILE|sid=session_0366_bd65a70|msgs=15|user=4|staff=11|chars=635|merged=False
-   📊 SESSION_PROFILE|sid=session_0367_f6b362e|msgs=8|user=2|staff=6|chars=507|merged=False
-   📊 SESSION_PROFILE|sid=session_0368_8aa7073|msgs=11|user=5|staff=6|chars=543|merged=False
-   📊 SESSION_PROFILE|sid=session_0369_e5eab02|msgs=14|user=4|staff=10|chars=792|merged=False
-   📊 SESSION_PROFILE|sid=session_0370_f6b362e|msgs=5|user=2|staff=3|chars=350|merged=False
-   📊 SESSION_PROFILE|sid=session_0372_a9aad14|msgs=10|user=2|staff=8|chars=464|merged=False
-   📊 SESSION_PROFILE|sid=session_0373_77c4089|msgs=7|user=2|staff=5|chars=316|merged=False
-   📊 SESSION_PROFILE|sid=session_0375_4131f34|msgs=34|user=14|staff=20|chars=1269|merged=False
-   📊 SESSION_PROFILE|sid=session_0376_d5d7c6d|msgs=20|user=6|staff=14|chars=1267|merged=False
-   📊 SESSION_PROFILE|sid=session_0378_4131f34|msgs=4|user=2|staff=2|chars=104|merged=False
-   📊 SESSION_PROFILE|sid=session_0379_3b24e82|msgs=19|user=7|staff=12|chars=564|merged=False
-   📊 SESSION_PROFILE|sid=session_0380_f0f7012|msgs=13|user=13|staff=0|chars=232|merged=False
-   📊 SESSION_PROFILE|sid=session_0381_f0f7ddd|msgs=9|user=3|staff=6|chars=542|merged=False
-   📊 SESSION_PROFILE|sid=session_0382_7eca689|msgs=21|user=7|staff=14|chars=867|merged=False
-   📊 SESSION_PROFILE|sid=session_0383_da0e610|msgs=5|user=1|staff=4|chars=522|merged=False
-   📊 SESSION_PROFILE|sid=session_0384_a92c210|msgs=8|user=1|staff=7|chars=617|merged=False
-   📊 SESSION_PROFILE|sid=session_0386_da0e610|msgs=16|user=7|staff=9|chars=695|merged=False
-   📊 SESSION_PROFILE|sid=session_0387_625d5e6|msgs=13|user=4|staff=9|chars=345|merged=False
-   📊 SESSION_PROFILE|sid=session_0389_193298b|msgs=8|user=3|staff=5|chars=581|merged=False
-   📊 SESSION_PROFILE|sid=session_0392_a92c210|msgs=9|user=2|staff=7|chars=608|merged=False
-   📊 SESSION_PROFILE|sid=session_0393_d0fdab4|msgs=17|user=6|staff=11|chars=480|merged=False
-   📊 SESSION_PROFILE|sid=session_0394_7e1979c|msgs=6|user=3|staff=3|chars=317|merged=False
-   📊 SESSION_PROFILE|sid=session_0395_cdb1bf9|msgs=8|user=3|staff=5|chars=212|merged=False
-   📊 SESSION_PROFILE|sid=session_0396_00581a6|msgs=9|user=2|staff=7|chars=408|merged=False
-   📊 SESSION_PROFILE|sid=session_0397_d48f43c|msgs=38|user=17|staff=21|chars=1067|merged=False
-   📊 SESSION_PROFILE|sid=session_0398_ebc0002|msgs=35|user=13|staff=22|chars=1411|merged=False
-   📊 SESSION_PROFILE|sid=session_0399_d5d7c6d|msgs=28|user=10|staff=18|chars=1160|merged=False
+=== 会话概况统计 ===
+
+总会话数: 1074
+
+[1] {'sid': 'session_0000_a92c210', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '267', 'merged': 'False'}
+[2] {'sid': 'session_0002_4486812', 'msgs': '24', 'user': '13', 'staff': '11', 'chars': '1078', 'merged': 'False'}
+[3] {'sid': 'session_0003_b66fca9', 'msgs': '15', 'user': '3', 'staff': '12', 'chars': '1325', 'merged': 'False'}
+[4] {'sid': 'session_0004_347befb', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '310', 'merged': 'False'}
+[5] {'sid': 'session_0005_89201e0', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '396', 'merged': 'False'}
+[6] {'sid': 'session_0008_7abde75', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '449', 'merged': 'False'}
+[7] {'sid': 'session_0009_447dbb6', 'msgs': '28', 'user': '9', 'staff': '19', 'chars': '1078', 'merged': 'False'}
+[8] {'sid': 'session_0010_c1e103f', 'msgs': '24', 'user': '9', 'staff': '15', 'chars': '1287', 'merged': 'False'}
+[9] {'sid': 'session_0011_7923097', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '746', 'merged': 'False'}
+[10] {'sid': 'session_0012_a7c63c2', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '450', 'merged': 'False'}
+[11] {'sid': 'session_0013_2deba05', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '296', 'merged': 'False'}
+[12] {'sid': 'session_0014_91ec92b', 'msgs': '42', 'user': '14', 'staff': '28', 'chars': '1469', 'merged': 'False'}
+[13] {'sid': 'session_0015_8024c76', 'msgs': '90', 'user': '90', 'staff': '0', 'chars': '3000', 'merged': 'False'}
+[14] {'sid': 'session_0016_12d506a', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '339', 'merged': 'False'}
+[15] {'sid': 'session_0017_043457a', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '113', 'merged': 'False'}
+[16] {'sid': 'session_0018_d5d7c6d', 'msgs': '45', 'user': '22', 'staff': '23', 'chars': '880', 'merged': 'False'}
+[17] {'sid': 'session_0019_d5d7c6d', 'msgs': '40', 'user': '18', 'staff': '22', 'chars': '1659', 'merged': 'False'}
+[18] {'sid': 'session_0020_76efbc7', 'msgs': '28', 'user': '11', 'staff': '17', 'chars': '1033', 'merged': 'False'}
+[19] {'sid': 'session_0021_8024c76', 'msgs': '15', 'user': '15', 'staff': '0', 'chars': '661', 'merged': 'False'}
+[20] {'sid': 'session_0022_ea50adc', 'msgs': '7', 'user': '4', 'staff': '3', 'chars': '219', 'merged': 'False'}
+[21] {'sid': 'session_0023_4e89bb1', 'msgs': '5', 'user': '4', 'staff': '1', 'chars': '89', 'merged': 'False'}
+[22] {'sid': 'session_0024_74e464d', 'msgs': '27', 'user': '10', 'staff': '17', 'chars': '1281', 'merged': 'False'}
+[23] {'sid': 'session_0025_7ddda22', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '97', 'merged': 'False'}
+[24] {'sid': 'session_0026_f074a04', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '339', 'merged': 'False'}
+[25] {'sid': 'session_0027_46fd432', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '449', 'merged': 'False'}
+[26] {'sid': 'session_0028_ac29aae', 'msgs': '29', 'user': '6', 'staff': '23', 'chars': '2111', 'merged': 'False'}
+[27] {'sid': 'session_0029_5bdbb5b', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '93', 'merged': 'False'}
+[28] {'sid': 'session_0031_616028f', 'msgs': '99', 'user': '99', 'staff': '0', 'chars': '1890', 'merged': 'False'}
+[29] {'sid': 'session_0032_da0e610', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '531', 'merged': 'False'}
+[30] {'sid': 'session_0033_e050e03', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '762', 'merged': 'False'}
+[31] {'sid': 'session_0034_9d8f4ab', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '72', 'merged': 'False'}
+[32] {'sid': 'session_0035_bd93f88', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '270', 'merged': 'False'}
+[33] {'sid': 'session_0036_57b4528', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '205', 'merged': 'False'}
+[34] {'sid': 'session_0037_063c4de', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '381', 'merged': 'False'}
+[35] {'sid': 'session_0038_925e3a0', 'msgs': '3', 'user': '2', 'staff': '1', 'chars': '218', 'merged': 'False'}
+[36] {'sid': 'session_0039_542522f', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '101', 'merged': 'False'}
+[37] {'sid': 'session_0040_240c8d7', 'msgs': '9', 'user': '3', 'staff': '6', 'chars': '473', 'merged': 'False'}
+[38] {'sid': 'session_0041_16e9abc', 'msgs': '24', 'user': '8', 'staff': '16', 'chars': '1045', 'merged': 'False'}
+[39] {'sid': 'session_0042_7eca689', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '231', 'merged': 'False'}
+[40] {'sid': 'session_0043_a8ffee2', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '207', 'merged': 'False'}
+[41] {'sid': 'session_0044_af24872', 'msgs': '18', 'user': '5', 'staff': '13', 'chars': '1002', 'merged': 'False'}
+[42] {'sid': 'session_0045_a92c210', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '1127', 'merged': 'False'}
+[43] {'sid': 'session_0046_90b41dc', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '778', 'merged': 'False'}
+[44] {'sid': 'session_0047_d285458', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '612', 'merged': 'False'}
+[45] {'sid': 'session_0048_d76c53c', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '150', 'merged': 'False'}
+[46] {'sid': 'session_0049_4f71c8b', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '279', 'merged': 'False'}
+[47] {'sid': 'session_0050_d78a549', 'msgs': '14', 'user': '7', 'staff': '7', 'chars': '1150', 'merged': 'False'}
+[48] {'sid': 'session_0051_9935bdc', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '181', 'merged': 'False'}
+[49] {'sid': 'session_0052_d78a549', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '257', 'merged': 'False'}
+[50] {'sid': 'session_0053_86ca9e1', 'msgs': '32', 'user': '10', 'staff': '22', 'chars': '1179', 'merged': 'False'}
+[51] {'sid': 'session_0054_35413ad', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '395', 'merged': 'False'}
+[52] {'sid': 'session_0055_87b8e10', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '434', 'merged': 'False'}
+[53] {'sid': 'session_0057_d8b3da0', 'msgs': '18', 'user': '7', 'staff': '11', 'chars': '724', 'merged': 'False'}
+[54] {'sid': 'session_0058_1ae024d', 'msgs': '40', 'user': '17', 'staff': '23', 'chars': '1320', 'merged': 'False'}
+[55] {'sid': 'session_0059_89deaf8', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '253', 'merged': 'False'}
+[56] {'sid': 'session_0060_a92c210', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '541', 'merged': 'False'}
+[57] {'sid': 'session_0061_7eca689', 'msgs': '10', 'user': '4', 'staff': '6', 'chars': '577', 'merged': 'False'}
+[58] {'sid': 'session_0062_a92c210', 'msgs': '17', 'user': '9', 'staff': '8', 'chars': '638', 'merged': 'False'}
+[59] {'sid': 'session_0063_d5d7c6d', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '553', 'merged': 'False'}
+[60] {'sid': 'session_0065_06260f5', 'msgs': '11', 'user': '2', 'staff': '9', 'chars': '646', 'merged': 'False'}
+[61] {'sid': 'session_0066_2762920', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '743', 'merged': 'False'}
+[62] {'sid': 'session_0067_04247a1', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '210', 'merged': 'False'}
+[63] {'sid': 'session_0068_f6b362e', 'msgs': '10', 'user': '5', 'staff': '5', 'chars': '158', 'merged': 'False'}
+[64] {'sid': 'session_0069_7eca689', 'msgs': '13', 'user': '5', 'staff': '8', 'chars': '493', 'merged': 'False'}
+[65] {'sid': 'session_0071_7ba182f', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '716', 'merged': 'False'}
+[66] {'sid': 'session_0072_7de7bf5', 'msgs': '18', 'user': '5', 'staff': '13', 'chars': '777', 'merged': 'False'}
+[67] {'sid': 'session_0073_2bf486b', 'msgs': '31', 'user': '8', 'staff': '23', 'chars': '2670', 'merged': 'False'}
+[68] {'sid': 'session_0074_708178c', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '216', 'merged': 'False'}
+[69] {'sid': 'session_0075_bf51ed2', 'msgs': '18', 'user': '7', 'staff': '11', 'chars': '591', 'merged': 'False'}
+[70] {'sid': 'session_0076_348b5d9', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '106', 'merged': 'False'}
+[71] {'sid': 'session_0077_b0532e3', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '364', 'merged': 'False'}
+[72] {'sid': 'session_0078_cdb1bf9', 'msgs': '23', 'user': '7', 'staff': '16', 'chars': '863', 'merged': 'False'}
+[73] {'sid': 'session_0079_5450b6e', 'msgs': '15', 'user': '4', 'staff': '11', 'chars': '901', 'merged': 'False'}
+[74] {'sid': 'session_0080_7eca689', 'msgs': '31', 'user': '11', 'staff': '20', 'chars': '951', 'merged': 'False'}
+[75] {'sid': 'session_0081_35c98fd', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '551', 'merged': 'False'}
+[76] {'sid': 'session_0082_b970de5', 'msgs': '12', 'user': '6', 'staff': '6', 'chars': '199', 'merged': 'False'}
+[77] {'sid': 'session_0085_6c7f7fa', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '400', 'merged': 'False'}
+[78] {'sid': 'session_0086_80847d2', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '644', 'merged': 'False'}
+[79] {'sid': 'session_0087_a92c210', 'msgs': '37', 'user': '18', 'staff': '19', 'chars': '1095', 'merged': 'False'}
+[80] {'sid': 'session_0088_2c87a6d', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '205', 'merged': 'False'}
+[81] {'sid': 'session_0089_a92c210', 'msgs': '20', 'user': '6', 'staff': '14', 'chars': '1103', 'merged': 'False'}
+[82] {'sid': 'session_0090_982c581', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '84', 'merged': 'False'}
+[83] {'sid': 'session_0091_0f921bd', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '268', 'merged': 'False'}
+[84] {'sid': 'session_0092_a5c05a1', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '309', 'merged': 'False'}
+[85] {'sid': 'session_0093_a92c210', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '579', 'merged': 'False'}
+[86] {'sid': 'session_0094_b49c63f', 'msgs': '3', 'user': '2', 'staff': '1', 'chars': '60', 'merged': 'False'}
+[87] {'sid': 'session_0095_0585c9e', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '413', 'merged': 'False'}
+[88] {'sid': 'session_0096_960cb70', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '569', 'merged': 'False'}
+[89] {'sid': 'session_0097_d5d7c6d', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '656', 'merged': 'False'}
+[90] {'sid': 'session_0098_da0e610', 'msgs': '20', 'user': '7', 'staff': '13', 'chars': '1058', 'merged': 'False'}
+[91] {'sid': 'session_0099_5bc5c29', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '209', 'merged': 'False'}
+[92] {'sid': 'session_0100_443a278', 'msgs': '8', 'user': '8', 'staff': '0', 'chars': '173', 'merged': 'False'}
+[93] {'sid': 'session_0101_e2afece', 'msgs': '31', 'user': '12', 'staff': '19', 'chars': '1646', 'merged': 'False'}
+[94] {'sid': 'session_0102_bd0846b', 'msgs': '13', 'user': '5', 'staff': '8', 'chars': '944', 'merged': 'False'}
+[95] {'sid': 'session_0104_bd0846b', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '305', 'merged': 'False'}
+[96] {'sid': 'session_0105_4b1cf7e', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '75', 'merged': 'False'}
+[97] {'sid': 'session_0106_bfd99b5', 'msgs': '15', 'user': '6', 'staff': '9', 'chars': '617', 'merged': 'False'}
+[98] {'sid': 'session_0107_e65a704', 'msgs': '12', 'user': '6', 'staff': '6', 'chars': '615', 'merged': 'False'}
+[99] {'sid': 'session_0108_a1e84b6', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '539', 'merged': 'False'}
+[100] {'sid': 'session_0109_cd7fb78', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '536', 'merged': 'False'}
+[101] {'sid': 'session_0110_fe9f3f8', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '178', 'merged': 'False'}
+[102] {'sid': 'session_0111_b2c4979', 'msgs': '7', 'user': '4', 'staff': '3', 'chars': '389', 'merged': 'False'}
+[103] {'sid': 'session_0112_f1e1cf5', 'msgs': '21', 'user': '8', 'staff': '13', 'chars': '640', 'merged': 'False'}
+[104] {'sid': 'session_0113_ba189dc', 'msgs': '13', 'user': '4', 'staff': '9', 'chars': '626', 'merged': 'False'}
+[105] {'sid': 'session_0114_6b54b4f', 'msgs': '24', 'user': '8', 'staff': '16', 'chars': '813', 'merged': 'False'}
+[106] {'sid': 'session_0115_bf3b3de', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '728', 'merged': 'False'}
+[107] {'sid': 'session_0116_6b54b4f', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '259', 'merged': 'False'}
+[108] {'sid': 'session_0117_afabba4', 'msgs': '22', 'user': '7', 'staff': '15', 'chars': '948', 'merged': 'False'}
+[109] {'sid': 'session_0118_7231cc3', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '314', 'merged': 'False'}
+[110] {'sid': 'session_0119_7deaa07', 'msgs': '15', 'user': '7', 'staff': '8', 'chars': '345', 'merged': 'False'}
+[111] {'sid': 'session_0120_09d6c7b', 'msgs': '9', 'user': '1', 'staff': '8', 'chars': '580', 'merged': 'False'}
+[112] {'sid': 'session_0122_75cb50f', 'msgs': '16', 'user': '7', 'staff': '9', 'chars': '268', 'merged': 'False'}
+[113] {'sid': 'session_0123_28a1b16', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '243', 'merged': 'False'}
+[114] {'sid': 'session_0124_d8a7442', 'msgs': '15', 'user': '6', 'staff': '9', 'chars': '419', 'merged': 'False'}
+[115] {'sid': 'session_0125_af422bf', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '202', 'merged': 'False'}
+[116] {'sid': 'session_0127_0342b5a', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '268', 'merged': 'False'}
+[117] {'sid': 'session_0128_f6cac58', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '785', 'merged': 'False'}
+[118] {'sid': 'session_0130_cd8a4c8', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '349', 'merged': 'False'}
+[119] {'sid': 'session_0131_da0e610', 'msgs': '87', 'user': '44', 'staff': '43', 'chars': '3004', 'merged': 'False'}
+[120] {'sid': 'session_0132_ab2845a', 'msgs': '48', 'user': '22', 'staff': '26', 'chars': '2216', 'merged': 'False'}
+[121] {'sid': 'session_0133_da0e610', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '611', 'merged': 'False'}
+[122] {'sid': 'session_0134_0fe6388', 'msgs': '3', 'user': '3', 'staff': '0', 'chars': '134', 'merged': 'False'}
+[123] {'sid': 'session_0135_e6b29ea', 'msgs': '21', 'user': '7', 'staff': '14', 'chars': '1092', 'merged': 'False'}
+[124] {'sid': 'session_0136_7249533', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '202', 'merged': 'False'}
+[125] {'sid': 'session_0137_a92c210', 'msgs': '9', 'user': '3', 'staff': '6', 'chars': '425', 'merged': 'False'}
+[126] {'sid': 'session_0138_34af484', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '495', 'merged': 'False'}
+[127] {'sid': 'session_0139_4a756f0', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '161', 'merged': 'False'}
+[128] {'sid': 'session_0140_1995370', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '112', 'merged': 'False'}
+[129] {'sid': 'session_0141_a7c9428', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '536', 'merged': 'False'}
+[130] {'sid': 'session_0142_f8ad342', 'msgs': '9', 'user': '1', 'staff': '8', 'chars': '445', 'merged': 'False'}
+[131] {'sid': 'session_0143_a92c210', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '801', 'merged': 'False'}
+[132] {'sid': 'session_0144_af422bf', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '110', 'merged': 'False'}
+[133] {'sid': 'session_0145_7eca689', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '212', 'merged': 'False'}
+[134] {'sid': 'session_0146_142c71a', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '609', 'merged': 'False'}
+[135] {'sid': 'session_0147_d1457b7', 'msgs': '29', 'user': '11', 'staff': '18', 'chars': '1225', 'merged': 'False'}
+[136] {'sid': 'session_0148_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '284', 'merged': 'False'}
+[137] {'sid': 'session_0150_bb0e83c', 'msgs': '10', 'user': '5', 'staff': '5', 'chars': '275', 'merged': 'False'}
+[138] {'sid': 'session_0152_7eca689', 'msgs': '13', 'user': '5', 'staff': '8', 'chars': '486', 'merged': 'False'}
+[139] {'sid': 'session_0153_8024c76', 'msgs': '20', 'user': '20', 'staff': '0', 'chars': '877', 'merged': 'False'}
+[140] {'sid': 'session_0154_3eba941', 'msgs': '21', 'user': '9', 'staff': '12', 'chars': '1017', 'merged': 'False'}
+[141] {'sid': 'session_0156_1cb6d3b', 'msgs': '18', 'user': '4', 'staff': '14', 'chars': '1054', 'merged': 'False'}
+[142] {'sid': 'session_0157_edd485e', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '238', 'merged': 'False'}
+[143] {'sid': 'session_0158_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '363', 'merged': 'False'}
+[144] {'sid': 'session_0159_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '340', 'merged': 'False'}
+[145] {'sid': 'session_0160_474e33a', 'msgs': '17', 'user': '5', 'staff': '12', 'chars': '528', 'merged': 'False'}
+[146] {'sid': 'session_0161_a4ba1c5', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '705', 'merged': 'False'}
+[147] {'sid': 'session_0162_820ac88', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '370', 'merged': 'False'}
+[148] {'sid': 'session_0163_cb1ae17', 'msgs': '16', 'user': '5', 'staff': '11', 'chars': '538', 'merged': 'False'}
+[149] {'sid': 'session_0164_4755767', 'msgs': '11', 'user': '2', 'staff': '9', 'chars': '780', 'merged': 'False'}
+[150] {'sid': 'session_0165_eb9b755', 'msgs': '13', 'user': '8', 'staff': '5', 'chars': '290', 'merged': 'False'}
+[151] {'sid': 'session_0166_8024c76', 'msgs': '20', 'user': '20', 'staff': '0', 'chars': '1014', 'merged': 'False'}
+[152] {'sid': 'session_0167_d8e516b', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '650', 'merged': 'False'}
+[153] {'sid': 'session_0169_33c6325', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '153', 'merged': 'False'}
+[154] {'sid': 'session_0170_295713f', 'msgs': '19', 'user': '5', 'staff': '14', 'chars': '1108', 'merged': 'False'}
+[155] {'sid': 'session_0171_cb1ae17', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '278', 'merged': 'False'}
+[156] {'sid': 'session_0172_64fea49', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '557', 'merged': 'False'}
+[157] {'sid': 'session_0173_295713f', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '337', 'merged': 'False'}
+[158] {'sid': 'session_0174_b4f0823', 'msgs': '19', 'user': '4', 'staff': '15', 'chars': '896', 'merged': 'False'}
+[159] {'sid': 'session_0175_395533a', 'msgs': '21', 'user': '10', 'staff': '11', 'chars': '1097', 'merged': 'False'}
+[160] {'sid': 'session_0176_64fea49', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '108', 'merged': 'False'}
+[161] {'sid': 'session_0177_e406d6e', 'msgs': '48', 'user': '12', 'staff': '36', 'chars': '2697', 'merged': 'False'}
+[162] {'sid': 'session_0178_d5d7c6d', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '789', 'merged': 'False'}
+[163] {'sid': 'session_0180_a23459d', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '154', 'merged': 'False'}
+[164] {'sid': 'session_0181_9578bd3', 'msgs': '28', 'user': '12', 'staff': '16', 'chars': '901', 'merged': 'False'}
+[165] {'sid': 'session_0182_e8bff49', 'msgs': '17', 'user': '4', 'staff': '13', 'chars': '1002', 'merged': 'False'}
+[166] {'sid': 'session_0183_600e4b1', 'msgs': '18', 'user': '9', 'staff': '9', 'chars': '287', 'merged': 'False'}
+[167] {'sid': 'session_0184_76f39bf', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '405', 'merged': 'False'}
+[168] {'sid': 'session_0186_00aa8a9', 'msgs': '32', 'user': '12', 'staff': '20', 'chars': '1876', 'merged': 'False'}
+[169] {'sid': 'session_0188_e97e920', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '356', 'merged': 'False'}
+[170] {'sid': 'session_0189_eacc9a6', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '678', 'merged': 'False'}
+[171] {'sid': 'session_0191_1590a52', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '160', 'merged': 'False'}
+[172] {'sid': 'session_0192_2581847', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '981', 'merged': 'False'}
+[173] {'sid': 'session_0193_da0e610', 'msgs': '17', 'user': '7', 'staff': '10', 'chars': '1023', 'merged': 'False'}
+[174] {'sid': 'session_0194_c0ab777', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '278', 'merged': 'False'}
+[175] {'sid': 'session_0196_a25d2a9', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '91', 'merged': 'False'}
+[176] {'sid': 'session_0197_ee1c2c7', 'msgs': '17', 'user': '5', 'staff': '12', 'chars': '351', 'merged': 'False'}
+[177] {'sid': 'session_0198_d1b4ec9', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '852', 'merged': 'False'}
+[178] {'sid': 'session_0199_db67801', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '763', 'merged': 'False'}
+[179] {'sid': 'session_0200_942a5dc', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '858', 'merged': 'False'}
+[180] {'sid': 'session_0201_4e893a5', 'msgs': '27', 'user': '10', 'staff': '17', 'chars': '503', 'merged': 'False'}
+[181] {'sid': 'session_0202_03fca76', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '476', 'merged': 'False'}
+[182] {'sid': 'session_0203_2c47130', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '698', 'merged': 'False'}
+[183] {'sid': 'session_0204_7440991', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '784', 'merged': 'False'}
+[184] {'sid': 'session_0205_29f85da', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '468', 'merged': 'False'}
+[185] {'sid': 'session_0206_3855c39', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '497', 'merged': 'False'}
+[186] {'sid': 'session_0207_2394b52', 'msgs': '11', 'user': '2', 'staff': '9', 'chars': '358', 'merged': 'False'}
+[187] {'sid': 'session_0208_ec002cf', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '150', 'merged': 'False'}
+[188] {'sid': 'session_0209_3876259', 'msgs': '13', 'user': '7', 'staff': '6', 'chars': '369', 'merged': 'False'}
+[189] {'sid': 'session_0210_ea6124c', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '87', 'merged': 'False'}
+[190] {'sid': 'session_0212_da0e610', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '512', 'merged': 'False'}
+[191] {'sid': 'session_0214_00e1cc1', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '99', 'merged': 'False'}
+[192] {'sid': 'session_0215_e9fcc03', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '200', 'merged': 'False'}
+[193] {'sid': 'session_0216_da0e610', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '471', 'merged': 'False'}
+[194] {'sid': 'session_0217_29f85da', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '115', 'merged': 'False'}
+[195] {'sid': 'session_0218_441172e', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '176', 'merged': 'False'}
+[196] {'sid': 'session_0219_7c44ddc', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '556', 'merged': 'False'}
+[197] {'sid': 'session_0221_da0e610', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '925', 'merged': 'False'}
+[198] {'sid': 'session_0222_f6b362e', 'msgs': '5', 'user': '3', 'staff': '2', 'chars': '184', 'merged': 'False'}
+[199] {'sid': 'session_0224_76bfc03', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '269', 'merged': 'False'}
+[200] {'sid': 'session_0225_f9e547e', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '364', 'merged': 'False'}
+[201] {'sid': 'session_0227_581d3ba', 'msgs': '26', 'user': '12', 'staff': '14', 'chars': '1156', 'merged': 'False'}
+[202] {'sid': 'session_0228_d5d7c6d', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '636', 'merged': 'False'}
+[203] {'sid': 'session_0229_8246f5d', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '200', 'merged': 'False'}
+[204] {'sid': 'session_0230_7eca689', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '336', 'merged': 'False'}
+[205] {'sid': 'session_0231_d77a742', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '269', 'merged': 'False'}
+[206] {'sid': 'session_0232_04585c4', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '72', 'merged': 'False'}
+[207] {'sid': 'session_0233_4e4751f', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '83', 'merged': 'False'}
+[208] {'sid': 'session_0234_4946b66', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '188', 'merged': 'False'}
+[209] {'sid': 'session_0235_06f20f7', 'msgs': '5', 'user': '3', 'staff': '2', 'chars': '141', 'merged': 'False'}
+[210] {'sid': 'session_0236_2f76ba6', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '396', 'merged': 'False'}
+[211] {'sid': 'session_0237_707ba2f', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '327', 'merged': 'False'}
+[212] {'sid': 'session_0238_063c4de', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '351', 'merged': 'False'}
+[213] {'sid': 'session_0239_d7900b1', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '276', 'merged': 'False'}
+[214] {'sid': 'session_0240_a92c210', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '697', 'merged': 'False'}
+[215] {'sid': 'session_0242_89f58df', 'msgs': '18', 'user': '4', 'staff': '14', 'chars': '1017', 'merged': 'False'}
+[216] {'sid': 'session_0243_4507f8a', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '159', 'merged': 'False'}
+[217] {'sid': 'session_0244_1d3b70d', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '290', 'merged': 'False'}
+[218] {'sid': 'session_0245_d5d7c6d', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '204', 'merged': 'False'}
+[219] {'sid': 'session_0246_570c671', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '279', 'merged': 'False'}
+[220] {'sid': 'session_0247_927da7d', 'msgs': '30', 'user': '12', 'staff': '18', 'chars': '1383', 'merged': 'False'}
+[221] {'sid': 'session_0248_dd2008f', 'msgs': '27', 'user': '9', 'staff': '18', 'chars': '1247', 'merged': 'False'}
+[222] {'sid': 'session_0249_a92c210', 'msgs': '17', 'user': '5', 'staff': '12', 'chars': '1054', 'merged': 'False'}
+[223] {'sid': 'session_0250_86556d3', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '57', 'merged': 'False'}
+[224] {'sid': 'session_0251_fe9d81e', 'msgs': '17', 'user': '17', 'staff': '0', 'chars': '495', 'merged': 'False'}
+[225] {'sid': 'session_0253_a92c210', 'msgs': '6', 'user': '1', 'staff': '5', 'chars': '601', 'merged': 'False'}
+[226] {'sid': 'session_0254_59bd689', 'msgs': '16', 'user': '6', 'staff': '10', 'chars': '780', 'merged': 'False'}
+[227] {'sid': 'session_0255_e995a0a', 'msgs': '23', 'user': '9', 'staff': '14', 'chars': '827', 'merged': 'False'}
+[228] {'sid': 'session_0256_8417643', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '302', 'merged': 'False'}
+[229] {'sid': 'session_0257_5300ef1', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '127', 'merged': 'False'}
+[230] {'sid': 'session_0258_cab0138', 'msgs': '19', 'user': '7', 'staff': '12', 'chars': '691', 'merged': 'False'}
+[231] {'sid': 'session_0259_313263f', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '201', 'merged': 'False'}
+[232] {'sid': 'session_0260_a8fe145', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '461', 'merged': 'False'}
+[233] {'sid': 'session_0261_0c42164', 'msgs': '9', 'user': '5', 'staff': '4', 'chars': '782', 'merged': 'False'}
+[234] {'sid': 'session_0262_7eca689', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '403', 'merged': 'False'}
+[235] {'sid': 'session_0263_3450474', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '795', 'merged': 'False'}
+[236] {'sid': 'session_0264_a92c210', 'msgs': '47', 'user': '19', 'staff': '28', 'chars': '2078', 'merged': 'False'}
+[237] {'sid': 'session_0265_a92c210', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '730', 'merged': 'False'}
+[238] {'sid': 'session_0266_1ec6576', 'msgs': '30', 'user': '14', 'staff': '16', 'chars': '691', 'merged': 'False'}
+[239] {'sid': 'session_0267_4fecd57', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '296', 'merged': 'False'}
+[240] {'sid': 'session_0268_c955406', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '402', 'merged': 'False'}
+[241] {'sid': 'session_0269_7eca689', 'msgs': '8', 'user': '5', 'staff': '3', 'chars': '178', 'merged': 'False'}
+[242] {'sid': 'session_0271_59bd689', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '127', 'merged': 'False'}
+[243] {'sid': 'session_0272_d5d7c6d', 'msgs': '6', 'user': '1', 'staff': '5', 'chars': '609', 'merged': 'False'}
+[244] {'sid': 'session_0273_59bd689', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '179', 'merged': 'False'}
+[245] {'sid': 'session_0274_7eca689', 'msgs': '39', 'user': '16', 'staff': '23', 'chars': '1500', 'merged': 'False'}
+[246] {'sid': 'session_0275_7eca689', 'msgs': '8', 'user': '4', 'staff': '4', 'chars': '230', 'merged': 'False'}
+[247] {'sid': 'session_0276_a92c210', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '672', 'merged': 'False'}
+[248] {'sid': 'session_0277_d5d7c6d', 'msgs': '18', 'user': '7', 'staff': '11', 'chars': '852', 'merged': 'False'}
+[249] {'sid': 'session_0279_d431b52', 'msgs': '17', 'user': '7', 'staff': '10', 'chars': '797', 'merged': 'False'}
+[250] {'sid': 'session_0280_abe35cf', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '221', 'merged': 'False'}
+[251] {'sid': 'session_0281_0f921bd', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '462', 'merged': 'False'}
+[252] {'sid': 'session_0282_515749a', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '274', 'merged': 'False'}
+[253] {'sid': 'session_0284_d5d7c6d', 'msgs': '27', 'user': '11', 'staff': '16', 'chars': '1091', 'merged': 'False'}
+[254] {'sid': 'session_0286_cdb1bf9', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '148', 'merged': 'False'}
+[255] {'sid': 'session_0287_7f32261', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '344', 'merged': 'False'}
+[256] {'sid': 'session_0288_6fc9ead', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '296', 'merged': 'False'}
+[257] {'sid': 'session_0289_2f9d5d6', 'msgs': '25', 'user': '10', 'staff': '15', 'chars': '938', 'merged': 'False'}
+[258] {'sid': 'session_0290_c654026', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '822', 'merged': 'False'}
+[259] {'sid': 'session_0291_c34239b', 'msgs': '17', 'user': '8', 'staff': '9', 'chars': '872', 'merged': 'False'}
+[260] {'sid': 'session_0292_720b93c', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '385', 'merged': 'False'}
+[261] {'sid': 'session_0293_da8ec74', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '794', 'merged': 'False'}
+[262] {'sid': 'session_0294_82e70b0', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '471', 'merged': 'False'}
+[263] {'sid': 'session_0295_a92c210', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '1042', 'merged': 'False'}
+[264] {'sid': 'session_0296_24ad799', 'msgs': '5', 'user': '4', 'staff': '1', 'chars': '94', 'merged': 'False'}
+[265] {'sid': 'session_0298_da0e610', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '101', 'merged': 'False'}
+[266] {'sid': 'session_0299_02d6a03', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '175', 'merged': 'False'}
+[267] {'sid': 'session_0300_d5d7c6d', 'msgs': '17', 'user': '9', 'staff': '8', 'chars': '629', 'merged': 'False'}
+[268] {'sid': 'session_0301_847a46f', 'msgs': '9', 'user': '5', 'staff': '4', 'chars': '251', 'merged': 'False'}
+[269] {'sid': 'session_0302_1600bb8', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '138', 'merged': 'False'}
+[270] {'sid': 'session_0303_3333d84', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '89', 'merged': 'False'}
+[271] {'sid': 'session_0304_bb626ad', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '77', 'merged': 'False'}
+[272] {'sid': 'session_0305_da1a299', 'msgs': '5', 'user': '3', 'staff': '2', 'chars': '119', 'merged': 'False'}
+[273] {'sid': 'session_0307_886c63b', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '531', 'merged': 'False'}
+[274] {'sid': 'session_0308_a92c210', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '491', 'merged': 'False'}
+[275] {'sid': 'session_0309_7eca689', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '181', 'merged': 'False'}
+[276] {'sid': 'session_0310_c63f012', 'msgs': '11', 'user': '5', 'staff': '6', 'chars': '525', 'merged': 'False'}
+[277] {'sid': 'session_0311_38569af', 'msgs': '40', 'user': '15', 'staff': '25', 'chars': '1637', 'merged': 'False'}
+[278] {'sid': 'session_0312_b070330', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '364', 'merged': 'False'}
+[279] {'sid': 'session_0313_3ecb97f', 'msgs': '20', 'user': '5', 'staff': '15', 'chars': '763', 'merged': 'False'}
+[280] {'sid': 'session_0314_d5d7c6d', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '649', 'merged': 'False'}
+[281] {'sid': 'session_0315_3f7bf26', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '70', 'merged': 'False'}
+[282] {'sid': 'session_0316_afe0edd', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '219', 'merged': 'False'}
+[283] {'sid': 'session_0317_8c37651', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '352', 'merged': 'False'}
+[284] {'sid': 'session_0318_dbb20c1', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '769', 'merged': 'False'}
+[285] {'sid': 'session_0319_0a58ae4', 'msgs': '10', 'user': '4', 'staff': '6', 'chars': '186', 'merged': 'False'}
+[286] {'sid': 'session_0320_e5a6ddf', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '199', 'merged': 'False'}
+[287] {'sid': 'session_0321_d588164', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '692', 'merged': 'False'}
+[288] {'sid': 'session_0322_f0d6a34', 'msgs': '14', 'user': '3', 'staff': '11', 'chars': '753', 'merged': 'False'}
+[289] {'sid': 'session_0323_8024c76', 'msgs': '13', 'user': '13', 'staff': '0', 'chars': '743', 'merged': 'False'}
+[290] {'sid': 'session_0324_a7e9193', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '272', 'merged': 'False'}
+[291] {'sid': 'session_0325_66be591', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '221', 'merged': 'False'}
+[292] {'sid': 'session_0327_7eca689', 'msgs': '9', 'user': '5', 'staff': '4', 'chars': '586', 'merged': 'False'}
+[293] {'sid': 'session_0328_65591ee', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '564', 'merged': 'False'}
+[294] {'sid': 'session_0329_fb37c10', 'msgs': '6', 'user': '1', 'staff': '5', 'chars': '302', 'merged': 'False'}
+[295] {'sid': 'session_0330_7eca689', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '877', 'merged': 'False'}
+[296] {'sid': 'session_0331_cdb1bf9', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '1136', 'merged': 'False'}
+[297] {'sid': 'session_0332_4a3da9c', 'msgs': '19', 'user': '8', 'staff': '11', 'chars': '1091', 'merged': 'False'}
+[298] {'sid': 'session_0333_7adbcfe', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '528', 'merged': 'False'}
+[299] {'sid': 'session_0334_842c3f4', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '457', 'merged': 'False'}
+[300] {'sid': 'session_0335_72183f8', 'msgs': '42', 'user': '15', 'staff': '27', 'chars': '2122', 'merged': 'False'}
+[301] {'sid': 'session_0336_a7902d6', 'msgs': '20', 'user': '6', 'staff': '14', 'chars': '895', 'merged': 'False'}
+[302] {'sid': 'session_0338_0accdf3', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '271', 'merged': 'False'}
+[303] {'sid': 'session_0339_f6b1618', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '412', 'merged': 'False'}
+[304] {'sid': 'session_0340_0accdf3', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '234', 'merged': 'False'}
+[305] {'sid': 'session_0341_a7902d6', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '113', 'merged': 'False'}
+[306] {'sid': 'session_0342_90b0a99', 'msgs': '13', 'user': '2', 'staff': '11', 'chars': '897', 'merged': 'False'}
+[307] {'sid': 'session_0343_3207990', 'msgs': '23', 'user': '14', 'staff': '9', 'chars': '1085', 'merged': 'False'}
+[308] {'sid': 'session_0344_38569af', 'msgs': '10', 'user': '4', 'staff': '6', 'chars': '471', 'merged': 'False'}
+[309] {'sid': 'session_0345_b2865fd', 'msgs': '14', 'user': '1', 'staff': '13', 'chars': '868', 'merged': 'False'}
+[310] {'sid': 'session_0346_cdb1bf9', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '443', 'merged': 'False'}
+[311] {'sid': 'session_0347_bb34546', 'msgs': '15', 'user': '4', 'staff': '11', 'chars': '673', 'merged': 'False'}
+[312] {'sid': 'session_0348_69c21f9', 'msgs': '25', 'user': '13', 'staff': '12', 'chars': '887', 'merged': 'False'}
+[313] {'sid': 'session_0349_a232b10', 'msgs': '31', 'user': '15', 'staff': '16', 'chars': '1138', 'merged': 'False'}
+[314] {'sid': 'session_0350_dfe429c', 'msgs': '13', 'user': '7', 'staff': '6', 'chars': '115', 'merged': 'False'}
+[315] {'sid': 'session_0351_ebe4a1d', 'msgs': '21', 'user': '5', 'staff': '16', 'chars': '1849', 'merged': 'False'}
+[316] {'sid': 'session_0352_694272e', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '495', 'merged': 'False'}
+[317] {'sid': 'session_0353_cdb1bf9', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '80', 'merged': 'False'}
+[318] {'sid': 'session_0354_d5d7c6d', 'msgs': '16', 'user': '5', 'staff': '11', 'chars': '831', 'merged': 'False'}
+[319] {'sid': 'session_0356_a92c210', 'msgs': '25', 'user': '7', 'staff': '18', 'chars': '1880', 'merged': 'False'}
+[320] {'sid': 'session_0357_f86219b', 'msgs': '13', 'user': '6', 'staff': '7', 'chars': '883', 'merged': 'False'}
+[321] {'sid': 'session_0358_da653d5', 'msgs': '31', 'user': '12', 'staff': '19', 'chars': '1480', 'merged': 'False'}
+[322] {'sid': 'session_0359_3333d84', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '252', 'merged': 'False'}
+[323] {'sid': 'session_0360_9ee3b2d', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '406', 'merged': 'False'}
+[324] {'sid': 'session_0361_8891ae4', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '151', 'merged': 'False'}
+[325] {'sid': 'session_0363_4b1d845', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '370', 'merged': 'False'}
+[326] {'sid': 'session_0364_f6b362e', 'msgs': '3', 'user': '2', 'staff': '1', 'chars': '29', 'merged': 'False'}
+[327] {'sid': 'session_0365_f6b362e', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '382', 'merged': 'False'}
+[328] {'sid': 'session_0366_bd65a70', 'msgs': '15', 'user': '4', 'staff': '11', 'chars': '635', 'merged': 'False'}
+[329] {'sid': 'session_0367_f6b362e', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '507', 'merged': 'False'}
+[330] {'sid': 'session_0368_8aa7073', 'msgs': '11', 'user': '5', 'staff': '6', 'chars': '543', 'merged': 'False'}
+[331] {'sid': 'session_0369_e5eab02', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '792', 'merged': 'False'}
+[332] {'sid': 'session_0370_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '350', 'merged': 'False'}
+[333] {'sid': 'session_0371_a1339e0', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '419', 'merged': 'False'}
+[334] {'sid': 'session_0372_a9aad14', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '464', 'merged': 'False'}
+[335] {'sid': 'session_0373_77c4089', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '316', 'merged': 'False'}
+[336] {'sid': 'session_0374_3ad63cb', 'msgs': '14', 'user': '6', 'staff': '8', 'chars': '366', 'merged': 'False'}
+[337] {'sid': 'session_0375_4131f34', 'msgs': '34', 'user': '14', 'staff': '20', 'chars': '1269', 'merged': 'False'}
+[338] {'sid': 'session_0376_d5d7c6d', 'msgs': '20', 'user': '6', 'staff': '14', 'chars': '1267', 'merged': 'False'}
+[339] {'sid': 'session_0378_4131f34', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '104', 'merged': 'False'}
+[340] {'sid': 'session_0379_3b24e82', 'msgs': '19', 'user': '7', 'staff': '12', 'chars': '564', 'merged': 'False'}
+[341] {'sid': 'session_0380_f0f7012', 'msgs': '13', 'user': '13', 'staff': '0', 'chars': '232', 'merged': 'False'}
+[342] {'sid': 'session_0381_f0f7ddd', 'msgs': '9', 'user': '3', 'staff': '6', 'chars': '542', 'merged': 'False'}
+[343] {'sid': 'session_0382_7eca689', 'msgs': '21', 'user': '7', 'staff': '14', 'chars': '867', 'merged': 'False'}
+[344] {'sid': 'session_0383_da0e610', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '522', 'merged': 'False'}
+[345] {'sid': 'session_0384_a92c210', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '617', 'merged': 'False'}
+[346] {'sid': 'session_0386_da0e610', 'msgs': '16', 'user': '7', 'staff': '9', 'chars': '695', 'merged': 'False'}
+[347] {'sid': 'session_0387_625d5e6', 'msgs': '13', 'user': '4', 'staff': '9', 'chars': '345', 'merged': 'False'}
+[348] {'sid': 'session_0389_193298b', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '581', 'merged': 'False'}
+[349] {'sid': 'session_0391_4a909d0', 'msgs': '10', 'user': '5', 'staff': '5', 'chars': '219', 'merged': 'False'}
+[350] {'sid': 'session_0392_a92c210', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '608', 'merged': 'False'}
+[351] {'sid': 'session_0393_d0fdab4', 'msgs': '17', 'user': '6', 'staff': '11', 'chars': '480', 'merged': 'False'}
+[352] {'sid': 'session_0394_7e1979c', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '317', 'merged': 'False'}
+[353] {'sid': 'session_0395_cdb1bf9', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '212', 'merged': 'False'}
+[354] {'sid': 'session_0396_00581a6', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '408', 'merged': 'False'}
+[355] {'sid': 'session_0397_d48f43c', 'msgs': '38', 'user': '17', 'staff': '21', 'chars': '1067', 'merged': 'False'}
+[356] {'sid': 'session_0398_ebc0002', 'msgs': '35', 'user': '13', 'staff': '22', 'chars': '1411', 'merged': 'False'}
+[357] {'sid': 'session_0399_d5d7c6d', 'msgs': '28', 'user': '10', 'staff': '18', 'chars': '1160', 'merged': 'False'}
+[358] {'sid': 'session_0000_a92c210', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '267', 'merged': 'False'}
+[359] {'sid': 'session_0015_8024c76', 'msgs': '90', 'user': '90', 'staff': '0', 'chars': '3000', 'merged': 'False'}
+[360] {'sid': 'session_0021_8024c76', 'msgs': '15', 'user': '15', 'staff': '0', 'chars': '661', 'merged': 'False'}
+[361] {'sid': 'session_0029_5bdbb5b', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '93', 'merged': 'False'}
+[362] {'sid': 'session_0036_57b4528', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '205', 'merged': 'False'}
+[363] {'sid': 'session_0039_542522f', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '101', 'merged': 'False'}
+[364] {'sid': 'session_0040_240c8d7', 'msgs': '9', 'user': '3', 'staff': '6', 'chars': '473', 'merged': 'False'}
+[365] {'sid': 'session_0041_16e9abc', 'msgs': '24', 'user': '8', 'staff': '16', 'chars': '1045', 'merged': 'False'}
+[366] {'sid': 'session_0046_90b41dc', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '778', 'merged': 'False'}
+[367] {'sid': 'session_0049_4f71c8b', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '279', 'merged': 'False'}
+[368] {'sid': 'session_0054_35413ad', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '395', 'merged': 'False'}
+[369] {'sid': 'session_0060_a92c210', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '541', 'merged': 'False'}
+[370] {'sid': 'session_0091_0f921bd', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '268', 'merged': 'False'}
+[371] {'sid': 'session_0096_960cb70', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '569', 'merged': 'False'}
+[372] {'sid': 'session_0108_a1e84b6', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '539', 'merged': 'False'}
+[373] {'sid': 'session_0113_ba189dc', 'msgs': '13', 'user': '4', 'staff': '9', 'chars': '626', 'merged': 'False'}
+[374] {'sid': 'session_0120_09d6c7b', 'msgs': '9', 'user': '1', 'staff': '8', 'chars': '580', 'merged': 'False'}
+[375] {'sid': 'session_0122_75cb50f', 'msgs': '16', 'user': '7', 'staff': '9', 'chars': '268', 'merged': 'False'}
+[376] {'sid': 'session_0136_7249533', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '202', 'merged': 'False'}
+[377] {'sid': 'session_0137_a92c210', 'msgs': '9', 'user': '3', 'staff': '6', 'chars': '425', 'merged': 'False'}
+[378] {'sid': 'session_0153_8024c76', 'msgs': '20', 'user': '20', 'staff': '0', 'chars': '877', 'merged': 'False'}
+[379] {'sid': 'session_0164_4755767', 'msgs': '11', 'user': '2', 'staff': '9', 'chars': '780', 'merged': 'False'}
+[380] {'sid': 'session_0165_eb9b755', 'msgs': '13', 'user': '8', 'staff': '5', 'chars': '290', 'merged': 'False'}
+[381] {'sid': 'session_0166_8024c76', 'msgs': '20', 'user': '20', 'staff': '0', 'chars': '1014', 'merged': 'False'}
+[382] {'sid': 'session_0172_64fea49', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '557', 'merged': 'False'}
+[383] {'sid': 'session_0181_9578bd3', 'msgs': '28', 'user': '12', 'staff': '16', 'chars': '901', 'merged': 'False'}
+[384] {'sid': 'session_0182_e8bff49', 'msgs': '17', 'user': '4', 'staff': '13', 'chars': '1002', 'merged': 'False'}
+[385] {'sid': 'session_0183_600e4b1', 'msgs': '18', 'user': '9', 'staff': '9', 'chars': '287', 'merged': 'False'}
+[386] {'sid': 'session_0186_00aa8a9', 'msgs': '32', 'user': '12', 'staff': '20', 'chars': '1876', 'merged': 'False'}
+[387] {'sid': 'session_0196_a25d2a9', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '91', 'merged': 'False'}
+[388] {'sid': 'session_0198_d1b4ec9', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '852', 'merged': 'False'}
+[389] {'sid': 'session_0208_ec002cf', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '150', 'merged': 'False'}
+[390] {'sid': 'session_0209_3876259', 'msgs': '13', 'user': '7', 'staff': '6', 'chars': '369', 'merged': 'False'}
+[391] {'sid': 'session_0225_f9e547e', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '364', 'merged': 'False'}
+[392] {'sid': 'session_0228_d5d7c6d', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '636', 'merged': 'False'}
+[393] {'sid': 'session_0233_4e4751f', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '83', 'merged': 'False'}
+[394] {'sid': 'session_0239_d7900b1', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '276', 'merged': 'False'}
+[395] {'sid': 'session_0244_1d3b70d', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '290', 'merged': 'False'}
+[396] {'sid': 'session_0245_d5d7c6d', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '204', 'merged': 'False'}
+[397] {'sid': 'session_0246_570c671', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '279', 'merged': 'False'}
+[398] {'sid': 'session_0249_a92c210', 'msgs': '17', 'user': '5', 'staff': '12', 'chars': '1054', 'merged': 'False'}
+[399] {'sid': 'session_0250_86556d3', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '57', 'merged': 'False'}
+[400] {'sid': 'session_0252_33db0a0', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '89', 'merged': 'False'}
+[401] {'sid': 'session_0255_e995a0a', 'msgs': '23', 'user': '9', 'staff': '14', 'chars': '827', 'merged': 'False'}
+[402] {'sid': 'session_0259_313263f', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '201', 'merged': 'False'}
+[403] {'sid': 'session_0282_515749a', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '274', 'merged': 'False'}
+[404] {'sid': 'session_0284_d5d7c6d', 'msgs': '27', 'user': '11', 'staff': '16', 'chars': '1091', 'merged': 'False'}
+[405] {'sid': 'session_0286_cdb1bf9', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '148', 'merged': 'False'}
+[406] {'sid': 'session_0296_24ad799', 'msgs': '5', 'user': '4', 'staff': '1', 'chars': '94', 'merged': 'False'}
+[407] {'sid': 'session_0300_d5d7c6d', 'msgs': '17', 'user': '9', 'staff': '8', 'chars': '629', 'merged': 'False'}
+[408] {'sid': 'session_0301_847a46f', 'msgs': '9', 'user': '5', 'staff': '4', 'chars': '251', 'merged': 'False'}
+[409] {'sid': 'session_0303_3333d84', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '89', 'merged': 'False'}
+[410] {'sid': 'session_0305_da1a299', 'msgs': '5', 'user': '3', 'staff': '2', 'chars': '119', 'merged': 'False'}
+[411] {'sid': 'session_0307_886c63b', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '531', 'merged': 'False'}
+[412] {'sid': 'session_0309_7eca689', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '181', 'merged': 'False'}
+[413] {'sid': 'session_0311_38569af', 'msgs': '40', 'user': '15', 'staff': '25', 'chars': '1637', 'merged': 'False'}
+[414] {'sid': 'session_0315_3f7bf26', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '70', 'merged': 'False'}
+[415] {'sid': 'session_0317_8c37651', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '352', 'merged': 'False'}
+[416] {'sid': 'session_0321_d588164', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '692', 'merged': 'False'}
+[417] {'sid': 'session_0336_a7902d6', 'msgs': '20', 'user': '6', 'staff': '14', 'chars': '895', 'merged': 'False'}
+[418] {'sid': 'session_0350_dfe429c', 'msgs': '13', 'user': '7', 'staff': '6', 'chars': '115', 'merged': 'False'}
+[419] {'sid': 'session_0371_a1339e0', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '419', 'merged': 'False'}
+[420] {'sid': 'session_0374_3ad63cb', 'msgs': '14', 'user': '6', 'staff': '8', 'chars': '366', 'merged': 'False'}
+[421] {'sid': 'session_0391_4a909d0', 'msgs': '10', 'user': '5', 'staff': '5', 'chars': '219', 'merged': 'False'}
+[422] {'sid': 'session_0002_4486812', 'msgs': '24', 'user': '13', 'staff': '11', 'chars': '1078', 'merged': 'False'}
+[423] {'sid': 'session_0003_b66fca9', 'msgs': '15', 'user': '3', 'staff': '12', 'chars': '1325', 'merged': 'False'}
+[424] {'sid': 'session_0004_347befb', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '310', 'merged': 'False'}
+[425] {'sid': 'session_0005_89201e0', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '396', 'merged': 'False'}
+[426] {'sid': 'session_0008_7abde75', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '449', 'merged': 'False'}
+[427] {'sid': 'session_0009_447dbb6', 'msgs': '28', 'user': '9', 'staff': '19', 'chars': '1078', 'merged': 'False'}
+[428] {'sid': 'session_0010_c1e103f', 'msgs': '24', 'user': '9', 'staff': '15', 'chars': '1287', 'merged': 'False'}
+[429] {'sid': 'session_0011_7923097', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '746', 'merged': 'False'}
+[430] {'sid': 'session_0012_a7c63c2', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '450', 'merged': 'False'}
+[431] {'sid': 'session_0013_2deba05', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '296', 'merged': 'False'}
+[432] {'sid': 'session_0014_91ec92b', 'msgs': '42', 'user': '14', 'staff': '28', 'chars': '1469', 'merged': 'False'}
+[433] {'sid': 'session_0016_12d506a', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '339', 'merged': 'False'}
+[434] {'sid': 'session_0017_043457a', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '113', 'merged': 'False'}
+[435] {'sid': 'session_0018_d5d7c6d', 'msgs': '45', 'user': '22', 'staff': '23', 'chars': '880', 'merged': 'False'}
+[436] {'sid': 'session_0019_d5d7c6d', 'msgs': '40', 'user': '18', 'staff': '22', 'chars': '1659', 'merged': 'False'}
+[437] {'sid': 'session_0020_76efbc7', 'msgs': '28', 'user': '11', 'staff': '17', 'chars': '1033', 'merged': 'False'}
+[438] {'sid': 'session_0022_ea50adc', 'msgs': '7', 'user': '4', 'staff': '3', 'chars': '219', 'merged': 'False'}
+[439] {'sid': 'session_0023_4e89bb1', 'msgs': '5', 'user': '4', 'staff': '1', 'chars': '89', 'merged': 'False'}
+[440] {'sid': 'session_0024_74e464d', 'msgs': '27', 'user': '10', 'staff': '17', 'chars': '1281', 'merged': 'False'}
+[441] {'sid': 'session_0025_7ddda22', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '97', 'merged': 'False'}
+[442] {'sid': 'session_0026_f074a04', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '339', 'merged': 'False'}
+[443] {'sid': 'session_0027_46fd432', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '449', 'merged': 'False'}
+[444] {'sid': 'session_0028_ac29aae', 'msgs': '29', 'user': '6', 'staff': '23', 'chars': '2111', 'merged': 'False'}
+[445] {'sid': 'session_0031_616028f', 'msgs': '99', 'user': '99', 'staff': '0', 'chars': '1890', 'merged': 'False'}
+[446] {'sid': 'session_0032_da0e610', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '531', 'merged': 'False'}
+[447] {'sid': 'session_0033_e050e03', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '762', 'merged': 'False'}
+[448] {'sid': 'session_0034_9d8f4ab', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '72', 'merged': 'False'}
+[449] {'sid': 'session_0035_bd93f88', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '270', 'merged': 'False'}
+[450] {'sid': 'session_0037_063c4de', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '381', 'merged': 'False'}
+[451] {'sid': 'session_0038_925e3a0', 'msgs': '3', 'user': '2', 'staff': '1', 'chars': '218', 'merged': 'False'}
+[452] {'sid': 'session_0042_7eca689', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '231', 'merged': 'False'}
+[453] {'sid': 'session_0043_a8ffee2', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '207', 'merged': 'False'}
+[454] {'sid': 'session_0044_af24872', 'msgs': '18', 'user': '5', 'staff': '13', 'chars': '1002', 'merged': 'False'}
+[455] {'sid': 'session_0045_a92c210', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '1127', 'merged': 'False'}
+[456] {'sid': 'session_0047_d285458', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '612', 'merged': 'False'}
+[457] {'sid': 'session_0048_d76c53c', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '150', 'merged': 'False'}
+[458] {'sid': 'session_0050_d78a549', 'msgs': '14', 'user': '7', 'staff': '7', 'chars': '1150', 'merged': 'False'}
+[459] {'sid': 'session_0051_9935bdc', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '181', 'merged': 'False'}
+[460] {'sid': 'session_0052_d78a549', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '257', 'merged': 'False'}
+[461] {'sid': 'session_0053_86ca9e1', 'msgs': '32', 'user': '10', 'staff': '22', 'chars': '1179', 'merged': 'False'}
+[462] {'sid': 'session_0055_87b8e10', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '434', 'merged': 'False'}
+[463] {'sid': 'session_0057_d8b3da0', 'msgs': '18', 'user': '7', 'staff': '11', 'chars': '724', 'merged': 'False'}
+[464] {'sid': 'session_0058_1ae024d', 'msgs': '40', 'user': '17', 'staff': '23', 'chars': '1320', 'merged': 'False'}
+[465] {'sid': 'session_0059_89deaf8', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '253', 'merged': 'False'}
+[466] {'sid': 'session_0061_7eca689', 'msgs': '10', 'user': '4', 'staff': '6', 'chars': '577', 'merged': 'False'}
+[467] {'sid': 'session_0062_a92c210', 'msgs': '17', 'user': '9', 'staff': '8', 'chars': '638', 'merged': 'False'}
+[468] {'sid': 'session_0063_d5d7c6d', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '553', 'merged': 'False'}
+[469] {'sid': 'session_0065_06260f5', 'msgs': '11', 'user': '2', 'staff': '9', 'chars': '646', 'merged': 'False'}
+[470] {'sid': 'session_0066_2762920', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '743', 'merged': 'False'}
+[471] {'sid': 'session_0067_04247a1', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '210', 'merged': 'False'}
+[472] {'sid': 'session_0068_f6b362e', 'msgs': '10', 'user': '5', 'staff': '5', 'chars': '158', 'merged': 'False'}
+[473] {'sid': 'session_0069_7eca689', 'msgs': '13', 'user': '5', 'staff': '8', 'chars': '493', 'merged': 'False'}
+[474] {'sid': 'session_0071_7ba182f', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '716', 'merged': 'False'}
+[475] {'sid': 'session_0072_7de7bf5', 'msgs': '18', 'user': '5', 'staff': '13', 'chars': '777', 'merged': 'False'}
+[476] {'sid': 'session_0073_2bf486b', 'msgs': '31', 'user': '8', 'staff': '23', 'chars': '2670', 'merged': 'False'}
+[477] {'sid': 'session_0074_708178c', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '216', 'merged': 'False'}
+[478] {'sid': 'session_0075_bf51ed2', 'msgs': '18', 'user': '7', 'staff': '11', 'chars': '591', 'merged': 'False'}
+[479] {'sid': 'session_0076_348b5d9', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '106', 'merged': 'False'}
+[480] {'sid': 'session_0077_b0532e3', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '364', 'merged': 'False'}
+[481] {'sid': 'session_0078_cdb1bf9', 'msgs': '23', 'user': '7', 'staff': '16', 'chars': '863', 'merged': 'False'}
+[482] {'sid': 'session_0079_5450b6e', 'msgs': '15', 'user': '4', 'staff': '11', 'chars': '901', 'merged': 'False'}
+[483] {'sid': 'session_0080_7eca689', 'msgs': '31', 'user': '11', 'staff': '20', 'chars': '951', 'merged': 'False'}
+[484] {'sid': 'session_0081_35c98fd', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '551', 'merged': 'False'}
+[485] {'sid': 'session_0082_b970de5', 'msgs': '12', 'user': '6', 'staff': '6', 'chars': '199', 'merged': 'False'}
+[486] {'sid': 'session_0085_6c7f7fa', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '400', 'merged': 'False'}
+[487] {'sid': 'session_0086_80847d2', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '644', 'merged': 'False'}
+[488] {'sid': 'session_0087_a92c210', 'msgs': '37', 'user': '18', 'staff': '19', 'chars': '1095', 'merged': 'False'}
+[489] {'sid': 'session_0088_2c87a6d', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '205', 'merged': 'False'}
+[490] {'sid': 'session_0089_a92c210', 'msgs': '20', 'user': '6', 'staff': '14', 'chars': '1103', 'merged': 'False'}
+[491] {'sid': 'session_0090_982c581', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '84', 'merged': 'False'}
+[492] {'sid': 'session_0092_a5c05a1', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '309', 'merged': 'False'}
+[493] {'sid': 'session_0093_a92c210', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '579', 'merged': 'False'}
+[494] {'sid': 'session_0094_b49c63f', 'msgs': '3', 'user': '2', 'staff': '1', 'chars': '60', 'merged': 'False'}
+[495] {'sid': 'session_0095_0585c9e', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '413', 'merged': 'False'}
+[496] {'sid': 'session_0097_d5d7c6d', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '656', 'merged': 'False'}
+[497] {'sid': 'session_0098_da0e610', 'msgs': '20', 'user': '7', 'staff': '13', 'chars': '1058', 'merged': 'False'}
+[498] {'sid': 'session_0099_5bc5c29', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '209', 'merged': 'False'}
+[499] {'sid': 'session_0100_443a278', 'msgs': '8', 'user': '8', 'staff': '0', 'chars': '173', 'merged': 'False'}
+[500] {'sid': 'session_0101_e2afece', 'msgs': '31', 'user': '12', 'staff': '19', 'chars': '1646', 'merged': 'False'}
+[501] {'sid': 'session_0102_bd0846b', 'msgs': '13', 'user': '5', 'staff': '8', 'chars': '944', 'merged': 'False'}
+[502] {'sid': 'session_0104_bd0846b', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '305', 'merged': 'False'}
+[503] {'sid': 'session_0105_4b1cf7e', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '75', 'merged': 'False'}
+[504] {'sid': 'session_0106_bfd99b5', 'msgs': '15', 'user': '6', 'staff': '9', 'chars': '617', 'merged': 'False'}
+[505] {'sid': 'session_0107_e65a704', 'msgs': '12', 'user': '6', 'staff': '6', 'chars': '615', 'merged': 'False'}
+[506] {'sid': 'session_0109_cd7fb78', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '536', 'merged': 'False'}
+[507] {'sid': 'session_0110_fe9f3f8', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '178', 'merged': 'False'}
+[508] {'sid': 'session_0111_b2c4979', 'msgs': '7', 'user': '4', 'staff': '3', 'chars': '389', 'merged': 'False'}
+[509] {'sid': 'session_0112_f1e1cf5', 'msgs': '21', 'user': '8', 'staff': '13', 'chars': '640', 'merged': 'False'}
+[510] {'sid': 'session_0114_6b54b4f', 'msgs': '24', 'user': '8', 'staff': '16', 'chars': '813', 'merged': 'False'}
+[511] {'sid': 'session_0115_bf3b3de', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '728', 'merged': 'False'}
+[512] {'sid': 'session_0116_6b54b4f', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '259', 'merged': 'False'}
+[513] {'sid': 'session_0117_afabba4', 'msgs': '22', 'user': '7', 'staff': '15', 'chars': '948', 'merged': 'False'}
+[514] {'sid': 'session_0118_7231cc3', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '314', 'merged': 'False'}
+[515] {'sid': 'session_0119_7deaa07', 'msgs': '15', 'user': '7', 'staff': '8', 'chars': '345', 'merged': 'False'}
+[516] {'sid': 'session_0123_28a1b16', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '243', 'merged': 'False'}
+[517] {'sid': 'session_0124_d8a7442', 'msgs': '15', 'user': '6', 'staff': '9', 'chars': '419', 'merged': 'False'}
+[518] {'sid': 'session_0125_af422bf', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '202', 'merged': 'False'}
+[519] {'sid': 'session_0127_0342b5a', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '268', 'merged': 'False'}
+[520] {'sid': 'session_0128_f6cac58', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '785', 'merged': 'False'}
+[521] {'sid': 'session_0130_cd8a4c8', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '349', 'merged': 'False'}
+[522] {'sid': 'session_0131_da0e610', 'msgs': '87', 'user': '44', 'staff': '43', 'chars': '3004', 'merged': 'False'}
+[523] {'sid': 'session_0132_ab2845a', 'msgs': '48', 'user': '22', 'staff': '26', 'chars': '2216', 'merged': 'False'}
+[524] {'sid': 'session_0133_da0e610', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '611', 'merged': 'False'}
+[525] {'sid': 'session_0134_0fe6388', 'msgs': '3', 'user': '3', 'staff': '0', 'chars': '134', 'merged': 'False'}
+[526] {'sid': 'session_0135_e6b29ea', 'msgs': '21', 'user': '7', 'staff': '14', 'chars': '1092', 'merged': 'False'}
+[527] {'sid': 'session_0138_34af484', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '495', 'merged': 'False'}
+[528] {'sid': 'session_0139_4a756f0', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '161', 'merged': 'False'}
+[529] {'sid': 'session_0141_a7c9428', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '536', 'merged': 'False'}
+[530] {'sid': 'session_0142_f8ad342', 'msgs': '9', 'user': '1', 'staff': '8', 'chars': '445', 'merged': 'False'}
+[531] {'sid': 'session_0143_a92c210', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '801', 'merged': 'False'}
+[532] {'sid': 'session_0144_af422bf', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '110', 'merged': 'False'}
+[533] {'sid': 'session_0145_7eca689', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '212', 'merged': 'False'}
+[534] {'sid': 'session_0146_142c71a', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '609', 'merged': 'False'}
+[535] {'sid': 'session_0147_d1457b7', 'msgs': '29', 'user': '11', 'staff': '18', 'chars': '1225', 'merged': 'False'}
+[536] {'sid': 'session_0148_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '284', 'merged': 'False'}
+[537] {'sid': 'session_0150_bb0e83c', 'msgs': '10', 'user': '5', 'staff': '5', 'chars': '275', 'merged': 'False'}
+[538] {'sid': 'session_0152_7eca689', 'msgs': '13', 'user': '5', 'staff': '8', 'chars': '486', 'merged': 'False'}
+[539] {'sid': 'session_0154_3eba941', 'msgs': '21', 'user': '9', 'staff': '12', 'chars': '1017', 'merged': 'False'}
+[540] {'sid': 'session_0156_1cb6d3b', 'msgs': '18', 'user': '4', 'staff': '14', 'chars': '1054', 'merged': 'False'}
+[541] {'sid': 'session_0157_edd485e', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '238', 'merged': 'False'}
+[542] {'sid': 'session_0158_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '363', 'merged': 'False'}
+[543] {'sid': 'session_0159_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '340', 'merged': 'False'}
+[544] {'sid': 'session_0160_474e33a', 'msgs': '17', 'user': '5', 'staff': '12', 'chars': '528', 'merged': 'False'}
+[545] {'sid': 'session_0161_a4ba1c5', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '705', 'merged': 'False'}
+[546] {'sid': 'session_0162_820ac88', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '370', 'merged': 'False'}
+[547] {'sid': 'session_0163_cb1ae17', 'msgs': '16', 'user': '5', 'staff': '11', 'chars': '538', 'merged': 'False'}
+[548] {'sid': 'session_0167_d8e516b', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '650', 'merged': 'False'}
+[549] {'sid': 'session_0169_33c6325', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '153', 'merged': 'False'}
+[550] {'sid': 'session_0170_295713f', 'msgs': '19', 'user': '5', 'staff': '14', 'chars': '1108', 'merged': 'False'}
+[551] {'sid': 'session_0171_cb1ae17', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '278', 'merged': 'False'}
+[552] {'sid': 'session_0173_295713f', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '337', 'merged': 'False'}
+[553] {'sid': 'session_0174_b4f0823', 'msgs': '19', 'user': '4', 'staff': '15', 'chars': '896', 'merged': 'False'}
+[554] {'sid': 'session_0175_395533a', 'msgs': '21', 'user': '10', 'staff': '11', 'chars': '1097', 'merged': 'False'}
+[555] {'sid': 'session_0176_64fea49', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '108', 'merged': 'False'}
+[556] {'sid': 'session_0177_e406d6e', 'msgs': '48', 'user': '12', 'staff': '36', 'chars': '2697', 'merged': 'False'}
+[557] {'sid': 'session_0178_d5d7c6d', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '789', 'merged': 'False'}
+[558] {'sid': 'session_0180_a23459d', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '154', 'merged': 'False'}
+[559] {'sid': 'session_0184_76f39bf', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '405', 'merged': 'False'}
+[560] {'sid': 'session_0188_e97e920', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '356', 'merged': 'False'}
+[561] {'sid': 'session_0189_eacc9a6', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '678', 'merged': 'False'}
+[562] {'sid': 'session_0191_1590a52', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '160', 'merged': 'False'}
+[563] {'sid': 'session_0192_2581847', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '981', 'merged': 'False'}
+[564] {'sid': 'session_0193_da0e610', 'msgs': '17', 'user': '7', 'staff': '10', 'chars': '1023', 'merged': 'False'}
+[565] {'sid': 'session_0194_c0ab777', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '278', 'merged': 'False'}
+[566] {'sid': 'session_0197_ee1c2c7', 'msgs': '17', 'user': '5', 'staff': '12', 'chars': '351', 'merged': 'False'}
+[567] {'sid': 'session_0199_db67801', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '763', 'merged': 'False'}
+[568] {'sid': 'session_0200_942a5dc', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '858', 'merged': 'False'}
+[569] {'sid': 'session_0201_4e893a5', 'msgs': '27', 'user': '10', 'staff': '17', 'chars': '503', 'merged': 'False'}
+[570] {'sid': 'session_0202_03fca76', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '476', 'merged': 'False'}
+[571] {'sid': 'session_0203_2c47130', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '698', 'merged': 'False'}
+[572] {'sid': 'session_0204_7440991', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '784', 'merged': 'False'}
+[573] {'sid': 'session_0205_29f85da', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '468', 'merged': 'False'}
+[574] {'sid': 'session_0206_3855c39', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '497', 'merged': 'False'}
+[575] {'sid': 'session_0207_2394b52', 'msgs': '11', 'user': '2', 'staff': '9', 'chars': '358', 'merged': 'False'}
+[576] {'sid': 'session_0210_ea6124c', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '87', 'merged': 'False'}
+[577] {'sid': 'session_0212_da0e610', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '512', 'merged': 'False'}
+[578] {'sid': 'session_0214_00e1cc1', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '99', 'merged': 'False'}
+[579] {'sid': 'session_0215_e9fcc03', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '200', 'merged': 'False'}
+[580] {'sid': 'session_0216_da0e610', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '471', 'merged': 'False'}
+[581] {'sid': 'session_0217_29f85da', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '115', 'merged': 'False'}
+[582] {'sid': 'session_0218_441172e', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '176', 'merged': 'False'}
+[583] {'sid': 'session_0219_7c44ddc', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '556', 'merged': 'False'}
+[584] {'sid': 'session_0221_da0e610', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '925', 'merged': 'False'}
+[585] {'sid': 'session_0222_f6b362e', 'msgs': '5', 'user': '3', 'staff': '2', 'chars': '184', 'merged': 'False'}
+[586] {'sid': 'session_0224_76bfc03', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '269', 'merged': 'False'}
+[587] {'sid': 'session_0227_581d3ba', 'msgs': '26', 'user': '12', 'staff': '14', 'chars': '1156', 'merged': 'False'}
+[588] {'sid': 'session_0229_8246f5d', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '200', 'merged': 'False'}
+[589] {'sid': 'session_0230_7eca689', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '336', 'merged': 'False'}
+[590] {'sid': 'session_0231_d77a742', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '269', 'merged': 'False'}
+[591] {'sid': 'session_0232_04585c4', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '72', 'merged': 'False'}
+[592] {'sid': 'session_0234_4946b66', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '188', 'merged': 'False'}
+[593] {'sid': 'session_0235_06f20f7', 'msgs': '5', 'user': '3', 'staff': '2', 'chars': '141', 'merged': 'False'}
+[594] {'sid': 'session_0236_2f76ba6', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '396', 'merged': 'False'}
+[595] {'sid': 'session_0237_707ba2f', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '327', 'merged': 'False'}
+[596] {'sid': 'session_0238_063c4de', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '351', 'merged': 'False'}
+[597] {'sid': 'session_0240_a92c210', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '697', 'merged': 'False'}
+[598] {'sid': 'session_0242_89f58df', 'msgs': '18', 'user': '4', 'staff': '14', 'chars': '1017', 'merged': 'False'}
+[599] {'sid': 'session_0243_4507f8a', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '159', 'merged': 'False'}
+[600] {'sid': 'session_0247_927da7d', 'msgs': '30', 'user': '12', 'staff': '18', 'chars': '1383', 'merged': 'False'}
+[601] {'sid': 'session_0248_dd2008f', 'msgs': '27', 'user': '9', 'staff': '18', 'chars': '1247', 'merged': 'False'}
+[602] {'sid': 'session_0251_fe9d81e', 'msgs': '17', 'user': '17', 'staff': '0', 'chars': '495', 'merged': 'False'}
+[603] {'sid': 'session_0253_a92c210', 'msgs': '6', 'user': '1', 'staff': '5', 'chars': '601', 'merged': 'False'}
+[604] {'sid': 'session_0254_59bd689', 'msgs': '16', 'user': '6', 'staff': '10', 'chars': '780', 'merged': 'False'}
+[605] {'sid': 'session_0256_8417643', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '302', 'merged': 'False'}
+[606] {'sid': 'session_0257_5300ef1', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '127', 'merged': 'False'}
+[607] {'sid': 'session_0258_cab0138', 'msgs': '19', 'user': '7', 'staff': '12', 'chars': '691', 'merged': 'False'}
+[608] {'sid': 'session_0260_a8fe145', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '461', 'merged': 'False'}
+[609] {'sid': 'session_0261_0c42164', 'msgs': '9', 'user': '5', 'staff': '4', 'chars': '782', 'merged': 'False'}
+[610] {'sid': 'session_0262_7eca689', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '403', 'merged': 'False'}
+[611] {'sid': 'session_0263_3450474', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '795', 'merged': 'False'}
+[612] {'sid': 'session_0264_a92c210', 'msgs': '47', 'user': '19', 'staff': '28', 'chars': '2078', 'merged': 'False'}
+[613] {'sid': 'session_0265_a92c210', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '730', 'merged': 'False'}
+[614] {'sid': 'session_0266_1ec6576', 'msgs': '30', 'user': '14', 'staff': '16', 'chars': '691', 'merged': 'False'}
+[615] {'sid': 'session_0267_4fecd57', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '296', 'merged': 'False'}
+[616] {'sid': 'session_0268_c955406', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '402', 'merged': 'False'}
+[617] {'sid': 'session_0269_7eca689', 'msgs': '8', 'user': '5', 'staff': '3', 'chars': '178', 'merged': 'False'}
+[618] {'sid': 'session_0271_59bd689', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '127', 'merged': 'False'}
+[619] {'sid': 'session_0272_d5d7c6d', 'msgs': '6', 'user': '1', 'staff': '5', 'chars': '609', 'merged': 'False'}
+[620] {'sid': 'session_0273_59bd689', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '179', 'merged': 'False'}
+[621] {'sid': 'session_0274_7eca689', 'msgs': '39', 'user': '16', 'staff': '23', 'chars': '1500', 'merged': 'False'}
+[622] {'sid': 'session_0275_7eca689', 'msgs': '8', 'user': '4', 'staff': '4', 'chars': '230', 'merged': 'False'}
+[623] {'sid': 'session_0276_a92c210', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '672', 'merged': 'False'}
+[624] {'sid': 'session_0277_d5d7c6d', 'msgs': '18', 'user': '7', 'staff': '11', 'chars': '852', 'merged': 'False'}
+[625] {'sid': 'session_0279_d431b52', 'msgs': '17', 'user': '7', 'staff': '10', 'chars': '797', 'merged': 'False'}
+[626] {'sid': 'session_0280_abe35cf', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '221', 'merged': 'False'}
+[627] {'sid': 'session_0281_0f921bd', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '462', 'merged': 'False'}
+[628] {'sid': 'session_0287_7f32261', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '344', 'merged': 'False'}
+[629] {'sid': 'session_0288_6fc9ead', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '296', 'merged': 'False'}
+[630] {'sid': 'session_0289_2f9d5d6', 'msgs': '25', 'user': '10', 'staff': '15', 'chars': '938', 'merged': 'False'}
+[631] {'sid': 'session_0290_c654026', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '822', 'merged': 'False'}
+[632] {'sid': 'session_0291_c34239b', 'msgs': '17', 'user': '8', 'staff': '9', 'chars': '872', 'merged': 'False'}
+[633] {'sid': 'session_0292_720b93c', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '385', 'merged': 'False'}
+[634] {'sid': 'session_0293_da8ec74', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '794', 'merged': 'False'}
+[635] {'sid': 'session_0294_82e70b0', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '471', 'merged': 'False'}
+[636] {'sid': 'session_0295_a92c210', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '1042', 'merged': 'False'}
+[637] {'sid': 'session_0298_da0e610', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '101', 'merged': 'False'}
+[638] {'sid': 'session_0299_02d6a03', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '175', 'merged': 'False'}
+[639] {'sid': 'session_0302_1600bb8', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '138', 'merged': 'False'}
+[640] {'sid': 'session_0304_bb626ad', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '77', 'merged': 'False'}
+[641] {'sid': 'session_0308_a92c210', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '491', 'merged': 'False'}
+[642] {'sid': 'session_0310_c63f012', 'msgs': '11', 'user': '5', 'staff': '6', 'chars': '525', 'merged': 'False'}
+[643] {'sid': 'session_0312_b070330', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '364', 'merged': 'False'}
+[644] {'sid': 'session_0313_3ecb97f', 'msgs': '20', 'user': '5', 'staff': '15', 'chars': '763', 'merged': 'False'}
+[645] {'sid': 'session_0314_d5d7c6d', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '649', 'merged': 'False'}
+[646] {'sid': 'session_0316_afe0edd', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '219', 'merged': 'False'}
+[647] {'sid': 'session_0318_dbb20c1', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '769', 'merged': 'False'}
+[648] {'sid': 'session_0319_0a58ae4', 'msgs': '10', 'user': '4', 'staff': '6', 'chars': '186', 'merged': 'False'}
+[649] {'sid': 'session_0320_e5a6ddf', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '199', 'merged': 'False'}
+[650] {'sid': 'session_0322_f0d6a34', 'msgs': '14', 'user': '3', 'staff': '11', 'chars': '753', 'merged': 'False'}
+[651] {'sid': 'session_0323_8024c76', 'msgs': '13', 'user': '13', 'staff': '0', 'chars': '743', 'merged': 'False'}
+[652] {'sid': 'session_0324_a7e9193', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '272', 'merged': 'False'}
+[653] {'sid': 'session_0325_66be591', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '221', 'merged': 'False'}
+[654] {'sid': 'session_0327_7eca689', 'msgs': '9', 'user': '5', 'staff': '4', 'chars': '586', 'merged': 'False'}
+[655] {'sid': 'session_0328_65591ee', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '564', 'merged': 'False'}
+[656] {'sid': 'session_0329_fb37c10', 'msgs': '6', 'user': '1', 'staff': '5', 'chars': '302', 'merged': 'False'}
+[657] {'sid': 'session_0330_7eca689', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '877', 'merged': 'False'}
+[658] {'sid': 'session_0331_cdb1bf9', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '1136', 'merged': 'False'}
+[659] {'sid': 'session_0332_4a3da9c', 'msgs': '19', 'user': '8', 'staff': '11', 'chars': '1091', 'merged': 'False'}
+[660] {'sid': 'session_0333_7adbcfe', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '528', 'merged': 'False'}
+[661] {'sid': 'session_0334_842c3f4', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '457', 'merged': 'False'}
+[662] {'sid': 'session_0335_72183f8', 'msgs': '42', 'user': '15', 'staff': '27', 'chars': '2122', 'merged': 'False'}
+[663] {'sid': 'session_0337_8024c76', 'msgs': '10', 'user': '10', 'staff': '0', 'chars': '463', 'merged': 'False'}
+[664] {'sid': 'session_0338_0accdf3', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '271', 'merged': 'False'}
+[665] {'sid': 'session_0339_f6b1618', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '412', 'merged': 'False'}
+[666] {'sid': 'session_0340_0accdf3', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '234', 'merged': 'False'}
+[667] {'sid': 'session_0341_a7902d6', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '113', 'merged': 'False'}
+[668] {'sid': 'session_0342_90b0a99', 'msgs': '13', 'user': '2', 'staff': '11', 'chars': '897', 'merged': 'False'}
+[669] {'sid': 'session_0343_3207990', 'msgs': '23', 'user': '14', 'staff': '9', 'chars': '1085', 'merged': 'False'}
+[670] {'sid': 'session_0344_38569af', 'msgs': '10', 'user': '4', 'staff': '6', 'chars': '471', 'merged': 'False'}
+[671] {'sid': 'session_0345_b2865fd', 'msgs': '14', 'user': '1', 'staff': '13', 'chars': '868', 'merged': 'False'}
+[672] {'sid': 'session_0346_cdb1bf9', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '443', 'merged': 'False'}
+[673] {'sid': 'session_0347_bb34546', 'msgs': '15', 'user': '4', 'staff': '11', 'chars': '673', 'merged': 'False'}
+[674] {'sid': 'session_0348_69c21f9', 'msgs': '25', 'user': '13', 'staff': '12', 'chars': '887', 'merged': 'False'}
+[675] {'sid': 'session_0349_a232b10', 'msgs': '31', 'user': '15', 'staff': '16', 'chars': '1138', 'merged': 'False'}
+[676] {'sid': 'session_0351_ebe4a1d', 'msgs': '21', 'user': '5', 'staff': '16', 'chars': '1849', 'merged': 'False'}
+[677] {'sid': 'session_0352_694272e', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '495', 'merged': 'False'}
+[678] {'sid': 'session_0353_cdb1bf9', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '80', 'merged': 'False'}
+[679] {'sid': 'session_0354_d5d7c6d', 'msgs': '16', 'user': '5', 'staff': '11', 'chars': '831', 'merged': 'False'}
+[680] {'sid': 'session_0356_a92c210', 'msgs': '25', 'user': '7', 'staff': '18', 'chars': '1880', 'merged': 'False'}
+[681] {'sid': 'session_0357_f86219b', 'msgs': '13', 'user': '6', 'staff': '7', 'chars': '883', 'merged': 'False'}
+[682] {'sid': 'session_0358_da653d5', 'msgs': '31', 'user': '12', 'staff': '19', 'chars': '1480', 'merged': 'False'}
+[683] {'sid': 'session_0359_3333d84', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '252', 'merged': 'False'}
+[684] {'sid': 'session_0360_9ee3b2d', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '406', 'merged': 'False'}
+[685] {'sid': 'session_0361_8891ae4', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '151', 'merged': 'False'}
+[686] {'sid': 'session_0363_4b1d845', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '370', 'merged': 'False'}
+[687] {'sid': 'session_0364_f6b362e', 'msgs': '3', 'user': '2', 'staff': '1', 'chars': '29', 'merged': 'False'}
+[688] {'sid': 'session_0365_f6b362e', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '382', 'merged': 'False'}
+[689] {'sid': 'session_0366_bd65a70', 'msgs': '15', 'user': '4', 'staff': '11', 'chars': '635', 'merged': 'False'}
+[690] {'sid': 'session_0367_f6b362e', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '507', 'merged': 'False'}
+[691] {'sid': 'session_0368_8aa7073', 'msgs': '11', 'user': '5', 'staff': '6', 'chars': '543', 'merged': 'False'}
+[692] {'sid': 'session_0369_e5eab02', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '792', 'merged': 'False'}
+[693] {'sid': 'session_0370_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '350', 'merged': 'False'}
+[694] {'sid': 'session_0372_a9aad14', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '464', 'merged': 'False'}
+[695] {'sid': 'session_0373_77c4089', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '316', 'merged': 'False'}
+[696] {'sid': 'session_0375_4131f34', 'msgs': '34', 'user': '14', 'staff': '20', 'chars': '1269', 'merged': 'False'}
+[697] {'sid': 'session_0376_d5d7c6d', 'msgs': '20', 'user': '6', 'staff': '14', 'chars': '1267', 'merged': 'False'}
+[698] {'sid': 'session_0378_4131f34', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '104', 'merged': 'False'}
+[699] {'sid': 'session_0379_3b24e82', 'msgs': '19', 'user': '7', 'staff': '12', 'chars': '564', 'merged': 'False'}
+[700] {'sid': 'session_0380_f0f7012', 'msgs': '13', 'user': '13', 'staff': '0', 'chars': '232', 'merged': 'False'}
+[701] {'sid': 'session_0381_f0f7ddd', 'msgs': '9', 'user': '3', 'staff': '6', 'chars': '542', 'merged': 'False'}
+[702] {'sid': 'session_0382_7eca689', 'msgs': '21', 'user': '7', 'staff': '14', 'chars': '867', 'merged': 'False'}
+[703] {'sid': 'session_0383_da0e610', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '522', 'merged': 'False'}
+[704] {'sid': 'session_0384_a92c210', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '617', 'merged': 'False'}
+[705] {'sid': 'session_0386_da0e610', 'msgs': '16', 'user': '7', 'staff': '9', 'chars': '695', 'merged': 'False'}
+[706] {'sid': 'session_0387_625d5e6', 'msgs': '13', 'user': '4', 'staff': '9', 'chars': '345', 'merged': 'False'}
+[707] {'sid': 'session_0389_193298b', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '581', 'merged': 'False'}
+[708] {'sid': 'session_0392_a92c210', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '608', 'merged': 'False'}
+[709] {'sid': 'session_0393_d0fdab4', 'msgs': '17', 'user': '6', 'staff': '11', 'chars': '480', 'merged': 'False'}
+[710] {'sid': 'session_0394_7e1979c', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '317', 'merged': 'False'}
+[711] {'sid': 'session_0395_cdb1bf9', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '212', 'merged': 'False'}
+[712] {'sid': 'session_0396_00581a6', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '408', 'merged': 'False'}
+[713] {'sid': 'session_0397_d48f43c', 'msgs': '38', 'user': '17', 'staff': '21', 'chars': '1067', 'merged': 'False'}
+[714] {'sid': 'session_0398_ebc0002', 'msgs': '35', 'user': '13', 'staff': '22', 'chars': '1411', 'merged': 'False'}
+[715] {'sid': 'session_0399_d5d7c6d', 'msgs': '28', 'user': '10', 'staff': '18', 'chars': '1160', 'merged': 'False'}
+[716] {'sid': 'session_0000_a92c210', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '267', 'merged': 'False'}
+[717] {'sid': 'session_0002_4486812', 'msgs': '24', 'user': '13', 'staff': '11', 'chars': '1078', 'merged': 'False'}
+[718] {'sid': 'session_0003_b66fca9', 'msgs': '15', 'user': '3', 'staff': '12', 'chars': '1325', 'merged': 'False'}
+[719] {'sid': 'session_0004_347befb', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '310', 'merged': 'False'}
+[720] {'sid': 'session_0005_89201e0', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '396', 'merged': 'False'}
+[721] {'sid': 'session_0008_7abde75', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '449', 'merged': 'False'}
+[722] {'sid': 'session_0009_447dbb6', 'msgs': '28', 'user': '9', 'staff': '19', 'chars': '1078', 'merged': 'False'}
+[723] {'sid': 'session_0010_c1e103f', 'msgs': '24', 'user': '9', 'staff': '15', 'chars': '1287', 'merged': 'False'}
+[724] {'sid': 'session_0011_7923097', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '746', 'merged': 'False'}
+[725] {'sid': 'session_0012_a7c63c2', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '450', 'merged': 'False'}
+[726] {'sid': 'session_0013_2deba05', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '296', 'merged': 'False'}
+[727] {'sid': 'session_0014_91ec92b', 'msgs': '42', 'user': '14', 'staff': '28', 'chars': '1469', 'merged': 'False'}
+[728] {'sid': 'session_0015_8024c76', 'msgs': '90', 'user': '90', 'staff': '0', 'chars': '3000', 'merged': 'False'}
+[729] {'sid': 'session_0016_12d506a', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '339', 'merged': 'False'}
+[730] {'sid': 'session_0017_043457a', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '113', 'merged': 'False'}
+[731] {'sid': 'session_0018_d5d7c6d', 'msgs': '45', 'user': '22', 'staff': '23', 'chars': '880', 'merged': 'False'}
+[732] {'sid': 'session_0019_d5d7c6d', 'msgs': '40', 'user': '18', 'staff': '22', 'chars': '1659', 'merged': 'False'}
+[733] {'sid': 'session_0020_76efbc7', 'msgs': '28', 'user': '11', 'staff': '17', 'chars': '1033', 'merged': 'False'}
+[734] {'sid': 'session_0021_8024c76', 'msgs': '15', 'user': '15', 'staff': '0', 'chars': '661', 'merged': 'False'}
+[735] {'sid': 'session_0022_ea50adc', 'msgs': '7', 'user': '4', 'staff': '3', 'chars': '219', 'merged': 'False'}
+[736] {'sid': 'session_0023_4e89bb1', 'msgs': '5', 'user': '4', 'staff': '1', 'chars': '89', 'merged': 'False'}
+[737] {'sid': 'session_0024_74e464d', 'msgs': '27', 'user': '10', 'staff': '17', 'chars': '1281', 'merged': 'False'}
+[738] {'sid': 'session_0025_7ddda22', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '97', 'merged': 'False'}
+[739] {'sid': 'session_0026_f074a04', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '339', 'merged': 'False'}
+[740] {'sid': 'session_0027_46fd432', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '449', 'merged': 'False'}
+[741] {'sid': 'session_0028_ac29aae', 'msgs': '29', 'user': '6', 'staff': '23', 'chars': '2111', 'merged': 'False'}
+[742] {'sid': 'session_0029_5bdbb5b', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '93', 'merged': 'False'}
+[743] {'sid': 'session_0031_616028f', 'msgs': '99', 'user': '99', 'staff': '0', 'chars': '1890', 'merged': 'False'}
+[744] {'sid': 'session_0032_da0e610', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '531', 'merged': 'False'}
+[745] {'sid': 'session_0033_e050e03', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '762', 'merged': 'False'}
+[746] {'sid': 'session_0034_9d8f4ab', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '72', 'merged': 'False'}
+[747] {'sid': 'session_0035_bd93f88', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '270', 'merged': 'False'}
+[748] {'sid': 'session_0036_57b4528', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '205', 'merged': 'False'}
+[749] {'sid': 'session_0037_063c4de', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '381', 'merged': 'False'}
+[750] {'sid': 'session_0038_925e3a0', 'msgs': '3', 'user': '2', 'staff': '1', 'chars': '218', 'merged': 'False'}
+[751] {'sid': 'session_0039_542522f', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '101', 'merged': 'False'}
+[752] {'sid': 'session_0040_240c8d7', 'msgs': '9', 'user': '3', 'staff': '6', 'chars': '473', 'merged': 'False'}
+[753] {'sid': 'session_0041_16e9abc', 'msgs': '24', 'user': '8', 'staff': '16', 'chars': '1045', 'merged': 'False'}
+[754] {'sid': 'session_0042_7eca689', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '231', 'merged': 'False'}
+[755] {'sid': 'session_0043_a8ffee2', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '207', 'merged': 'False'}
+[756] {'sid': 'session_0044_af24872', 'msgs': '18', 'user': '5', 'staff': '13', 'chars': '1002', 'merged': 'False'}
+[757] {'sid': 'session_0045_a92c210', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '1127', 'merged': 'False'}
+[758] {'sid': 'session_0046_90b41dc', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '778', 'merged': 'False'}
+[759] {'sid': 'session_0047_d285458', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '612', 'merged': 'False'}
+[760] {'sid': 'session_0048_d76c53c', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '150', 'merged': 'False'}
+[761] {'sid': 'session_0049_4f71c8b', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '279', 'merged': 'False'}
+[762] {'sid': 'session_0050_d78a549', 'msgs': '14', 'user': '7', 'staff': '7', 'chars': '1150', 'merged': 'False'}
+[763] {'sid': 'session_0051_9935bdc', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '181', 'merged': 'False'}
+[764] {'sid': 'session_0052_d78a549', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '257', 'merged': 'False'}
+[765] {'sid': 'session_0053_86ca9e1', 'msgs': '32', 'user': '10', 'staff': '22', 'chars': '1179', 'merged': 'False'}
+[766] {'sid': 'session_0054_35413ad', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '395', 'merged': 'False'}
+[767] {'sid': 'session_0055_87b8e10', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '434', 'merged': 'False'}
+[768] {'sid': 'session_0057_d8b3da0', 'msgs': '18', 'user': '7', 'staff': '11', 'chars': '724', 'merged': 'False'}
+[769] {'sid': 'session_0058_1ae024d', 'msgs': '40', 'user': '17', 'staff': '23', 'chars': '1320', 'merged': 'False'}
+[770] {'sid': 'session_0059_89deaf8', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '253', 'merged': 'False'}
+[771] {'sid': 'session_0060_a92c210', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '541', 'merged': 'False'}
+[772] {'sid': 'session_0061_7eca689', 'msgs': '10', 'user': '4', 'staff': '6', 'chars': '577', 'merged': 'False'}
+[773] {'sid': 'session_0062_a92c210', 'msgs': '17', 'user': '9', 'staff': '8', 'chars': '638', 'merged': 'False'}
+[774] {'sid': 'session_0063_d5d7c6d', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '553', 'merged': 'False'}
+[775] {'sid': 'session_0065_06260f5', 'msgs': '11', 'user': '2', 'staff': '9', 'chars': '646', 'merged': 'False'}
+[776] {'sid': 'session_0066_2762920', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '743', 'merged': 'False'}
+[777] {'sid': 'session_0067_04247a1', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '210', 'merged': 'False'}
+[778] {'sid': 'session_0068_f6b362e', 'msgs': '10', 'user': '5', 'staff': '5', 'chars': '158', 'merged': 'False'}
+[779] {'sid': 'session_0069_7eca689', 'msgs': '13', 'user': '5', 'staff': '8', 'chars': '493', 'merged': 'False'}
+[780] {'sid': 'session_0071_7ba182f', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '716', 'merged': 'False'}
+[781] {'sid': 'session_0072_7de7bf5', 'msgs': '18', 'user': '5', 'staff': '13', 'chars': '777', 'merged': 'False'}
+[782] {'sid': 'session_0073_2bf486b', 'msgs': '31', 'user': '8', 'staff': '23', 'chars': '2670', 'merged': 'False'}
+[783] {'sid': 'session_0074_708178c', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '216', 'merged': 'False'}
+[784] {'sid': 'session_0075_bf51ed2', 'msgs': '18', 'user': '7', 'staff': '11', 'chars': '591', 'merged': 'False'}
+[785] {'sid': 'session_0076_348b5d9', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '106', 'merged': 'False'}
+[786] {'sid': 'session_0077_b0532e3', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '364', 'merged': 'False'}
+[787] {'sid': 'session_0078_cdb1bf9', 'msgs': '23', 'user': '7', 'staff': '16', 'chars': '863', 'merged': 'False'}
+[788] {'sid': 'session_0079_5450b6e', 'msgs': '15', 'user': '4', 'staff': '11', 'chars': '901', 'merged': 'False'}
+[789] {'sid': 'session_0080_7eca689', 'msgs': '31', 'user': '11', 'staff': '20', 'chars': '951', 'merged': 'False'}
+[790] {'sid': 'session_0081_35c98fd', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '551', 'merged': 'False'}
+[791] {'sid': 'session_0082_b970de5', 'msgs': '12', 'user': '6', 'staff': '6', 'chars': '199', 'merged': 'False'}
+[792] {'sid': 'session_0085_6c7f7fa', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '400', 'merged': 'False'}
+[793] {'sid': 'session_0086_80847d2', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '644', 'merged': 'False'}
+[794] {'sid': 'session_0087_a92c210', 'msgs': '37', 'user': '18', 'staff': '19', 'chars': '1095', 'merged': 'False'}
+[795] {'sid': 'session_0088_2c87a6d', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '205', 'merged': 'False'}
+[796] {'sid': 'session_0089_a92c210', 'msgs': '20', 'user': '6', 'staff': '14', 'chars': '1103', 'merged': 'False'}
+[797] {'sid': 'session_0090_982c581', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '84', 'merged': 'False'}
+[798] {'sid': 'session_0091_0f921bd', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '268', 'merged': 'False'}
+[799] {'sid': 'session_0092_a5c05a1', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '309', 'merged': 'False'}
+[800] {'sid': 'session_0093_a92c210', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '579', 'merged': 'False'}
+[801] {'sid': 'session_0094_b49c63f', 'msgs': '3', 'user': '2', 'staff': '1', 'chars': '60', 'merged': 'False'}
+[802] {'sid': 'session_0095_0585c9e', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '413', 'merged': 'False'}
+[803] {'sid': 'session_0096_960cb70', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '569', 'merged': 'False'}
+[804] {'sid': 'session_0097_d5d7c6d', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '656', 'merged': 'False'}
+[805] {'sid': 'session_0098_da0e610', 'msgs': '20', 'user': '7', 'staff': '13', 'chars': '1058', 'merged': 'False'}
+[806] {'sid': 'session_0099_5bc5c29', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '209', 'merged': 'False'}
+[807] {'sid': 'session_0100_443a278', 'msgs': '8', 'user': '8', 'staff': '0', 'chars': '173', 'merged': 'False'}
+[808] {'sid': 'session_0101_e2afece', 'msgs': '31', 'user': '12', 'staff': '19', 'chars': '1646', 'merged': 'False'}
+[809] {'sid': 'session_0102_bd0846b', 'msgs': '13', 'user': '5', 'staff': '8', 'chars': '944', 'merged': 'False'}
+[810] {'sid': 'session_0104_bd0846b', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '305', 'merged': 'False'}
+[811] {'sid': 'session_0105_4b1cf7e', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '75', 'merged': 'False'}
+[812] {'sid': 'session_0106_bfd99b5', 'msgs': '15', 'user': '6', 'staff': '9', 'chars': '617', 'merged': 'False'}
+[813] {'sid': 'session_0107_e65a704', 'msgs': '12', 'user': '6', 'staff': '6', 'chars': '615', 'merged': 'False'}
+[814] {'sid': 'session_0108_a1e84b6', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '539', 'merged': 'False'}
+[815] {'sid': 'session_0109_cd7fb78', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '536', 'merged': 'False'}
+[816] {'sid': 'session_0110_fe9f3f8', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '178', 'merged': 'False'}
+[817] {'sid': 'session_0111_b2c4979', 'msgs': '7', 'user': '4', 'staff': '3', 'chars': '389', 'merged': 'False'}
+[818] {'sid': 'session_0112_f1e1cf5', 'msgs': '21', 'user': '8', 'staff': '13', 'chars': '640', 'merged': 'False'}
+[819] {'sid': 'session_0113_ba189dc', 'msgs': '13', 'user': '4', 'staff': '9', 'chars': '626', 'merged': 'False'}
+[820] {'sid': 'session_0114_6b54b4f', 'msgs': '24', 'user': '8', 'staff': '16', 'chars': '813', 'merged': 'False'}
+[821] {'sid': 'session_0115_bf3b3de', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '728', 'merged': 'False'}
+[822] {'sid': 'session_0116_6b54b4f', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '259', 'merged': 'False'}
+[823] {'sid': 'session_0117_afabba4', 'msgs': '22', 'user': '7', 'staff': '15', 'chars': '948', 'merged': 'False'}
+[824] {'sid': 'session_0118_7231cc3', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '314', 'merged': 'False'}
+[825] {'sid': 'session_0119_7deaa07', 'msgs': '15', 'user': '7', 'staff': '8', 'chars': '345', 'merged': 'False'}
+[826] {'sid': 'session_0120_09d6c7b', 'msgs': '9', 'user': '1', 'staff': '8', 'chars': '580', 'merged': 'False'}
+[827] {'sid': 'session_0122_75cb50f', 'msgs': '16', 'user': '7', 'staff': '9', 'chars': '268', 'merged': 'False'}
+[828] {'sid': 'session_0123_28a1b16', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '243', 'merged': 'False'}
+[829] {'sid': 'session_0124_d8a7442', 'msgs': '15', 'user': '6', 'staff': '9', 'chars': '419', 'merged': 'False'}
+[830] {'sid': 'session_0125_af422bf', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '202', 'merged': 'False'}
+[831] {'sid': 'session_0127_0342b5a', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '268', 'merged': 'False'}
+[832] {'sid': 'session_0128_f6cac58', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '785', 'merged': 'False'}
+[833] {'sid': 'session_0130_cd8a4c8', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '349', 'merged': 'False'}
+[834] {'sid': 'session_0131_da0e610', 'msgs': '87', 'user': '44', 'staff': '43', 'chars': '3004', 'merged': 'False'}
+[835] {'sid': 'session_0132_ab2845a', 'msgs': '48', 'user': '22', 'staff': '26', 'chars': '2216', 'merged': 'False'}
+[836] {'sid': 'session_0133_da0e610', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '611', 'merged': 'False'}
+[837] {'sid': 'session_0134_0fe6388', 'msgs': '3', 'user': '3', 'staff': '0', 'chars': '134', 'merged': 'False'}
+[838] {'sid': 'session_0135_e6b29ea', 'msgs': '21', 'user': '7', 'staff': '14', 'chars': '1092', 'merged': 'False'}
+[839] {'sid': 'session_0136_7249533', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '202', 'merged': 'False'}
+[840] {'sid': 'session_0137_a92c210', 'msgs': '9', 'user': '3', 'staff': '6', 'chars': '425', 'merged': 'False'}
+[841] {'sid': 'session_0138_34af484', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '495', 'merged': 'False'}
+[842] {'sid': 'session_0139_4a756f0', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '161', 'merged': 'False'}
+[843] {'sid': 'session_0140_1995370', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '112', 'merged': 'False'}
+[844] {'sid': 'session_0141_a7c9428', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '536', 'merged': 'False'}
+[845] {'sid': 'session_0142_f8ad342', 'msgs': '9', 'user': '1', 'staff': '8', 'chars': '445', 'merged': 'False'}
+[846] {'sid': 'session_0143_a92c210', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '801', 'merged': 'False'}
+[847] {'sid': 'session_0144_af422bf', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '110', 'merged': 'False'}
+[848] {'sid': 'session_0145_7eca689', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '212', 'merged': 'False'}
+[849] {'sid': 'session_0146_142c71a', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '609', 'merged': 'False'}
+[850] {'sid': 'session_0147_d1457b7', 'msgs': '29', 'user': '11', 'staff': '18', 'chars': '1225', 'merged': 'False'}
+[851] {'sid': 'session_0148_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '284', 'merged': 'False'}
+[852] {'sid': 'session_0150_bb0e83c', 'msgs': '10', 'user': '5', 'staff': '5', 'chars': '275', 'merged': 'False'}
+[853] {'sid': 'session_0152_7eca689', 'msgs': '13', 'user': '5', 'staff': '8', 'chars': '486', 'merged': 'False'}
+[854] {'sid': 'session_0153_8024c76', 'msgs': '20', 'user': '20', 'staff': '0', 'chars': '877', 'merged': 'False'}
+[855] {'sid': 'session_0154_3eba941', 'msgs': '21', 'user': '9', 'staff': '12', 'chars': '1017', 'merged': 'False'}
+[856] {'sid': 'session_0156_1cb6d3b', 'msgs': '18', 'user': '4', 'staff': '14', 'chars': '1054', 'merged': 'False'}
+[857] {'sid': 'session_0157_edd485e', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '238', 'merged': 'False'}
+[858] {'sid': 'session_0158_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '363', 'merged': 'False'}
+[859] {'sid': 'session_0159_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '340', 'merged': 'False'}
+[860] {'sid': 'session_0160_474e33a', 'msgs': '17', 'user': '5', 'staff': '12', 'chars': '528', 'merged': 'False'}
+[861] {'sid': 'session_0161_a4ba1c5', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '705', 'merged': 'False'}
+[862] {'sid': 'session_0162_820ac88', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '370', 'merged': 'False'}
+[863] {'sid': 'session_0163_cb1ae17', 'msgs': '16', 'user': '5', 'staff': '11', 'chars': '538', 'merged': 'False'}
+[864] {'sid': 'session_0164_4755767', 'msgs': '11', 'user': '2', 'staff': '9', 'chars': '780', 'merged': 'False'}
+[865] {'sid': 'session_0165_eb9b755', 'msgs': '13', 'user': '8', 'staff': '5', 'chars': '290', 'merged': 'False'}
+[866] {'sid': 'session_0166_8024c76', 'msgs': '20', 'user': '20', 'staff': '0', 'chars': '1014', 'merged': 'False'}
+[867] {'sid': 'session_0167_d8e516b', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '650', 'merged': 'False'}
+[868] {'sid': 'session_0169_33c6325', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '153', 'merged': 'False'}
+[869] {'sid': 'session_0170_295713f', 'msgs': '19', 'user': '5', 'staff': '14', 'chars': '1108', 'merged': 'False'}
+[870] {'sid': 'session_0171_cb1ae17', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '278', 'merged': 'False'}
+[871] {'sid': 'session_0172_64fea49', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '557', 'merged': 'False'}
+[872] {'sid': 'session_0173_295713f', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '337', 'merged': 'False'}
+[873] {'sid': 'session_0174_b4f0823', 'msgs': '19', 'user': '4', 'staff': '15', 'chars': '896', 'merged': 'False'}
+[874] {'sid': 'session_0175_395533a', 'msgs': '21', 'user': '10', 'staff': '11', 'chars': '1097', 'merged': 'False'}
+[875] {'sid': 'session_0176_64fea49', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '108', 'merged': 'False'}
+[876] {'sid': 'session_0177_e406d6e', 'msgs': '48', 'user': '12', 'staff': '36', 'chars': '2697', 'merged': 'False'}
+[877] {'sid': 'session_0178_d5d7c6d', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '789', 'merged': 'False'}
+[878] {'sid': 'session_0180_a23459d', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '154', 'merged': 'False'}
+[879] {'sid': 'session_0181_9578bd3', 'msgs': '28', 'user': '12', 'staff': '16', 'chars': '901', 'merged': 'False'}
+[880] {'sid': 'session_0182_e8bff49', 'msgs': '17', 'user': '4', 'staff': '13', 'chars': '1002', 'merged': 'False'}
+[881] {'sid': 'session_0183_600e4b1', 'msgs': '18', 'user': '9', 'staff': '9', 'chars': '287', 'merged': 'False'}
+[882] {'sid': 'session_0184_76f39bf', 'msgs': '7', 'user': '1', 'staff': '6', 'chars': '405', 'merged': 'False'}
+[883] {'sid': 'session_0186_00aa8a9', 'msgs': '32', 'user': '12', 'staff': '20', 'chars': '1876', 'merged': 'False'}
+[884] {'sid': 'session_0188_e97e920', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '356', 'merged': 'False'}
+[885] {'sid': 'session_0189_eacc9a6', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '678', 'merged': 'False'}
+[886] {'sid': 'session_0191_1590a52', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '160', 'merged': 'False'}
+[887] {'sid': 'session_0192_2581847', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '981', 'merged': 'False'}
+[888] {'sid': 'session_0193_da0e610', 'msgs': '17', 'user': '7', 'staff': '10', 'chars': '1023', 'merged': 'False'}
+[889] {'sid': 'session_0194_c0ab777', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '278', 'merged': 'False'}
+[890] {'sid': 'session_0196_a25d2a9', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '91', 'merged': 'False'}
+[891] {'sid': 'session_0197_ee1c2c7', 'msgs': '17', 'user': '5', 'staff': '12', 'chars': '351', 'merged': 'False'}
+[892] {'sid': 'session_0198_d1b4ec9', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '852', 'merged': 'False'}
+[893] {'sid': 'session_0199_db67801', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '763', 'merged': 'False'}
+[894] {'sid': 'session_0200_942a5dc', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '858', 'merged': 'False'}
+[895] {'sid': 'session_0201_4e893a5', 'msgs': '27', 'user': '10', 'staff': '17', 'chars': '503', 'merged': 'False'}
+[896] {'sid': 'session_0202_03fca76', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '476', 'merged': 'False'}
+[897] {'sid': 'session_0203_2c47130', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '698', 'merged': 'False'}
+[898] {'sid': 'session_0204_7440991', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '784', 'merged': 'False'}
+[899] {'sid': 'session_0205_29f85da', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '468', 'merged': 'False'}
+[900] {'sid': 'session_0206_3855c39', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '497', 'merged': 'False'}
+[901] {'sid': 'session_0207_2394b52', 'msgs': '11', 'user': '2', 'staff': '9', 'chars': '358', 'merged': 'False'}
+[902] {'sid': 'session_0208_ec002cf', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '150', 'merged': 'False'}
+[903] {'sid': 'session_0209_3876259', 'msgs': '13', 'user': '7', 'staff': '6', 'chars': '369', 'merged': 'False'}
+[904] {'sid': 'session_0210_ea6124c', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '87', 'merged': 'False'}
+[905] {'sid': 'session_0212_da0e610', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '512', 'merged': 'False'}
+[906] {'sid': 'session_0214_00e1cc1', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '99', 'merged': 'False'}
+[907] {'sid': 'session_0215_e9fcc03', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '200', 'merged': 'False'}
+[908] {'sid': 'session_0216_da0e610', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '471', 'merged': 'False'}
+[909] {'sid': 'session_0217_29f85da', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '115', 'merged': 'False'}
+[910] {'sid': 'session_0218_441172e', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '176', 'merged': 'False'}
+[911] {'sid': 'session_0219_7c44ddc', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '556', 'merged': 'False'}
+[912] {'sid': 'session_0221_da0e610', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '925', 'merged': 'False'}
+[913] {'sid': 'session_0222_f6b362e', 'msgs': '5', 'user': '3', 'staff': '2', 'chars': '184', 'merged': 'False'}
+[914] {'sid': 'session_0224_76bfc03', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '269', 'merged': 'False'}
+[915] {'sid': 'session_0225_f9e547e', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '364', 'merged': 'False'}
+[916] {'sid': 'session_0227_581d3ba', 'msgs': '26', 'user': '12', 'staff': '14', 'chars': '1156', 'merged': 'False'}
+[917] {'sid': 'session_0228_d5d7c6d', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '636', 'merged': 'False'}
+[918] {'sid': 'session_0229_8246f5d', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '200', 'merged': 'False'}
+[919] {'sid': 'session_0230_7eca689', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '336', 'merged': 'False'}
+[920] {'sid': 'session_0231_d77a742', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '269', 'merged': 'False'}
+[921] {'sid': 'session_0232_04585c4', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '72', 'merged': 'False'}
+[922] {'sid': 'session_0233_4e4751f', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '83', 'merged': 'False'}
+[923] {'sid': 'session_0234_4946b66', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '188', 'merged': 'False'}
+[924] {'sid': 'session_0235_06f20f7', 'msgs': '5', 'user': '3', 'staff': '2', 'chars': '141', 'merged': 'False'}
+[925] {'sid': 'session_0236_2f76ba6', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '396', 'merged': 'False'}
+[926] {'sid': 'session_0237_707ba2f', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '327', 'merged': 'False'}
+[927] {'sid': 'session_0238_063c4de', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '351', 'merged': 'False'}
+[928] {'sid': 'session_0239_d7900b1', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '276', 'merged': 'False'}
+[929] {'sid': 'session_0240_a92c210', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '697', 'merged': 'False'}
+[930] {'sid': 'session_0242_89f58df', 'msgs': '18', 'user': '4', 'staff': '14', 'chars': '1017', 'merged': 'False'}
+[931] {'sid': 'session_0243_4507f8a', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '159', 'merged': 'False'}
+[932] {'sid': 'session_0244_1d3b70d', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '290', 'merged': 'False'}
+[933] {'sid': 'session_0245_d5d7c6d', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '204', 'merged': 'False'}
+[934] {'sid': 'session_0246_570c671', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '279', 'merged': 'False'}
+[935] {'sid': 'session_0247_927da7d', 'msgs': '30', 'user': '12', 'staff': '18', 'chars': '1383', 'merged': 'False'}
+[936] {'sid': 'session_0248_dd2008f', 'msgs': '27', 'user': '9', 'staff': '18', 'chars': '1247', 'merged': 'False'}
+[937] {'sid': 'session_0249_a92c210', 'msgs': '17', 'user': '5', 'staff': '12', 'chars': '1054', 'merged': 'False'}
+[938] {'sid': 'session_0250_86556d3', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '57', 'merged': 'False'}
+[939] {'sid': 'session_0251_fe9d81e', 'msgs': '17', 'user': '17', 'staff': '0', 'chars': '495', 'merged': 'False'}
+[940] {'sid': 'session_0253_a92c210', 'msgs': '6', 'user': '1', 'staff': '5', 'chars': '601', 'merged': 'False'}
+[941] {'sid': 'session_0254_59bd689', 'msgs': '16', 'user': '6', 'staff': '10', 'chars': '780', 'merged': 'False'}
+[942] {'sid': 'session_0255_e995a0a', 'msgs': '23', 'user': '9', 'staff': '14', 'chars': '827', 'merged': 'False'}
+[943] {'sid': 'session_0256_8417643', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '302', 'merged': 'False'}
+[944] {'sid': 'session_0257_5300ef1', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '127', 'merged': 'False'}
+[945] {'sid': 'session_0258_cab0138', 'msgs': '19', 'user': '7', 'staff': '12', 'chars': '691', 'merged': 'False'}
+[946] {'sid': 'session_0259_313263f', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '201', 'merged': 'False'}
+[947] {'sid': 'session_0260_a8fe145', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '461', 'merged': 'False'}
+[948] {'sid': 'session_0261_0c42164', 'msgs': '9', 'user': '5', 'staff': '4', 'chars': '782', 'merged': 'False'}
+[949] {'sid': 'session_0262_7eca689', 'msgs': '10', 'user': '3', 'staff': '7', 'chars': '403', 'merged': 'False'}
+[950] {'sid': 'session_0263_3450474', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '795', 'merged': 'False'}
+[951] {'sid': 'session_0264_a92c210', 'msgs': '47', 'user': '19', 'staff': '28', 'chars': '2078', 'merged': 'False'}
+[952] {'sid': 'session_0265_a92c210', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '730', 'merged': 'False'}
+[953] {'sid': 'session_0266_1ec6576', 'msgs': '30', 'user': '14', 'staff': '16', 'chars': '691', 'merged': 'False'}
+[954] {'sid': 'session_0267_4fecd57', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '296', 'merged': 'False'}
+[955] {'sid': 'session_0268_c955406', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '402', 'merged': 'False'}
+[956] {'sid': 'session_0269_7eca689', 'msgs': '8', 'user': '5', 'staff': '3', 'chars': '178', 'merged': 'False'}
+[957] {'sid': 'session_0271_59bd689', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '127', 'merged': 'False'}
+[958] {'sid': 'session_0272_d5d7c6d', 'msgs': '6', 'user': '1', 'staff': '5', 'chars': '609', 'merged': 'False'}
+[959] {'sid': 'session_0273_59bd689', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '179', 'merged': 'False'}
+[960] {'sid': 'session_0274_7eca689', 'msgs': '39', 'user': '16', 'staff': '23', 'chars': '1500', 'merged': 'False'}
+[961] {'sid': 'session_0275_7eca689', 'msgs': '8', 'user': '4', 'staff': '4', 'chars': '230', 'merged': 'False'}
+[962] {'sid': 'session_0276_a92c210', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '672', 'merged': 'False'}
+[963] {'sid': 'session_0277_d5d7c6d', 'msgs': '18', 'user': '7', 'staff': '11', 'chars': '852', 'merged': 'False'}
+[964] {'sid': 'session_0279_d431b52', 'msgs': '17', 'user': '7', 'staff': '10', 'chars': '797', 'merged': 'False'}
+[965] {'sid': 'session_0280_abe35cf', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '221', 'merged': 'False'}
+[966] {'sid': 'session_0281_0f921bd', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '462', 'merged': 'False'}
+[967] {'sid': 'session_0282_515749a', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '274', 'merged': 'False'}
+[968] {'sid': 'session_0284_d5d7c6d', 'msgs': '27', 'user': '11', 'staff': '16', 'chars': '1091', 'merged': 'False'}
+[969] {'sid': 'session_0286_cdb1bf9', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '148', 'merged': 'False'}
+[970] {'sid': 'session_0287_7f32261', 'msgs': '11', 'user': '3', 'staff': '8', 'chars': '344', 'merged': 'False'}
+[971] {'sid': 'session_0288_6fc9ead', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '296', 'merged': 'False'}
+[972] {'sid': 'session_0289_2f9d5d6', 'msgs': '25', 'user': '10', 'staff': '15', 'chars': '938', 'merged': 'False'}
+[973] {'sid': 'session_0290_c654026', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '822', 'merged': 'False'}
+[974] {'sid': 'session_0291_c34239b', 'msgs': '17', 'user': '8', 'staff': '9', 'chars': '872', 'merged': 'False'}
+[975] {'sid': 'session_0292_720b93c', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '385', 'merged': 'False'}
+[976] {'sid': 'session_0293_da8ec74', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '794', 'merged': 'False'}
+[977] {'sid': 'session_0294_82e70b0', 'msgs': '14', 'user': '5', 'staff': '9', 'chars': '471', 'merged': 'False'}
+[978] {'sid': 'session_0295_a92c210', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '1042', 'merged': 'False'}
+[979] {'sid': 'session_0296_24ad799', 'msgs': '5', 'user': '4', 'staff': '1', 'chars': '94', 'merged': 'False'}
+[980] {'sid': 'session_0298_da0e610', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '101', 'merged': 'False'}
+[981] {'sid': 'session_0299_02d6a03', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '175', 'merged': 'False'}
+[982] {'sid': 'session_0300_d5d7c6d', 'msgs': '17', 'user': '9', 'staff': '8', 'chars': '629', 'merged': 'False'}
+[983] {'sid': 'session_0301_847a46f', 'msgs': '9', 'user': '5', 'staff': '4', 'chars': '251', 'merged': 'False'}
+[984] {'sid': 'session_0302_1600bb8', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '138', 'merged': 'False'}
+[985] {'sid': 'session_0303_3333d84', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '89', 'merged': 'False'}
+[986] {'sid': 'session_0304_bb626ad', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '77', 'merged': 'False'}
+[987] {'sid': 'session_0305_da1a299', 'msgs': '5', 'user': '3', 'staff': '2', 'chars': '119', 'merged': 'False'}
+[988] {'sid': 'session_0307_886c63b', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '531', 'merged': 'False'}
+[989] {'sid': 'session_0308_a92c210', 'msgs': '4', 'user': '1', 'staff': '3', 'chars': '491', 'merged': 'False'}
+[990] {'sid': 'session_0309_7eca689', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '181', 'merged': 'False'}
+[991] {'sid': 'session_0310_c63f012', 'msgs': '11', 'user': '5', 'staff': '6', 'chars': '525', 'merged': 'False'}
+[992] {'sid': 'session_0311_38569af', 'msgs': '40', 'user': '15', 'staff': '25', 'chars': '1637', 'merged': 'False'}
+[993] {'sid': 'session_0312_b070330', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '364', 'merged': 'False'}
+[994] {'sid': 'session_0313_3ecb97f', 'msgs': '20', 'user': '5', 'staff': '15', 'chars': '763', 'merged': 'False'}
+[995] {'sid': 'session_0314_d5d7c6d', 'msgs': '9', 'user': '4', 'staff': '5', 'chars': '649', 'merged': 'False'}
+[996] {'sid': 'session_0315_3f7bf26', 'msgs': '3', 'user': '1', 'staff': '2', 'chars': '70', 'merged': 'False'}
+[997] {'sid': 'session_0316_afe0edd', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '219', 'merged': 'False'}
+[998] {'sid': 'session_0317_8c37651', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '352', 'merged': 'False'}
+[999] {'sid': 'session_0318_dbb20c1', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '769', 'merged': 'False'}
+[1000] {'sid': 'session_0319_0a58ae4', 'msgs': '10', 'user': '4', 'staff': '6', 'chars': '186', 'merged': 'False'}
+[1001] {'sid': 'session_0320_e5a6ddf', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '199', 'merged': 'False'}
+[1002] {'sid': 'session_0321_d588164', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '692', 'merged': 'False'}
+[1003] {'sid': 'session_0322_f0d6a34', 'msgs': '14', 'user': '3', 'staff': '11', 'chars': '753', 'merged': 'False'}
+[1004] {'sid': 'session_0323_8024c76', 'msgs': '13', 'user': '13', 'staff': '0', 'chars': '743', 'merged': 'False'}
+[1005] {'sid': 'session_0324_a7e9193', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '272', 'merged': 'False'}
+[1006] {'sid': 'session_0325_66be591', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '221', 'merged': 'False'}
+[1007] {'sid': 'session_0327_7eca689', 'msgs': '9', 'user': '5', 'staff': '4', 'chars': '586', 'merged': 'False'}
+[1008] {'sid': 'session_0328_65591ee', 'msgs': '11', 'user': '4', 'staff': '7', 'chars': '564', 'merged': 'False'}
+[1009] {'sid': 'session_0329_fb37c10', 'msgs': '6', 'user': '1', 'staff': '5', 'chars': '302', 'merged': 'False'}
+[1010] {'sid': 'session_0330_7eca689', 'msgs': '13', 'user': '3', 'staff': '10', 'chars': '877', 'merged': 'False'}
+[1011] {'sid': 'session_0331_cdb1bf9', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '1136', 'merged': 'False'}
+[1012] {'sid': 'session_0332_4a3da9c', 'msgs': '19', 'user': '8', 'staff': '11', 'chars': '1091', 'merged': 'False'}
+[1013] {'sid': 'session_0333_7adbcfe', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '528', 'merged': 'False'}
+[1014] {'sid': 'session_0334_842c3f4', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '457', 'merged': 'False'}
+[1015] {'sid': 'session_0335_72183f8', 'msgs': '42', 'user': '15', 'staff': '27', 'chars': '2122', 'merged': 'False'}
+[1016] {'sid': 'session_0336_a7902d6', 'msgs': '20', 'user': '6', 'staff': '14', 'chars': '895', 'merged': 'False'}
+[1017] {'sid': 'session_0338_0accdf3', 'msgs': '7', 'user': '3', 'staff': '4', 'chars': '271', 'merged': 'False'}
+[1018] {'sid': 'session_0339_f6b1618', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '412', 'merged': 'False'}
+[1019] {'sid': 'session_0340_0accdf3', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '234', 'merged': 'False'}
+[1020] {'sid': 'session_0341_a7902d6', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '113', 'merged': 'False'}
+[1021] {'sid': 'session_0342_90b0a99', 'msgs': '13', 'user': '2', 'staff': '11', 'chars': '897', 'merged': 'False'}
+[1022] {'sid': 'session_0343_3207990', 'msgs': '23', 'user': '14', 'staff': '9', 'chars': '1085', 'merged': 'False'}
+[1023] {'sid': 'session_0344_38569af', 'msgs': '10', 'user': '4', 'staff': '6', 'chars': '471', 'merged': 'False'}
+[1024] {'sid': 'session_0345_b2865fd', 'msgs': '14', 'user': '1', 'staff': '13', 'chars': '868', 'merged': 'False'}
+[1025] {'sid': 'session_0346_cdb1bf9', 'msgs': '12', 'user': '4', 'staff': '8', 'chars': '443', 'merged': 'False'}
+[1026] {'sid': 'session_0347_bb34546', 'msgs': '15', 'user': '4', 'staff': '11', 'chars': '673', 'merged': 'False'}
+[1027] {'sid': 'session_0348_69c21f9', 'msgs': '25', 'user': '13', 'staff': '12', 'chars': '887', 'merged': 'False'}
+[1028] {'sid': 'session_0349_a232b10', 'msgs': '31', 'user': '15', 'staff': '16', 'chars': '1138', 'merged': 'False'}
+[1029] {'sid': 'session_0350_dfe429c', 'msgs': '13', 'user': '7', 'staff': '6', 'chars': '115', 'merged': 'False'}
+[1030] {'sid': 'session_0351_ebe4a1d', 'msgs': '21', 'user': '5', 'staff': '16', 'chars': '1849', 'merged': 'False'}
+[1031] {'sid': 'session_0352_694272e', 'msgs': '12', 'user': '3', 'staff': '9', 'chars': '495', 'merged': 'False'}
+[1032] {'sid': 'session_0353_cdb1bf9', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '80', 'merged': 'False'}
+[1033] {'sid': 'session_0354_d5d7c6d', 'msgs': '16', 'user': '5', 'staff': '11', 'chars': '831', 'merged': 'False'}
+[1034] {'sid': 'session_0356_a92c210', 'msgs': '25', 'user': '7', 'staff': '18', 'chars': '1880', 'merged': 'False'}
+[1035] {'sid': 'session_0357_f86219b', 'msgs': '13', 'user': '6', 'staff': '7', 'chars': '883', 'merged': 'False'}
+[1036] {'sid': 'session_0358_da653d5', 'msgs': '31', 'user': '12', 'staff': '19', 'chars': '1480', 'merged': 'False'}
+[1037] {'sid': 'session_0359_3333d84', 'msgs': '6', 'user': '2', 'staff': '4', 'chars': '252', 'merged': 'False'}
+[1038] {'sid': 'session_0360_9ee3b2d', 'msgs': '15', 'user': '5', 'staff': '10', 'chars': '406', 'merged': 'False'}
+[1039] {'sid': 'session_0361_8891ae4', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '151', 'merged': 'False'}
+[1040] {'sid': 'session_0363_4b1d845', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '370', 'merged': 'False'}
+[1041] {'sid': 'session_0364_f6b362e', 'msgs': '3', 'user': '2', 'staff': '1', 'chars': '29', 'merged': 'False'}
+[1042] {'sid': 'session_0365_f6b362e', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '382', 'merged': 'False'}
+[1043] {'sid': 'session_0366_bd65a70', 'msgs': '15', 'user': '4', 'staff': '11', 'chars': '635', 'merged': 'False'}
+[1044] {'sid': 'session_0367_f6b362e', 'msgs': '8', 'user': '2', 'staff': '6', 'chars': '507', 'merged': 'False'}
+[1045] {'sid': 'session_0368_8aa7073', 'msgs': '11', 'user': '5', 'staff': '6', 'chars': '543', 'merged': 'False'}
+[1046] {'sid': 'session_0369_e5eab02', 'msgs': '14', 'user': '4', 'staff': '10', 'chars': '792', 'merged': 'False'}
+[1047] {'sid': 'session_0370_f6b362e', 'msgs': '5', 'user': '2', 'staff': '3', 'chars': '350', 'merged': 'False'}
+[1048] {'sid': 'session_0371_a1339e0', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '419', 'merged': 'False'}
+[1049] {'sid': 'session_0372_a9aad14', 'msgs': '10', 'user': '2', 'staff': '8', 'chars': '464', 'merged': 'False'}
+[1050] {'sid': 'session_0373_77c4089', 'msgs': '7', 'user': '2', 'staff': '5', 'chars': '316', 'merged': 'False'}
+[1051] {'sid': 'session_0374_3ad63cb', 'msgs': '14', 'user': '6', 'staff': '8', 'chars': '366', 'merged': 'False'}
+[1052] {'sid': 'session_0375_4131f34', 'msgs': '34', 'user': '14', 'staff': '20', 'chars': '1269', 'merged': 'False'}
+[1053] {'sid': 'session_0376_d5d7c6d', 'msgs': '20', 'user': '6', 'staff': '14', 'chars': '1267', 'merged': 'False'}
+[1054] {'sid': 'session_0378_4131f34', 'msgs': '4', 'user': '2', 'staff': '2', 'chars': '104', 'merged': 'False'}
+[1055] {'sid': 'session_0379_3b24e82', 'msgs': '19', 'user': '7', 'staff': '12', 'chars': '564', 'merged': 'False'}
+[1056] {'sid': 'session_0380_f0f7012', 'msgs': '13', 'user': '13', 'staff': '0', 'chars': '232', 'merged': 'False'}
+[1057] {'sid': 'session_0381_f0f7ddd', 'msgs': '9', 'user': '3', 'staff': '6', 'chars': '542', 'merged': 'False'}
+[1058] {'sid': 'session_0382_7eca689', 'msgs': '21', 'user': '7', 'staff': '14', 'chars': '867', 'merged': 'False'}
+[1059] {'sid': 'session_0383_da0e610', 'msgs': '5', 'user': '1', 'staff': '4', 'chars': '522', 'merged': 'False'}
+[1060] {'sid': 'session_0384_a92c210', 'msgs': '8', 'user': '1', 'staff': '7', 'chars': '617', 'merged': 'False'}
+[1061] {'sid': 'session_0386_da0e610', 'msgs': '16', 'user': '7', 'staff': '9', 'chars': '695', 'merged': 'False'}
+[1062] {'sid': 'session_0387_625d5e6', 'msgs': '13', 'user': '4', 'staff': '9', 'chars': '345', 'merged': 'False'}
+[1063] {'sid': 'session_0389_193298b', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '581', 'merged': 'False'}
+[1064] {'sid': 'session_0391_4a909d0', 'msgs': '10', 'user': '5', 'staff': '5', 'chars': '219', 'merged': 'False'}
+[1065] {'sid': 'session_0392_a92c210', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '608', 'merged': 'False'}
+[1066] {'sid': 'session_0393_d0fdab4', 'msgs': '17', 'user': '6', 'staff': '11', 'chars': '480', 'merged': 'False'}
+[1067] {'sid': 'session_0394_7e1979c', 'msgs': '6', 'user': '3', 'staff': '3', 'chars': '317', 'merged': 'False'}
+[1068] {'sid': 'session_0395_cdb1bf9', 'msgs': '8', 'user': '3', 'staff': '5', 'chars': '212', 'merged': 'False'}
+[1069] {'sid': 'session_0396_00581a6', 'msgs': '9', 'user': '2', 'staff': '7', 'chars': '408', 'merged': 'False'}
+[1070] {'sid': 'session_0397_d48f43c', 'msgs': '38', 'user': '17', 'staff': '21', 'chars': '1067', 'merged': 'False'}
+[1071] {'sid': 'session_0398_ebc0002', 'msgs': '35', 'user': '13', 'staff': '22', 'chars': '1411', 'merged': 'False'}
+[1072] {'sid': 'session_0399_d5d7c6d', 'msgs': '28', 'user': '10', 'staff': '18', 'chars': '1160', 'merged': 'False'}
+[1073] {'sid': 'session_0337_8024c76', 'msgs': '10', 'user': '10', 'staff': '0', 'chars': '463', 'merged': 'False'}
+[1074] {'sid': 'session_0337_8024c76', 'msgs': '10', 'user': '10', 'staff': '0', 'chars': '463', 'merged': 'False'}

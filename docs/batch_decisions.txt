@@ -1,2 +1,7 @@
-   📦 BATCH_DECISION|sessions=64|estimated_tokens=N/A|batch_size=1|reason=超多消息(>25条)
-   📦 BATCH_DECISION|sessions=294|estimated_tokens=N/A|batch_size=1|reason=超多消息(>25条)
+=== 批量大小决策记录 ===
+
+{'sessions': '64', 'estimated_tokens': 'N/A', 'batch_size': '1', 'reason': '超多消息(>25条)'}
+{'sessions': '294', 'estimated_tokens': 'N/A', 'batch_size': '1', 'reason': '超多消息(>25条)'}
+{'sessions': '351', 'estimated_tokens': '23352', 'batch_size': '10', 'reason': '短会话优化(avg=2335tokens)'}
+{'sessions': '1', 'estimated_tokens': '1963', 'batch_size': '1', 'reason': '短会话优化(avg=196tokens)'}
+{'sessions': '1', 'estimated_tokens': '1963', 'batch_size': '1', 'reason': '短会话优化(avg=196tokens)'}

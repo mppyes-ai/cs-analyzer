@@ -297,7 +297,7 @@ class SmartScoringEngine:
                     lines.append(f"[客服] {content}")
                 else:
                     lines.append(f"[{role}] {content}")
-        return 
+        return '\n'.join(lines)
     
     def _analyze_session_keyword_fallback(self, messages: List[Dict]) -> Dict:
         """关键词规则匹配（回退方案）
