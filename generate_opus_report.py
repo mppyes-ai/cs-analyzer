@@ -106,19 +106,19 @@ def generate_files():
     print("🔄 正在获取会话统计...")
     msg_counts, char_counts = get_session_stats()
     
-    # 1. token_cost_detail.jsonl
+    # 1. token_cost_detail.jsonl (覆盖模式)
     print("📝 生成 token_cost_detail.jsonl...")
     with open(f"{OUTPUT_DIR}/token_cost_detail.jsonl", 'w') as f:
         for cost in token_costs:
             f.write(json.dumps(cost, ensure_ascii=False) + '\n')
     
-    # 2. prompt_struct_detail.jsonl
+    # 2. prompt_struct_detail.jsonl (覆盖模式)
     print("📝 生成 prompt_struct_detail.jsonl...")
     with open(f"{OUTPUT_DIR}/prompt_struct_detail.jsonl", 'w') as f:
         for struct in prompt_structs:
             f.write(json.dumps(struct, ensure_ascii=False) + '\n')
     
-    # 3. session_profiles.txt
+    # 3. session_profiles.txt (覆盖模式)
     print("📝 生成 session_profiles.txt...")
     with open(f"{OUTPUT_DIR}/session_profiles.txt", 'w') as f:
         f.write("=== 会话概况统计 ===\n\n")
@@ -126,7 +126,7 @@ def generate_files():
         for i, profile in enumerate(session_profiles, 1):
             f.write(f"[{i}] {profile}\n")
     
-    # 4. batch_decisions.txt
+    # 4. batch_decisions.txt (覆盖模式)
     print("📝 生成 batch_decisions.txt...")
     with open(f"{OUTPUT_DIR}/batch_decisions.txt", 'w') as f:
         f.write("=== 批量大小决策记录 ===\n\n")

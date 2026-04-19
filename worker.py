@@ -313,6 +313,21 @@ def wait_for_db_writes(timeout: Optional[float] = None) -> bool:
         time.sleep(0.1)
     return db_write_queue.empty()
 
+
+async def wait_for_db_writes_async(timeout: Optional[float] = None) -> bool:
+    """【P1修复】异步等待所有待写入的队列项完成
+    
+    包装同步的 wait_for_db_writes 为异步函数，避免 await bool 错误
+    
+    Args:
+        timeout: 最大等待时间（秒），None表示无限等待
+        
+    Returns:
+        是否在超时前完成
+    """
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(None, wait_for_db_writes, timeout)
+
 # ========== 全局变量 ==========
 running = True
 classifier = None
@@ -1058,6 +1073,79 @@ def _fetch_failed_tasks_for_retry(max_retries: int = 3) -> Dict[str, List[Dict]]
     return dict(groups)
 
 
+async def _retry_tasks_batch(tasks: List[Dict], batch_size: int = 5) -> List[Dict]:
+    """【P2修复】批量重试——3-5通/批，减少串行重试时间
+    
+    Args:
+        tasks: 失败任务列表
+        batch_size: 每批重试任务数（默认5通/批）
+        
+    Returns:
+        重试结果列表
+    """
+    global kimi_semaphore, scorer
+    
+    if not tasks:
+        return []
+    
+    print(f"   🔄 批量重试 {len(tasks)} 个任务，{batch_size}通/批")
+    
+    # 按batch_size分组
+    batches = [tasks[i:i+batch_size] for i in range(0, len(tasks), batch_size)]
+    all_results = []
+    
+    for batch_idx, batch in enumerate(batches):
+        print(f"   🔄 重试批次 {batch_idx+1}/{len(batches)} ({len(batch)}通)")
+        
+        try:
+            async with kimi_semaphore:
+                # 构建批量会话
+                batch_sessions = [t['session_data'] for t in batch]
+                pre_analyses = []
+                for task in batch:
+                    session_data = task['session_data']
+                    if isinstance(session_data, str):
+                        session_data = json.loads(session_data)
+                    pre_analyses.append({
+                        'scene': session_data.get('scene', '售前阶段'),
+                        'sub_scene': '其他',
+                        'intent': '咨询',
+                        'sentiment': 'neutral',
+                        'confidence': 0.8,
+                        'reasoning': '重试任务批量评分',
+                        'source': 'retry_batch'
+                    })
+                
+                # 调用评分
+                results = await scorer.score_sessions_batch_async(batch_sessions, pre_analyses)
+                
+                # 保存结果
+                loop = asyncio.get_event_loop()
+                for task, result in zip(batch, results):
+                    has_valid_scores = (
+                        'error' not in result and
+                        result.get('dimension_scores') is not None and
+                        result.get('summary') is not None
+                    )
+                    if has_valid_scores:
+                        await loop.run_in_executor(None, _save_result_sync, task, result)
+                        print(f"   ✅ 重试成功: 任务 {task['task_id']}")
+                        all_results.append(result)
+                    else:
+                        error_msg = result.get('error', '评分结果不完整')
+                        fail_task(task['task_id'], error_msg)
+                        print(f"   ❌ 重试失败: {error_msg[:100]}")
+                        all_results.append({'error': error_msg})
+                        
+        except Exception as e:
+            print(f"   ❌ 重试批次异常: {e}")
+            for task in batch:
+                fail_task(task['task_id'], str(e))
+                all_results.append({'error': str(e)})
+    
+    return all_results
+
+
 async def _retry_single_task(task: Dict) -> Optional[Dict]:
     """【Opus修复】单通重试——避免批次连锁失败
     
@@ -1415,9 +1503,8 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
                     all_failed_tasks = [t for tasks in failed_groups.values() for t in tasks]
                     print(f"🔄 发现 {len(all_failed_tasks)} 个失败任务，并发重试...")
                     
-                    # 【Opus修复】改为并发重试，而非串行
-                    retry_coros = [_retry_single_task(task) for task in all_failed_tasks]
-                    retry_results = await asyncio.gather(*retry_coros, return_exceptions=True)
+                    # 【P2修复】改为批量重试（3-5通/批），而非单个重试
+                    retry_results = await _retry_tasks_batch(all_failed_tasks, batch_size=5)
                     
                     # 统计成功数
                     successful_retries = sum(1 for r in retry_results if r and isinstance(r, dict) and 'error' not in r)
@@ -1425,8 +1512,13 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
                     print(f"   ✅ 重试完成: {successful_retries}/{len(all_failed_tasks)} 成功")
                     continue  # 重试完成后继续主循环
                 
-                # 【修复】--once模式下，检查是否还有processing任务卡住
+                # 【P1修复】--once模式下，等待数据库写入完成后再检查processing任务
                 if once:
+                    # 【新增】等待异步写入队列消化完成，避免竞态
+                    print("⏳ 等待数据库写入完成...")
+                    await wait_for_db_writes_async(timeout=30)
+                    print("✅ 数据库写入完成")
+                    
                     conn = sqlite3.connect(QUEUE_DB_PATH)
                     cursor = conn.cursor()
                     cursor.execute("SELECT COUNT(*) FROM analysis_tasks WHERE status='processing'")
