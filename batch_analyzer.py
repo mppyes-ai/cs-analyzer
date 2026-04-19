@@ -261,21 +261,38 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
             pass  # 通知失败不影响主流程
     
     def submit_sessions(self, sessions: List[Dict], batch_id: str = '') -> Dict:
-        """批量提交会话，带幂等性检查和场景分类"""
+        """批量提交会话，带幂等性检查、场景分类和前置过滤"""
         submitted = 0
         skipped = 0
+        filtered_empty = 0  # 【新增】无用户消息
+        filtered_short = 0  # 【新增】超短会话
         task_ids = []
         
         for session in sessions:
             session_id = session['session_id']
+            messages = session.get('messages', [])
             
             # 幂等性检查
             if self.is_already_analyzed(session_id):
                 skipped += 1
                 continue
             
+            # 【前置过滤】检查用户消息
+            user_msgs = [m for m in messages if m.get('role') in ('user', 'customer')]
+            
+            # 过滤1：无用户消息的会话（纯客服独白）
+            if not user_msgs:
+                filtered_empty += 1
+                print(f"   🚫 过滤: {session_id[:20]}... (无用户消息)")
+                continue
+            
+            # 过滤2：超短会话（总消息数<3且用户消息<2）
+            if len(messages) < 3 and len(user_msgs) < 2:
+                filtered_short += 1
+                print(f"   🚫 过滤: {session_id[:20]}... (超短会话)")
+                continue
+            
             # 【修复】场景分类并持久化
-            messages = session.get('messages', [])
             scene = classify_scene_by_keywords(messages)
             
             # 提交任务（带场景）
@@ -292,9 +309,19 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
             if submitted % 100 == 0:
                 print(f"  已提交 {submitted} 个任务...")
         
+        # 【新增】打印过滤统计
+        total_filtered = filtered_empty + filtered_short
+        if total_filtered > 0:
+            print(f"\n📊 前置过滤统计:")
+            print(f"   无用户消息: {filtered_empty} 通")
+            print(f"   超短会话: {filtered_short} 通")
+            print(f"   共计过滤: {total_filtered} 通")
+        
         return {
             'submitted': submitted,
             'skipped': skipped,
+            'filtered_empty': filtered_empty,
+            'filtered_short': filtered_short,
             'total': len(sessions),
             'task_ids': task_ids
         }

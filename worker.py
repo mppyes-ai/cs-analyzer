@@ -403,6 +403,15 @@ def find_related_sessions(main_task: dict, window_minutes: int = MERGE_WINDOW_MI
     main_staff = main_data.get('staff_name', '')
     main_messages = main_data.get('messages', [])
     
+    # 【修复】user_id为空时，不进行合并搜索
+    if not main_user_id:
+        return {'mergeable': [], 'transfer_chain': [], 'same_user': []}
+    
+    # 【修复】主任务必须有用户消息才合并
+    main_user_msgs = [m for m in main_messages if m.get('role') in ('user', 'customer')]
+    if not main_user_msgs:
+        return {'mergeable': [], 'transfer_chain': [], 'same_user': []}
+    
     if not main_messages:
         return {'mergeable': [], 'transfer_chain': [], 'same_user': []}
     
@@ -430,8 +439,17 @@ def find_related_sessions(main_task: dict, window_minutes: int = MERGE_WINDOW_MI
             task_user_id = task_data.get('user_id', '')
             task_staff = task_data.get('staff_name', '')
             task_messages = task_data.get('messages', [])
+            
+            # 【修复】候选任务user_id为空时跳过
+            if not task_user_id:
+                continue
 
             if task_user_id != main_user_id or not task_messages:
+                continue
+            
+            # 【修复】候选任务必须有用户消息
+            task_user_msgs = [m for m in task_messages if m.get('role') in ('user', 'customer')]
+            if not task_user_msgs:
                 continue
 
             task_start = parse_timestamp(task_messages[0].get('timestamp', ''))
