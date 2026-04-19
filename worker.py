@@ -1,5 +1,5 @@
 #!/usr/bin/env python3.14
-"""异步分析工作进程 - v2.6.2（智能批量大小）
+"""异步分析工作进程 - v2.6.5（异步写入队列优化版）
 
 后台运行，从队列中获取任务并处理
 支持四种模式：
@@ -82,6 +82,7 @@ load_dotenv()
 import time
 import argparse
 import signal
+import threading  # 【v2.6.5】导入线程模块
 import queue  # 【v2.6.5】导入队列模块
 import errno
 import asyncio
