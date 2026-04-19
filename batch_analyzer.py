@@ -260,6 +260,48 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
         except Exception:
             pass  # 通知失败不影响主流程
     
+    def _filter_existing_sessions(self, sessions: List[Dict]) -> tuple:
+        """【优化】批量检查会话是否已存在，返回(待提交列表, 已存在数量)
+        
+        替代逐条is_already_analyzed检查，将N次查询降为1次
+        """
+        if not sessions:
+            return [], 0
+        
+        # 提取所有session_id
+        session_ids = [s['session_id'] for s in sessions]
+        existing_set = set()
+        
+        conn = get_queue_connection()
+        cursor = conn.cursor()
+        
+        # 分批查询避免SQL参数过多（SQLite限制999个）
+        batch_size = 900
+        for i in range(0, len(session_ids), batch_size):
+            batch = session_ids[i:i+batch_size]
+            placeholders = ','.join(['?' for _ in batch])
+            
+            # 一次性查询：已completed，或活跃pending/processing
+            cursor.execute(f'''
+                SELECT session_id FROM analysis_tasks 
+                WHERE session_id IN ({placeholders})
+                AND (
+                    status = 'completed'
+                    OR status = 'pending'
+                    OR (status = 'processing' AND started_at > datetime('now', '-15 minutes'))
+                )
+            ''', batch)
+            
+            existing_set.update(row[0] for row in cursor.fetchall())
+        
+        conn.close()
+        
+        # 过滤已存在的会话
+        new_sessions = [s for s in sessions if s['session_id'] not in existing_set]
+        skipped_count = len(existing_set)
+        
+        return new_sessions, skipped_count
+
     def submit_sessions(self, sessions: List[Dict], batch_id: str = '') -> Dict:
         """批量提交会话，带幂等性检查、场景分类和前置过滤"""
         submitted = 0
@@ -268,14 +310,14 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
         filtered_short = 0  # 【新增】超短会话
         task_ids = []
         
+        # 【优化】批量幂等检查：N次查询→1次查询
+        sessions, skipped = self._filter_existing_sessions(sessions)
+        if skipped > 0:
+            print(f"   ⏭️ 跳过已存在: {skipped} 通")
+        
         for session in sessions:
             session_id = session['session_id']
             messages = session.get('messages', [])
-            
-            # 幂等性检查
-            if self.is_already_analyzed(session_id):
-                skipped += 1
-                continue
             
             # 【前置过滤】检查用户消息
             user_msgs = [m for m in messages if m.get('role') in ('user', 'customer')]
@@ -322,7 +364,7 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
             'skipped': skipped,
             'filtered_empty': filtered_empty,
             'filtered_short': filtered_short,
-            'total': len(sessions),
+            'total': len(sessions) + skipped,  # 原始总数
             'task_ids': task_ids
         }
     

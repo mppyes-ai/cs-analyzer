@@ -629,6 +629,21 @@ class SmartScoringEngine:
             sessions_content=sessions_json
         )
         
+        # === Prompt 结构追踪 START ===
+        try:
+            prompt_parts = {
+                "rules_chars": len(rules_text),
+                "sessions_chars": len(sessions_json),
+                "template_chars": len(prompt) - len(rules_text) - len(sessions_json),
+                "total_prompt_chars": len(prompt),
+                "session_count": len(sessions),
+                "session_avg_chars": len(sessions_json) // max(len(sessions), 1)
+            }
+            print(f"   📐 PROMPT_STRUCT|{json.dumps(prompt_parts, ensure_ascii=False)}", flush=True)
+        except Exception as e:
+            print(f"   ⚠️ PROMPT_STRUCT logging failed: {e}", flush=True)
+        # === Prompt 结构追踪 END ===
+        
         # 调用API
         result = await self._call_kimi_async(prompt, len(sessions), pre_analyses)
         return result
@@ -776,6 +791,24 @@ class SmartScoringEngine:
             print(f"   [DEBUG] API call completed in {elapsed:.1f}s", flush=True)
             
             content = response.choices[0].message.content
+            
+            # === 成本追踪埋点 START ===
+            try:
+                usage = response.usage
+                cost_log = {
+                    "batch_idx": expected_count,
+                    "prompt_tokens": usage.prompt_tokens,
+                    "completion_tokens": usage.completion_tokens,
+                    "total_tokens": usage.total_tokens,
+                    "elapsed_seconds": elapsed,
+                    "prompt_chars": len(prompt),
+                    "model": model
+                }
+                print(f"   💰 TOKEN_COST|{json.dumps(cost_log, ensure_ascii=False)}", flush=True)
+            except Exception as e:
+                print(f"   ⚠️ TOKEN_COST logging failed: {e}", flush=True)
+            # === 成本追踪埋点 END ===
+            
             results = self._parse_batch_response(content, expected_count)
             print(f"   [DEBUG] Parsed {len(results)} results", flush=True)
             

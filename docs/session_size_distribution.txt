@@ -1,0 +1,26 @@
+总会话: 400
+JSON大小 - 最大: 11860, 最小: 275, 平均: 1909
+消息数 - 最大: 99, 最小: 1, 平均: 11
+字符数 - 最大: 3004, 最小: 11, 平均: 538
+
+Top 20 最大会话:
+  session_0015_8024c76... msgs=90(u:90/s:0) chars=3000 json=11860
+  session_0131_da0e610... msgs=87(u:44/s:43) chars=3004 json=11576
+  session_0031_616028f... msgs=99(u:99/s:0) chars=1890 json=11471
+  session_0177_e406d6e... msgs=48(u:12/s:36) chars=2697 json=7294
+  session_0132_ab2845a... msgs=48(u:22/s:26) chars=2216 json=6924
+  session_0264_a92c210... msgs=47(u:19/s:28) chars=2078 json=6852
+  session_0335_72183f8... msgs=42(u:15/s:27) chars=2122 json=6007
+  session_0311_38569af... msgs=40(u:15/s:25) chars=1637 json=5851
+  session_0019_d5d7c6d... msgs=40(u:18/s:22) chars=1659 json=5778
+  session_0073_2bf486b... msgs=31(u:8/s:23) chars=2670 json=5702
+  session_0274_7eca689... msgs=39(u:16/s:23) chars=1500 json=5572
+  session_0014_91ec92b... msgs=42(u:14/s:28) chars=1469 json=5528
+  session_0018_d5d7c6d... msgs=45(u:22/s:23) chars=880 json=5285
+  session_0058_1ae024d... msgs=40(u:17/s:23) chars=1320 json=5240
+  session_0186_00aa8a9... msgs=32(u:12/s:20) chars=1876 json=5188
+  session_0087_a92c210... msgs=37(u:18/s:19) chars=1095 json=4943
+  session_0028_ac29aae... msgs=29(u:6/s:23) chars=2111 json=4922
+  session_0375_4131f34... msgs=34(u:14/s:20) chars=1269 json=4868
+  session_0398_ebc0002... msgs=35(u:13/s:22) chars=1411 json=4839
+  session_0397_d48f43c... msgs=38(u:17/s:21) chars=1067 json=4759

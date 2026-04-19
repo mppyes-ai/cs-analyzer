@@ -1,0 +1,2 @@
+   📦 BATCH_DECISION|sessions=64|estimated_tokens=N/A|batch_size=1|reason=超多消息(>25条)
+   📦 BATCH_DECISION|sessions=294|estimated_tokens=N/A|batch_size=1|reason=超多消息(>25条)

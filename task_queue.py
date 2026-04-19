@@ -80,38 +80,46 @@ def get_pending_tasks_by_user(user_id: str) -> List[Dict]:
 
 
 def init_queue_tables():
-    """初始化队列表"""
+    """初始化队列表（支持增量迁移）"""
     conn = get_queue_connection()
     cursor = conn.cursor()
     
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS analysis_tasks (
-            task_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            batch_id TEXT DEFAULT '',
-            session_id TEXT NOT NULL,
-            session_data TEXT NOT NULL,
-            scene TEXT DEFAULT '售前阶段',
-            status TEXT DEFAULT 'pending',
-            result TEXT,
-            error TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            started_at TIMESTAMP,
-            completed_at TIMESTAMP,
-            retry_count INTEGER DEFAULT 0
-        )
-    ''')
+    # 检查表是否存在
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='analysis_tasks'")
+    table_exists = cursor.fetchone() is not None
     
-    cursor.execute('''
-        CREATE INDEX IF NOT EXISTS idx_status ON analysis_tasks(status)
-    ''')
+    if not table_exists:
+        # 创建新表（包含user_id列）
+        cursor.execute('''
+            CREATE TABLE analysis_tasks (
+                task_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                batch_id TEXT DEFAULT '',
+                session_id TEXT NOT NULL,
+                user_id TEXT DEFAULT '',
+                session_data TEXT NOT NULL,
+                scene TEXT DEFAULT '售前阶段',
+                status TEXT DEFAULT 'pending',
+                result TEXT,
+                error TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                started_at TIMESTAMP,
+                completed_at TIMESTAMP,
+                retry_count INTEGER DEFAULT 0
+            )
+        ''')
+    else:
+        # 【迁移】检查并添加user_id列
+        cursor.execute("PRAGMA table_info(analysis_tasks)")
+        columns = [row[1] for row in cursor.fetchall()]
+        if 'user_id' not in columns:
+            print("🔄 数据库迁移：添加user_id列...")
+            cursor.execute("ALTER TABLE analysis_tasks ADD COLUMN user_id TEXT DEFAULT ''")
     
-    cursor.execute('''
-        CREATE INDEX IF NOT EXISTS idx_batch_status ON analysis_tasks(batch_id, status)
-    ''')
-    
-    cursor.execute('''
-        CREATE INDEX IF NOT EXISTS idx_session ON analysis_tasks(session_id)
-    ''')
+    # 创建索引（IF NOT EXISTS）
+    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_status ON analysis_tasks(status)''')
+    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_batch_status ON analysis_tasks(batch_id, status)''')
+    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_session ON analysis_tasks(session_id)''')
+    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_user_status ON analysis_tasks(user_id, status)''')
     
     conn.commit()
     conn.close()
@@ -131,13 +139,16 @@ def submit_task(session_id: str, session_data: Dict, batch_id: str = '', scene: 
     """
     init_queue_tables()
     
+    # 【优化】提取user_id用于索引加速
+    user_id = session_data.get('user_id', '')
+    
     conn = get_queue_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
-        INSERT INTO analysis_tasks (session_id, session_data, batch_id, scene, status, created_at)
-        VALUES (?, ?, ?, ?, 'pending', ?)
-    ''', (session_id, json.dumps(session_data, ensure_ascii=False), batch_id, scene, datetime.now().isoformat()))
+        INSERT INTO analysis_tasks (session_id, user_id, session_data, batch_id, scene, status, created_at)
+        VALUES (?, ?, ?, ?, ?, 'pending', ?)
+    ''', (session_id, user_id, json.dumps(session_data, ensure_ascii=False), batch_id, scene, datetime.now().isoformat()))
     
     task_id = cursor.lastrowid
     conn.commit()

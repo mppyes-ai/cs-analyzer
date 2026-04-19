@@ -113,6 +113,7 @@ SYSTEM_PROMPT_TOKENS = int(os.getenv('SYSTEM_PROMPT_TOKENS', '900'))
 MAX_TOKENS_PER_BATCH = int(os.getenv('MAX_TOKENS_PER_BATCH', '300000'))
 ADAPTIVE_BATCH_MIN = int(os.getenv('ADAPTIVE_BATCH_MIN', '3'))
 ADAPTIVE_BATCH_MAX = int(os.getenv('ADAPTIVE_BATCH_MAX', '5'))  # 【修复】强制限制最大5通/批，避免API超时
+MAX_TOKENS_PER_TASK = 10000  # 【修复】单任务Token上限，超长会话降级为单通处理
 
 
 def estimate_session_tokens(session_data: Dict) -> int:
@@ -136,17 +137,18 @@ def calculate_adaptive_batch_size(sessions: List[Dict], base_size: int = 30) -> 
     4. 始终在[ADAPTIVE_BATCH_MIN, ADAPTIVE_BATCH_MAX]范围内
     """
     # 【Opus修复】P1: 检查是否有超长会话（单通>10K tokens）
-    MAX_TOKENS_PER_TASK = 10000
     for s in sessions[:base_size]:
         if estimate_session_tokens(s) > MAX_TOKENS_PER_TASK:
-            print(f"   ⚠️ 检测到超长会话({estimate_session_tokens(s)} tokens)，降级为单通处理")
-            return 1  # 单通处理超长会话
+            result = 1
+            print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={estimate_session_tokens(s)}|batch_size={result}|reason=超长会话(>{MAX_TOKENS_PER_TASK}tokens)")
+            return result  # 单通处理超长会话
     
     # 【Opus修复】P1: 检查消息数是否过多（>25条）
     for s in sessions[:base_size]:
         if len(s.get('messages', [])) > 25:
-            print(f"   ⚠️ 检测到超多消息会话({len(s.get('messages', []))}条)，降级为单通处理")
-            return 1  # 单通处理超长对话
+            result = 1
+            print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens=N/A|batch_size={result}|reason=超多消息(>25条)")
+            return result  # 单通处理超长对话
     
     # 估算base_size的token
     base_tokens = sum(estimate_session_tokens(s) for s in sessions[:base_size])
@@ -155,7 +157,9 @@ def calculate_adaptive_batch_size(sessions: List[Dict], base_size: int = 30) -> 
         # 超出上限，按比例缩减
         ratio = MAX_TOKENS_PER_BATCH / base_tokens
         adjusted_size = int(base_size * ratio * 0.9)  # 留10%buffer
-        return max(adjusted_size, ADAPTIVE_BATCH_MIN)
+        result = max(adjusted_size, ADAPTIVE_BATCH_MIN)
+        print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={base_tokens}|batch_size={result}|reason=超出token上限({MAX_TOKENS_PER_BATCH})")
+        return result
     
     # 计算平均单通token
     avg_tokens = base_tokens / base_size
@@ -163,10 +167,14 @@ def calculate_adaptive_batch_size(sessions: List[Dict], base_size: int = 30) -> 
     # 如果平均token较低，尝试扩大批量，但不超过ADAPTIVE_BATCH_MAX (5通)
     if avg_tokens < 3000:  # 短会话
         potential_size = int(MAX_TOKENS_PER_BATCH / avg_tokens * 0.9)
-        return min(potential_size, ADAPTIVE_BATCH_MAX, len(sessions))
+        result = min(potential_size, ADAPTIVE_BATCH_MAX, len(sessions))
+        print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={base_tokens}|batch_size={result}|reason=短会话优化(avg={avg_tokens:.0f}tokens)")
+        return result
     
     # 默认使用base_size，但不超过ADAPTIVE_BATCH_MAX (5通)
-    return min(base_size, ADAPTIVE_BATCH_MAX, len(sessions))
+    result = min(base_size, ADAPTIVE_BATCH_MAX, len(sessions))
+    print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={base_tokens}|batch_size={result}|reason=默认策略")
+    return result
 
 
 # ========== 单例锁机制（使用 PID 文件）==========
@@ -424,11 +432,12 @@ def find_related_sessions(main_task: dict, window_minutes: int = MERGE_WINDOW_MI
     conn = get_queue_connection()
     cursor = conn.cursor()
     
+    # 【优化】使用user_id索引精准查找，O(N²)→O(N)，仅需匹配同用户任务
     cursor.execute('''
         SELECT task_id, session_id, session_data 
         FROM analysis_tasks 
-        WHERE status IN ('pending', 'processing') AND task_id != ?
-    ''', (main_task.get('task_id'),))
+        WHERE user_id = ? AND status IN ('pending', 'processing') AND task_id != ?
+    ''', (main_user_id, main_task.get('task_id')))
     
     result = {'mergeable': [], 'transfer_chain': [], 'same_user': []}
 
@@ -436,18 +445,13 @@ def find_related_sessions(main_task: dict, window_minutes: int = MERGE_WINDOW_MI
         task_id, session_id, session_data_json = row
         try:
             task_data = json.loads(session_data_json)
-            task_user_id = task_data.get('user_id', '')
             task_staff = task_data.get('staff_name', '')
             task_messages = task_data.get('messages', [])
             
-            # 【修复】候选任务user_id为空时跳过
-            if not task_user_id:
-                continue
-
-            if task_user_id != main_user_id or not task_messages:
+            if not task_messages:
                 continue
             
-            # 【修复】候选任务必须有用户消息
+            # 【优化】跳过无用户消息的候选（已在submit_task过滤，保留防护）
             task_user_msgs = [m for m in task_messages if m.get('role') in ('user', 'customer')]
             if not task_user_msgs:
                 continue
@@ -686,6 +690,21 @@ def _prepare_merged_tasks_sync(tasks: List[Dict], window_minutes: int) -> List[D
     """
     # 【Opus修复-P0】先去重，避免同一session_id重复处理
     tasks = deduplicate_sessions(tasks)
+    
+    # === 会话概况追踪 START ===
+    try:
+        for t in tasks:
+            sd = t.get('session_data', {})
+            if isinstance(sd, str):
+                sd = json.loads(sd)
+            msgs = sd.get('messages', [])
+            msg_chars = sum(len(m.get('content', '')) for m in msgs)
+            user_msgs = sum(1 for m in msgs if m.get('role') in ('user', 'customer'))
+            staff_msgs = sum(1 for m in msgs if m.get('role') == 'staff')
+            print(f"   📊 SESSION_PROFILE|sid={t.get('session_id','')[:20]}|msgs={len(msgs)}|user={user_msgs}|staff={staff_msgs}|chars={msg_chars}|merged={t.get('is_merged', False)}")
+    except Exception as e:
+        print(f"   ⚠️ SESSION_PROFILE logging failed: {e}")
+    # === 会话概况追踪 END ===
     
     merged_tasks = []
     
