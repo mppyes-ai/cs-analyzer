@@ -133,22 +133,13 @@ def calculate_adaptive_batch_size(sessions: List[Dict], base_size: int = 30) -> 
     策略：
     1. 先按base_size估算总token
     2. 如果超过MAX_TOKENS_PER_BATCH，按比例缩减
-    3. 【Opus修复】检查单任务Token是否超限，超长会话单通处理
-    4. 始终在[ADAPTIVE_BATCH_MIN, ADAPTIVE_BATCH_MAX]范围内
-    """
-    # 【Opus修复】P1: 检查是否有超长会话（单通>10K tokens）
-    for s in sessions[:base_size]:
-        if estimate_session_tokens(s) > MAX_TOKENS_PER_TASK:
-            result = 1
-            print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={estimate_session_tokens(s)}|batch_size={result}|reason=超长会话(>{MAX_TOKENS_PER_TASK}tokens)")
-            return result  # 单通处理超长会话
+    3. 始终在[ADAPTIVE_BATCH_MIN, ADAPTIVE_BATCH_MAX]范围内
     
-    # 【Opus修复】P1: 检查消息数是否过多（>25条）
-    for s in sessions[:base_size]:
-        if len(s.get('messages', [])) > 25:
-            result = 1
-            print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens=N/A|batch_size={result}|reason=超多消息(>25条)")
-            return result  # 单通处理超长对话
+    【重要】本函数只负责计算批量大小，不处理超长会话拆分
+    超长会话(>50条消息)应在调用本函数前被拆分出去
+    """
+    if not sessions:
+        return 0
     
     # 估算base_size的token
     base_tokens = sum(estimate_session_tokens(s) for s in sessions[:base_size])
@@ -162,16 +153,16 @@ def calculate_adaptive_batch_size(sessions: List[Dict], base_size: int = 30) -> 
         return result
     
     # 计算平均单通token
-    avg_tokens = base_tokens / base_size
+    avg_tokens = base_tokens / max(base_size, 1)
     
-    # 如果平均token较低，尝试扩大批量，但不超过ADAPTIVE_BATCH_MAX (5通)
+    # 如果平均token较低，尝试扩大批量，但不超过ADAPTIVE_BATCH_MAX
     if avg_tokens < 3000:  # 短会话
         potential_size = int(MAX_TOKENS_PER_BATCH / avg_tokens * 0.9)
         result = min(potential_size, ADAPTIVE_BATCH_MAX, len(sessions))
         print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={base_tokens}|batch_size={result}|reason=短会话优化(avg={avg_tokens:.0f}tokens)")
         return result
     
-    # 默认使用base_size，但不超过ADAPTIVE_BATCH_MAX (5通)
+    # 默认使用base_size，但不超过ADAPTIVE_BATCH_MAX
     result = min(base_size, ADAPTIVE_BATCH_MAX, len(sessions))
     print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={base_tokens}|batch_size={result}|reason=默认策略")
     return result
@@ -1221,19 +1212,43 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
     if not tasks:
         return []
     
-    # 【v2.6】自适应批量：计算最优批量大小
-    sessions = [t['session_data'] for t in tasks]
-    optimal_batch_size = calculate_adaptive_batch_size(sessions, base_batch_size)
+    # 【优化A】拆分超长会话和正常会话
+    OVERSIZED_MSG_THRESHOLD = 50  # 超过50条消息视为超长会话
+    normal_tasks = []
+    oversized_tasks = []
     
-    print(f"\n   📊 自适应批量: 基础={base_batch_size}, 优化后={optimal_batch_size}, 总任务={len(tasks)}")
+    for task in tasks:
+        session_data = task.get('session_data', {})
+        if isinstance(session_data, str):
+            session_data = json.loads(session_data)
+        msg_count = len(session_data.get('messages', []))
+        
+        if msg_count > OVERSIZED_MSG_THRESHOLD:
+            oversized_tasks.append(task)
+            print(f"   📦 BATCH_SPLIT|sid={task.get('session_id','')[:20]}|msgs={msg_count}|type=oversized(>{OVERSIZED_MSG_THRESHOLD})")
+        else:
+            normal_tasks.append(task)
     
-    # 按优化后的batch_size分组
-    batches = [tasks[i:i+optimal_batch_size] for i in range(0, len(tasks), optimal_batch_size)]
-    total_batches = len(batches)
+    if oversized_tasks:
+        print(f"   📦 BATCH_SPLIT|normal={len(normal_tasks)}|oversized={len(oversized_tasks)}")
     
-    # 预估总token（用于日志）
-    total_tokens = sum(estimate_session_tokens(s['session_data']) for s in tasks)
-    print(f"   💾 预估总Token: {total_tokens:,} (上限: {MAX_TOKENS_PER_BATCH:,})")
+    all_results = []
+    
+    # ===== 处理正常会话（批量模式）=====
+    if normal_tasks:
+        # 【v2.6】自适应批量：计算最优批量大小
+        sessions = [t['session_data'] for t in normal_tasks]
+        optimal_batch_size = calculate_adaptive_batch_size(sessions, base_batch_size)
+        
+        print(f"\n   📊 自适应批量: 基础={base_batch_size}, 优化后={optimal_batch_size}, 正常任务={len(normal_tasks)}")
+        
+        # 按优化后的batch_size分组
+        batches = [normal_tasks[i:i+optimal_batch_size] for i in range(0, len(normal_tasks), optimal_batch_size)]
+        total_batches = len(batches)
+        
+        # 预估总token（用于日志）
+        total_tokens = sum(estimate_session_tokens(s['session_data']) for s in normal_tasks)
+        print(f"   💾 预估总Token: {total_tokens:,} (上限: {MAX_TOKENS_PER_BATCH:,})")
     
     async def score_one_batch(batch_idx: int, batch: List[Dict]) -> List[Dict]:
         """评分单个批次（内部使用信号量限流）"""
@@ -1299,6 +1314,50 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
         except Exception as e:
             print(f"   ❌ 批次异常: {e}")
             completed_count += 1
+    
+    # 处理超长会话（单通模式）
+    if oversized_tasks:
+        print(f"\n   📦 处理 {len(oversized_tasks)} 个超长会话（单通模式）")
+        for task in oversized_tasks:
+            try:
+                async with kimi_semaphore:
+                    session_data = task['session_data']
+                    if isinstance(session_data, str):
+                        session_data = json.loads(session_data)
+                    
+                    pre_analysis = {
+                        'scene': session_data.get('scene', '售前阶段'),
+                        'sub_scene': '其他',
+                        'intent': '咨询',
+                        'sentiment': 'neutral',
+                        'confidence': 0.8,
+                        'reasoning': '超长会话单通评分',
+                        'source': 'oversized_single'
+                    }
+                    
+                    results = await scorer.score_sessions_batch_async([session_data], [pre_analysis])
+                    result = results[0] if results else {'error': '空结果'}
+                    
+                    has_valid_scores = (
+                        'error' not in result and
+                        result.get('dimension_scores') is not None and
+                        result.get('summary') is not None
+                    )
+                    
+                    if has_valid_scores:
+                        loop = asyncio.get_event_loop()
+                        await loop.run_in_executor(None, _save_result_sync, task, result)
+                        print(f"   ✅ 超长会话评分完成: {task.get('session_id','')[:20]}...")
+                        all_results.append(result)
+                    else:
+                        error_msg = result.get('error', '评分结果不完整')
+                        fail_task(task['task_id'], error_msg)
+                        all_results.append({'error': error_msg})
+                        
+            except Exception as e:
+                print(f"   ❌ 超长会话评分失败: {e}")
+                fail_task(task['task_id'], str(e))
+                all_results.append({'error': str(e)})
     
     return all_results
 

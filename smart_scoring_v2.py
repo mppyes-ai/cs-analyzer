@@ -277,6 +277,28 @@ class SmartScoringEngine:
         # 回退：关键词规则匹配
         return self._analyze_session_keyword_fallback(messages)
     
+    def _compact_session_for_prompt(self, session_data: dict) -> str:
+        """【优化C】将会话数据精简为纯文本格式，去掉元数据
+        
+        原格式：JSON 包含 session_id, timestamp, sender 等元数据
+        新格式：[角色] 内容
+        
+        预计节省：输入 token 减少 30-40%
+        """
+        messages = session_data.get('messages', [])
+        lines = []
+        for m in messages:
+            role = m.get('role', 'unknown')
+            content = m.get('content', '').strip()
+            if content:
+                if role in ('user', 'customer'):
+                    lines.append(f"[用户] {content}")
+                elif role == 'staff':
+                    lines.append(f"[客服] {content}")
+                else:
+                    lines.append(f"[{role}] {content}")
+        return 
+    
     def _analyze_session_keyword_fallback(self, messages: List[Dict]) -> Dict:
         """关键词规则匹配（回退方案）
         
@@ -619,7 +641,7 @@ class SmartScoringEngine:
         
         # 构建跨场景批量Prompt（标注场景信息）
         sessions_json = '\n\n'.join([
-            f"=== 会话{i+1} [场景: {pre_analyses[i].get('scene', '其他')}] ===\n{json.dumps(s, ensure_ascii=False, indent=2)}"
+               f"=== 会话{i+1} [场景: {pre_analyses[i].get('scene', '其他')}] ===\n{self._compact_session_for_prompt(s)}"
             for i, s in enumerate(sessions)
         ])
         
