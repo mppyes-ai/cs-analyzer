@@ -1,3 +1,0 @@
-=== 批量大小决策记录 ===
-
-{'sessions': '351', 'estimated_tokens': '23352', 'batch_size': '10', 'reason': '短会话优化(avg=2335tokens)'}
