@@ -1074,7 +1074,12 @@ def _fetch_failed_tasks_for_retry(max_retries: int = 3) -> Dict[str, List[Dict]]
 
 
 async def _retry_tasks_batch(tasks: List[Dict], batch_size: int = 5) -> List[Dict]:
-    """【P2修复】批量重试——3-5通/批，减少串行重试时间
+    """【v2.6.6-fix】批量重试——并行化，消除串行瓶颈
+    
+    核心变更：
+    - 使用 asyncio.gather 并发执行所有重试批次
+    - 每个批次独立使用信号量限流
+    - 30个失败任务从串行12分钟 → 并行2-3分钟
     
     Args:
         tasks: 失败任务列表
@@ -1088,15 +1093,17 @@ async def _retry_tasks_batch(tasks: List[Dict], batch_size: int = 5) -> List[Dic
     if not tasks:
         return []
     
-    print(f"   🔄 批量重试 {len(tasks)} 个任务，{batch_size}通/批")
+    print(f"   🔄 批量重试 {len(tasks)} 个任务，{batch_size}通/批，并发执行")
     
     # 按batch_size分组
     batches = [tasks[i:i+batch_size] for i in range(0, len(tasks), batch_size)]
     all_results = []
     
-    for batch_idx, batch in enumerate(batches):
-        print(f"   🔄 重试批次 {batch_idx+1}/{len(batches)} ({len(batch)}通)")
+    async def retry_one_batch(batch_idx: int, batch: List[Dict]) -> List[Dict]:
+        """重试单个批次（内部使用信号量限流）"""
+        print(f"   🔄 重试批次 {batch_idx+1}/{len(batches)} ({len(batch)}通) 启动")
         
+        batch_results = []
         try:
             async with kimi_semaphore:
                 # 构建批量会话
@@ -1130,18 +1137,44 @@ async def _retry_tasks_batch(tasks: List[Dict], batch_size: int = 5) -> List[Dic
                     if has_valid_scores:
                         await loop.run_in_executor(None, _save_result_sync, task, result)
                         print(f"   ✅ 重试成功: 任务 {task['task_id']}")
-                        all_results.append(result)
+                        batch_results.append(result)
                     else:
                         error_msg = result.get('error', '评分结果不完整')
                         fail_task(task['task_id'], error_msg)
                         print(f"   ❌ 重试失败: {error_msg[:100]}")
-                        all_results.append({'error': error_msg})
+                        batch_results.append({'error': error_msg})
                         
         except Exception as e:
-            print(f"   ❌ 重试批次异常: {e}")
+            print(f"   ❌ 重试批次 {batch_idx+1} 异常: {e}")
             for task in batch:
                 fail_task(task['task_id'], str(e))
-                all_results.append({'error': str(e)})
+                batch_results.append({'error': str(e)})
+        
+        print(f"   ✅ 重试批次 {batch_idx+1}/{len(batches)} 完成")
+        return batch_results
+    
+    # 【核心修复】并发执行所有重试批次
+    print(f"\n🚀 启动 {len(batches)} 个重试批次并发（信号量限制: {KIMI_MAX_CONCURRENT}）")
+    
+    batch_tasks = [retry_one_batch(i, batch) for i, batch in enumerate(batches)]
+    
+    # 使用 gather 并发执行，return_exceptions=True 避免一个批次失败影响其他
+    batch_results_list = await asyncio.gather(*batch_tasks, return_exceptions=True)
+    
+    # 合并结果
+    for batch_idx, result in enumerate(batch_results_list):
+        if isinstance(result, Exception):
+            print(f"   ❌ 重试批次 {batch_idx+1} 整体失败: {result}")
+            # 标记该批次所有任务失败
+            for task in batches[batch_idx]:
+                fail_task(task['task_id'], str(result))
+                all_results.append({'error': str(result)})
+        else:
+            all_results.extend(result)
+    
+    success_count = sum(1 for r in all_results if 'error' not in r)
+    fail_count = len(all_results) - success_count
+    print(f"\n📊 重试完成: {success_count}成功, {fail_count}失败")
     
     return all_results
 
@@ -1301,7 +1334,7 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
         return []
     
     # 【优化A】拆分超长会话和正常会话
-    OVERSIZED_MSG_THRESHOLD = 50  # 超过50条消息视为超长会话
+    OVERSIZED_MSG_THRESHOLD = 100  # 超过100条消息视为超长会话（原为50，提升后减少降级单通数量）
     normal_tasks = []
     oversized_tasks = []
     

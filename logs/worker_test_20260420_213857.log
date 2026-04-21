@@ -1,0 +1,1522 @@
+INFO:embedding_utils:🔄 首次加载Embedding模型...
+INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: mps
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/README.md "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/sentence_bert_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+🧹 清理残留锁文件 (PID 74874 已不存在)
+✅ 获取锁成功 (PID: 75372)
+============================================================
+🚀 客服分析工作进程启动 [异步批量模式 v2.6.4 - Opus修复版]
+   最大并发组: 6
+   单次处理上限: 150
+   基础批量评分: 10通/批
+   自适应范围: [3, 10]
+   Token上限: 200,000
+   Kimi并发: 90
+============================================================
+🔄 初始化分析引擎...
+✅ Kimi并发控制: 最大90并发
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 7532.48it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+INFO:embedding_utils:✅ Embedding模型加载完成
+✅ 漏斗式意图分类器已初始化 (规则优先，qwen2.5兜底)
+✅ 引擎初始化完成
+🔄 数据库写入线程已启动
+✅ 数据库写入线程启动成功
+   📊 --once模式：队列共有 295 个任务，全部取出处理
+
+📦 获取 295 个任务，来自 237 个用户
+
+🔍 对 295 通会话进行场景检查...
+
+📊 场景分布: {'售前阶段': 199, '售后阶段': 71, '售中阶段': 23, '客诉处理': 2}
+
+🚀 跨场景合并处理: 295 通会话
+   📊 SESSION_PROFILE|sid=session_0002_4486812|msgs=24|user=13|staff=11|chars=1078|merged=False
+   📊 SESSION_PROFILE|sid=session_0003_b66fca9|msgs=15|user=3|staff=12|chars=1325|merged=False
+   📊 SESSION_PROFILE|sid=session_0004_347befb|msgs=8|user=2|staff=6|chars=310|merged=False
+   📊 SESSION_PROFILE|sid=session_0005_89201e0|msgs=8|user=2|staff=6|chars=396|merged=False
+   📊 SESSION_PROFILE|sid=session_0008_7abde75|msgs=7|user=1|staff=6|chars=449|merged=False
+   📊 SESSION_PROFILE|sid=session_0009_447dbb6|msgs=28|user=9|staff=19|chars=1078|merged=False
+   📊 SESSION_PROFILE|sid=session_0010_c1e103f|msgs=24|user=9|staff=15|chars=1287|merged=False
+   📊 SESSION_PROFILE|sid=session_0011_7923097|msgs=11|user=3|staff=8|chars=746|merged=False
+   📊 SESSION_PROFILE|sid=session_0012_a7c63c2|msgs=8|user=1|staff=7|chars=450|merged=False
+   📊 SESSION_PROFILE|sid=session_0013_2deba05|msgs=7|user=1|staff=6|chars=296|merged=False
+   📊 SESSION_PROFILE|sid=session_0014_91ec92b|msgs=42|user=14|staff=28|chars=1469|merged=False
+   📊 SESSION_PROFILE|sid=session_0016_12d506a|msgs=10|user=2|staff=8|chars=339|merged=False
+   📊 SESSION_PROFILE|sid=session_0017_043457a|msgs=3|user=1|staff=2|chars=113|merged=False
+   📊 SESSION_PROFILE|sid=session_0018_d5d7c6d|msgs=45|user=22|staff=23|chars=880|merged=False
+   📊 SESSION_PROFILE|sid=session_0019_d5d7c6d|msgs=40|user=18|staff=22|chars=1659|merged=False
+   📊 SESSION_PROFILE|sid=session_0020_76efbc7|msgs=28|user=11|staff=17|chars=1033|merged=False
+   📊 SESSION_PROFILE|sid=session_0022_ea50adc|msgs=7|user=4|staff=3|chars=219|merged=False
+   📊 SESSION_PROFILE|sid=session_0023_4e89bb1|msgs=5|user=4|staff=1|chars=89|merged=False
+   📊 SESSION_PROFILE|sid=session_0024_74e464d|msgs=27|user=10|staff=17|chars=1281|merged=False
+   📊 SESSION_PROFILE|sid=session_0025_7ddda22|msgs=6|user=3|staff=3|chars=97|merged=False
+   📊 SESSION_PROFILE|sid=session_0026_f074a04|msgs=11|user=3|staff=8|chars=339|merged=False
+   📊 SESSION_PROFILE|sid=session_0027_46fd432|msgs=7|user=1|staff=6|chars=449|merged=False
+   📊 SESSION_PROFILE|sid=session_0028_ac29aae|msgs=29|user=6|staff=23|chars=2111|merged=False
+   📊 SESSION_PROFILE|sid=session_0031_616028f|msgs=99|user=99|staff=0|chars=1890|merged=False
+   📊 SESSION_PROFILE|sid=session_0032_da0e610|msgs=8|user=2|staff=6|chars=531|merged=False
+   📊 SESSION_PROFILE|sid=session_0033_e050e03|msgs=11|user=4|staff=7|chars=762|merged=False
+   📊 SESSION_PROFILE|sid=session_0034_9d8f4ab|msgs=3|user=1|staff=2|chars=72|merged=False
+   📊 SESSION_PROFILE|sid=session_0035_bd93f88|msgs=8|user=3|staff=5|chars=270|merged=False
+   📊 SESSION_PROFILE|sid=session_0037_063c4de|msgs=11|user=3|staff=8|chars=381|merged=False
+   📊 SESSION_PROFILE|sid=session_0038_925e3a0|msgs=3|user=2|staff=1|chars=218|merged=False
+   📊 SESSION_PROFILE|sid=session_0042_7eca689|msgs=4|user=2|staff=2|chars=231|merged=False
+   📊 SESSION_PROFILE|sid=session_0043_a8ffee2|msgs=5|user=2|staff=3|chars=207|merged=False
+   📊 SESSION_PROFILE|sid=session_0044_af24872|msgs=18|user=5|staff=13|chars=1002|merged=False
+   📊 SESSION_PROFILE|sid=session_0045_a92c210|msgs=14|user=4|staff=10|chars=1127|merged=False
+   📊 SESSION_PROFILE|sid=session_0047_d285458|msgs=7|user=2|staff=5|chars=612|merged=False
+   📊 SESSION_PROFILE|sid=session_0048_d76c53c|msgs=5|user=2|staff=3|chars=150|merged=False
+   📊 SESSION_PROFILE|sid=session_0050_d78a549|msgs=14|user=7|staff=7|chars=1150|merged=False
+   📊 SESSION_PROFILE|sid=session_0051_9935bdc|msgs=7|user=3|staff=4|chars=181|merged=False
+   📊 SESSION_PROFILE|sid=session_0052_d78a549|msgs=6|user=3|staff=3|chars=257|merged=False
+   📊 SESSION_PROFILE|sid=session_0053_86ca9e1|msgs=32|user=10|staff=22|chars=1179|merged=False
+   📊 SESSION_PROFILE|sid=session_0055_87b8e10|msgs=12|user=4|staff=8|chars=434|merged=False
+   📊 SESSION_PROFILE|sid=session_0057_d8b3da0|msgs=18|user=7|staff=11|chars=724|merged=False
+   📊 SESSION_PROFILE|sid=session_0058_1ae024d|msgs=40|user=17|staff=23|chars=1320|merged=False
+   📊 SESSION_PROFILE|sid=session_0059_89deaf8|msgs=6|user=3|staff=3|chars=253|merged=False
+   📊 SESSION_PROFILE|sid=session_0061_7eca689|msgs=10|user=4|staff=6|chars=577|merged=False
+   📊 SESSION_PROFILE|sid=session_0062_a92c210|msgs=17|user=9|staff=8|chars=638|merged=False
+   📊 SESSION_PROFILE|sid=session_0063_d5d7c6d|msgs=8|user=2|staff=6|chars=553|merged=False
+   📊 SESSION_PROFILE|sid=session_0065_06260f5|msgs=11|user=2|staff=9|chars=646|merged=False
+   📊 SESSION_PROFILE|sid=session_0066_2762920|msgs=7|user=2|staff=5|chars=743|merged=False
+   📊 SESSION_PROFILE|sid=session_0067_04247a1|msgs=5|user=2|staff=3|chars=210|merged=False
+   📊 SESSION_PROFILE|sid=session_0068_f6b362e|msgs=10|user=5|staff=5|chars=158|merged=False
+   📊 SESSION_PROFILE|sid=session_0069_7eca689|msgs=13|user=5|staff=8|chars=493|merged=False
+   📊 SESSION_PROFILE|sid=session_0071_7ba182f|msgs=5|user=1|staff=4|chars=716|merged=False
+   📊 SESSION_PROFILE|sid=session_0072_7de7bf5|msgs=18|user=5|staff=13|chars=777|merged=False
+   📊 SESSION_PROFILE|sid=session_0073_2bf486b|msgs=31|user=8|staff=23|chars=2670|merged=False
+   📊 SESSION_PROFILE|sid=session_0074_708178c|msgs=8|user=3|staff=5|chars=216|merged=False
+   📊 SESSION_PROFILE|sid=session_0075_bf51ed2|msgs=18|user=7|staff=11|chars=591|merged=False
+   📊 SESSION_PROFILE|sid=session_0076_348b5d9|msgs=4|user=2|staff=2|chars=106|merged=False
+   📊 SESSION_PROFILE|sid=session_0077_b0532e3|msgs=5|user=2|staff=3|chars=364|merged=False
+   📊 SESSION_PROFILE|sid=session_0078_cdb1bf9|msgs=23|user=7|staff=16|chars=863|merged=False
+   📊 SESSION_PROFILE|sid=session_0079_5450b6e|msgs=15|user=4|staff=11|chars=901|merged=False
+   📊 SESSION_PROFILE|sid=session_0080_7eca689|msgs=31|user=11|staff=20|chars=951|merged=False
+   📊 SESSION_PROFILE|sid=session_0081_35c98fd|msgs=12|user=3|staff=9|chars=551|merged=False
+   📊 SESSION_PROFILE|sid=session_0082_b970de5|msgs=12|user=6|staff=6|chars=199|merged=False
+   📊 SESSION_PROFILE|sid=session_0085_6c7f7fa|msgs=12|user=3|staff=9|chars=400|merged=False
+   📊 SESSION_PROFILE|sid=session_0086_80847d2|msgs=13|user=3|staff=10|chars=644|merged=False
+   📊 SESSION_PROFILE|sid=session_0087_a92c210|msgs=37|user=18|staff=19|chars=1095|merged=False
+   📊 SESSION_PROFILE|sid=session_0088_2c87a6d|msgs=5|user=2|staff=3|chars=205|merged=False
+   📊 SESSION_PROFILE|sid=session_0089_a92c210|msgs=20|user=6|staff=14|chars=1103|merged=False
+   📊 SESSION_PROFILE|sid=session_0090_982c581|msgs=4|user=2|staff=2|chars=84|merged=False
+   📊 SESSION_PROFILE|sid=session_0092_a5c05a1|msgs=8|user=3|staff=5|chars=309|merged=False
+   📊 SESSION_PROFILE|sid=session_0093_a92c210|msgs=8|user=2|staff=6|chars=579|merged=False
+   📊 SESSION_PROFILE|sid=session_0094_b49c63f|msgs=3|user=2|staff=1|chars=60|merged=False
+   📊 SESSION_PROFILE|sid=session_0095_0585c9e|msgs=10|user=2|staff=8|chars=413|merged=False
+   📊 SESSION_PROFILE|sid=session_0097_d5d7c6d|msgs=9|user=2|staff=7|chars=656|merged=False
+   📊 SESSION_PROFILE|sid=session_0098_da0e610|msgs=20|user=7|staff=13|chars=1058|merged=False
+   📊 SESSION_PROFILE|sid=session_0099_5bc5c29|msgs=4|user=1|staff=3|chars=209|merged=False
+   📊 SESSION_PROFILE|sid=session_0100_443a278|msgs=8|user=8|staff=0|chars=173|merged=False
+   📊 SESSION_PROFILE|sid=session_0101_e2afece|msgs=31|user=12|staff=19|chars=1646|merged=False
+   📊 SESSION_PROFILE|sid=session_0102_bd0846b|msgs=13|user=5|staff=8|chars=944|merged=False
+   📊 SESSION_PROFILE|sid=session_0104_bd0846b|msgs=4|user=2|staff=2|chars=305|merged=False
+   📊 SESSION_PROFILE|sid=session_0105_4b1cf7e|msgs=3|user=1|staff=2|chars=75|merged=False
+   📊 SESSION_PROFILE|sid=session_0106_bfd99b5|msgs=15|user=6|staff=9|chars=617|merged=False
+   📊 SESSION_PROFILE|sid=session_0107_e65a704|msgs=12|user=6|staff=6|chars=615|merged=False
+   📊 SESSION_PROFILE|sid=session_0109_cd7fb78|msgs=6|user=2|staff=4|chars=536|merged=False
+   📊 SESSION_PROFILE|sid=session_0110_fe9f3f8|msgs=3|user=1|staff=2|chars=178|merged=False
+   📊 SESSION_PROFILE|sid=session_0111_b2c4979|msgs=7|user=4|staff=3|chars=389|merged=False
+   📊 SESSION_PROFILE|sid=session_0112_f1e1cf5|msgs=21|user=8|staff=13|chars=640|merged=False
+   📊 SESSION_PROFILE|sid=session_0114_6b54b4f|msgs=24|user=8|staff=16|chars=813|merged=False
+   📊 SESSION_PROFILE|sid=session_0115_bf3b3de|msgs=9|user=2|staff=7|chars=728|merged=False
+   📊 SESSION_PROFILE|sid=session_0116_6b54b4f|msgs=6|user=3|staff=3|chars=259|merged=False
+   📊 SESSION_PROFILE|sid=session_0117_afabba4|msgs=22|user=7|staff=15|chars=948|merged=False
+   📊 SESSION_PROFILE|sid=session_0118_7231cc3|msgs=8|user=1|staff=7|chars=314|merged=False
+   📊 SESSION_PROFILE|sid=session_0119_7deaa07|msgs=15|user=7|staff=8|chars=345|merged=False
+   📊 SESSION_PROFILE|sid=session_0123_28a1b16|msgs=6|user=2|staff=4|chars=243|merged=False
+   📊 SESSION_PROFILE|sid=session_0124_d8a7442|msgs=15|user=6|staff=9|chars=419|merged=False
+   📊 SESSION_PROFILE|sid=session_0125_af422bf|msgs=6|user=2|staff=4|chars=202|merged=False
+   📊 SESSION_PROFILE|sid=session_0127_0342b5a|msgs=10|user=2|staff=8|chars=268|merged=False
+   📊 SESSION_PROFILE|sid=session_0128_f6cac58|msgs=12|user=3|staff=9|chars=785|merged=False
+   📊 SESSION_PROFILE|sid=session_0130_cd8a4c8|msgs=8|user=1|staff=7|chars=349|merged=False
+   📊 SESSION_PROFILE|sid=session_0131_da0e610|msgs=87|user=44|staff=43|chars=3004|merged=False
+   📊 SESSION_PROFILE|sid=session_0132_ab2845a|msgs=48|user=22|staff=26|chars=2216|merged=False
+   📊 SESSION_PROFILE|sid=session_0133_da0e610|msgs=7|user=2|staff=5|chars=611|merged=False
+   📊 SESSION_PROFILE|sid=session_0134_0fe6388|msgs=3|user=3|staff=0|chars=134|merged=False
+   📊 SESSION_PROFILE|sid=session_0135_e6b29ea|msgs=21|user=7|staff=14|chars=1092|merged=False
+   📊 SESSION_PROFILE|sid=session_0138_34af484|msgs=5|user=2|staff=3|chars=495|merged=False
+   📊 SESSION_PROFILE|sid=session_0139_4a756f0|msgs=7|user=3|staff=4|chars=161|merged=False
+   📊 SESSION_PROFILE|sid=session_0140_1995370|msgs=4|user=2|staff=2|chars=112|merged=False
+   📊 SESSION_PROFILE|sid=session_0141_a7c9428|msgs=10|user=2|staff=8|chars=536|merged=False
+   📊 SESSION_PROFILE|sid=session_0142_f8ad342|msgs=9|user=1|staff=8|chars=445|merged=False
+   📊 SESSION_PROFILE|sid=session_0143_a92c210|msgs=14|user=5|staff=9|chars=801|merged=False
+   📊 SESSION_PROFILE|sid=session_0144_af422bf|msgs=4|user=2|staff=2|chars=110|merged=False
+   📊 SESSION_PROFILE|sid=session_0145_7eca689|msgs=5|user=2|staff=3|chars=212|merged=False
+   📊 SESSION_PROFILE|sid=session_0146_142c71a|msgs=7|user=2|staff=5|chars=609|merged=False
+   📊 SESSION_PROFILE|sid=session_0147_d1457b7|msgs=29|user=11|staff=18|chars=1225|merged=False
+   📊 SESSION_PROFILE|sid=session_0148_f6b362e|msgs=5|user=2|staff=3|chars=284|merged=False
+   📊 SESSION_PROFILE|sid=session_0150_bb0e83c|msgs=10|user=5|staff=5|chars=275|merged=False
+   📊 SESSION_PROFILE|sid=session_0152_7eca689|msgs=13|user=5|staff=8|chars=486|merged=False
+   📊 SESSION_PROFILE|sid=session_0154_3eba941|msgs=21|user=9|staff=12|chars=1017|merged=False
+   📊 SESSION_PROFILE|sid=session_0156_1cb6d3b|msgs=18|user=4|staff=14|chars=1054|merged=False
+   📊 SESSION_PROFILE|sid=session_0157_edd485e|msgs=5|user=1|staff=4|chars=238|merged=False
+   📊 SESSION_PROFILE|sid=session_0158_f6b362e|msgs=5|user=2|staff=3|chars=363|merged=False
+   📊 SESSION_PROFILE|sid=session_0159_f6b362e|msgs=5|user=2|staff=3|chars=340|merged=False
+   📊 SESSION_PROFILE|sid=session_0160_474e33a|msgs=17|user=5|staff=12|chars=528|merged=False
+   📊 SESSION_PROFILE|sid=session_0161_a4ba1c5|msgs=5|user=1|staff=4|chars=705|merged=False
+   📊 SESSION_PROFILE|sid=session_0162_820ac88|msgs=8|user=1|staff=7|chars=370|merged=False
+   📊 SESSION_PROFILE|sid=session_0163_cb1ae17|msgs=16|user=5|staff=11|chars=538|merged=False
+   📊 SESSION_PROFILE|sid=session_0167_d8e516b|msgs=14|user=4|staff=10|chars=650|merged=False
+   📊 SESSION_PROFILE|sid=session_0169_33c6325|msgs=4|user=2|staff=2|chars=153|merged=False
+   📊 SESSION_PROFILE|sid=session_0170_295713f|msgs=19|user=5|staff=14|chars=1108|merged=False
+   📊 SESSION_PROFILE|sid=session_0171_cb1ae17|msgs=4|user=2|staff=2|chars=278|merged=False
+   📊 SESSION_PROFILE|sid=session_0173_295713f|msgs=7|user=3|staff=4|chars=337|merged=False
+   📊 SESSION_PROFILE|sid=session_0174_b4f0823|msgs=19|user=4|staff=15|chars=896|merged=False
+   📊 SESSION_PROFILE|sid=session_0175_395533a|msgs=21|user=10|staff=11|chars=1097|merged=False
+   📊 SESSION_PROFILE|sid=session_0176_64fea49|msgs=4|user=2|staff=2|chars=108|merged=False
+   📊 SESSION_PROFILE|sid=session_0177_e406d6e|msgs=48|user=12|staff=36|chars=2697|merged=False
+   📊 SESSION_PROFILE|sid=session_0178_d5d7c6d|msgs=8|user=1|staff=7|chars=789|merged=False
+   📊 SESSION_PROFILE|sid=session_0180_a23459d|msgs=4|user=2|staff=2|chars=154|merged=False
+   📊 SESSION_PROFILE|sid=session_0184_76f39bf|msgs=7|user=1|staff=6|chars=405|merged=False
+   📊 SESSION_PROFILE|sid=session_0188_e97e920|msgs=10|user=3|staff=7|chars=356|merged=False
+   📊 SESSION_PROFILE|sid=session_0189_eacc9a6|msgs=11|user=3|staff=8|chars=678|merged=False
+   📊 SESSION_PROFILE|sid=session_0191_1590a52|msgs=4|user=1|staff=3|chars=160|merged=False
+   📊 SESSION_PROFILE|sid=session_0192_2581847|msgs=10|user=3|staff=7|chars=981|merged=False
+   📊 SESSION_PROFILE|sid=session_0193_da0e610|msgs=17|user=7|staff=10|chars=1023|merged=False
+   📊 SESSION_PROFILE|sid=session_0194_c0ab777|msgs=5|user=1|staff=4|chars=278|merged=False
+   📊 SESSION_PROFILE|sid=session_0197_ee1c2c7|msgs=17|user=5|staff=12|chars=351|merged=False
+   📊 SESSION_PROFILE|sid=session_0199_db67801|msgs=14|user=4|staff=10|chars=763|merged=False
+   📊 SESSION_PROFILE|sid=session_0200_942a5dc|msgs=14|user=5|staff=9|chars=858|merged=False
+   📊 SESSION_PROFILE|sid=session_0201_4e893a5|msgs=27|user=10|staff=17|chars=503|merged=False
+   📊 SESSION_PROFILE|sid=session_0202_03fca76|msgs=4|user=1|staff=3|chars=476|merged=False
+   📊 SESSION_PROFILE|sid=session_0203_2c47130|msgs=13|user=3|staff=10|chars=698|merged=False
+   📊 SESSION_PROFILE|sid=session_0204_7440991|msgs=10|user=3|staff=7|chars=784|merged=False
+   📊 SESSION_PROFILE|sid=session_0205_29f85da|msgs=13|user=3|staff=10|chars=468|merged=False
+   📊 SESSION_PROFILE|sid=session_0206_3855c39|msgs=6|user=2|staff=4|chars=497|merged=False
+   📊 SESSION_PROFILE|sid=session_0207_2394b52|msgs=11|user=2|staff=9|chars=358|merged=False
+   📊 SESSION_PROFILE|sid=session_0210_ea6124c|msgs=6|user=2|staff=4|chars=87|merged=False
+   📊 SESSION_PROFILE|sid=session_0212_da0e610|msgs=8|user=3|staff=5|chars=512|merged=False
+   📊 SESSION_PROFILE|sid=session_0214_00e1cc1|msgs=3|user=1|staff=2|chars=99|merged=False
+   📊 SESSION_PROFILE|sid=session_0215_e9fcc03|msgs=4|user=1|staff=3|chars=200|merged=False
+   📊 SESSION_PROFILE|sid=session_0216_da0e610|msgs=5|user=1|staff=4|chars=471|merged=False
+   📊 SESSION_PROFILE|sid=session_0217_29f85da|msgs=4|user=2|staff=2|chars=115|merged=False
+   📊 SESSION_PROFILE|sid=session_0218_441172e|msgs=3|user=1|staff=2|chars=176|merged=False
+   📊 SESSION_PROFILE|sid=session_0219_7c44ddc|msgs=4|user=1|staff=3|chars=556|merged=False
+   📊 SESSION_PROFILE|sid=session_0221_da0e610|msgs=15|user=5|staff=10|chars=925|merged=False
+   📊 SESSION_PROFILE|sid=session_0222_f6b362e|msgs=5|user=3|staff=2|chars=184|merged=False
+   📊 SESSION_PROFILE|sid=session_0224_76bfc03|msgs=9|user=4|staff=5|chars=269|merged=False
+   📊 SESSION_PROFILE|sid=session_0227_581d3ba|msgs=26|user=12|staff=14|chars=1156|merged=False
+   📊 SESSION_PROFILE|sid=session_0229_8246f5d|msgs=9|user=4|staff=5|chars=200|merged=False
+   📊 SESSION_PROFILE|sid=session_0230_7eca689|msgs=7|user=2|staff=5|chars=336|merged=False
+   📊 SESSION_PROFILE|sid=session_0231_d77a742|msgs=5|user=1|staff=4|chars=269|merged=False
+   📊 SESSION_PROFILE|sid=session_0232_04585c4|msgs=3|user=1|staff=2|chars=72|merged=False
+   📊 SESSION_PROFILE|sid=session_0234_4946b66|msgs=4|user=1|staff=3|chars=188|merged=False
+   📊 SESSION_PROFILE|sid=session_0235_06f20f7|msgs=5|user=3|staff=2|chars=141|merged=False
+   📊 SESSION_PROFILE|sid=session_0236_2f76ba6|msgs=8|user=3|staff=5|chars=396|merged=False
+   📊 SESSION_PROFILE|sid=session_0237_707ba2f|msgs=11|user=4|staff=7|chars=327|merged=False
+   📊 SESSION_PROFILE|sid=session_0238_063c4de|msgs=15|user=5|staff=10|chars=351|merged=False
+   📊 SESSION_PROFILE|sid=session_0240_a92c210|msgs=11|user=3|staff=8|chars=697|merged=False
+   📊 SESSION_PROFILE|sid=session_0242_89f58df|msgs=18|user=4|staff=14|chars=1017|merged=False
+   📊 SESSION_PROFILE|sid=session_0243_4507f8a|msgs=7|user=3|staff=4|chars=159|merged=False
+   📊 SESSION_PROFILE|sid=session_0247_927da7d|msgs=30|user=12|staff=18|chars=1383|merged=False
+   📊 SESSION_PROFILE|sid=session_0248_dd2008f|msgs=27|user=9|staff=18|chars=1247|merged=False
+   📊 SESSION_PROFILE|sid=session_0251_fe9d81e|msgs=17|user=17|staff=0|chars=495|merged=False
+   📊 SESSION_PROFILE|sid=session_0253_a92c210|msgs=6|user=1|staff=5|chars=601|merged=False
+   📊 SESSION_PROFILE|sid=session_0254_59bd689|msgs=16|user=6|staff=10|chars=780|merged=False
+   📊 SESSION_PROFILE|sid=session_0256_8417643|msgs=5|user=2|staff=3|chars=302|merged=False
+   📊 SESSION_PROFILE|sid=session_0257_5300ef1|msgs=5|user=2|staff=3|chars=127|merged=False
+   📊 SESSION_PROFILE|sid=session_0258_cab0138|msgs=19|user=7|staff=12|chars=691|merged=False
+   📊 SESSION_PROFILE|sid=session_0260_a8fe145|msgs=3|user=1|staff=2|chars=461|merged=False
+   📊 SESSION_PROFILE|sid=session_0261_0c42164|msgs=9|user=5|staff=4|chars=782|merged=False
+   📊 SESSION_PROFILE|sid=session_0262_7eca689|msgs=10|user=3|staff=7|chars=403|merged=False
+   📊 SESSION_PROFILE|sid=session_0263_3450474|msgs=8|user=1|staff=7|chars=795|merged=False
+   📊 SESSION_PROFILE|sid=session_0264_a92c210|msgs=47|user=19|staff=28|chars=2078|merged=False
+   📊 SESSION_PROFILE|sid=session_0265_a92c210|msgs=8|user=1|staff=7|chars=730|merged=False
+   📊 SESSION_PROFILE|sid=session_0266_1ec6576|msgs=30|user=14|staff=16|chars=691|merged=False
+   📊 SESSION_PROFILE|sid=session_0267_4fecd57|msgs=7|user=3|staff=4|chars=296|merged=False
+   📊 SESSION_PROFILE|sid=session_0268_c955406|msgs=8|user=2|staff=6|chars=402|merged=False
+   📊 SESSION_PROFILE|sid=session_0269_7eca689|msgs=8|user=5|staff=3|chars=178|merged=False
+   📊 SESSION_PROFILE|sid=session_0271_59bd689|msgs=6|user=3|staff=3|chars=127|merged=False
+   📊 SESSION_PROFILE|sid=session_0272_d5d7c6d|msgs=6|user=1|staff=5|chars=609|merged=False
+   📊 SESSION_PROFILE|sid=session_0273_59bd689|msgs=3|user=1|staff=2|chars=179|merged=False
+   📊 SESSION_PROFILE|sid=session_0274_7eca689|msgs=39|user=16|staff=23|chars=1500|merged=False
+   📊 SESSION_PROFILE|sid=session_0275_7eca689|msgs=8|user=4|staff=4|chars=230|merged=False
+   📊 SESSION_PROFILE|sid=session_0276_a92c210|msgs=14|user=5|staff=9|chars=672|merged=False
+   📊 SESSION_PROFILE|sid=session_0277_d5d7c6d|msgs=18|user=7|staff=11|chars=852|merged=False
+   📊 SESSION_PROFILE|sid=session_0279_d431b52|msgs=17|user=7|staff=10|chars=797|merged=False
+   📊 SESSION_PROFILE|sid=session_0280_abe35cf|msgs=5|user=2|staff=3|chars=221|merged=False
+   📊 SESSION_PROFILE|sid=session_0281_0f921bd|msgs=7|user=2|staff=5|chars=462|merged=False
+   📊 SESSION_PROFILE|sid=session_0287_7f32261|msgs=11|user=3|staff=8|chars=344|merged=False
+   📊 SESSION_PROFILE|sid=session_0288_6fc9ead|msgs=4|user=1|staff=3|chars=296|merged=False
+   📊 SESSION_PROFILE|sid=session_0289_2f9d5d6|msgs=25|user=10|staff=15|chars=938|merged=False
+   📊 SESSION_PROFILE|sid=session_0290_c654026|msgs=9|user=4|staff=5|chars=822|merged=False
+   📊 SESSION_PROFILE|sid=session_0291_c34239b|msgs=17|user=8|staff=9|chars=872|merged=False
+   📊 SESSION_PROFILE|sid=session_0292_720b93c|msgs=7|user=2|staff=5|chars=385|merged=False
+   📊 SESSION_PROFILE|sid=session_0293_da8ec74|msgs=15|user=5|staff=10|chars=794|merged=False
+   📊 SESSION_PROFILE|sid=session_0294_82e70b0|msgs=14|user=5|staff=9|chars=471|merged=False
+   📊 SESSION_PROFILE|sid=session_0295_a92c210|msgs=12|user=3|staff=9|chars=1042|merged=False
+   📊 SESSION_PROFILE|sid=session_0298_da0e610|msgs=3|user=1|staff=2|chars=101|merged=False
+   📊 SESSION_PROFILE|sid=session_0299_02d6a03|msgs=5|user=1|staff=4|chars=175|merged=False
+   📊 SESSION_PROFILE|sid=session_0302_1600bb8|msgs=6|user=3|staff=3|chars=138|merged=False
+   📊 SESSION_PROFILE|sid=session_0304_bb626ad|msgs=4|user=2|staff=2|chars=77|merged=False
+   📊 SESSION_PROFILE|sid=session_0308_a92c210|msgs=4|user=1|staff=3|chars=491|merged=False
+   📊 SESSION_PROFILE|sid=session_0310_c63f012|msgs=11|user=5|staff=6|chars=525|merged=False
+   📊 SESSION_PROFILE|sid=session_0312_b070330|msgs=9|user=4|staff=5|chars=364|merged=False
+   📊 SESSION_PROFILE|sid=session_0313_3ecb97f|msgs=20|user=5|staff=15|chars=763|merged=False
+   📊 SESSION_PROFILE|sid=session_0314_d5d7c6d|msgs=9|user=4|staff=5|chars=649|merged=False
+   📊 SESSION_PROFILE|sid=session_0316_afe0edd|msgs=6|user=3|staff=3|chars=219|merged=False
+   📊 SESSION_PROFILE|sid=session_0318_dbb20c1|msgs=11|user=4|staff=7|chars=769|merged=False
+   📊 SESSION_PROFILE|sid=session_0319_0a58ae4|msgs=10|user=4|staff=6|chars=186|merged=False
+   📊 SESSION_PROFILE|sid=session_0320_e5a6ddf|msgs=7|user=3|staff=4|chars=199|merged=False
+   📊 SESSION_PROFILE|sid=session_0322_f0d6a34|msgs=14|user=3|staff=11|chars=753|merged=False
+   📊 SESSION_PROFILE|sid=session_0323_8024c76|msgs=13|user=13|staff=0|chars=743|merged=False
+   📊 SESSION_PROFILE|sid=session_0324_a7e9193|msgs=4|user=2|staff=2|chars=272|merged=False
+   📊 SESSION_PROFILE|sid=session_0325_66be591|msgs=8|user=2|staff=6|chars=221|merged=False
+   📊 SESSION_PROFILE|sid=session_0327_7eca689|msgs=9|user=5|staff=4|chars=586|merged=False
+   📊 SESSION_PROFILE|sid=session_0328_65591ee|msgs=11|user=4|staff=7|chars=564|merged=False
+   📊 SESSION_PROFILE|sid=session_0329_fb37c10|msgs=6|user=1|staff=5|chars=302|merged=False
+   📊 SESSION_PROFILE|sid=session_0330_7eca689|msgs=13|user=3|staff=10|chars=877|merged=False
+   📊 SESSION_PROFILE|sid=session_0331_cdb1bf9|msgs=12|user=3|staff=9|chars=1136|merged=False
+   📊 SESSION_PROFILE|sid=session_0332_4a3da9c|msgs=19|user=8|staff=11|chars=1091|merged=False
+   📊 SESSION_PROFILE|sid=session_0333_7adbcfe|msgs=5|user=2|staff=3|chars=528|merged=False
+   📊 SESSION_PROFILE|sid=session_0334_842c3f4|msgs=7|user=3|staff=4|chars=457|merged=False
+   📊 SESSION_PROFILE|sid=session_0335_72183f8|msgs=42|user=15|staff=27|chars=2122|merged=False
+   📊 SESSION_PROFILE|sid=session_0337_8024c76|msgs=10|user=10|staff=0|chars=463|merged=False
+   📊 SESSION_PROFILE|sid=session_0338_0accdf3|msgs=7|user=3|staff=4|chars=271|merged=False
+   📊 SESSION_PROFILE|sid=session_0339_f6b1618|msgs=9|user=2|staff=7|chars=412|merged=False
+   📊 SESSION_PROFILE|sid=session_0340_0accdf3|msgs=6|user=3|staff=3|chars=234|merged=False
+   📊 SESSION_PROFILE|sid=session_0341_a7902d6|msgs=4|user=2|staff=2|chars=113|merged=False
+   📊 SESSION_PROFILE|sid=session_0342_90b0a99|msgs=13|user=2|staff=11|chars=897|merged=False
+   📊 SESSION_PROFILE|sid=session_0343_3207990|msgs=23|user=14|staff=9|chars=1085|merged=False
+   📊 SESSION_PROFILE|sid=session_0344_38569af|msgs=10|user=4|staff=6|chars=471|merged=False
+   📊 SESSION_PROFILE|sid=session_0345_b2865fd|msgs=14|user=1|staff=13|chars=868|merged=False
+   📊 SESSION_PROFILE|sid=session_0346_cdb1bf9|msgs=12|user=4|staff=8|chars=443|merged=False
+   📊 SESSION_PROFILE|sid=session_0347_bb34546|msgs=15|user=4|staff=11|chars=673|merged=False
+   📊 SESSION_PROFILE|sid=session_0348_69c21f9|msgs=25|user=13|staff=12|chars=887|merged=False
+   📊 SESSION_PROFILE|sid=session_0349_a232b10|msgs=31|user=15|staff=16|chars=1138|merged=False
+   📊 SESSION_PROFILE|sid=session_0351_ebe4a1d|msgs=21|user=5|staff=16|chars=1849|merged=False
+   📊 SESSION_PROFILE|sid=session_0352_694272e|msgs=12|user=3|staff=9|chars=495|merged=False
+   📊 SESSION_PROFILE|sid=session_0353_cdb1bf9|msgs=4|user=2|staff=2|chars=80|merged=False
+   📊 SESSION_PROFILE|sid=session_0354_d5d7c6d|msgs=16|user=5|staff=11|chars=831|merged=False
+   📊 SESSION_PROFILE|sid=session_0356_a92c210|msgs=25|user=7|staff=18|chars=1880|merged=False
+   📊 SESSION_PROFILE|sid=session_0357_f86219b|msgs=13|user=6|staff=7|chars=883|merged=False
+   📊 SESSION_PROFILE|sid=session_0358_da653d5|msgs=31|user=12|staff=19|chars=1480|merged=False
+   📊 SESSION_PROFILE|sid=session_0359_3333d84|msgs=6|user=2|staff=4|chars=252|merged=False
+   📊 SESSION_PROFILE|sid=session_0360_9ee3b2d|msgs=15|user=5|staff=10|chars=406|merged=False
+   📊 SESSION_PROFILE|sid=session_0361_8891ae4|msgs=6|user=3|staff=3|chars=151|merged=False
+   📊 SESSION_PROFILE|sid=session_0363_4b1d845|msgs=5|user=1|staff=4|chars=370|merged=False
+   📊 SESSION_PROFILE|sid=session_0364_f6b362e|msgs=3|user=2|staff=1|chars=29|merged=False
+   📊 SESSION_PROFILE|sid=session_0365_f6b362e|msgs=7|user=2|staff=5|chars=382|merged=False
+   📊 SESSION_PROFILE|sid=session_0366_bd65a70|msgs=15|user=4|staff=11|chars=635|merged=False
+   📊 SESSION_PROFILE|sid=session_0367_f6b362e|msgs=8|user=2|staff=6|chars=507|merged=False
+   📊 SESSION_PROFILE|sid=session_0368_8aa7073|msgs=11|user=5|staff=6|chars=543|merged=False
+   📊 SESSION_PROFILE|sid=session_0369_e5eab02|msgs=14|user=4|staff=10|chars=792|merged=False
+   📊 SESSION_PROFILE|sid=session_0370_f6b362e|msgs=5|user=2|staff=3|chars=350|merged=False
+   📊 SESSION_PROFILE|sid=session_0372_a9aad14|msgs=10|user=2|staff=8|chars=464|merged=False
+   📊 SESSION_PROFILE|sid=session_0373_77c4089|msgs=7|user=2|staff=5|chars=316|merged=False
+   📊 SESSION_PROFILE|sid=session_0375_4131f34|msgs=34|user=14|staff=20|chars=1269|merged=False
+   📊 SESSION_PROFILE|sid=session_0376_d5d7c6d|msgs=20|user=6|staff=14|chars=1267|merged=False
+   📊 SESSION_PROFILE|sid=session_0378_4131f34|msgs=4|user=2|staff=2|chars=104|merged=False
+   📊 SESSION_PROFILE|sid=session_0379_3b24e82|msgs=19|user=7|staff=12|chars=564|merged=False
+   📊 SESSION_PROFILE|sid=session_0380_f0f7012|msgs=13|user=13|staff=0|chars=232|merged=False
+   📊 SESSION_PROFILE|sid=session_0381_f0f7ddd|msgs=9|user=3|staff=6|chars=542|merged=False
+   📊 SESSION_PROFILE|sid=session_0382_7eca689|msgs=21|user=7|staff=14|chars=867|merged=False
+   📊 SESSION_PROFILE|sid=session_0383_da0e610|msgs=5|user=1|staff=4|chars=522|merged=False
+   📊 SESSION_PROFILE|sid=session_0384_a92c210|msgs=8|user=1|staff=7|chars=617|merged=False
+   📊 SESSION_PROFILE|sid=session_0386_da0e610|msgs=16|user=7|staff=9|chars=695|merged=False
+   📊 SESSION_PROFILE|sid=session_0387_625d5e6|msgs=13|user=4|staff=9|chars=345|merged=False
+   📊 SESSION_PROFILE|sid=session_0389_193298b|msgs=8|user=3|staff=5|chars=581|merged=False
+   📊 SESSION_PROFILE|sid=session_0392_a92c210|msgs=9|user=2|staff=7|chars=608|merged=False
+   📊 SESSION_PROFILE|sid=session_0393_d0fdab4|msgs=17|user=6|staff=11|chars=480|merged=False
+   📊 SESSION_PROFILE|sid=session_0394_7e1979c|msgs=6|user=3|staff=3|chars=317|merged=False
+   📊 SESSION_PROFILE|sid=session_0395_cdb1bf9|msgs=8|user=3|staff=5|chars=212|merged=False
+   📊 SESSION_PROFILE|sid=session_0396_00581a6|msgs=9|user=2|staff=7|chars=408|merged=False
+   📊 SESSION_PROFILE|sid=session_0397_d48f43c|msgs=38|user=17|staff=21|chars=1067|merged=False
+   📊 SESSION_PROFILE|sid=session_0398_ebc0002|msgs=35|user=13|staff=22|chars=1411|merged=False
+   📊 SESSION_PROFILE|sid=session_0399_d5d7c6d|msgs=28|user=10|staff=18|chars=1160|merged=False
+   📦 BATCH_DECISION|sessions=295|estimated_tokens=22415|batch_size=10|reason=短会话优化(avg=2242tokens)
+
+   📊 自适应批量: 基础=10, 优化后=10, 正常任务=295
+   💾 预估总Token: 621,522 (上限: 200,000)
+
+🚀 启动 30 个评分批次（并发限制: 90，as_completed优化）
+   🔄 批次 18/30 (10通, ~19,731tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  4.18it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  4.17it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 65.75it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.35it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5642, "template_chars": 1087, "total_prompt_chars": 6757, "session_count": 10, "session_avg_chars": 564}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 4/30 (10通, ~21,096tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 60.67it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.15it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 34.68it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7007, "template_chars": 1087, "total_prompt_chars": 8122, "session_count": 10, "session_avg_chars": 700}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 23/30 (10通, ~19,918tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.02it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 83.66it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 73.79it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5763, "template_chars": 1087, "total_prompt_chars": 6878, "session_count": 10, "session_avg_chars": 576}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 9/30 (10通, ~19,896tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.75it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 107.68it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 119.56it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5759, "template_chars": 1087, "total_prompt_chars": 6874, "session_count": 10, "session_avg_chars": 575}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 28/30 (10通, ~20,901tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.34it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 82.28it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 147.41it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 6962, "template_chars": 1087, "total_prompt_chars": 8077, "session_count": 10, "session_avg_chars": 696}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 14/30 (10通, ~22,117tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.79it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.22it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 8148, "template_chars": 1087, "total_prompt_chars": 9263, "session_count": 10, "session_avg_chars": 814}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 19/30 (10通, ~20,889tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.23it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.99it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 155.52it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 6830, "template_chars": 1087, "total_prompt_chars": 7945, "session_count": 10, "session_avg_chars": 683}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 5/30 (10通, ~21,098tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.08it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 92.39it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7141, "template_chars": 1087, "total_prompt_chars": 8256, "session_count": 10, "session_avg_chars": 714}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 24/30 (10通, ~21,320tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.44it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 147.19it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7159, "template_chars": 1087, "total_prompt_chars": 8274, "session_count": 10, "session_avg_chars": 715}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 10/30 (10通, ~19,132tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 72.40it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 134.66it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 153.84it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5019, "template_chars": 1087, "total_prompt_chars": 6134, "session_count": 10, "session_avg_chars": 501}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 29/30 (10通, ~20,574tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.80it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 139.47it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 152.00it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 6485, "template_chars": 1087, "total_prompt_chars": 7600, "session_count": 10, "session_avg_chars": 648}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 15/30 (10通, ~21,071tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 116.86it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 133.70it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7048, "template_chars": 1087, "total_prompt_chars": 8163, "session_count": 10, "session_avg_chars": 704}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 1/30 (10通, ~22,415tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 117.21it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 124.16it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 121.46it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 8494, "template_chars": 1087, "total_prompt_chars": 9609, "session_count": 10, "session_avg_chars": 849}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 20/30 (10通, ~21,085tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 114.70it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 110.61it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 106.55it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7110, "template_chars": 1087, "total_prompt_chars": 8225, "session_count": 10, "session_avg_chars": 711}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 6/30 (10通, ~21,954tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 112.06it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 106.19it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 102.42it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 8003, "template_chars": 1087, "total_prompt_chars": 9118, "session_count": 10, "session_avg_chars": 800}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 25/30 (10通, ~21,525tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 88.92it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 109.66it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7550, "template_chars": 1087, "total_prompt_chars": 8665, "session_count": 10, "session_avg_chars": 755}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 11/30 (10通, ~23,806tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售中阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 88.18it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 150.93it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 10251, "template_chars": 1087, "total_prompt_chars": 11366, "session_count": 10, "session_avg_chars": 1025}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 30/30 (5通, ~11,758tokens) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 101.57it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 83.68it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5084, "template_chars": 1083, "total_prompt_chars": 6195, "session_count": 5, "session_avg_chars": 1016}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 16/30 (10通, ~19,174tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.84it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.85it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 150.47it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 4887, "template_chars": 1087, "total_prompt_chars": 6002, "session_count": 10, "session_avg_chars": 488}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 2/30 (10通, ~22,179tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.22it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 143.54it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 8696, "template_chars": 1087, "total_prompt_chars": 9811, "session_count": 10, "session_avg_chars": 869}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 21/30 (10通, ~21,312tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段', '客诉处理']
+   📚 为 4 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段', '客诉处理']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.55it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 86.50it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 154.85it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 152.49it/s]
+   📚 跨场景检索共 0 条规则（来自4个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7439, "template_chars": 1087, "total_prompt_chars": 8554, "session_count": 10, "session_avg_chars": 743}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 7/30 (10通, ~21,133tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.55it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 100.23it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 163.18it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7338, "template_chars": 1087, "total_prompt_chars": 8453, "session_count": 10, "session_avg_chars": 733}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 26/30 (10通, ~24,144tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '客诉处理']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '客诉处理']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.50it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 145.39it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 154.87it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 10433, "template_chars": 1087, "total_prompt_chars": 11548, "session_count": 10, "session_avg_chars": 1043}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 12/30 (10通, ~21,073tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.18it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 151.04it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 150.26it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7068, "template_chars": 1087, "total_prompt_chars": 8183, "session_count": 10, "session_avg_chars": 706}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 17/30 (10通, ~19,186tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.38it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 83.89it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 4947, "template_chars": 1087, "total_prompt_chars": 6062, "session_count": 10, "session_avg_chars": 494}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 3/30 (10通, ~22,023tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段', '售中阶段']
+   📚 为 3 个场景分别检索规则: ['售前阶段', '售后阶段', '售中阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.80it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.90it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 146.11it/s]
+   📚 跨场景检索共 0 条规则（来自3个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 8402, "template_chars": 1087, "total_prompt_chars": 9517, "session_count": 10, "session_avg_chars": 840}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 22/30 (10通, ~19,877tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.45it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 143.56it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5668, "template_chars": 1087, "total_prompt_chars": 6783, "session_count": 10, "session_avg_chars": 566}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 8/30 (10通, ~21,047tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.93it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 85.60it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 6970, "template_chars": 1087, "total_prompt_chars": 8085, "session_count": 10, "session_avg_chars": 697}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 27/30 (10通, ~20,095tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 68.01it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 73.15it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5988, "template_chars": 1087, "total_prompt_chars": 7103, "session_count": 10, "session_avg_chars": 598}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 13/30 (10通, ~19,993tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 67.86it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 145.81it/s]
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5820, "template_chars": 1087, "total_prompt_chars": 6935, "session_count": 10, "session_avg_chars": 582}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=10
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 130.5s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 5556, "completion_tokens": 5359, "total_tokens": 10915, "elapsed_seconds": 130.498278, "prompt_chars": 9811, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 2989 结果保存成功
+INFO:__main__:✅ 任务 2991 结果保存成功
+INFO:__main__:✅ 任务 2992 结果保存成功
+INFO:__main__:✅ 任务 2993 结果保存成功
+INFO:__main__:✅ 任务 2994 结果保存成功
+INFO:__main__:✅ 任务 2995 结果保存成功
+INFO:__main__:✅ 任务 2997 结果保存成功
+INFO:__main__:✅ 任务 2998 结果保存成功
+INFO:__main__:✅ 任务 2999 结果保存成功
+INFO:__main__:✅ 任务 3000 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 2/30 完成
+   📊 进度: 1/30 批次完成
+   [DEBUG] API call completed in 138.4s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4743, "completion_tokens": 5587, "total_tokens": 10330, "elapsed_seconds": 138.401081, "prompt_chars": 8665, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3277 结果保存成功
+INFO:__main__:✅ 任务 3278 结果保存成功
+INFO:__main__:✅ 任务 3280 结果保存成功
+INFO:__main__:✅ 任务 3281 结果保存成功
+INFO:__main__:✅ 任务 3282 结果保存成功
+INFO:__main__:✅ 任务 3283 结果保存成功
+INFO:__main__:✅ 任务 3284 结果保存成功
+INFO:__main__:✅ 任务 3285 结果保存成功
+INFO:__main__:✅ 任务 3286 结果保存成功
+INFO:__main__:✅ 任务 3287 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 25/30 完成
+   📊 进度: 2/30 批次完成
+   [DEBUG] API call completed in 149.5s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 3814, "completion_tokens": 6004, "total_tokens": 9818, "elapsed_seconds": 149.531432, "prompt_chars": 6757, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3183 结果保存成功
+INFO:__main__:✅ 任务 3185 结果保存成功
+INFO:__main__:✅ 任务 3186 结果保存成功
+INFO:__main__:✅ 任务 3187 结果保存成功
+INFO:__main__:✅ 任务 3188 结果保存成功
+INFO:__main__:✅ 任务 3189 结果保存成功
+INFO:__main__:✅ 任务 3191 结果保存成功
+INFO:__main__:✅ 任务 3192 结果保存成功
+INFO:__main__:✅ 任务 3193 结果保存成功
+INFO:__main__:✅ 任务 3197 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 18/30 完成
+   📊 进度: 3/30 批次完成
+   [DEBUG] API call completed in 151.2s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 3400, "completion_tokens": 6038, "total_tokens": 9438, "elapsed_seconds": 151.180297, "prompt_chars": 6134, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3084 结果保存成功
+INFO:__main__:✅ 任务 3085 结果保存成功
+INFO:__main__:✅ 任务 3086 结果保存成功
+INFO:__main__:✅ 任务 3087 结果保存成功
+INFO:__main__:✅ 任务 3090 结果保存成功
+INFO:__main__:✅ 任务 3091 结果保存成功
+INFO:__main__:✅ 任务 3092 结果保存成功
+INFO:__main__:✅ 任务 3093 结果保存成功
+INFO:__main__:✅ 任务 3094 结果保存成功
+INFO:__main__:✅ 任务 3095 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 10/30 完成
+   📊 进度: 4/30 批次完成
+   [DEBUG] API call completed in 163.0s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 3851, "completion_tokens": 6543, "total_tokens": 10394, "elapsed_seconds": 162.995029, "prompt_chars": 6935, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3119 结果保存成功
+INFO:__main__:✅ 任务 3120 结果保存成功
+INFO:__main__:✅ 任务 3121 结果保存成功
+INFO:__main__:✅ 任务 3122 结果保存成功
+INFO:__main__:✅ 任务 3123 结果保存成功
+INFO:__main__:✅ 任务 3124 结果保存成功
+INFO:__main__:✅ 任务 3125 结果保存成功
+INFO:__main__:✅ 任务 3129 结果保存成功
+INFO:__main__:✅ 任务 3130 结果保存成功
+INFO:__main__:✅ 任务 3131 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 13/30 完成
+   📊 进度: 5/30 批次完成
+   [DEBUG] API call completed in 164.9s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4588, "completion_tokens": 6668, "total_tokens": 11256, "elapsed_seconds": 164.856103, "prompt_chars": 8077, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3309 结果保存成功
+INFO:__main__:✅ 任务 3310 结果保存成功
+INFO:__main__:✅ 任务 3311 结果保存成功
+INFO:__main__:✅ 任务 3313 结果保存成功
+INFO:__main__:✅ 任务 3314 结果保存成功
+INFO:__main__:✅ 任务 3316 结果保存成功
+INFO:__main__:✅ 任务 3317 结果保存成功
+INFO:__main__:✅ 任务 3318 结果保存成功
+INFO:__main__:✅ 任务 3319 结果保存成功
+INFO:__main__:✅ 任务 3320 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 28/30 完成
+   📊 进度: 6/30 批次完成
+   [DEBUG] API call completed in 164.9s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4434, "completion_tokens": 5155, "total_tokens": 9589, "elapsed_seconds": 164.863628, "prompt_chars": 8163, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3147 结果保存成功
+INFO:__main__:✅ 任务 3148 结果保存成功
+INFO:__main__:✅ 任务 3149 结果保存成功
+INFO:__main__:✅ 任务 3150 结果保存成功
+INFO:__main__:✅ 任务 3151 结果保存成功
+INFO:__main__:✅ 任务 3153 结果保存成功
+INFO:__main__:✅ 任务 3155 结果保存成功
+INFO:__main__:✅ 任务 3156 结果保存成功
+INFO:__main__:✅ 任务 3157 结果保存成功
+INFO:__main__:✅ 任务 3158 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 15/30 完成
+   📊 进度: 7/30 批次完成
+   [DEBUG] API call completed in 169.9s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 5138, "completion_tokens": 5264, "total_tokens": 10402, "elapsed_seconds": 169.875559, "prompt_chars": 9263, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3132 结果保存成功
+INFO:__main__:✅ 任务 3134 结果保存成功
+INFO:__main__:✅ 任务 3135 结果保存成功
+INFO:__main__:✅ 任务 3136 结果保存成功
+INFO:__main__:✅ 任务 3137 结果保存成功
+INFO:__main__:✅ 任务 3138 结果保存成功
+INFO:__main__:✅ 任务 3139 结果保存成功
+INFO:__main__:✅ 任务 3140 结果保存成功
+INFO:__main__:✅ 任务 3144 结果保存成功
+INFO:__main__:✅ 任务 3146 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 14/30 完成
+   📊 进度: 8/30 批次完成
+   [DEBUG] API call completed in 169.3s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 3411, "completion_tokens": 4399, "total_tokens": 7810, "elapsed_seconds": 169.302398, "prompt_chars": 6195, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 3332 结果保存成功
+INFO:__main__:✅ 任务 3333 结果保存成功
+INFO:__main__:✅ 任务 3334 结果保存成功
+INFO:__main__:✅ 任务 3335 结果保存成功
+INFO:__main__:✅ 任务 3336 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 30/30 完成
+   📊 进度: 9/30 批次完成
+   [DEBUG] API call completed in 173.9s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4569, "completion_tokens": 6980, "total_tokens": 11549, "elapsed_seconds": 173.941608, "prompt_chars": 8256, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3029 结果保存成功
+INFO:__main__:✅ 任务 3030 结果保存成功
+INFO:__main__:✅ 任务 3031 结果保存成功
+INFO:__main__:✅ 任务 3032 结果保存成功
+INFO:__main__:✅ 任务 3034 结果保存成功
+INFO:__main__:✅ 任务 3035 结果保存成功
+INFO:__main__:✅ 任务 3036 结果保存成功
+INFO:__main__:✅ 任务 3037 结果保存成功
+INFO:__main__:✅ 任务 3038 结果保存成功
+INFO:__main__:✅ 任务 3039 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 5/30 完成
+   📊 进度: 10/30 批次完成
+   [DEBUG] API call completed in 182.8s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4496, "completion_tokens": 7158, "total_tokens": 11654, "elapsed_seconds": 182.812506, "prompt_chars": 8122, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 3016... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 3017... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 3018... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 3019... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 3021... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 3022... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 3024... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 3025... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 3026... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 3027... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 4/30 完成
+   📊 进度: 11/30 批次完成
+   [DEBUG] API call completed in 183.3s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 3807, "completion_tokens": 7046, "total_tokens": 10853, "elapsed_seconds": 183.297032, "prompt_chars": 6878, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3252 结果保存成功
+INFO:__main__:✅ 任务 3254 结果保存成功
+INFO:__main__:✅ 任务 3256 结果保存成功
+INFO:__main__:✅ 任务 3257 结果保存成功
+INFO:__main__:✅ 任务 3258 结果保存成功
+INFO:__main__:✅ 任务 3260 结果保存成功
+INFO:__main__:✅ 任务 3262 结果保存成功
+INFO:__main__:✅ 任务 3263 结果保存成功
+INFO:__main__:✅ 任务 3264 结果保存成功
+INFO:__main__:✅ 任务 3266 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 23/30 完成
+   📊 进度: 12/30 批次完成
+   [DEBUG] API call completed in 186.2s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4808, "completion_tokens": 5740, "total_tokens": 10548, "elapsed_seconds": 186.206324, "prompt_chars": 8554, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   ⚠️ policy_execution分数截断: 0 -> 1
+   ⚠️ conversion分数截断: 0 -> 1
+   ⚠️ policy_execution分数截断: 0 -> 1
+   ⚠️ conversion分数截断: 0 -> 1
+   ⚠️ policy_execution分数截断: 0 -> 1
+   ⚠️ conversion分数截断: 0 -> 1
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3223 结果保存成功
+INFO:__main__:✅ 任务 3224 结果保存成功
+INFO:__main__:✅ 任务 3225 结果保存成功
+INFO:__main__:✅ 任务 3226 结果保存成功
+INFO:__main__:✅ 任务 3227 结果保存成功
+INFO:__main__:✅ 任务 3228 结果保存成功
+INFO:__main__:✅ 任务 3229 结果保存成功
+INFO:__main__:✅ 任务 3233 结果保存成功
+INFO:__main__:✅ 任务 3234 结果保存成功
+INFO:__main__:✅ 任务 3235 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 21/30 完成
+   📊 进度: 13/30 批次完成
+   [DEBUG] API call completed in 193.2s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 3792, "completion_tokens": 6115, "total_tokens": 9907, "elapsed_seconds": 193.163921, "prompt_chars": 6874, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3072 结果保存成功
+INFO:__main__:✅ 任务 3073 结果保存成功
+INFO:__main__:✅ 任务 3074 结果保存成功
+INFO:__main__:✅ 任务 3075 结果保存成功
+INFO:__main__:✅ 任务 3077 结果保存成功
+INFO:__main__:✅ 任务 3078 结果保存成功
+INFO:__main__:✅ 任务 3079 结果保存成功
+INFO:__main__:✅ 任务 3080 结果保存成功
+INFO:__main__:✅ 任务 3082 结果保存成功
+INFO:__main__:✅ 任务 3083 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 9/30 完成
+   📊 进度: 14/30 批次完成
+   [DEBUG] API call completed in 195.7s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 5103, "completion_tokens": 5285, "total_tokens": 10388, "elapsed_seconds": 195.693141, "prompt_chars": 9118, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3040 结果保存成功
+INFO:__main__:✅ 任务 3041 结果保存成功
+INFO:__main__:✅ 任务 3042 结果保存成功
+INFO:__main__:✅ 任务 3043 结果保存成功
+INFO:__main__:✅ 任务 3044 结果保存成功
+INFO:__main__:✅ 任务 3045 结果保存成功
+INFO:__main__:✅ 任务 3046 结果保存成功
+INFO:__main__:✅ 任务 3047 结果保存成功
+INFO:__main__:✅ 任务 3048 结果保存成功
+INFO:__main__:✅ 任务 3049 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 6/30 完成
+   📊 进度: 15/30 批次完成
+   [DEBUG] API call completed in 202.0s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 5476, "completion_tokens": 6285, "total_tokens": 11761, "elapsed_seconds": 201.955653, "prompt_chars": 9517, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3001 结果保存成功
+INFO:__main__:✅ 任务 3002 结果保存成功
+INFO:__main__:✅ 任务 3003 结果保存成功
+INFO:__main__:✅ 任务 3005 结果保存成功
+INFO:__main__:✅ 任务 3006 结果保存成功
+INFO:__main__:✅ 任务 3007 结果保存成功
+INFO:__main__:✅ 任务 3008 结果保存成功
+INFO:__main__:✅ 任务 3009 结果保存成功
+INFO:__main__:✅ 任务 3011 结果保存成功
+INFO:__main__:✅ 任务 3012 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 3/30 完成
+   📊 进度: 16/30 批次完成
+   [DEBUG] API call completed in 202.9s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4535, "completion_tokens": 5602, "total_tokens": 10137, "elapsed_seconds": 202.943652, "prompt_chars": 8225, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3213 结果保存成功
+INFO:__main__:✅ 任务 3214 结果保存成功
+INFO:__main__:✅ 任务 3215 结果保存成功
+INFO:__main__:✅ 任务 3216 结果保存成功
+INFO:__main__:✅ 任务 3217 结果保存成功
+INFO:__main__:✅ 任务 3218 结果保存成功
+INFO:__main__:✅ 任务 3219 结果保存成功
+INFO:__main__:✅ 任务 3220 结果保存成功
+INFO:__main__:✅ 任务 3221 结果保存成功
+INFO:__main__:✅ 任务 3222 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 20/30 完成
+   📊 进度: 17/30 批次完成
+   [DEBUG] API call completed in 206.4s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4348, "completion_tokens": 6490, "total_tokens": 10838, "elapsed_seconds": 206.407245, "prompt_chars": 8085, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3061 结果保存成功
+INFO:__main__:✅ 任务 3062 结果保存成功
+INFO:__main__:✅ 任务 3063 结果保存成功
+INFO:__main__:✅ 任务 3064 结果保存成功
+INFO:__main__:✅ 任务 3066 结果保存成功
+INFO:__main__:✅ 任务 3067 结果保存成功
+INFO:__main__:✅ 任务 3068 结果保存成功
+INFO:__main__:✅ 任务 3069 结果保存成功
+INFO:__main__:✅ 任务 3070 结果保存成功
+INFO:__main__:✅ 任务 3071 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 8/30 完成
+   📊 进度: 18/30 批次完成
+   [DEBUG] API call completed in 212.5s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 3261, "completion_tokens": 6610, "total_tokens": 9871, "elapsed_seconds": 212.474837, "prompt_chars": 6062, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3171 结果保存成功
+INFO:__main__:✅ 任务 3172 结果保存成功
+INFO:__main__:✅ 任务 3173 结果保存成功
+INFO:__main__:✅ 任务 3174 结果保存成功
+INFO:__main__:✅ 任务 3175 结果保存成功
+INFO:__main__:✅ 任务 3176 结果保存成功
+INFO:__main__:✅ 任务 3178 结果保存成功
+INFO:__main__:✅ 任务 3180 结果保存成功
+INFO:__main__:✅ 任务 3181 结果保存成功
+INFO:__main__:✅ 任务 3182 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 17/30 完成
+   📊 进度: 19/30 批次完成
+   [DEBUG] API call completed in 214.6s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4128, "completion_tokens": 6881, "total_tokens": 11009, "elapsed_seconds": 214.59339, "prompt_chars": 7600, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3321 结果保存成功
+INFO:__main__:✅ 任务 3322 结果保存成功
+INFO:__main__:✅ 任务 3323 结果保存成功
+INFO:__main__:✅ 任务 3324 结果保存成功
+INFO:__main__:✅ 任务 3325 结果保存成功
+INFO:__main__:✅ 任务 3326 结果保存成功
+INFO:__main__:✅ 任务 3327 结果保存成功
+INFO:__main__:✅ 任务 3329 结果保存成功
+INFO:__main__:✅ 任务 3330 结果保存成功
+INFO:__main__:✅ 任务 3331 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 29/30 完成
+   📊 进度: 20/30 批次完成
+   [DEBUG] API call completed in 215.1s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4809, "completion_tokens": 6675, "total_tokens": 11484, "elapsed_seconds": 215.098089, "prompt_chars": 8453, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3050 结果保存成功
+INFO:__main__:✅ 任务 3051 结果保存成功
+INFO:__main__:✅ 任务 3052 结果保存成功
+INFO:__main__:✅ 任务 3053 结果保存成功
+INFO:__main__:✅ 任务 3054 结果保存成功
+INFO:__main__:✅ 任务 3055 结果保存成功
+INFO:__main__:✅ 任务 3056 结果保存成功
+INFO:__main__:✅ 任务 3057 结果保存成功
+INFO:__main__:✅ 任务 3058 结果保存成功
+INFO:__main__:✅ 任务 3059 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 7/30 完成
+   📊 进度: 21/30 批次完成
+   [DEBUG] API call completed in 224.2s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 3981, "completion_tokens": 6162, "total_tokens": 10143, "elapsed_seconds": 224.186227, "prompt_chars": 7103, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3299 结果保存成功
+INFO:__main__:✅ 任务 3300 结果保存成功
+INFO:__main__:✅ 任务 3301 结果保存成功
+INFO:__main__:✅ 任务 3302 结果保存成功
+INFO:__main__:✅ 任务 3303 结果保存成功
+INFO:__main__:✅ 任务 3304 结果保存成功
+INFO:__main__:✅ 任务 3305 结果保存成功
+INFO:__main__:✅ 任务 3306 结果保存成功
+INFO:__main__:✅ 任务 3307 结果保存成功
+INFO:__main__:✅ 任务 3308 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 27/30 完成
+   📊 进度: 22/30 批次完成
+   [DEBUG] API call completed in 231.8s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 5381, "completion_tokens": 6492, "total_tokens": 11873, "elapsed_seconds": 231.795503, "prompt_chars": 9609, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 2979 结果保存成功
+INFO:__main__:✅ 任务 2980 结果保存成功
+INFO:__main__:✅ 任务 2981 结果保存成功
+INFO:__main__:✅ 任务 2982 结果保存成功
+INFO:__main__:✅ 任务 2983 结果保存成功
+INFO:__main__:✅ 任务 2984 结果保存成功
+INFO:__main__:✅ 任务 2985 结果保存成功
+INFO:__main__:✅ 任务 2986 结果保存成功
+INFO:__main__:✅ 任务 2987 结果保存成功
+INFO:__main__:✅ 任务 2988 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 1/30 完成
+   📊 进度: 23/30 批次完成
+   [DEBUG] API call completed in 232.7s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4609, "completion_tokens": 7211, "total_tokens": 11820, "elapsed_seconds": 232.676084, "prompt_chars": 8183, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3108 结果保存成功
+INFO:__main__:✅ 任务 3109 结果保存成功
+INFO:__main__:✅ 任务 3110 结果保存成功
+INFO:__main__:✅ 任务 3111 结果保存成功
+INFO:__main__:✅ 任务 3112 结果保存成功
+INFO:__main__:✅ 任务 3113 结果保存成功
+INFO:__main__:✅ 任务 3114 结果保存成功
+INFO:__main__:✅ 任务 3115 结果保存成功
+INFO:__main__:✅ 任务 3117 结果保存成功
+INFO:__main__:✅ 任务 3118 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 12/30 完成
+   📊 进度: 24/30 批次完成
+   [DEBUG] API call completed in 233.7s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 3285, "completion_tokens": 6370, "total_tokens": 9655, "elapsed_seconds": 233.713065, "prompt_chars": 6002, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3159 结果保存成功
+INFO:__main__:✅ 任务 3160 结果保存成功
+INFO:__main__:✅ 任务 3161 结果保存成功
+INFO:__main__:✅ 任务 3162 结果保存成功
+INFO:__main__:✅ 任务 3163 结果保存成功
+INFO:__main__:✅ 任务 3166 结果保存成功
+INFO:__main__:✅ 任务 3167 结果保存成功
+INFO:__main__:✅ 任务 3168 结果保存成功
+INFO:__main__:✅ 任务 3169 结果保存成功
+INFO:__main__:✅ 任务 3170 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 16/30 完成
+   📊 进度: 25/30 批次完成
+   [DEBUG] API call completed in 237.6s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 6389, "completion_tokens": 7391, "total_tokens": 13780, "elapsed_seconds": 237.576216, "prompt_chars": 11366, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3096 结果保存成功
+INFO:__main__:✅ 任务 3097 结果保存成功
+INFO:__main__:✅ 任务 3098 结果保存成功
+INFO:__main__:✅ 任务 3099 结果保存成功
+INFO:__main__:✅ 任务 3100 结果保存成功
+INFO:__main__:✅ 任务 3103 结果保存成功
+INFO:__main__:✅ 任务 3104 结果保存成功
+INFO:__main__:✅ 任务 3105 结果保存成功
+INFO:__main__:✅ 任务 3106 结果保存成功
+INFO:__main__:✅ 任务 3107 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 11/30 完成
+   📊 进度: 26/30 批次完成
+   [DEBUG] API call completed in 258.1s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 6460, "completion_tokens": 7927, "total_tokens": 14387, "elapsed_seconds": 258.061841, "prompt_chars": 11548, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3288 结果保存成功
+INFO:__main__:✅ 任务 3289 结果保存成功
+INFO:__main__:✅ 任务 3290 结果保存成功
+INFO:__main__:✅ 任务 3291 结果保存成功
+INFO:__main__:✅ 任务 3292 结果保存成功
+INFO:__main__:✅ 任务 3294 结果保存成功
+INFO:__main__:✅ 任务 3295 结果保存成功
+INFO:__main__:✅ 任务 3296 结果保存成功
+INFO:__main__:✅ 任务 3297 结果保存成功
+INFO:__main__:✅ 任务 3298 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 26/30 完成
+   📊 进度: 27/30 批次完成
+   [DEBUG] API call completed in 268.9s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4546, "completion_tokens": 7349, "total_tokens": 11895, "elapsed_seconds": 268.876181, "prompt_chars": 8274, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3267 结果保存成功
+INFO:__main__:✅ 任务 3268 结果保存成功
+INFO:__main__:✅ 任务 3269 结果保存成功
+INFO:__main__:✅ 任务 3270 结果保存成功
+INFO:__main__:✅ 任务 3271 结果保存成功
+INFO:__main__:✅ 任务 3272 结果保存成功
+INFO:__main__:✅ 任务 3273 结果保存成功
+INFO:__main__:✅ 任务 3274 结果保存成功
+INFO:__main__:✅ 任务 3275 结果保存成功
+INFO:__main__:✅ 任务 3276 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 24/30 完成
+   📊 进度: 28/30 批次完成
+   [DEBUG] API call completed in 268.5s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 3769, "completion_tokens": 8344, "total_tokens": 12113, "elapsed_seconds": 268.509106, "prompt_chars": 6783, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3236 结果保存成功
+INFO:__main__:✅ 任务 3237 结果保存成功
+INFO:__main__:✅ 任务 3238 结果保存成功
+INFO:__main__:✅ 任务 3239 结果保存成功
+INFO:__main__:✅ 任务 3240 结果保存成功
+INFO:__main__:✅ 任务 3241 结果保存成功
+INFO:__main__:✅ 任务 3243 结果保存成功
+INFO:__main__:✅ 任务 3244 结果保存成功
+INFO:__main__:✅ 任务 3247 结果保存成功
+INFO:__main__:✅ 任务 3249 结果保存成功
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 批次 22/30 完成
+   📊 进度: 29/30 批次完成
+   [DEBUG] API call completed in 272.9s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4413, "completion_tokens": 7435, "total_tokens": 11848, "elapsed_seconds": 272.913783, "prompt_chars": 7945, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 10 results
+   ⚠️ policy_execution分数截断: 0 -> 1
+   ⚠️ conversion分数截断: 0 -> 1
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:__main__:✅ 任务 3198 结果保存成功
+   ✅ 批次 19/30 完成
+   📊 进度: 30/30 批次完成
+
+   ✅ 本批完成: 295通, API调用: 30次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+🔄 发现 10 个失败任务，并发重试...
+   🔄 批量重试 10 个任务，5通/批
+   🔄 重试批次 1/2 (5通)
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+INFO:__main__:✅ 任务 3201 结果保存成功
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]INFO:__main__:✅ 任务 3203 结果保存成功
+INFO:__main__:✅ 任务 3204 结果保存成功
+INFO:__main__:✅ 任务 3206 结果保存成功
+INFO:__main__:✅ 任务 3207 结果保存成功
+INFO:__main__:✅ 任务 3208 结果保存成功
+INFO:__main__:✅ 任务 3210 结果保存成功
+INFO:__main__:✅ 任务 3211 结果保存成功
+INFO:__main__:✅ 任务 3212 结果保存成功
+Batches: 100%|██████████| 1/1 [00:00<00:00,  2.80it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  2.79it/s]
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 3111, "template_chars": 1083, "total_prompt_chars": 4222, "session_count": 5, "session_avg_chars": 622}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 145.6s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2213, "completion_tokens": 4356, "total_tokens": 6569, "elapsed_seconds": 145.583933, "prompt_chars": 4222, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 3016 结果保存成功
+INFO:__main__:✅ 任务 3017 结果保存成功
+INFO:__main__:✅ 任务 3018 结果保存成功
+INFO:__main__:✅ 任务 3019 结果保存成功
+INFO:__main__:✅ 任务 3022 结果保存成功
+   ✅ 重试成功: 任务 3016
+   ✅ 重试成功: 任务 3017
+   ✅ 重试成功: 任务 3018
+   ✅ 重试成功: 任务 3019
+   ✅ 重试成功: 任务 3022
+   🔄 重试批次 2/2 (5通)
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.32it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.32it/s]
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 3893, "template_chars": 1083, "total_prompt_chars": 5004, "session_count": 5, "session_avg_chars": 778}
+INFO:smart_scoring_v2:[DEBUG] _call_kimi_async START - expected_count=5
+   [DEBUG] === _call_kimi_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 75372
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: kimi-k2.5
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 114.5s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2733, "completion_tokens": 3437, "total_tokens": 6170, "elapsed_seconds": 114.500886, "prompt_chars": 5004, "model": "kimi-k2.5"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_kimi_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:__main__:✅ 任务 3021 结果保存成功
+INFO:__main__:✅ 任务 3024 结果保存成功
+INFO:__main__:✅ 任务 3026 结果保存成功
+INFO:__main__:✅ 任务 3025 结果保存成功
+INFO:__main__:✅ 任务 3027 结果保存成功
+   ✅ 重试成功: 任务 3021
+   ✅ 重试成功: 任务 3024
+   ✅ 重试成功: 任务 3026
+   ✅ 重试成功: 任务 3025
+   ✅ 重试成功: 任务 3027
+   ✅ 重试完成: 10/10 成功
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+⏳ 等待数据库写入完成...
+✅ 数据库写入完成
+⏳ 队列已空，--once模式：准备退出
+🛑 数据库写入线程收到退出信号
+✅ 数据库写入线程已退出
+✅ 锁已释放
+
+============================================================
+📊 异步批量工作进程结束
+   成功处理: 305
+   总API调用: 30次
+============================================================
