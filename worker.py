@@ -40,6 +40,9 @@
 import os
 import sys
 
+# ========== 【v2.6.6拆分 Step 1】导入共享配置 ==========
+import worker_config as cfg
+
 # ========== 【v2.6.3新增】启动前依赖检查 ==========
 def _check_dependencies():
     """检查必要的依赖模块是否存在"""
@@ -103,83 +106,34 @@ from db_utils import init_sessions_table
 from intent_classifier_v3 import RobustIntentClassifier
 from smart_scoring_v2 import SmartScoringEngine
 from scene_utils import classify_scene_by_keywords  # 【P1-1修复】提取到独立模块
+from session_merge import (
+    parse_timestamp,
+    has_transfer_keyword,
+    find_related_sessions,
+    merge_session_data,
+    deduplicate_sessions,
+)
+from db_operations import save_to_database, _save_result_sync, _log_inconsistency
+from db_writer import start_db_writer, stop_db_writer, queue_save_result, wait_for_db_writes, wait_for_db_writes_async
+from task_fetcher import fetch_and_group_tasks, _fetch_failed_tasks_for_retry
+from batch_scoring import (
+    _batch_score_with_limit,
+    _batch_score_with_limit_v2,
+    _retry_tasks_batch,
+    _retry_single_task,
+)
 import sqlite3  # 【N-5修复保留】用于 --once 模式检查 processing 任务
 import json
 
-# ========== v2.6 Phase 2: 自适应批量配置 ==========
-TOKENS_PER_CHAR = float(os.getenv('TOKENS_PER_CHAR', '0.67'))
-OUTPUT_TOKENS_PER_SESSION = int(os.getenv('OUTPUT_TOKENS_PER_SESSION', '600'))
-SYSTEM_PROMPT_TOKENS = int(os.getenv('SYSTEM_PROMPT_TOKENS', '900'))
-MAX_TOKENS_PER_BATCH = int(os.getenv('MAX_TOKENS_PER_BATCH', '300000'))
-ADAPTIVE_BATCH_MIN = int(os.getenv('ADAPTIVE_BATCH_MIN', '3'))
-ADAPTIVE_BATCH_MAX = int(os.getenv('ADAPTIVE_BATCH_MAX', '5'))  # 【修复】强制限制最大5通/批，避免API超时
-MAX_TOKENS_PER_TASK = 10000  # 【修复】单任务Token上限，超长会话降级为单通处理
-
-
-def estimate_session_tokens(session_data: Dict) -> int:
-    """估算单通会话的Token数（包含所有开销）"""
-    messages = session_data.get('messages', [])
-    # 会话内容字符数
-    content_chars = sum(len(m.get('content', '')) for m in messages)
-    # 转换为token + system prompt分摊 + output
-    content_tokens = int(content_chars * TOKENS_PER_CHAR)
-    # 加上输出开销（评分结果JSON）
-    return SYSTEM_PROMPT_TOKENS + content_tokens + OUTPUT_TOKENS_PER_SESSION
-
-
-def calculate_adaptive_batch_size(sessions: List[Dict], base_size: int = 30) -> int:
-    """计算自适应批量大小
-    
-    策略：
-    1. 先按base_size估算总token
-    2. 如果超过MAX_TOKENS_PER_BATCH，按比例缩减
-    3. 始终在[ADAPTIVE_BATCH_MIN, ADAPTIVE_BATCH_MAX]范围内
-    
-    【重要】本函数只负责计算批量大小，不处理超长会话拆分
-    超长会话(>50条消息)应在调用本函数前被拆分出去
-    """
-    if not sessions:
-        return 0
-    
-    # 估算base_size的token
-    base_tokens = sum(estimate_session_tokens(s) for s in sessions[:base_size])
-    
-    if base_tokens > MAX_TOKENS_PER_BATCH:
-        # 超出上限，按比例缩减
-        ratio = MAX_TOKENS_PER_BATCH / base_tokens
-        adjusted_size = int(base_size * ratio * 0.9)  # 留10%buffer
-        result = max(adjusted_size, ADAPTIVE_BATCH_MIN)
-        print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={base_tokens}|batch_size={result}|reason=超出token上限({MAX_TOKENS_PER_BATCH})")
-        return result
-    
-    # 计算平均单通token
-    avg_tokens = base_tokens / max(base_size, 1)
-    
-    # 如果平均token较低，尝试扩大批量，但不超过ADAPTIVE_BATCH_MAX
-    if avg_tokens < 3000:  # 短会话
-        potential_size = int(MAX_TOKENS_PER_BATCH / avg_tokens * 0.9)
-        result = min(potential_size, ADAPTIVE_BATCH_MAX, len(sessions))
-        print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={base_tokens}|batch_size={result}|reason=短会话优化(avg={avg_tokens:.0f}tokens)")
-        return result
-    
-    # 默认使用base_size，但不超过ADAPTIVE_BATCH_MAX
-    result = min(base_size, ADAPTIVE_BATCH_MAX, len(sessions))
-    print(f"   📦 BATCH_DECISION|sessions={len(sessions)}|estimated_tokens={base_tokens}|batch_size={result}|reason=默认策略")
-    return result
-
-
-# ========== 单例锁机制（使用 PID 文件）==========
-# ========== 日志目录配置 ==========
-LOGS_DIR = os.path.join(os.path.dirname(__file__), 'logs')
-os.makedirs(LOGS_DIR, exist_ok=True)
-
-PID_FILE = os.path.join(LOGS_DIR, 'cs_analyzer_worker.pid')
+# ========== v2.6 Phase 2: 自适应批量配置（已迁移到 worker_config.py）==========
+# 所有配置常量、工具函数、全局变量已通过 `import worker_config as cfg` 共享
+# 详见 worker_config.py
 
 def acquire_lock():
     """获取单例锁，防止多个 worker 同时运行"""
-    if os.path.exists(PID_FILE):
+    if os.path.exists(cfg.PID_FILE):
         try:
-            with open(PID_FILE, 'r') as f:
+            with open(cfg.PID_FILE, 'r') as f:
                 old_pid = int(f.read().strip())
             
             try:
@@ -189,16 +143,16 @@ def acquire_lock():
                 return False
             except ProcessLookupError:
                 print(f"🧹 清理残留锁文件 (PID {old_pid} 已不存在)")
-                os.unlink(PID_FILE)
+                os.unlink(cfg.PID_FILE)
         except (ValueError, IOError) as e:
             print(f"🧹 清理损坏的锁文件: {e}")
             try:
-                os.unlink(PID_FILE)
+                os.unlink(cfg.PID_FILE)
             except:
                 pass
     
     try:
-        with open(PID_FILE, 'w') as f:
+        with open(cfg.PID_FILE, 'w') as f:
             f.write(str(os.getpid()))
         print(f"✅ 获取锁成功 (PID: {os.getpid()})")
         return True
@@ -209,148 +163,28 @@ def acquire_lock():
 def release_lock():
     """释放单例锁"""
     try:
-        if os.path.exists(PID_FILE):
-            with open(PID_FILE, 'r') as f:
+        if os.path.exists(cfg.PID_FILE):
+            with open(cfg.PID_FILE, 'r') as f:
                 pid_in_file = int(f.read().strip())
             
             if pid_in_file == os.getpid():
-                os.unlink(PID_FILE)
+                os.unlink(cfg.PID_FILE)
                 print("✅ 锁已释放")
     except Exception as e:
         print(f"⚠️ 释放锁失败: {e}")
 
-# ========== 【v2.6.5】异步写入队列 ==========
-# 全局写入队列和线程
-db_write_queue = queue.Queue()
-db_writer_thread = None
-db_writer_running = False
-MAX_WRITE_RETRIES = 3  # 【v2.6.5-fix】最大重试次数，防止无限循环
-
-def _db_writer_loop():
-    """【v2.6.5】独立线程处理所有数据库写入
-    
-    从队列中获取 (task, result, retry_count) 元组并同步写入数据库
-    这是一个守护线程，会持续运行直到收到 None 作为退出信号
-    """
-    global db_writer_running
-    db_writer_running = True
-    print("🔄 数据库写入线程已启动")
-    
-    while db_writer_running:
-        try:
-            item = db_write_queue.get(timeout=1.0)  # 1秒超时检查运行状态
-            if item is None:  # 退出信号
-                print("🛑 数据库写入线程收到退出信号")
-                db_writer_running = False
-                break
-            
-            task, result, retry_count = item  # 【v2.6.5-fix】解包重试计数器
-            try:
-                _save_result_sync(task, result)
-            except Exception as e:
-                task_id = task.get('task_id', 'unknown')
-                if retry_count < MAX_WRITE_RETRIES:
-                    print(f"⚠️ 写入重试 {retry_count + 1}/{MAX_WRITE_RETRIES} (任务 {task_id}): {e}")
-                    time.sleep(0.5 * (retry_count + 1))  # 递增退避
-                    db_write_queue.put((task, result, retry_count + 1))
-                else:
-                    print(f"❌ 写入彻底失败 (任务 {task_id}): {e}")
-                    try:
-                        fail_task(task_id, f"DB write failed after {MAX_WRITE_RETRIES} retries: {e}")
-                    except:
-                        pass  # fail_task 本身也可能失败
-            finally:
-                db_write_queue.task_done()
-                
-        except queue.Empty:
-            continue  # 超时继续检查运行状态
-        except Exception as e:
-            print(f"⚠️ 数据库写入线程异常: {e}")
-    
-    print("✅ 数据库写入线程已退出")
-
-def start_db_writer():
-    """【v2.6.5】启动数据库写入线程"""
-    global db_writer_thread, db_writer_running
-    if db_writer_thread is None or not db_writer_thread.is_alive():
-        db_writer_running = True
-        db_writer_thread = threading.Thread(target=_db_writer_loop, daemon=True)
-        db_writer_thread.start()
-        print("✅ 数据库写入线程启动成功")
-
-def stop_db_writer():
-    """【v2.6.5】停止数据库写入线程"""
-    global db_writer_running
-    db_writer_running = False
-    if db_writer_thread is not None:
-        db_write_queue.put(None)  # 发送退出信号
-        db_writer_thread.join(timeout=5.0)
-
-def queue_save_result(task: Dict, result: Dict):
-    """【v2.6.5】将结果加入异步写入队列
-    
-    非阻塞操作，立即返回，由后台线程处理数据库写入
-    """
-    db_write_queue.put((task, result, 0))  # 【v2.6.5-fix】初始 retry_count = 0
-    return True
-
-def wait_for_db_writes(timeout: Optional[float] = None) -> bool:
-    """【v2.6.5】等待所有待写入的队列项完成
-    
-    Args:
-        timeout: 最大等待时间（秒），None表示无限等待
-        
-    Returns:
-        是否在超时前完成
-    """
-    # 【v2.6.5-fix】使用轮询模式支持timeout
-    if timeout is None:
-        db_write_queue.join()
-        return True
-    
-    deadline = time.time() + timeout
-    while not db_write_queue.empty() and time.time() < deadline:
-        time.sleep(0.1)
-    return db_write_queue.empty()
-
-
-async def wait_for_db_writes_async(timeout: Optional[float] = None) -> bool:
-    """【P1修复】异步等待所有待写入的队列项完成
-    
-    包装同步的 wait_for_db_writes 为异步函数，避免 await bool 错误
-    
-    Args:
-        timeout: 最大等待时间（秒），None表示无限等待
-        
-    Returns:
-        是否在超时前完成
-    """
-    loop = asyncio.get_event_loop()
-    return await loop.run_in_executor(None, wait_for_db_writes, timeout)
-
-# ========== 全局变量 ==========
-running = True
-classifier = None
-scorer = None
-MERGE_WINDOW_MINUTES = 30
-MAX_WORKERS = 3
-BATCH_SCORE_SIZE = int(os.getenv('BATCH_SCORE_SIZE', '20'))
-KIMI_MAX_CONCURRENT = int(os.getenv('KIMI_MAX_CONCURRENT', '100'))
-kimi_semaphore = None  # 在init_engines中初始化
-db_lock = threading.Lock()
+# ========== 【v2.6.6拆分 Step 5】数据库写入队列（已迁移到 db_writer.py）==========
+# 已通过 from db_writer import ... 导入
 
 
 def signal_handler(sig, frame):
     """处理退出信号"""
-    global running
     print("\n⚠️ 收到退出信号，正在保存当前任务...")
-    running = False
+    cfg.running = False
 
 
 def init_engines():
     """初始化分析引擎"""
-    global classifier, scorer, kimi_semaphore
-    
     print("🔄 初始化分析引擎...")
     
     api_key = os.getenv('MOONSHOT_API_KEY')
@@ -366,266 +200,22 @@ def init_engines():
         raise ValueError("未找到MOONSHOT_API_KEY，请设置环境变量或在配置文件中配置")
     
     # 初始化Kimi并发信号量
-    kimi_semaphore = asyncio.Semaphore(KIMI_MAX_CONCURRENT)
-    print(f"✅ Kimi并发控制: 最大{KIMI_MAX_CONCURRENT}并发")
+    cfg.kimi_semaphore = asyncio.Semaphore(cfg.KIMI_MAX_CONCURRENT)
+    print(f"✅ Kimi并发控制: 最大{cfg.KIMI_MAX_CONCURRENT}并发")
     
-    classifier = RobustIntentClassifier()
-    scorer = SmartScoringEngine(api_key=api_key)
+    cfg.classifier = RobustIntentClassifier()
+    cfg.scorer = SmartScoringEngine(api_key=api_key)
     
     print("✅ 引擎初始化完成")
 
 
-def parse_timestamp(ts_str):
-    """解析时间字符串"""
-    if not ts_str:
-        return None
-    try:
-        formats = [
-            '%Y-%m-%d %H:%M:%S',
-            '%Y-%m-%d %H:%M',
-            '%Y-%m-%dT%H:%M:%S',
-            '%Y-%m-%dT%H:%M:%S.%f',
-        ]
-        for fmt in formats:
-            try:
-                return datetime.strptime(str(ts_str)[:19], fmt)
-            except Exception:
-                continue
-        return None
-    except Exception:
-        return None
+# ========== 会话合并模块（已迁移到 session_merge.py）==========
+# parse_timestamp, has_transfer_keyword, find_related_sessions, merge_session_data
+# 已通过 from session_merge import ... 导入
 
-
-def has_transfer_keyword(session_data: dict) -> bool:
-    """检测会话中是否包含转接关键词"""
-    TRANSFER_KEYWORDS = [
-        "转接售后", "为您转接", "转给售后", "售后专员",
-        "安排售后", "售后同事", "转接售前", "升级处理",
-        "主管处理", "经理处理", "专家坐席"
-    ]
-    messages = session_data.get('messages', [])
-    content = ' '.join([m.get('content', '') for m in messages])
-    return any(kw in content for kw in TRANSFER_KEYWORDS)
-
-
-def find_related_sessions(main_task: dict, window_minutes: int = MERGE_WINDOW_MINUTES) -> dict:
-    """查找关联会话"""
-    main_data = main_task.get("session_data", {})
-    if isinstance(main_data, str):
-        main_data = json.loads(main_data)
-    main_user_id = main_data.get('user_id', '')
-    main_staff = main_data.get('staff_name', '')
-    main_messages = main_data.get('messages', [])
-    
-    # 【修复】user_id为空时，不进行合并搜索
-    if not main_user_id:
-        return {'mergeable': [], 'transfer_chain': [], 'same_user': []}
-    
-    # 【修复】主任务必须有用户消息才合并
-    main_user_msgs = [m for m in main_messages if m.get('role') in ('user', 'customer')]
-    if not main_user_msgs:
-        return {'mergeable': [], 'transfer_chain': [], 'same_user': []}
-    
-    if not main_messages:
-        return {'mergeable': [], 'transfer_chain': [], 'same_user': []}
-    
-    main_start = parse_timestamp(main_messages[0].get('timestamp', ''))
-    main_end = parse_timestamp(main_messages[-1].get('timestamp', ''))
-    
-    if not main_start or not main_end:
-        return {'mergeable': [], 'transfer_chain': [], 'same_user': []}
-    
-    conn = get_queue_connection()
-    cursor = conn.cursor()
-    
-    # 【优化】使用user_id索引精准查找，O(N²)→O(N)，仅需匹配同用户任务
-    cursor.execute('''
-        SELECT task_id, session_id, session_data 
-        FROM analysis_tasks 
-        WHERE user_id = ? AND status IN ('pending', 'processing') AND task_id != ?
-    ''', (main_user_id, main_task.get('task_id')))
-    
-    result = {'mergeable': [], 'transfer_chain': [], 'same_user': []}
-
-    for row in cursor.fetchall():
-        task_id, session_id, session_data_json = row
-        try:
-            task_data = json.loads(session_data_json)
-            task_staff = task_data.get('staff_name', '')
-            task_messages = task_data.get('messages', [])
-            
-            if not task_messages:
-                continue
-            
-            # 【优化】跳过无用户消息的候选（已在submit_task过滤，保留防护）
-            task_user_msgs = [m for m in task_messages if m.get('role') in ('user', 'customer')]
-            if not task_user_msgs:
-                continue
-
-            task_start = parse_timestamp(task_messages[0].get('timestamp', ''))
-            task_end = parse_timestamp(task_messages[-1].get('timestamp', ''))
-
-            if not task_start or not task_end:
-                continue
-
-            gap_before = (main_start - task_end).total_seconds() / 60
-            gap_after = (task_start - main_end).total_seconds() / 60
-
-            if not (0 <= gap_before <= window_minutes or 0 <= gap_after <= window_minutes):
-                continue
-
-            task_info = {
-                'task_id': task_id,
-                'session_id': session_id,
-                'session_data': task_data,
-                'start_time': task_start,
-                'end_time': task_end,
-                'gap_minutes': min(abs(gap_before), abs(gap_after))
-            }
-
-            if task_staff == main_staff:
-                result['mergeable'].append(task_info)
-            else:
-                is_transfer = (task_info['gap_minutes'] < 2 or
-                              has_transfer_keyword(task_data) or
-                              has_transfer_keyword(main_data))
-                if is_transfer:
-                    result['transfer_chain'].append(task_info)
-                else:
-                    result['same_user'].append(task_info)
-
-        except Exception as e:
-            print(f"   ⚠️ 解析任务 {task_id} 失败: {e}")
-            continue
-
-    conn.close()
-    return result
-
-
-def merge_session_data(main_task: dict, mergeable_tasks: list) -> dict:
-    """合并会话数据"""
-    main_data = main_task.get("session_data", {})
-    if isinstance(main_data, str):
-        main_data = json.loads(main_data)
-    main_messages = main_data.get('messages', [])
-    
-    all_messages = main_messages.copy()
-    merged_session_ids = [main_task.get('session_id')]
-    
-    for task in mergeable_tasks:
-        all_messages.extend(task['session_data'].get('messages', []))
-        merged_session_ids.append(task['session_id'])
-    
-    all_messages.sort(key=lambda x: parse_timestamp(x.get('timestamp', '')) or datetime.min)
-    
-    timestamps = [parse_timestamp(m.get('timestamp', '')) for m in all_messages]
-    valid_timestamps = [t for t in timestamps if t]
-    
-    new_start = min(valid_timestamps).isoformat()[:19] if valid_timestamps else ''
-    new_end = max(valid_timestamps).isoformat()[:19] if valid_timestamps else ''
-    
-    return {
-        'session_id': main_task.get('session_id'),
-        'user_id': main_data.get('user_id'),
-        'staff_name': main_data.get('staff_name'),
-        'messages': all_messages,
-        'session_count': len(merged_session_ids),
-        'merged_session_ids': merged_session_ids,
-        'start_time': new_start,
-        'end_time': new_end,
-        'is_merged': len(merged_session_ids) > 1
-    }
-
-
-def save_to_database(session_id: str, session_data: dict, intent, result: dict, session_count: int = 1):
-    """保存分析结果到数据库"""
-    from db_utils import get_connection
-    conn = get_connection()
-    cursor = conn.cursor()
-    
-    ds = result.get('dimension_scores', {})
-    prof = ds.get('professionalism', {}).get('score', 0)
-    std = ds.get('standardization', {}).get('score', 0)
-    pol = ds.get('policy_execution', {}).get('score', 0)
-    conv = ds.get('conversion', {}).get('score', 0)
-    total = prof + std + pol + conv
-    
-    staff_name = ''
-    for m in session_data.get('messages', []):
-        if m.get('role') == 'staff':
-            staff_name = m.get('sender', '')
-            break
-    
-    messages = session_data.get('messages', [])
-    summary = result.get('summary', {})
-    strengths = summary.get('strengths', [])
-    issues = summary.get('issues', [])
-    suggestions = summary.get('suggestions', [])
-    
-    start_time = session_data.get('start_time', '')
-    end_time = session_data.get('end_time', '')
-    
-    if not start_time and messages:
-        start_time = messages[0].get('timestamp', '')
-    if not end_time and messages:
-        end_time = messages[-1].get('timestamp', '')
-    
-    is_transfer = session_data.get('is_transfer', False)
-    transfer_from = session_data.get('transfer_from')
-    transfer_to = session_data.get('transfer_to')
-    transfer_reason = session_data.get('transfer_reason', '')
-    related_sessions = session_data.get('related_sessions', [])
-
-    cursor.execute('SELECT session_id FROM sessions WHERE session_id = ?', (session_id,))
-    if cursor.fetchone():
-        cursor.execute('''
-            UPDATE sessions SET
-                professionalism_score = ?, standardization_score = ?,
-                policy_execution_score = ?, conversion_score = ?, total_score = ?,
-                analysis_json = ?, strengths = ?, issues = ?, suggestions = ?,
-                session_count = ?, start_time = ?, end_time = ?, created_at = ?,
-                is_transfer = ?, transfer_from = ?, transfer_to = ?, transfer_reason = ?, related_sessions = ?
-            WHERE session_id = ?
-        ''', (prof, std, pol, conv, total,
-              json.dumps(result, ensure_ascii=False),
-              json.dumps(strengths, ensure_ascii=False),
-              json.dumps(issues, ensure_ascii=False),
-              json.dumps(suggestions, ensure_ascii=False),
-              session_count, start_time, end_time, datetime.now().isoformat(),
-              1 if is_transfer else 0, transfer_from, transfer_to, transfer_reason,
-              json.dumps(related_sessions, ensure_ascii=False), session_id))
-    else:
-        cursor.execute('''
-            INSERT INTO sessions
-            (session_id, user_id, staff_name, messages, summary,
-             professionalism_score, standardization_score, policy_execution_score, conversion_score,
-             total_score, analysis_json, strengths, issues, suggestions, session_count, start_time, end_time, created_at,
-             is_transfer, transfer_from, transfer_to, transfer_reason, related_sessions)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ''', (
-            session_id,
-            next((m.get('sender') for m in messages if m.get('role') in ('user', 'customer')), 'unknown'),
-            staff_name,
-            json.dumps(messages, ensure_ascii=False),
-            result.get('session_analysis', {}).get('theme', ''),
-            prof, std, pol, conv, total,
-            json.dumps(result, ensure_ascii=False),
-            json.dumps(strengths, ensure_ascii=False),
-            json.dumps(issues, ensure_ascii=False),
-            json.dumps(suggestions, ensure_ascii=False),
-            session_count, start_time, end_time, datetime.now().isoformat(),
-            1 if is_transfer else 0, transfer_from, transfer_to, transfer_reason,
-            json.dumps(related_sessions, ensure_ascii=False)
-        ))
-    
-    conn.commit()
-    conn.close()
-
-
-# ========== 【v2.4新增】异步批量处理 ==========
 
 async def process_group_async(user_id: str, tasks: List[Dict], 
-                               window_minutes: int = MERGE_WINDOW_MINUTES,
+                               window_minutes: int = cfg.MERGE_WINDOW_MINUTES,
                                batch_size: int = 3) -> Dict:
     """异步处理单个用户的所有任务（组内异步+批量评分）
     
@@ -654,39 +244,8 @@ async def process_group_async(user_id: str, tasks: List[Dict],
     return {'processed': processed, 'total': len(tasks), 'merged': merged}
 
 
-def deduplicate_sessions(tasks: List[Dict]) -> List[Dict]:
-    """【Opus修复-P0】在送入模型前去重，保留最早的任务
-    
-    消除批次77的重复会话问题（任务164/172同session_id）
-    
-    Args:
-        tasks: 任务列表
-        
-    Returns:
-        去重后的任务列表
-    """
-    seen_sessions = {}
-    unique_tasks = []
-    
-    # 按created_at排序，保留最早的任务
-    for task in sorted(tasks, key=lambda x: x.get('created_at', '')):
-        session_id = task.get('session_id')
-        task_id = task.get('task_id')
-        
-        if session_id in seen_sessions:
-            # 重复会话，取消重复任务
-            kept_task_id = seen_sessions[session_id]
-            cancel_task(task_id, reason=f"Duplicate session (kept task {kept_task_id})")
-            print(f"   🔄 去重: 取消重复任务 {task_id} (保留 {kept_task_id}, session: {session_id})")
-        else:
-            # 首次出现，记录并保留
-            seen_sessions[session_id] = task_id
-            unique_tasks.append(task)
-    
-    if len(unique_tasks) < len(tasks):
-        print(f"   ✅ 去重完成: {len(tasks)} → {len(unique_tasks)} 个任务 (去除 {len(tasks) - len(unique_tasks)} 个重复)")
-    
-    return unique_tasks
+# ========== 去重模块（已迁移到 session_merge.py）==========
+# deduplicate_sessions 已通过 from session_merge import ... 导入
 
 
 def _prepare_merged_tasks_sync(tasks: List[Dict], window_minutes: int) -> List[Dict]:
@@ -740,134 +299,7 @@ def _prepare_merged_tasks_sync(tasks: List[Dict], window_minutes: int) -> List[D
     return merged_tasks
 
 
-async def _batch_score_with_limit(tasks: List[Dict], batch_size: int) -> List[Dict]:
-    """【N-6】带限流的批量评分（旧版，已废弃）
-    
-    ⚠️ Deprecated: 请使用 _batch_score_with_limit_v2()，支持自适应批量大小
-    
-    保留原因：向后兼容，部分旧代码可能调用此函数
-    """
-    import warnings
-    warnings.warn(
-        "_batch_score_with_limit is deprecated, use _batch_score_with_limit_v2 instead",
-        DeprecationWarning,
-        stacklevel=2
-    )
-    
-    global kimi_semaphore
-    
-    if not tasks:
-        return []
-    
-    # 按batch_size分组
-    batches = [tasks[i:i+batch_size] for i in range(0, len(tasks), batch_size)]
-    all_results = []
-    
-    for batch_idx, batch in enumerate(batches):
-        print(f"   🔄 处理批次 {batch_idx+1}/{len(batches)} ({len(batch)}通)")
-        
-        # 使用信号量控制并发
-        async with kimi_semaphore:
-            sessions = [t['session_data'] for t in batch]
-            
-            # 执行批量评分
-            batch_results = await scorer.score_sessions_batch_async(sessions)
-            
-            # 保存结果到数据库（在线程池中执行）
-            loop = asyncio.get_event_loop()
-            for task, result in zip(batch, batch_results):
-                # 【Bug修复】检查result是否包含有效的评分字段
-                has_valid_scores = (
-                    'error' not in result and
-                    result.get('dimension_scores') is not None and
-                    result.get('summary') is not None
-                )
-                if has_valid_scores:
-                    await loop.run_in_executor(None, _save_result_sync, task, result)
-                    # 【P2-2修复】complete_task 已在 _save_result_sync 内部调用，删除此处重复调用
-                else:
-                    error_msg = result.get('error', '评分结果不完整（缺少dimension_scores或summary）')
-                    print(f"   ⚠️ 任务 {str(task['task_id'])[:20]}... 评分无效: {error_msg}")
-                    fail_task(task['task_id'], error_msg)
-            
-            all_results.extend(batch_results)
-    
-    return all_results
-
-
-def _save_result_sync(task: Dict, result: Dict):
-    """同步保存结果（带事务一致性检查）"""
-    import logging
-    logger = logging.getLogger(__name__)
-    
-    task_id = task.get('task_id', 'unknown')
-    session_id = task['session_id']
-    session_data = task['session_data']
-    
-    try:
-        # 构造意图对象（保留原有逻辑）
-        intent_data = result.get('_metadata', {}).get('pre_analysis', {})
-        class MockIntent:
-            pass
-        intent = MockIntent()
-        for k, v in intent_data.items():
-            setattr(intent, k, v)
-        
-        # 1. 先保存分析结果
-        save_to_database(session_id, session_data, intent, result, 
-                        session_data.get('session_count', 1))
-        
-        # 2. 成功后更新任务状态
-        complete_task(task_id, result)
-        
-        logger.info(f"✅ 任务 {task_id} 结果保存成功")
-        
-    except Exception as e:
-        error_msg = str(e)
-        logger.error(f"❌ 任务 {task_id} 保存失败: {error_msg}")
-        
-        # 【P1-3修复】检查是否部分成功（结果已保存但任务状态未更新）
-        try:
-            from db_utils import get_connection
-            conn = get_connection()
-            cursor = conn.execute(
-                "SELECT 1 FROM sessions WHERE session_id = ?", 
-                (session_id,)
-            )
-            result_exists = cursor.fetchone() is not None
-            conn.close()
-            
-            if result_exists:
-                # 结果已保存但任务状态失败
-                logger.error(f"🚨 数据不一致: 会话 {session_id} 结果已保存但任务 {task_id} 状态更新失败")
-                # 记录到日志文件
-                _log_inconsistency(session_id, task_id, error_msg, "result_saved_task_failed")
-            
-        except Exception as check_error:
-            logger.error(f"无法检查数据一致性: {check_error}")
-        
-        # 重新抛出异常，让上层处理
-        raise
-
-def _log_inconsistency(session_id: str, task_id: str, error: str, inconsistency_type: str):
-    """记录数据不一致到日志文件"""
-    import datetime
-    import os
-    
-    timestamp = datetime.datetime.now().isoformat()
-    log_entry = f"[{timestamp}] {inconsistency_type} | session_id={session_id} | task_id={task_id} | error={error}\n"
-    
-    log_file = os.path.join(os.path.dirname(__file__), 'data', 'inconsistency.log')
-    try:
-        with open(log_file, "a") as f:
-            f.write(log_entry)
-    except Exception as e:
-        print(f"⚠️ 无法写入不一致日志: {e}")
-
-
-# ========== 原有模式（串行/并行/分组） ==========
-
-def process_group(user_id: str, tasks: List[Dict], window_minutes: int = MERGE_WINDOW_MINUTES):
+def process_group(user_id: str, tasks: List[Dict], window_minutes: int = cfg.MERGE_WINDOW_MINUTES):
     """处理单个用户的所有任务（组内串行，支持合并）"""
     tasks.sort(key=lambda t: t.get('created_at', ''))
     print(f"   👤 用户 {user_id[:8]}...: {len(tasks)} 个任务，组内串行处理")
@@ -893,7 +325,7 @@ def process_group(user_id: str, tasks: List[Dict], window_minutes: int = MERGE_W
     return {'processed': processed, 'total': len(tasks), 'merged': merged}
 
 
-def process_task_sync(task: dict, window_minutes: int = MERGE_WINDOW_MINUTES) -> bool:
+def process_task_sync(task: dict, window_minutes: int = cfg.MERGE_WINDOW_MINUTES) -> bool:
     """同步处理单个任务（原有逻辑）"""
     task_id = task['task_id']
     session_id = task['session_id']
@@ -920,8 +352,8 @@ def process_task_sync(task: dict, window_minutes: int = MERGE_WINDOW_MINUTES) ->
             is_merged = False
             session_count = 1
         
-        intent = classifier.classify(session_data['messages'])
-        result = scorer.score_session(session_data)
+        intent = cfg.classifier.classify(session_data['messages'])
+        result = cfg.scorer.score_session(session_data)
         
         if result and 'dimension_scores' in result:
             ds = result['dimension_scores']
@@ -941,319 +373,11 @@ def process_task_sync(task: dict, window_minutes: int = MERGE_WINDOW_MINUTES) ->
         return False
 
 
-def fetch_and_group_tasks(max_batch_size: int = 150, once: bool = False) -> Dict[str, List[Dict]]:
-    """【v2.6.2】智能获取待处理任务并按 user_id 分组
-    
-    优化点：
-    - 先count队列中pending任务总数
-    - 如果总数 <= max_batch_size，一次性全取
-    - 如果总数 > max_batch_size，取max_batch_size个
-    - 【v2.6.3修复】--once模式下取全部任务，不受max_batch_size限制
-    - 实现"看人数打饭"策略，避免多次轮询
-    
-    Args:
-        max_batch_size: 单次处理上限（默认150），防止内存溢出
-        once: 是否为--once模式（True时取全部任务）
-    """
-    import pandas as pd
-    
-    conn = get_queue_connection()
-    cursor = conn.cursor()
-    
-    # 【v2.6.2】智能感知：先count pending任务总数
-    cursor.execute("SELECT COUNT(*) FROM analysis_tasks WHERE status = 'pending'")
-    total_pending = cursor.fetchone()[0]
-    
-    # 【v2.6.3修复】--once模式下取全部任务，不受max_batch_size限制
-    if once:
-        limit = total_pending
-        print(f"   📊 --once模式：队列共有 {total_pending} 个任务，全部取出处理")
-    elif total_pending <= max_batch_size:
-        limit = total_pending
-        print(f"   📊 队列共有 {total_pending} 个任务，全部取出处理")
-    else:
-        limit = max_batch_size
-        print(f"   📊 队列共有 {total_pending} 个任务，本次处理前 {limit} 个")
-    
-    df = pd.read_sql_query("""
-        SELECT * FROM analysis_tasks 
-        WHERE status = 'pending'
-        ORDER BY created_at ASC
-        LIMIT ?
-    """, conn, params=(limit,))
-    
-    if df.empty:
-        conn.close()
-        return {}
-    
-    task_ids = df['task_id'].tolist()
-    if task_ids:
-        placeholders = ','.join(['?' for _ in task_ids])
-        cursor.execute(f"""
-            UPDATE analysis_tasks 
-            SET status = 'processing', started_at = datetime('now')
-            WHERE task_id IN ({placeholders})
-        """, task_ids)
-        conn.commit()
-    conn.close()
-    
-    groups = defaultdict(list)
-    for _, task in df.iterrows():
-        try:
-            session_data = json.loads(task['session_data']) if task['session_data'] else {}
-        except Exception:
-            session_data = {}
-        
-        user_id = session_data.get('user_id', 'unknown')
-        groups[user_id].append(task.to_dict())
-    
-    # 【Opus修复-P0】跨批次去重：同一用户可能有重复session_id
-    for user_id in groups:
-        groups[user_id] = deduplicate_sessions(groups[user_id])
-    
-    return dict(groups)
-
-
-def _fetch_failed_tasks_for_retry(max_retries: int = 3) -> Dict[str, List[Dict]]:
-    """【Opus修复】直接获取可重试的 failed 任务（不走 pending 中转）
-    
-    避免 --once 模式下失败任务需要重置为 pending 再重新 fetch 的两阶段断层
-    
-    Args:
-        max_retries: 最大重试次数
-        
-    Returns:
-        按 user_id 分组的失败任务字典
-    """
-    from collections import defaultdict
-    
-    conn = get_queue_connection()
-    cursor = conn.cursor()
-    
-    # 【Opus修复】直接查询 failed 任务，不等待延迟时间
-    cursor.execute("""
-        SELECT task_id, session_id, session_data, retry_count
-        FROM analysis_tasks
-        WHERE status = 'failed' AND retry_count < ?
-        ORDER BY retry_count ASC, created_at ASC
-    """, (max_retries,))
-    
-    rows = cursor.fetchall()
-    
-    if not rows:
-        conn.close()
-        return {}
-    
-    # 【Opus修复】直接标记为 processing（不在 pending 中中转）
-    task_ids = [row[0] for row in rows]
-    placeholders = ','.join(['?' for _ in task_ids])
-    cursor.execute(f"""
-        UPDATE analysis_tasks
-        SET status = 'processing', started_at = datetime('now')
-        WHERE task_id IN ({placeholders})
-    """, task_ids)
-    conn.commit()
-    conn.close()
-    
-    # 按 user_id 分组
-    groups = defaultdict(list)
-    for task_id, session_id, session_data_json, retry_count in rows:
-        try:
-            session_data = json.loads(session_data_json) if session_data_json else {}
-        except Exception:
-            session_data = {}
-        user_id = session_data.get('user_id', 'unknown')
-        groups[user_id].append({
-            'task_id': task_id,
-            'session_id': session_id,
-            'session_data': session_data,
-            'retry_count': retry_count
-        })
-    
-    return dict(groups)
-
-
-async def _retry_tasks_batch(tasks: List[Dict], batch_size: int = 5) -> List[Dict]:
-    """【v2.6.6-fix】批量重试——并行化，消除串行瓶颈
-    
-    核心变更：
-    - 使用 asyncio.gather 并发执行所有重试批次
-    - 每个批次独立使用信号量限流
-    - 30个失败任务从串行12分钟 → 并行2-3分钟
-    
-    Args:
-        tasks: 失败任务列表
-        batch_size: 每批重试任务数（默认5通/批）
-        
-    Returns:
-        重试结果列表
-    """
-    global kimi_semaphore, scorer
-    
-    if not tasks:
-        return []
-    
-    print(f"   🔄 批量重试 {len(tasks)} 个任务，{batch_size}通/批，并发执行")
-    
-    # 按batch_size分组
-    batches = [tasks[i:i+batch_size] for i in range(0, len(tasks), batch_size)]
-    all_results = []
-    
-    async def retry_one_batch(batch_idx: int, batch: List[Dict]) -> List[Dict]:
-        """重试单个批次（内部使用信号量限流）"""
-        print(f"   🔄 重试批次 {batch_idx+1}/{len(batches)} ({len(batch)}通) 启动")
-        
-        batch_results = []
-        try:
-            async with kimi_semaphore:
-                # 构建批量会话
-                batch_sessions = [t['session_data'] for t in batch]
-                pre_analyses = []
-                for task in batch:
-                    session_data = task['session_data']
-                    if isinstance(session_data, str):
-                        session_data = json.loads(session_data)
-                    pre_analyses.append({
-                        'scene': session_data.get('scene', '售前阶段'),
-                        'sub_scene': '其他',
-                        'intent': '咨询',
-                        'sentiment': 'neutral',
-                        'confidence': 0.8,
-                        'reasoning': '重试任务批量评分',
-                        'source': 'retry_batch'
-                    })
-                
-                # 调用评分
-                results = await scorer.score_sessions_batch_async(batch_sessions, pre_analyses)
-                
-                # 保存结果
-                loop = asyncio.get_event_loop()
-                for task, result in zip(batch, results):
-                    has_valid_scores = (
-                        'error' not in result and
-                        result.get('dimension_scores') is not None and
-                        result.get('summary') is not None
-                    )
-                    if has_valid_scores:
-                        await loop.run_in_executor(None, _save_result_sync, task, result)
-                        print(f"   ✅ 重试成功: 任务 {task['task_id']}")
-                        batch_results.append(result)
-                    else:
-                        error_msg = result.get('error', '评分结果不完整')
-                        fail_task(task['task_id'], error_msg)
-                        print(f"   ❌ 重试失败: {error_msg[:100]}")
-                        batch_results.append({'error': error_msg})
-                        
-        except Exception as e:
-            print(f"   ❌ 重试批次 {batch_idx+1} 异常: {e}")
-            for task in batch:
-                fail_task(task['task_id'], str(e))
-                batch_results.append({'error': str(e)})
-        
-        print(f"   ✅ 重试批次 {batch_idx+1}/{len(batches)} 完成")
-        return batch_results
-    
-    # 【核心修复】并发执行所有重试批次
-    print(f"\n🚀 启动 {len(batches)} 个重试批次并发（信号量限制: {KIMI_MAX_CONCURRENT}）")
-    
-    batch_tasks = [retry_one_batch(i, batch) for i, batch in enumerate(batches)]
-    
-    # 使用 gather 并发执行，return_exceptions=True 避免一个批次失败影响其他
-    batch_results_list = await asyncio.gather(*batch_tasks, return_exceptions=True)
-    
-    # 合并结果
-    for batch_idx, result in enumerate(batch_results_list):
-        if isinstance(result, Exception):
-            print(f"   ❌ 重试批次 {batch_idx+1} 整体失败: {result}")
-            # 标记该批次所有任务失败
-            for task in batches[batch_idx]:
-                fail_task(task['task_id'], str(result))
-                all_results.append({'error': str(result)})
-        else:
-            all_results.extend(result)
-    
-    success_count = sum(1 for r in all_results if 'error' not in r)
-    fail_count = len(all_results) - success_count
-    print(f"\n📊 重试完成: {success_count}成功, {fail_count}失败")
-    
-    return all_results
-
-
-async def _retry_single_task(task: Dict) -> Optional[Dict]:
-    """【Opus修复】单通重试——避免批次连锁失败
-    
-    当整批失败时，降级为单通评分，给每个任务更长的超时和独立的错误处理
-    
-    Args:
-        task: 任务字典
-        
-    Returns:
-        评分结果，失败返回 None
-    """
-    global kimi_semaphore, scorer
-    
-    task_id = task['task_id']
-    session_data = task['session_data']
-    retry_count = task.get('retry_count', 0)
-    
-    print(f"   🔄 重试任务 {task_id} (第{retry_count + 1}次重试)")
-    
-    try:
-        async with kimi_semaphore:
-            # 【Opus修复】单通评分，超时设置更宽松（600秒）
-            batch_sessions = [session_data]
-            
-            # 构建预分析
-            pre_analysis = {
-                'scene': session_data.get('scene', '售前阶段'),
-                'sub_scene': '其他',
-                'intent': '咨询',
-                'sentiment': 'neutral',
-                'confidence': 0.8,
-                'reasoning': '重试任务单通评分',
-                'source': 'retry_single'
-            }
-            
-            # 调用评分（单通）
-            results = await scorer.score_sessions_batch_async(
-                batch_sessions, 
-                [pre_analysis]
-            )
-            result = results[0] if results else {'error': '空结果'}
-            
-            # 检查结果有效性
-            has_valid_scores = (
-                'error' not in result and
-                result.get('dimension_scores') is not None and
-                result.get('summary') is not None
-            )
-            
-            if has_valid_scores:
-                # 保存结果
-                loop = asyncio.get_event_loop()
-                await loop.run_in_executor(None, _save_result_sync, task, result)
-                print(f"   ✅ 重试成功: 任务 {task_id}")
-                return result
-            else:
-                error_msg = result.get('error', '评分结果不完整')
-                fail_task(task_id, error_msg)
-                print(f"   ❌ 重试失败: {error_msg[:100]}")
-                return None
-                
-    except Exception as e:
-        error_msg = str(e)
-        fail_task(task_id, error_msg)
-        print(f"   ❌ 重试异常: {error_msg[:100]}")
-        return None
-
-
-# ========== Worker运行模式 ==========
-
 def run_grouped_parallel_worker(max_groups: int = 4, max_batch_size: int = 150, 
-                                 window_minutes: int = MERGE_WINDOW_MINUTES):
+                                 window_minutes: int = cfg.MERGE_WINDOW_MINUTES):
     """【v2.6.2】运行预分组并行工作进程（组间并行，组内串行）"""
-    global running, MERGE_WINDOW_MINUTES
-    MERGE_WINDOW_MINUTES = window_minutes
+
+    cfg.MERGE_WINDOW_MINUTES = window_minutes
     
     if not acquire_lock():
         return
@@ -1276,7 +400,7 @@ def run_grouped_parallel_worker(max_groups: int = 4, max_batch_size: int = 150,
     total_merged = 0
     
     try:
-        while running:
+        while cfg.running:
             groups = fetch_and_group_tasks(max_batch_size=max_batch_size)
             
             if not groups:
@@ -1312,7 +436,7 @@ def run_grouped_parallel_worker(max_groups: int = 4, max_batch_size: int = 150,
         print(f"\n❌ 工作进程异常: {e}")
     finally:
         if classifier:
-            classifier.close()
+            cfg.classifier.close()
         release_lock()
         
         print("\n" + "=" * 60)
@@ -1320,171 +444,8 @@ def run_grouped_parallel_worker(max_groups: int = 4, max_batch_size: int = 150,
         print("=" * 60)
 
 
-async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) -> List[Dict]:
-    """【v2.6 Phase 2】带限流的批量评分（自适应批量大小）
-    
-    新增：
-    1. 根据会话Token估算动态调整批量大小
-    2. 超长会话自动降级，短会话自动扩容
-    3. 确保不超过MAX_TOKENS_PER_BATCH安全上限
-    """
-    global kimi_semaphore
-    
-    if not tasks:
-        return []
-    
-    # 【优化A】拆分超长会话和正常会话
-    OVERSIZED_MSG_THRESHOLD = 100  # 超过100条消息视为超长会话（原为50，提升后减少降级单通数量）
-    normal_tasks = []
-    oversized_tasks = []
-    
-    for task in tasks:
-        session_data = task.get('session_data', {})
-        if isinstance(session_data, str):
-            session_data = json.loads(session_data)
-        msg_count = len(session_data.get('messages', []))
-        
-        if msg_count > OVERSIZED_MSG_THRESHOLD:
-            oversized_tasks.append(task)
-            print(f"   📦 BATCH_SPLIT|sid={task.get('session_id','')[:20]}|msgs={msg_count}|type=oversized(>{OVERSIZED_MSG_THRESHOLD})")
-        else:
-            normal_tasks.append(task)
-    
-    if oversized_tasks:
-        print(f"   📦 BATCH_SPLIT|normal={len(normal_tasks)}|oversized={len(oversized_tasks)}")
-    
-    all_results = []
-    
-    # ===== 处理正常会话（批量模式）=====
-    if normal_tasks:
-        # 【v2.6】自适应批量：计算最优批量大小
-        sessions = [t['session_data'] for t in normal_tasks]
-        optimal_batch_size = calculate_adaptive_batch_size(sessions, base_batch_size)
-        
-        print(f"\n   📊 自适应批量: 基础={base_batch_size}, 优化后={optimal_batch_size}, 正常任务={len(normal_tasks)}")
-        
-        # 按优化后的batch_size分组
-        batches = [normal_tasks[i:i+optimal_batch_size] for i in range(0, len(normal_tasks), optimal_batch_size)]
-        total_batches = len(batches)
-        
-        # 预估总token（用于日志）
-        total_tokens = sum(estimate_session_tokens(s['session_data']) for s in normal_tasks)
-        print(f"   💾 预估总Token: {total_tokens:,} (上限: {MAX_TOKENS_PER_BATCH:,})")
-    
-    async def score_one_batch(batch_idx: int, batch: List[Dict]) -> List[Dict]:
-        """评分单个批次（内部使用信号量限流）"""
-        batch_tokens = sum(estimate_session_tokens(t['session_data']) for t in batch)
-        print(f"   🔄 批次 {batch_idx+1}/{total_batches} ({len(batch)}通, ~{batch_tokens:,}tokens) 启动")
-        
-        async with kimi_semaphore:
-            batch_sessions = [t['session_data'] for t in batch]
-            
-            # 【v2.5】构建预分析结果（从task的_scene字段）
-            pre_analyses = []
-            for task in batch:
-                # 【修复】优先使用数据库中的 scene 字段（已持久化）
-                scene = task.get('scene', task.get('_scene', '售前阶段'))
-                task['_scene'] = scene  # 确保内部字段也设置
-                pre_analyses.append({
-                    'scene': scene,
-                    'sub_scene': '其他',
-                    'intent': '咨询',
-                    'sentiment': 'neutral',
-                    'confidence': 0.8,
-                    'reasoning': '基于关键词规则快速分类',
-                    'source': 'fast_classify'
-                })
-            
-            # 执行批量评分（传入预分析结果，跳过内部预分析）
-            batch_results = await scorer.score_sessions_batch_async(batch_sessions, pre_analyses)
-            
-            # 【v2.6.5】异步写入队列：非阻塞入队，由后台线程处理数据库写入
-            for task, result in zip(batch, batch_results):
-                # 【Bug修复】检查result是否包含有效的评分字段
-                has_valid_scores = (
-                    'error' not in result and
-                    result.get('dimension_scores') is not None and
-                    result.get('summary') is not None
-                )
-                if has_valid_scores:
-                    queue_save_result(task, result)  # 非阻塞入队
-                else:
-                    error_msg = result.get('error', '评分结果不完整（缺少dimension_scores或summary）')
-                    print(f"   ⚠️ 任务 {str(task['task_id'])[:20]}... 评分无效: {error_msg}")
-                    fail_task(task['task_id'], error_msg)
-            
-            print(f"   ✅ 批次 {batch_idx+1}/{total_batches} 完成")
-            return batch_results
-    
-    # 【Opus修复】使用 as_completed 替代 gather，避免木桶效应
-    print(f"\n🚀 启动 {total_batches} 个评分批次（并发限制: {KIMI_MAX_CONCURRENT}，as_completed优化）")
-    
-    # 【修复】创建Task对象，as_completed会按完成顺序返回
-    batch_tasks = [score_one_batch(i, batch) for i, batch in enumerate(batches)]
-    
-    all_results = []
-    completed_count = 0
-    
-    # as_completed: 先完成的先处理，避免等待最慢批次
-    for task in asyncio.as_completed(batch_tasks):
-        try:
-            batch_results = await task
-            all_results.extend(batch_results)
-            completed_count += 1
-            print(f"   📊 进度: {completed_count}/{total_batches} 批次完成")
-        except Exception as e:
-            print(f"   ❌ 批次异常: {e}")
-            completed_count += 1
-    
-    # 处理超长会话（单通模式）
-    if oversized_tasks:
-        print(f"\n   📦 处理 {len(oversized_tasks)} 个超长会话（单通模式）")
-        for task in oversized_tasks:
-            try:
-                async with kimi_semaphore:
-                    session_data = task['session_data']
-                    if isinstance(session_data, str):
-                        session_data = json.loads(session_data)
-                    
-                    pre_analysis = {
-                        'scene': session_data.get('scene', '售前阶段'),
-                        'sub_scene': '其他',
-                        'intent': '咨询',
-                        'sentiment': 'neutral',
-                        'confidence': 0.8,
-                        'reasoning': '超长会话单通评分',
-                        'source': 'oversized_single'
-                    }
-                    
-                    results = await scorer.score_sessions_batch_async([session_data], [pre_analysis])
-                    result = results[0] if results else {'error': '空结果'}
-                    
-                    has_valid_scores = (
-                        'error' not in result and
-                        result.get('dimension_scores') is not None and
-                        result.get('summary') is not None
-                    )
-                    
-                    if has_valid_scores:
-                        loop = asyncio.get_event_loop()
-                        await loop.run_in_executor(None, _save_result_sync, task, result)
-                        print(f"   ✅ 超长会话评分完成: {task.get('session_id','')[:20]}...")
-                        all_results.append(result)
-                    else:
-                        error_msg = result.get('error', '评分结果不完整')
-                        fail_task(task['task_id'], error_msg)
-                        all_results.append({'error': error_msg})
-                        
-            except Exception as e:
-                print(f"   ❌ 超长会话评分失败: {e}")
-                fail_task(task['task_id'], str(e))
-                all_results.append({'error': str(e)})
-    
-    return all_results
-
-
 async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
-                                  window_minutes: int = MERGE_WINDOW_MINUTES,
+                                  window_minutes: int = cfg.MERGE_WINDOW_MINUTES,
                                   score_batch_size: int = 30,
                                   once: bool = False):
     """【v2.6.4】运行异步批量工作进程 - Opus修复版
@@ -1498,8 +459,8 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     - 场景信息通过pre_analysis传入，由模型自行处理
     - 实现真正的20-40通/批超大批量
     """
-    global running, MERGE_WINDOW_MINUTES, kimi_semaphore
-    MERGE_WINDOW_MINUTES = window_minutes
+
+    cfg.MERGE_WINDOW_MINUTES = window_minutes
     
     if not acquire_lock():
         return
@@ -1512,9 +473,9 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     print(f"   最大并发组: {max_groups}")
     print(f"   单次处理上限: {max_batch_size}")
     print(f"   基础批量评分: {score_batch_size}通/批")
-    print(f"   自适应范围: [{ADAPTIVE_BATCH_MIN}, {ADAPTIVE_BATCH_MAX}]")
-    print(f"   Token上限: {MAX_TOKENS_PER_BATCH:,}")
-    print(f"   Kimi并发: {KIMI_MAX_CONCURRENT}")
+    print(f"   自适应范围: [{cfg.ADAPTIVE_BATCH_MIN}, {cfg.ADAPTIVE_BATCH_MAX}]")
+    print(f"   Token上限: {cfg.MAX_TOKENS_PER_BATCH:,}")
+    print(f"   Kimi并发: {cfg.KIMI_MAX_CONCURRENT}")
     print("=" * 60)
     
     init_queue_tables()
@@ -1526,7 +487,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     total_api_calls = 0
     
     try:
-        while running:
+        while cfg.running:
             groups = fetch_and_group_tasks(max_batch_size=max_batch_size, once=once)
             
             if not groups:
@@ -1630,7 +591,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
     finally:
         stop_db_writer()  # 【v2.6.5】停止数据库写入线程
         if classifier:
-            classifier.close()
+            cfg.classifier.close()
         release_lock()
         
         print("\n" + "=" * 60)
@@ -1688,7 +649,7 @@ def main():
                '--max-batch-size', str(args.max_batch_size)]
         if mode == 'async-batch':
             cmd.extend(['--score-batch-size', str(args.score_batch_size)])
-        subprocess.Popen(cmd, stdout=open(os.path.join(LOGS_DIR, 'worker.log'), 'a'), stderr=subprocess.STDOUT)
+        subprocess.Popen(cmd, stdout=open(os.path.join(cfg.LOGS_DIR, 'worker.log'), 'a'), stderr=subprocess.STDOUT)
         print(f"🚀 工作进程已在后台启动 [{mode}模式]")
     else:
         if mode == 'async-batch':
