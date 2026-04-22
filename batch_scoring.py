@@ -52,6 +52,8 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
         print(f"   📦 BATCH_SPLIT|normal={len(normal_tasks)}|oversized={len(oversized_tasks)}")
     
     all_results = []
+    completed_count = 0
+    total_batches = 0
     
     # ===== 处理正常会话（批量模式）=====
     if normal_tasks:
@@ -69,73 +71,70 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
         total_tokens = sum(cfg.estimate_session_tokens(s['session_data']) for s in normal_tasks)
         print(f"   💾 预估总Token: {total_tokens:,} (上限: {cfg.MAX_TOKENS_PER_BATCH:,})")
     
-    async def score_one_batch(batch_idx: int, batch: List[Dict]) -> List[Dict]:
-        """评分单个批次（内部使用信号量限流）"""
-        batch_tokens = sum(cfg.estimate_session_tokens(t['session_data']) for t in batch)
-        print(f"   🔄 批次 {batch_idx+1}/{total_batches} ({len(batch)}通, ~{batch_tokens:,}tokens) 启动")
+        async def score_one_batch(batch_idx: int, batch: List[Dict]) -> List[Dict]:
+            """评分单个批次（内部使用信号量限流）"""
+            batch_tokens = sum(cfg.estimate_session_tokens(t['session_data']) for t in batch)
+            print(f"   🔄 批次 {batch_idx+1}/{total_batches} ({len(batch)}通, ~{batch_tokens:,}tokens) 启动")
+            
+            async with cfg.kimi_semaphore:
+                batch_sessions = [t['session_data'] for t in batch]
+                
+                # 【v2.5】构建预分析结果（从task的_scene字段）
+                pre_analyses = []
+                for task in batch:
+                    # 【修复】优先使用数据库中的 scene 字段（已持久化）
+                    scene = task.get('scene', task.get('_scene', '售前阶段'))
+                    task['_scene'] = scene  # 确保内部字段也设置
+                    pre_analyses.append({
+                        'scene': scene,
+                        'sub_scene': '其他',
+                        'intent': '咨询',
+                        'sentiment': 'neutral',
+                        'confidence': 0.8,
+                        'reasoning': '基于关键词规则快速分类',
+                        'source': 'fast_classify'
+                    })
+                
+                # 执行批量评分（传入预分析结果，跳过内部预分析）
+                batch_results = await cfg.scorer.score_sessions_batch_async(batch_sessions, pre_analyses)
+                
+                # 【v2.6.5】异步写入队列：非阻塞入队，由后台线程处理数据库写入
+                # 局部导入避免循环导入
+                from db_writer import queue_save_result
+                
+                for task, result in zip(batch, batch_results):
+                    # 【Bug修复】检查result是否包含有效的评分字段
+                    has_valid_scores = (
+                        'error' not in result and
+                        result.get('dimension_scores') is not None and
+                        result.get('summary') is not None
+                    )
+                    if has_valid_scores:
+                        queue_save_result(task, result)  # 非阻塞入队
+                    else:
+                        error_msg = result.get('error', '评分结果不完整（缺少dimension_scores或summary）')
+                        print(f"   ⚠️ 任务 {str(task['task_id'])[:20]}... 评分无效: {error_msg}")
+                        fail_task(task['task_id'], error_msg)
+                
+                print(f"   ✅ 批次 {batch_idx+1}/{total_batches} 完成")
+                return batch_results
         
-        async with cfg.kimi_semaphore:
-            batch_sessions = [t['session_data'] for t in batch]
-            
-            # 【v2.5】构建预分析结果（从task的_scene字段）
-            pre_analyses = []
-            for task in batch:
-                # 【修复】优先使用数据库中的 scene 字段（已持久化）
-                scene = task.get('scene', task.get('_scene', '售前阶段'))
-                task['_scene'] = scene  # 确保内部字段也设置
-                pre_analyses.append({
-                    'scene': scene,
-                    'sub_scene': '其他',
-                    'intent': '咨询',
-                    'sentiment': 'neutral',
-                    'confidence': 0.8,
-                    'reasoning': '基于关键词规则快速分类',
-                    'source': 'fast_classify'
-                })
-            
-            # 执行批量评分（传入预分析结果，跳过内部预分析）
-            batch_results = await cfg.scorer.score_sessions_batch_async(batch_sessions, pre_analyses)
-            
-            # 【v2.6.5】异步写入队列：非阻塞入队，由后台线程处理数据库写入
-            # 局部导入避免循环导入
-            from db_writer import queue_save_result
-            
-            for task, result in zip(batch, batch_results):
-                # 【Bug修复】检查result是否包含有效的评分字段
-                has_valid_scores = (
-                    'error' not in result and
-                    result.get('dimension_scores') is not None and
-                    result.get('summary') is not None
-                )
-                if has_valid_scores:
-                    queue_save_result(task, result)  # 非阻塞入队
-                else:
-                    error_msg = result.get('error', '评分结果不完整（缺少dimension_scores或summary）')
-                    print(f"   ⚠️ 任务 {str(task['task_id'])[:20]}... 评分无效: {error_msg}")
-                    fail_task(task['task_id'], error_msg)
-            
-            print(f"   ✅ 批次 {batch_idx+1}/{total_batches} 完成")
-            return batch_results
-    
-    # 【Opus修复】使用 as_completed 替代 gather，避免木桶效应
-    print(f"\n🚀 启动 {total_batches} 个评分批次（并发限制: {cfg.KIMI_MAX_CONCURRENT}，as_completed优化）")
-    
-    # 【修复】创建Task对象，as_completed会按完成顺序返回
-    batch_tasks = [score_one_batch(i, batch) for i, batch in enumerate(batches)]
-    
-    all_results = []
-    completed_count = 0
-    
-    # as_completed: 先完成的先处理，避免等待最慢批次
-    for task in asyncio.as_completed(batch_tasks):
-        try:
-            batch_results = await task
-            all_results.extend(batch_results)
-            completed_count += 1
-            print(f"   📊 进度: {completed_count}/{total_batches} 批次完成")
-        except Exception as e:
-            print(f"   ❌ 批次异常: {e}")
-            completed_count += 1
+        # 【Opus修复】使用 as_completed 替代 gather，避免木桶效应
+        print(f"\n🚀 启动 {total_batches} 个评分批次（并发限制: {cfg.KIMI_MAX_CONCURRENT}，as_completed优化）")
+        
+        # 【修复】创建Task对象，as_completed会按完成顺序返回
+        batch_tasks = [score_one_batch(i, batch) for i, batch in enumerate(batches)]
+        
+        # as_completed: 先完成的先处理，避免等待最慢批次
+        for task in asyncio.as_completed(batch_tasks):
+            try:
+                batch_results = await task
+                all_results.extend(batch_results)
+                completed_count += 1
+                print(f"   📊 进度: {completed_count}/{total_batches} 批次完成")
+            except Exception as e:
+                print(f"   ❌ 批次异常: {e}")
+                completed_count += 1
     
     # ===== 处理超长会话（降级为单通串行）=====
     for task in oversized_tasks:
@@ -296,8 +295,8 @@ async def _retry_tasks_batch(tasks: List[Dict], batch_size: int = 5) -> List[Dic
                         result.get('summary') is not None
                     )
                     if has_valid_scores:
-                        from db_operations import _save_result_sync
-                        await loop.run_in_executor(None, _save_result_sync, task, result)
+                        from db_writer import queue_save_result
+                        queue_save_result(task, result)  # 【Bug修复】使用异步写入队列，与主路径一致
                         print(f"   ✅ 重试成功: 任务 {task['task_id']}")
                         batch_results.append(result)
                     else:
@@ -390,10 +389,9 @@ async def _retry_single_task(task: Dict) -> Optional[Dict]:
             )
             
             if has_valid_scores:
-                # 保存结果
-                loop = asyncio.get_event_loop()
-                from db_operations import _save_result_sync
-                await loop.run_in_executor(None, _save_result_sync, task, result)
+                # 【Bug修复】使用异步写入队列，与主路径一致
+                from db_writer import queue_save_result
+                queue_save_result(task, result)
                 print(f"   ✅ 重试成功: 任务 {task_id}")
                 return result
             else:

@@ -103,7 +103,13 @@ def queue_save_result(task: Dict, result: Dict):
 
 
 def wait_for_db_writes(timeout: Optional[float] = None) -> bool:
-    """【v2.6.5】等待所有待写入的队列项完成
+    """【v2.6.5-fix2】等待所有待写入的队列项完成
+    
+    【Bug修复】原实现使用 queue.empty() 轮询，存在竞态条件：
+    empty() 返回 True 时，写入线程可能仍在执行最后一条 _save_result_sync
+    （已从队列 get 出来但尚未 task_done）。
+    
+    修复方案：用 threading.Event 配合 queue.join() 实现带超时的可靠等待。
     
     Args:
         timeout: 最大等待时间（秒），None表示无限等待
@@ -111,15 +117,19 @@ def wait_for_db_writes(timeout: Optional[float] = None) -> bool:
     Returns:
         是否在超时前完成
     """
-    # 【v2.6.5-fix】使用轮询模式支持timeout
     if timeout is None:
         db_write_queue.join()
         return True
     
-    deadline = time.time() + timeout
-    while not db_write_queue.empty() and time.time() < deadline:
-        time.sleep(0.1)
-    return db_write_queue.empty()
+    done_event = threading.Event()
+    
+    def _wait_and_signal():
+        db_write_queue.join()
+        done_event.set()
+    
+    t = threading.Thread(target=_wait_and_signal, daemon=True)
+    t.start()
+    return done_event.wait(timeout=timeout)
 
 
 async def wait_for_db_writes_async(timeout: Optional[float] = None) -> bool:

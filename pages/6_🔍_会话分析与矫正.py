@@ -42,6 +42,16 @@ st.markdown('''
 .st-emotion-cache-1s8qyds {
     margin-bottom: -0.5rem !important;
 }
+
+/* ===== 侧边栏会话列表按钮居左对齐 ===== */
+[data-testid="stSidebar"] button[kind="secondary"] p,
+[data-testid="stSidebar"] button[kind="primary"] p {
+    text-align: left !important;
+}
+[data-testid="stSidebar"] button[kind="secondary"],
+[data-testid="stSidebar"] button[kind="primary"] {
+    justify-content: flex-start !important;
+}
 </style>
 ''', unsafe_allow_html=True)
 
@@ -187,10 +197,17 @@ with st.sidebar:
         except:
             chain_indicator = ""
 
-        btn_text = f"{sid[-10:]} {score}分{risk_tag}{transfer_tag}{chain_indicator}"
+        # ===== 会话列表项（简洁版，居左显示）=====
         is_selected = st.session_state.get('selected_session') == sid
-
-        if st.button(btn_text, key=f"btn_{sid}", use_container_width=True, type="primary" if is_selected else "secondary"):
+        
+        # 按钮标签：状态球 + ID + 会话链（全部居左）
+        btn_label = f"{risk_tag}  {sid[-10:]}  {chain_indicator}"
+        
+        # 根据选中状态设置按钮类型
+        btn_type = "primary" if is_selected else "secondary"
+        
+        # 使用 st.button 实现点击（简洁单元素，居左对齐）
+        if st.button(btn_label, key=f"btn_{sid}", use_container_width=True, type=btn_type):
             st.session_state.selected_session = sid
             st.rerun()
 

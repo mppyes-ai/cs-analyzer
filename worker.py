@@ -435,7 +435,7 @@ def run_grouped_parallel_worker(max_groups: int = 4, max_batch_size: int = 150,
     except Exception as e:
         print(f"\n❌ 工作进程异常: {e}")
     finally:
-        if classifier:
+        if cfg.classifier:
             cfg.classifier.close()
         release_lock()
         
@@ -590,7 +590,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
         traceback.print_exc()
     finally:
         stop_db_writer()  # 【v2.6.5】停止数据库写入线程
-        if classifier:
+        if cfg.classifier:
             cfg.classifier.close()
         release_lock()
         
