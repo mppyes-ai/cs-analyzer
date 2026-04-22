@@ -1,14 +1,11 @@
-"""健壮的Ollama客户端 - 解决连接不稳定问题
+"""通用 LLM 客户端 - v3.0 本地化版
 
-核心改进：
-1. 连接池复用（keep-alive）
-2. 分层超时策略
-3. 指数退避重试
-4. 健康检查与预热
-5. 连接失败快速回退
+原 Ollama 专用客户端，重写为 OpenAI 兼容 API 客户端。
+底层调用 LM Studio 的 /v1/chat/completions 端点。
+保持原有接口（generate / extract_response / health_check）不变，上层代码无需修改。
 
 作者: 小虾米
-更新: 2026-03-18
+更新: 2026-04-22（v3.0: 统一走 LM Studio OpenAI 兼容 API）
 """
 
 import json
@@ -26,26 +23,26 @@ from urllib3.util.retry import Retry
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
-from config import OLLAMA_CONFIG
+from config import LLM_CONFIG
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger('ollama_client')
+logger = logging.getLogger('llm_client')
 
 
 @dataclass
 class OllamaConfig:
-    """Ollama客户端配置 - 从集中配置读取"""
-    base_url: str = OLLAMA_CONFIG["url"]
-    model: str = OLLAMA_CONFIG["model"]
+    """LLM 客户端配置 - 从集中配置读取（向后兼容类名）"""
+    base_url: str = LLM_CONFIG["base_url"]
+    model: str = LLM_CONFIG["intent_model"]
     
     # 超时配置（秒）
     connect_timeout: float = 5.0      # TCP连接建立
-    read_timeout: float = float(OLLAMA_CONFIG["timeout"])  # 读取响应（生成超时）
-    total_timeout: float = 60.0       # 总超时兜底
+    read_timeout: float = float(LLM_CONFIG.get("timeout", 60))  # 读取响应
+    total_timeout: float = 120.0      # 总超时兜底
     
     # 重试配置
-    max_retries: int = OLLAMA_CONFIG["max_retries"]   # 最大重试次数
+    max_retries: int = 3
     retry_backoff: float = 1.0        # 退避基数（秒）
     retry_max_delay: float = 10.0     # 最大退避延迟
     
@@ -92,10 +89,12 @@ class OllamaClient:
         session.mount("http://", adapter)
         session.mount("https://", adapter)
         
-        # 设置默认headers（keep-alive）
+        # 设置默认headers（keep-alive + OpenAI兼容）
         session.headers.update({
             'Connection': 'keep-alive',
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {LLM_CONFIG.get("api_key", "not-needed")}',
         })
         
         return session
@@ -116,20 +115,20 @@ class OllamaClient:
             return self._is_healthy
         
         try:
-            # 检查服务是否响应
+            # 检查服务是否响应（OpenAI 兼容格式）
             response = self.session.get(
-                f"{self.config.base_url}/api/tags",
+                f"{self.config.base_url}/models",
                 timeout=(self.config.connect_timeout, 5.0)
             )
             
             if response.status_code != 200:
-                logger.warning(f"Ollama健康检查失败: HTTP {response.status_code}")
+                logger.warning(f"LLM健康检查失败: HTTP {response.status_code}")
                 self._is_healthy = False
                 return False
             
             # 检查模型是否已加载
             data = response.json()
-            models = [m.get('name') for m in data.get('models', [])]
+            models = [m.get('id') for m in data.get('data', [])]
             
             if self.config.model not in models:
                 logger.warning(f"模型 {self.config.model} 未加载，已加载模型: {models}")
@@ -141,15 +140,15 @@ class OllamaClient:
             self._is_healthy = True
             self._last_health_check = now
             
-            logger.info(f"Ollama健康检查通过，模型 {self.config.model} 已就绪")
+            logger.info(f"LLM健康检查通过，模型 {self.config.model} 已就绪")
             return True
             
         except requests.exceptions.ConnectionError as e:
-            logger.error(f"Ollama连接失败: {e}")
+            logger.error(f"LLM连接失败: {e}")
             self._is_healthy = False
             return False
         except Exception as e:
-            logger.error(f"Ollama健康检查异常: {e}")
+            logger.error(f"LLM健康检查异常: {e}")
             self._is_healthy = False
             return False
     
@@ -158,64 +157,60 @@ class OllamaClient:
                  system: Optional[str] = None,
                  options: Optional[Dict] = None,
                  timeout: Optional[tuple] = None) -> Optional[Dict]:
-        """生成文本（带健壮性处理）
+        """生成文本（OpenAI 兼容 API，保持原有接口）
         
-        Args:
-            prompt: 提示词
-            system: 系统提示
-            options: 生成选项
-            timeout: 自定义超时 (connect_timeout, read_timeout)
-            
-        Returns:
-            生成结果，失败返回None
+        内部调用 /v1/chat/completions，返回格式模拟原 Ollama 的 {"response": "..."}。
         """
-        # 使用配置超时或自定义超时
         if timeout is None:
             timeout = (self.config.connect_timeout, self.config.read_timeout)
         
-        # 快速健康检查（非阻塞）
         if not self.health_check():
-            logger.warning("Ollama服务不健康，跳过生成")
+            logger.warning("LLM服务不健康，跳过生成")
             return None
         
-        # 如果模型未加载，尝试预热
-        if not self._model_loaded:
-            logger.info(f"模型 {self.config.model} 未加载，尝试预热...")
-            if not self._warmup_model():
-                return None
+        # 构建 messages
+        messages = []
+        if system:
+            messages.append({"role": "system", "content": system})
+        messages.append({"role": "user", "content": prompt})
+        
+        # 解析 options
+        temperature = 0.3
+        max_tokens = 500
+        if options:
+            temperature = options.get("temperature", 0.3)
+            max_tokens = options.get("num_predict", options.get("max_tokens", 500))
         
         payload = {
             "model": self.config.model,
-            "prompt": prompt,
+            "messages": messages,
+            "temperature": temperature,
+            "max_tokens": max_tokens,
             "stream": False,
-            "options": options or {
-                "temperature": 0.3,
-                "num_predict": 200
-            }
         }
         
-        if system:
-            payload["system"] = system
+        # 添加 extra_params（如 enable_thinking=False）
+        extra = LLM_CONFIG.get("extra_params", {})
+        if extra:
+            payload.update(extra)
         
         # 带重试的生成请求
         for attempt in range(self.config.max_retries + 1):
             try:
-                logger.debug(f"生成请求 (尝试 {attempt + 1}/{self.config.max_retries + 1})")
+                logger.debug(f"LLM请求 (尝试 {attempt + 1}/{self.config.max_retries + 1})")
                 
                 response = self.session.post(
-                    f"{self.config.base_url}/api/generate",
+                    f"{self.config.base_url}/chat/completions",
                     json=payload,
                     timeout=timeout
                 )
                 
-                # 处理限流
                 if response.status_code == 429:
                     retry_after = int(response.headers.get('Retry-After', 1))
                     logger.warning(f"触发限流，等待 {retry_after} 秒后重试")
                     time.sleep(retry_after)
                     continue
                 
-                # 处理其他错误
                 if response.status_code != 200:
                     logger.error(f"生成失败: HTTP {response.status_code}, {response.text[:200]}")
                     if attempt < self.config.max_retries:
@@ -223,7 +218,10 @@ class OllamaClient:
                         continue
                     return None
                 
-                return response.json()
+                data = response.json()
+                # 转换为原 Ollama 格式：{"response": "..."}
+                content = data["choices"][0]["message"]["content"] if data.get("choices") else ""
+                return {"response": content}
                 
             except requests.exceptions.Timeout as e:
                 logger.warning(f"生成超时 (尝试 {attempt + 1}): {e}")
@@ -310,17 +308,17 @@ class OllamaClient:
         return ''
     
     def _warmup_model(self) -> bool:
-        """模型预热（确保模型已加载到内存）"""
+        """模型预热（发送简单请求加载模型到内存）"""
         try:
-            # 发送一个简单的生成请求来加载模型
+            payload = {
+                "model": self.config.model,
+                "messages": [{"role": "user", "content": "hi"}],
+                "max_tokens": 1,
+                "stream": False,
+            }
             response = self.session.post(
-                f"{self.config.base_url}/api/generate",
-                json={
-                    "model": self.config.model,
-                    "prompt": "hi",
-                    "stream": False,
-                    "options": {"num_predict": 1}
-                },
+                f"{self.config.base_url}/chat/completions",
+                json=payload,
                 timeout=(self.config.connect_timeout, 30.0)
             )
             
