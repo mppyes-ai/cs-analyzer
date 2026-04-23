@@ -1,0 +1,1 @@
+{"timestamp": "2026-04-23T17:04:06.601556", "message": "⚠️ CS-Analyzer 启动失败\n\n错误信息：Worker启动后立即退出（退出码: 1）\n\n请检查：\n1. 运行环境依赖是否完整\n2. logs/worker.log 中的详细错误\n3. .env 文件配置是否正确\n\n建议修复命令：\npython3 -m pip install python-dotenv openai pandas sentence-transformers httpx scikit-learn numpy"}

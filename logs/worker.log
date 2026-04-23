@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/Users/jinlu/.openclaw/workspace/skills/cs-analyzer/worker.py", line 107, in <module>
+    from smart_scoring_v2 import SmartScoringEngine
+  File "/Users/jinlu/.openclaw/workspace/skills/cs-analyzer/smart_scoring_v2.py", line 1028
+    if char == "\" and i + 1 < len(content):
+               ^
+SyntaxError: unterminated string literal (detected at line 1028); perhaps you escaped the end quote?
+Traceback (most recent call last):
+  File "/Users/jinlu/.openclaw/workspace/skills/cs-analyzer/worker.py", line 107, in <module>
+    from smart_scoring_v2 import SmartScoringEngine
+  File "/Users/jinlu/.openclaw/workspace/skills/cs-analyzer/smart_scoring_v2.py", line 1064
+    result.append("\\"")
+                      ^
+SyntaxError: unterminated string literal (detected at line 1064)
+Traceback (most recent call last):
+  File "/Users/jinlu/.openclaw/workspace/skills/cs-analyzer/worker.py", line 107, in <module>
+    from smart_scoring_v2 import SmartScoringEngine
+  File "/Users/jinlu/.openclaw/workspace/skills/cs-analyzer/smart_scoring_v2.py", line 1066
+    result.append("\\"")
+                      ^
+SyntaxError: unterminated string literal (detected at line 1066)
