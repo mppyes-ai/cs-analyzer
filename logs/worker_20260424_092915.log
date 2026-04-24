@@ -1,0 +1,811 @@
+INFO:embedding_utils:🔄 首次加载Embedding模型...
+INFO:embedding_utils:✅ 使用LM Studio嵌入模型: text-embedding-qwen3-embedding-4b
+✅ 获取锁成功 (PID: 93060)
+============================================================
+🚀 客服分析工作进程启动 [异步批量模式 v2.6.4 - Opus修复版]
+   最大并发组: 6
+   单次处理上限: 50
+   基础批量评分: 5通/批
+   自适应范围: [3, 10]
+   Token上限: 200,000
+   Kimi并发: 90
+============================================================
+🔄 初始化分析引擎...
+   LLM模式: local
+   本地模型: qwen3.6-35b-a3b@4bit
+   Base URL: http://localhost:1234/v1
+✅ LLM并发控制: 最大90并发
+✅ 漏斗式意图分类器已初始化 (规则优先，qwen2.5兜底)
+✅ 引擎初始化完成
+🔄 数据库写入线程已启动
+✅ 数据库写入线程启动成功
+   📊 --once模式：队列共有 50 个任务，全部取出处理
+
+📦 获取 50 个任务，来自 36 个用户
+
+🔍 对 50 通会话进行场景检查...
+
+📊 场景分布: {'售前阶段': 50}
+
+🚀 跨场景合并处理: 50 通会话
+   📊 SESSION_PROFILE|sid=session_0000_5b67109|msgs=4|user=2|staff=2|chars=107|merged=False
+   📊 SESSION_PROFILE|sid=session_0001_7cc68e7|msgs=41|user=18|staff=23|chars=1597|merged=False
+   📊 SESSION_PROFILE|sid=session_0002_f6a9dde|msgs=3|user=1|staff=2|chars=124|merged=False
+   📊 SESSION_PROFILE|sid=session_0003_acd984a|msgs=19|user=6|staff=13|chars=830|merged=False
+   📊 SESSION_PROFILE|sid=session_0004_bfd6501|msgs=6|user=3|staff=3|chars=60|merged=False
+   📊 SESSION_PROFILE|sid=session_0005_07edce8|msgs=8|user=2|staff=6|chars=512|merged=False
+   📊 SESSION_PROFILE|sid=session_0006_d70f333|msgs=4|user=1|staff=3|chars=280|merged=False
+   📊 SESSION_PROFILE|sid=session_0007_7eca689|msgs=10|user=6|staff=4|chars=287|merged=False
+   📊 SESSION_PROFILE|sid=session_0008_4e4f0d0|msgs=28|user=14|staff=14|chars=758|merged=False
+   📊 SESSION_PROFILE|sid=session_0009_55f041d|msgs=16|user=4|staff=12|chars=721|merged=False
+   📊 SESSION_PROFILE|sid=session_0010_871a6de|msgs=6|user=2|staff=4|chars=275|merged=False
+   📊 SESSION_PROFILE|sid=session_0011_5450374|msgs=4|user=1|staff=3|chars=248|merged=False
+   📊 SESSION_PROFILE|sid=session_0012_06a75fc|msgs=2|user=0|staff=2|chars=59|merged=False
+   📊 SESSION_PROFILE|sid=session_0013_0a2f5a3|msgs=2|user=1|staff=1|chars=141|merged=False
+   📊 SESSION_PROFILE|sid=session_0014_d5d7c6d|msgs=8|user=2|staff=6|chars=479|merged=False
+   📊 SESSION_PROFILE|sid=session_0015_36bdbd6|msgs=28|user=9|staff=19|chars=1285|merged=False
+   📊 SESSION_PROFILE|sid=session_0016_7eca689|msgs=18|user=6|staff=12|chars=590|merged=False
+   📊 SESSION_PROFILE|sid=session_0017_9795213|msgs=5|user=2|staff=3|chars=198|merged=False
+   📊 SESSION_PROFILE|sid=session_0018_c450286|msgs=20|user=7|staff=13|chars=1133|merged=False
+   📊 SESSION_PROFILE|sid=session_0019_c81e62f|msgs=12|user=2|staff=10|chars=561|merged=False
+   📊 SESSION_PROFILE|sid=session_0020_a063891|msgs=53|user=26|staff=27|chars=1347|merged=False
+   📊 SESSION_PROFILE|sid=session_0021_6ecabf6|msgs=7|user=2|staff=5|chars=492|merged=False
+   📊 SESSION_PROFILE|sid=session_0022_29f63da|msgs=9|user=2|staff=7|chars=330|merged=False
+   📊 SESSION_PROFILE|sid=session_0023_b9b3be6|msgs=11|user=2|staff=9|chars=356|merged=False
+   📊 SESSION_PROFILE|sid=session_0024_7eca689|msgs=165|user=76|staff=89|chars=5724|merged=False
+   📊 SESSION_PROFILE|sid=session_0025_da0e610|msgs=3|user=0|staff=3|chars=97|merged=False
+   📊 SESSION_PROFILE|sid=session_0026_7eca689|msgs=6|user=3|staff=3|chars=143|merged=False
+   📊 SESSION_PROFILE|sid=session_0027_4eda763|msgs=4|user=1|staff=3|chars=285|merged=False
+   📊 SESSION_PROFILE|sid=session_0028_a794319|msgs=29|user=15|staff=14|chars=839|merged=False
+   📊 SESSION_PROFILE|sid=session_0029_7b44895|msgs=13|user=3|staff=10|chars=888|merged=False
+   📊 SESSION_PROFILE|sid=session_0030_7b44895|msgs=4|user=2|staff=2|chars=203|merged=False
+   📊 SESSION_PROFILE|sid=session_0031_20c7076|msgs=35|user=15|staff=20|chars=1407|merged=False
+   📊 SESSION_PROFILE|sid=session_0032_ab6a937|msgs=52|user=15|staff=37|chars=3326|merged=False
+   📊 SESSION_PROFILE|sid=session_0033_7eca689|msgs=5|user=2|staff=3|chars=455|merged=False
+   📊 SESSION_PROFILE|sid=session_0034_d5d7c6d|msgs=3|user=0|staff=3|chars=122|merged=False
+   📊 SESSION_PROFILE|sid=session_0035_7337ffb|msgs=3|user=1|staff=2|chars=182|merged=False
+   📊 SESSION_PROFILE|sid=session_0036_f6b362e|msgs=7|user=2|staff=5|chars=312|merged=False
+   📊 SESSION_PROFILE|sid=session_0037_a92c210|msgs=8|user=1|staff=7|chars=524|merged=False
+   📊 SESSION_PROFILE|sid=session_0038_89e2e87|msgs=3|user=1|staff=2|chars=186|merged=False
+   📊 SESSION_PROFILE|sid=session_0039_2815580|msgs=27|user=10|staff=17|chars=1536|merged=False
+   📊 SESSION_PROFILE|sid=session_0040_d5d7c6d|msgs=3|user=0|staff=3|chars=90|merged=False
+   📊 SESSION_PROFILE|sid=session_0041_88668d6|msgs=2|user=1|staff=1|chars=61|merged=False
+   📊 SESSION_PROFILE|sid=session_0042_d5d7c6d|msgs=27|user=10|staff=17|chars=1169|merged=False
+   📊 SESSION_PROFILE|sid=session_0043_8decb00|msgs=7|user=3|staff=4|chars=303|merged=False
+   📊 SESSION_PROFILE|sid=session_0044_8decb00|msgs=6|user=3|staff=3|chars=248|merged=False
+   📊 SESSION_PROFILE|sid=session_0045_44df2de|msgs=1|user=0|staff=1|chars=11|merged=False
+   📊 SESSION_PROFILE|sid=session_0046_23741cb|msgs=3|user=1|staff=2|chars=520|merged=False
+   📊 SESSION_PROFILE|sid=session_0047_21fc1c1|msgs=6|user=2|staff=4|chars=215|merged=False
+   📊 SESSION_PROFILE|sid=session_0048_a92c210|msgs=44|user=15|staff=29|chars=1865|merged=False
+   📊 SESSION_PROFILE|sid=session_0049_5612ee2|msgs=3|user=1|staff=2|chars=183|merged=False
+   📦 BATCH_SPLIT|sid=session_0024_7eca689|msgs=165|type=oversized(>100)
+   📦 BATCH_SPLIT|normal=49|oversized=1
+   📦 BATCH_DECISION|sessions=49|estimated_tokens=10218|batch_size=10|reason=短会话优化(avg=2044tokens)
+
+   📊 自适应批量: 基础=5, 优化后=10, 正常任务=49
+   💾 预估总Token: 101,440 (上限: 200,000)
+
+🚀 启动 5 个评分批次（并发限制: 90，as_completed优化）
+   🔄 批次 5/5 (9通, ~18,075tokens) 启动
+[DEBUG] score_sessions_batch_async START - 9 sessions
+[DEBUG] Processing 9 sessions cross-scene
+   📚 跨场景评分: 9通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5383, "template_chars": 1083, "total_prompt_chars": 6494, "session_count": 9, "session_avg_chars": 598}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=9
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=9
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 4/5 (10通, ~23,140tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 9255, "template_chars": 1087, "total_prompt_chars": 10370, "session_count": 10, "session_avg_chars": 925}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=10
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 3/5 (10通, ~19,980tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 6053, "template_chars": 1087, "total_prompt_chars": 7168, "session_count": 10, "session_avg_chars": 605}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=10
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 2/5 (10通, ~19,969tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 5838, "template_chars": 1087, "total_prompt_chars": 6953, "session_count": 10, "session_avg_chars": 583}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=10
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 1/5 (10通, ~20,276tokens) 启动
+[DEBUG] score_sessions_batch_async START - 10 sessions
+[DEBUG] Processing 10 sessions cross-scene
+   📚 跨场景评分: 10通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 6349, "template_chars": 1087, "total_prompt_chars": 7464, "session_count": 10, "session_avg_chars": 634}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=10
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=10
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 500 Internal Server Error"
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 500 Internal Server Error"
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 500 Internal Server Error"
+INFO:openai._base_client:Retrying request to /chat/completions in 0.428439 seconds
+INFO:openai._base_client:Retrying request to /chat/completions in 0.388727 seconds
+INFO:openai._base_client:Retrying request to /chat/completions in 0.402646 seconds
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 500 Internal Server Error"
+INFO:openai._base_client:Retrying request to /chat/completions in 0.385542 seconds
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 45.6s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4303, "completion_tokens": 4795, "total_tokens": 9098, "elapsed_seconds": 45.596025, "prompt_chars": 6953, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 576... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 577... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 578... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 579... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 580... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 581... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 582... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 583... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 584... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 585... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 2/5 完成
+   📊 进度: 1/5 批次完成
+   [DEBUG] API call completed in 91.9s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4336, "completion_tokens": 5400, "total_tokens": 9736, "elapsed_seconds": 91.871218, "prompt_chars": 7168, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 586... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 587... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 588... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 589... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 591... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 592... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 593... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 594... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 595... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 596... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 3/5 完成
+   📊 进度: 2/5 批次完成
+   [DEBUG] API call completed in 201.3s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 4663, "completion_tokens": 12088, "total_tokens": 16751, "elapsed_seconds": 201.279693, "prompt_chars": 7464, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 566... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 567... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 568... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 569... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 570... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 571... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 572... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 573... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 574... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 575... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 1/5 完成
+   📊 进度: 3/5 批次完成
+   [DEBUG] API call completed in 249.5s
+   💰 TOKEN_COST|{"batch_idx": 10, "prompt_tokens": 6416, "completion_tokens": 4997, "total_tokens": 11413, "elapsed_seconds": 249.504825, "prompt_chars": 10370, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 10 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 10 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ⚠️ 任务 597... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 598... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 599... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 600... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 601... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 602... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 603... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 604... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 605... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 606... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 4/5 完成
+   📊 进度: 4/5 批次完成
+   [DEBUG] API call completed in 292.2s
+   💰 TOKEN_COST|{"batch_idx": 9, "prompt_tokens": 3923, "completion_tokens": 4322, "total_tokens": 8245, "elapsed_seconds": 292.23079, "prompt_chars": 6494, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 9 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 9 results
+   ⚠️ 任务 607... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 608... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 609... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 610... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 611... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 612... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 613... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 614... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ⚠️ 任务 615... 评分无效: 评分结果不完整（缺少dimension_scores或summary）
+   ✅ 批次 5/5 完成
+   📊 进度: 5/5 批次完成
+   📦 OVERSIZED|sid=session_0024_7eca689|降级为单通处理
+[DEBUG] score_sessions_batch_async START - 1 sessions
+[DEBUG] Processing 1 sessions cross-scene
+   📚 跨场景评分: 1通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 6736, "template_chars": 1083, "total_prompt_chars": 7847, "session_count": 1, "session_avg_chars": 6736}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=1
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=1
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 12.8s
+   💰 TOKEN_COST|{"batch_idx": 1, "prompt_tokens": 4918, "completion_tokens": 1118, "total_tokens": 6036, "elapsed_seconds": 12.770192, "prompt_chars": 7847, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 1 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 1 results
+INFO:db_operations:✅ 任务 590 结果保存成功
+
+   ✅ 本批完成: 50通, API调用: 10次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+✅ 数据库写入成功 (任务 590)
+🔄 发现 49 个失败任务，并发重试...
+   🔄 批量重试 49 个任务，5通/批，并发执行
+
+🚀 启动 10 个重试批次并发（信号量限制: 90）
+   🔄 重试批次 1/10 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 2963, "template_chars": 1083, "total_prompt_chars": 4074, "session_count": 5, "session_avg_chars": 592}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 2/10 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 2695, "template_chars": 1083, "total_prompt_chars": 3806, "session_count": 5, "session_avg_chars": 539}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 3/10 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 2515, "template_chars": 1083, "total_prompt_chars": 3626, "session_count": 5, "session_avg_chars": 503}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 4/10 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 651, "template_chars": 1083, "total_prompt_chars": 1762, "session_count": 5, "session_avg_chars": 130}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 5/10 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 4277, "template_chars": 1083, "total_prompt_chars": 5388, "session_count": 5, "session_avg_chars": 855}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 6/10 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 3189, "template_chars": 1083, "total_prompt_chars": 4300, "session_count": 5, "session_avg_chars": 637}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 7/10 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 7579, "template_chars": 1083, "total_prompt_chars": 8690, "session_count": 5, "session_avg_chars": 1515}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 8/10 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 1933, "template_chars": 1083, "total_prompt_chars": 3044, "session_count": 5, "session_avg_chars": 386}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 9/10 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 3849, "template_chars": 1083, "total_prompt_chars": 4960, "session_count": 5, "session_avg_chars": 769}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 10/10 (4通) 启动
+[DEBUG] score_sessions_batch_async START - 4 sessions
+[DEBUG] Processing 4 sessions cross-scene
+   📚 跨场景评分: 4通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 3213, "template_chars": 1083, "total_prompt_chars": 4324, "session_count": 4, "session_avg_chars": 803}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=4
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=4
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 34.8s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2452, "completion_tokens": 3302, "total_tokens": 5754, "elapsed_seconds": 34.849963, "prompt_chars": 4074, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 1/10 完成
+   [DEBUG] API call completed in 62.9s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2521, "completion_tokens": 2704, "total_tokens": 5225, "elapsed_seconds": 62.944007, "prompt_chars": 4300, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 6/10 完成
+   [DEBUG] API call completed in 99.6s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 3268, "completion_tokens": 3348, "total_tokens": 6616, "elapsed_seconds": 99.595789, "prompt_chars": 5388, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:db_operations:✅ 任务 580 结果保存成功
+INFO:db_operations:✅ 任务 583 结果保存成功
+INFO:db_operations:✅ 任务 581 结果保存成功
+INFO:db_operations:✅ 任务 582 结果保存成功
+INFO:db_operations:✅ 任务 584 结果保存成功
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 重试成功: 任务 580
+   ✅ 重试成功: 任务 583
+   ✅ 重试成功: 任务 581
+   ✅ 重试成功: 任务 582
+   ✅ 重试成功: 任务 584
+   ✅ 重试批次 5/10 完成
+✅ 数据库写入成功 (任务 580)
+✅ 数据库写入成功 (任务 583)
+✅ 数据库写入成功 (任务 581)
+✅ 数据库写入成功 (任务 582)
+✅ 数据库写入成功 (任务 584)
+   [DEBUG] API call completed in 130.2s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2147, "completion_tokens": 2835, "total_tokens": 4982, "elapsed_seconds": 130.243827, "prompt_chars": 3626, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 3/10 完成
+   [DEBUG] API call completed in 164.5s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 5337, "completion_tokens": 3077, "total_tokens": 8414, "elapsed_seconds": 164.452791, "prompt_chars": 8690, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:db_operations:✅ 任务 594 结果保存成功
+INFO:db_operations:✅ 任务 595 结果保存成功
+INFO:db_operations:✅ 任务 596 结果保存成功
+INFO:db_operations:✅ 任务 597 结果保存成功
+INFO:db_operations:✅ 任务 598 结果保存成功
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 重试成功: 任务 594
+   ✅ 重试成功: 任务 595
+   ✅ 重试成功: 任务 596
+   ✅ 重试成功: 任务 597
+   ✅ 重试成功: 任务 598
+   ✅ 重试批次 7/10 完成
+✅ 数据库写入成功 (任务 594)
+✅ 数据库写入成功 (任务 595)
+✅ 数据库写入成功 (任务 596)
+✅ 数据库写入成功 (任务 597)
+✅ 数据库写入成功 (任务 598)
+   [DEBUG] API call completed in 193.2s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2259, "completion_tokens": 2653, "total_tokens": 4912, "elapsed_seconds": 193.203482, "prompt_chars": 3806, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:db_operations:✅ 任务 589 结果保存成功
+INFO:db_operations:✅ 任务 569 结果保存成功
+INFO:db_operations:✅ 任务 571 结果保存成功
+INFO:db_operations:✅ 任务 572 结果保存成功
+INFO:db_operations:✅ 任务 573 结果保存成功
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 重试成功: 任务 589
+   ✅ 重试成功: 任务 569
+   ✅ 重试成功: 任务 571
+   ✅ 重试成功: 任务 572
+   ✅ 重试成功: 任务 573
+   ✅ 重试批次 2/10 完成
+✅ 数据库写入成功 (任务 589)
+✅ 数据库写入成功 (任务 569)
+✅ 数据库写入成功 (任务 571)
+✅ 数据库写入成功 (任务 572)
+✅ 数据库写入成功 (任务 573)
+   [DEBUG] API call completed in 220.5s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 898, "completion_tokens": 2683, "total_tokens": 3581, "elapsed_seconds": 220.495647, "prompt_chars": 1762, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 4/10 完成
+   [DEBUG] API call completed in 249.1s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 1690, "completion_tokens": 2718, "total_tokens": 4408, "elapsed_seconds": 249.115531, "prompt_chars": 3044, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 8/10 完成
+   [DEBUG] API call completed in 282.2s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2913, "completion_tokens": 2896, "total_tokens": 5809, "elapsed_seconds": 282.239745, "prompt_chars": 4960, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 9/10 完成
+   [DEBUG] API call completed in 302.1s
+   💰 TOKEN_COST|{"batch_idx": 4, "prompt_tokens": 2596, "completion_tokens": 1761, "total_tokens": 4357, "elapsed_seconds": 302.112346, "prompt_chars": 4324, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 4 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 4 results
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 10/10 完成
+
+📊 重试完成: 15成功, 34失败
+   ✅ 重试完成: 15/49 成功
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+🔄 发现 34 个失败任务，并发重试...
+   🔄 批量重试 34 个任务，5通/批，并发执行
+
+🚀 启动 7 个重试批次并发（信号量限制: 90）
+   🔄 重试批次 1/7 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 2963, "template_chars": 1083, "total_prompt_chars": 4074, "session_count": 5, "session_avg_chars": 592}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 2/7 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 2515, "template_chars": 1083, "total_prompt_chars": 3626, "session_count": 5, "session_avg_chars": 503}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 3/7 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 651, "template_chars": 1083, "total_prompt_chars": 1762, "session_count": 5, "session_avg_chars": 130}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 4/7 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 3189, "template_chars": 1083, "total_prompt_chars": 4300, "session_count": 5, "session_avg_chars": 637}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 5/7 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 1933, "template_chars": 1083, "total_prompt_chars": 3044, "session_count": 5, "session_avg_chars": 386}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 6/7 (5通) 启动
+[DEBUG] score_sessions_batch_async START - 5 sessions
+[DEBUG] Processing 5 sessions cross-scene
+   📚 跨场景评分: 5通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 3849, "template_chars": 1083, "total_prompt_chars": 4960, "session_count": 5, "session_avg_chars": 769}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=5
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=5
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 重试批次 7/7 (4通) 启动
+[DEBUG] score_sessions_batch_async START - 4 sessions
+[DEBUG] Processing 4 sessions cross-scene
+   📚 跨场景评分: 4通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   📐 PROMPT_STRUCT|{"rules_chars": 28, "sessions_chars": 3213, "template_chars": 1083, "total_prompt_chars": 4324, "session_count": 4, "session_avg_chars": 803}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=4
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=4
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 93060
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: qwen3.6-35b-a3b@4bit
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 34.7s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2452, "completion_tokens": 3177, "total_tokens": 5629, "elapsed_seconds": 34.728941, "prompt_chars": 4074, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 1/7 完成
+   [DEBUG] API call completed in 61.3s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 898, "completion_tokens": 2598, "total_tokens": 3496, "elapsed_seconds": 61.307211, "prompt_chars": 1762, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 3/7 完成
+   [DEBUG] API call completed in 90.8s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2147, "completion_tokens": 2825, "total_tokens": 4972, "elapsed_seconds": 90.835784, "prompt_chars": 3626, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 2/7 完成
+   [DEBUG] API call completed in 118.3s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2913, "completion_tokens": 2748, "total_tokens": 5661, "elapsed_seconds": 118.289899, "prompt_chars": 4960, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:db_operations:✅ 任务 605 结果保存成功
+INFO:db_operations:✅ 任务 607 结果保存成功
+INFO:db_operations:✅ 任务 608 结果保存成功
+INFO:db_operations:✅ 任务 609 结果保存成功
+INFO:db_operations:✅ 任务 610 结果保存成功
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ✅ 重试成功: 任务 605
+   ✅ 重试成功: 任务 607
+   ✅ 重试成功: 任务 608
+   ✅ 重试成功: 任务 609
+   ✅ 重试成功: 任务 610
+   ✅ 重试批次 6/7 完成
+✅ 数据库写入成功 (任务 605)
+✅ 数据库写入成功 (任务 607)
+✅ 数据库写入成功 (任务 608)
+✅ 数据库写入成功 (任务 609)
+✅ 数据库写入成功 (任务 610)
+   [DEBUG] API call completed in 142.7s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 2521, "completion_tokens": 2369, "total_tokens": 4890, "elapsed_seconds": 142.740981, "prompt_chars": 4300, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 4/7 完成
+   [DEBUG] API call completed in 177.9s
+   💰 TOKEN_COST|{"batch_idx": 5, "prompt_tokens": 1690, "completion_tokens": 3543, "total_tokens": 5233, "elapsed_seconds": 177.894499, "prompt_chars": 3044, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 5 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 5 results
+INFO:httpx:HTTP Request: POST http://localhost:1234/v1/chat/completions "HTTP/1.1 200 OK"
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 5/7 完成
+   [DEBUG] API call completed in 203.7s
+   💰 TOKEN_COST|{"batch_idx": 4, "prompt_tokens": 2596, "completion_tokens": 2673, "total_tokens": 5269, "elapsed_seconds": 203.747318, "prompt_chars": 4324, "model": "qwen3.6-35b-a3b@4bit"}
+   [DEBUG] Parsed 4 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 4 results
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ❌ 重试失败: 评分结果不完整
+   ✅ 重试批次 7/7 完成
+
+📊 重试完成: 5成功, 29失败
+   ✅ 重试完成: 5/34 成功
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+⏳ 等待数据库写入完成...
+✅ 数据库写入完成
+⏳ 队列已空，--once模式：准备退出
+🛑 数据库写入线程收到退出信号
+✅ 数据库写入线程已退出
+✅ 锁已释放
+
+============================================================
+📊 异步批量工作进程结束
+   成功处理: 70
+   总API调用: 10次
+============================================================

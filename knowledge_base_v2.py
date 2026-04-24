@@ -517,7 +517,7 @@ def init_lancedb_vector_store():
             # 创建向量表
             schema = pa.schema([
                 pa.field("rule_id", pa.string()),
-                pa.field("vector", pa.list_(pa.float32(), 384)),  # 假设用384维向量
+                pa.field("vector", pa.list_(pa.float32(), 2560)),  # Qwen3-Embedding-4B使用2560维向量
                 pa.field("scene_category", pa.string()),
                 pa.field("scene_sub_category", pa.string()),
                 pa.field("rule_dimension", pa.string()),

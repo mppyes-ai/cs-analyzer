@@ -42,6 +42,7 @@ import sys
 
 # ========== 【v2.6.6拆分 Step 1】导入共享配置 ==========
 import worker_config as cfg
+from config import LLM_CONFIG  # 【双模式LLM】导入统一LLM配置
 
 # ========== 【v2.6.3新增】启动前依赖检查 ==========
 def _check_dependencies():
@@ -187,24 +188,35 @@ def init_engines():
     """初始化分析引擎"""
     print("🔄 初始化分析引擎...")
     
-    api_key = os.getenv('MOONSHOT_API_KEY')
-    if not api_key:
-        config_path = os.path.expanduser('~/.openclaw/config.yaml')
-        if os.path.exists(config_path):
-            import yaml
-            with open(config_path) as f:
-                config = yaml.safe_load(f)
-                api_key = config.get('moonshot', {}).get('apiKey')
+    llm_mode = LLM_CONFIG["mode"]
+    print(f"   LLM模式: {llm_mode}")
     
-    if not api_key:
-        raise ValueError("未找到MOONSHOT_API_KEY，请设置环境变量或在配置文件中配置")
+    if llm_mode == "local":
+        # 本地模式 (LM Studio)
+        api_key = LLM_CONFIG.get("api_key", "not-needed")
+        base_url = LLM_CONFIG["base_url"]
+        model = LLM_CONFIG["model"]
+        print(f"   本地模型: {model}")
+        print(f"   Base URL: {base_url}")
+    else:
+        # 云端模式 (Moonshot)
+        api_key = LLM_CONFIG.get("api_key")
+        if not api_key:
+            raise ValueError("未找到MOONSHOT_API_KEY，请设置环境变量或在配置文件中配置")
+        base_url = LLM_CONFIG["base_url"]
+        model = LLM_CONFIG["model"]
+        print(f"   云端模型: {model}")
     
     # 初始化Kimi并发信号量
     cfg.kimi_semaphore = asyncio.Semaphore(cfg.KIMI_MAX_CONCURRENT)
-    print(f"✅ Kimi并发控制: 最大{cfg.KIMI_MAX_CONCURRENT}并发")
+    print(f"✅ LLM并发控制: 最大{cfg.KIMI_MAX_CONCURRENT}并发")
     
     cfg.classifier = RobustIntentClassifier()
-    cfg.scorer = SmartScoringEngine(api_key=api_key)
+    cfg.scorer = SmartScoringEngine(
+        api_key=api_key,
+        base_url=base_url,
+        model=model
+    )
     
     print("✅ 引擎初始化完成")
 

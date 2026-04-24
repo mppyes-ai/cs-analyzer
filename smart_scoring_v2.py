@@ -221,18 +221,18 @@ BATCH_SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，请
 class SmartScoringEngine:
     """智能评分引擎 v2.4 - 支持异步批量评分"""
     
-    def __init__(self, api_key: str = None, embedding_model=None, use_local_intent: bool = True):
+    def __init__(self, api_key: str = None, embedding_model=None, use_local_intent: bool = True, base_url: str = None, model: str = None):
         """
         Args:
-            api_key: 兼容旧接口，现已废弃（从 config.LLM_CONFIG 读取）
+            api_key: Moonshot API Key
             embedding_model: 向量模型（可选，默认使用全局单例）
             use_local_intent: 是否使用本地意图分类（默认True）
+            base_url: API base URL（可选，默认Moonshot）
+            model: 模型名称（可选，默认从环境变量读取）
         """
-        # 从统一配置读取（v3.0 本地化）
-        from config import LLM_CONFIG
-        self.llm_config = LLM_CONFIG
-        self.api_key = self.llm_config.get("api_key", "not-needed")
-        
+        self.api_key = api_key or os.getenv("MOONSHOT_API_KEY")
+        self.base_url = base_url or "https://api.moonshot.cn/v1"
+        self.model = model or os.getenv('KIMI_MODEL', 'kimi-k2.5')
         # 使用传入的模型或全局单例
         self.embedding_model = embedding_model or get_embedding_model()
         self.use_local_intent = use_local_intent
@@ -243,7 +243,7 @@ class SmartScoringEngine:
             try:
                 from intent_classifier_v3 import RobustIntentClassifier
                 self.intent_classifier = RobustIntentClassifier()
-                print("✅ 漏斗式意图分类器已初始化 (规则优先，本地模型兜底)")
+                print("✅ 漏斗式意图分类器已初始化 (规则优先，qwen2.5兜底)")
             except Exception as e:
                 print(f"⚠️ 漏斗式意图分类器初始化失败: {e}，将使用关键词规则")
         
@@ -493,21 +493,18 @@ class SmartScoringEngine:
             session_data=json.dumps(session_data, ensure_ascii=False, indent=2)
         )
         
-        # 4. 调用本地 LLM API（v3.0 本地化）
+        # 4. 调用Kimi API
         try:
             import openai
             import time
             
             client = openai.OpenAI(
-                api_key=self.llm_config.get("api_key", "not-needed"),
-                base_url=self.llm_config["base_url"],
+                api_key=self.api_key,
+                base_url=self.base_url,
                 max_retries=2
             )
             
-            model = self.llm_config["scoring_model"]
-            temperature = self.llm_config.get("temperature", 0.1)
-            max_tokens = self.llm_config.get("max_tokens", 32000)
-            timeout = self.llm_config.get("timeout", 1200)
+            model = self.model
             
             max_retries = 3
             base_delay = 2.0
@@ -515,15 +512,16 @@ class SmartScoringEngine:
             
             for attempt in range(max_retries):
                 try:
+                    # 【v2.5】添加120秒超时保护，防止Worker僵死
                     response = client.chat.completions.create(
                         model=model,
                         messages=[
                             {"role": "system", "content": "你是专业的客服质检专家，严格按JSON格式输出评分结果。"},
                             {"role": "user", "content": prompt}
                         ],
-                        temperature=temperature,
-                        max_tokens=max_tokens,
-                        timeout=timeout
+                        temperature=1,
+                        max_tokens=int(os.getenv('KIMI_MAX_TOKENS', 16000)),
+                        timeout=int(os.getenv('KIMI_API_TIMEOUT', 300))  # 【v2.5】从.env读取超时时间（默认300秒）
                     )
                     break
                     
@@ -673,7 +671,7 @@ class SmartScoringEngine:
         # === Prompt 结构追踪 END ===
         
         # 调用API
-        result = await self._call_kimi_async(prompt, len(sessions), pre_analyses)
+        result = await self._call_llm_async(prompt, len(sessions), pre_analyses)
         return result
     
     def _retrieve_rules_cross_scene(self, scenes: List[str], messages_text: str) -> List[Dict]:
@@ -761,17 +759,17 @@ class SmartScoringEngine:
         )
         
         # 调用API（异步）
-        result = await self._call_kimi_async(prompt, len(sessions), pre_analyses)
+        result = await self._call_llm_async(prompt, len(sessions), pre_analyses)
         return result
     
-    async def _call_kimi_async(self, prompt: str, expected_count: int, pre_analyses: List[Dict] = None) -> List[Dict]:
-        """异步调用本地 LLM API（v3.0 本地化，带httpx精细超时控制）"""
+    async def _call_llm_async(self, prompt: str, expected_count: int, pre_analyses: List[Dict] = None) -> List[Dict]:
+        """异步调用Kimi API（带httpx精细超时控制）"""
         import logging
         logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s')
         logger = logging.getLogger(__name__)
         
-        logger.info(f"[DEBUG] _call_kimi_async START - expected_count={expected_count}")
-        print(f"   [DEBUG] === _call_kimi_async START ===", flush=True)
+        logger.info(f"[DEBUG] _call_llm_async START - expected_count={expected_count}")
+        print(f"   [DEBUG] === _call_llm_async START ===", flush=True)
         print(f"   [DEBUG] expected_count={expected_count}", flush=True)
         
         try:
@@ -779,31 +777,28 @@ class SmartScoringEngine:
             import asyncio
             import httpx
             
-            timeout_seconds = self.llm_config.get("timeout", 1200)  # v3.0: 本地大模型默认1200秒
-            model = self.llm_config["scoring_model"]
-            temperature = self.llm_config.get("temperature", 0.1)
-            max_tokens = self.llm_config.get("max_tokens", 32000)
-            
+            timeout_seconds = int(os.getenv('KIMI_API_TIMEOUT', '300'))  # 【v2.5】从环境变量读取，默认300秒
             import sys
             print(f"   [DEBUG] API Timeout: {timeout_seconds}s", file=sys.stderr, flush=True)
             print(f"   [DEBUG] Worker PID: {os.getpid()}", file=sys.stderr, flush=True)
-            print(f"   [DEBUG] Base URL: {self.llm_config['base_url']}", flush=True)
-            print(f"   [DEBUG] Model: {model}", flush=True)
+            print(f"   [DEBUG] API Key exists: {bool(self.api_key)}", flush=True)
             
             client = openai.AsyncOpenAI(
-                api_key=self.llm_config.get("api_key", "not-needed"),
-                base_url=self.llm_config["base_url"],
+                api_key=self.api_key,
+                base_url=self.base_url,
                 max_retries=2,
                 timeout=httpx.Timeout(
                     connect=30.0,           # 连接超时30秒
-                    read=timeout_seconds,   # 读取超时
+                    read=timeout_seconds,   # 读取超时从.env读取
                     write=30.0,             # 写入超时30秒
                     pool=30.0               # 连接池超时30秒
                 )
             )
             
+            model = self.model
             print(f"   [DEBUG] Using model: {model}", flush=True)
             
+            # 【v2.5】添加超时保护（从.env读取，默认300秒）
             print(f"   [DEBUG] Calling API with timeout={timeout_seconds}s...", flush=True)
             start_time = datetime.now()
             
@@ -814,8 +809,8 @@ class SmartScoringEngine:
                         {"role": "system", "content": "你是专业的客服质检专家，严格按JSON格式输出评分结果。"},
                         {"role": "user", "content": prompt}
                     ],
-                    temperature=temperature,
-                    max_tokens=max_tokens
+                    temperature=1,
+                    max_tokens=int(os.getenv('KIMI_MAX_TOKENS', 16000))
                 )
             
             elapsed = (datetime.now() - start_time).total_seconds()
@@ -848,10 +843,12 @@ class SmartScoringEngine:
             
             # 补充元数据（包含预分析数据）
             for i, r in enumerate(results):
+                # 【Bug修复】确保r是字典，不是列表或其他类型
                 if not isinstance(r, dict):
                     print(f"   ⚠️ 结果{i}类型错误: {type(r)}, 转换为错误字典", flush=True)
                     r = {"error": f"解析结果类型错误: {type(r)}", "_raw": str(r)[:200]}
                     results[i] = r
+                # 确保基本字段存在
                 if 'error' not in r:
                     r.setdefault('professionalism_score', 0)
                     r.setdefault('standardization_score', 0)
@@ -861,19 +858,21 @@ class SmartScoringEngine:
                     r['_metadata'] = {}
                 r['_metadata']['model'] = model
                 r['_metadata']['scored_at'] = datetime.now().isoformat()
+                # 添加预分析数据（从pre_analyses获取）
                 if pre_analyses and i < len(pre_analyses):
                     r['_metadata']['pre_analysis'] = pre_analyses[i]
             
-            print(f"   [DEBUG] === _call_kimi_async END (success) ===", flush=True)
+            print(f"   [DEBUG] === _call_llm_async END (success) ===", flush=True)
             return results
             
         except asyncio.TimeoutError:
-            print(f"⚠️ 批量评分超时: API调用超过{timeout_seconds}秒", flush=True)
-            print(f"   [DEBUG] === _call_kimi_async END (timeout) ===", flush=True)
-            return [{"error": f"API调用超时({timeout_seconds}s)"} for _ in range(expected_count)]
+            timeout_val = os.getenv('KIMI_API_TIMEOUT', '300')
+            print(f"⚠️ 批量评分超时: Kimi API调用超过{timeout_val}秒", flush=True)
+            print(f"   [DEBUG] === _call_llm_async END (timeout) ===", flush=True)
+            return [{"error": f"API调用超时({timeout_val}s)"} for _ in range(expected_count)]
         except Exception as e:
             print(f"⚠️ 批量评分失败: {e}", flush=True)
-            print(f"   [DEBUG] === _call_kimi_async END (error) ===", flush=True)
+            print(f"   [DEBUG] === _call_llm_async END (error) ===", flush=True)
             return [{"error": str(e)} for _ in range(expected_count)]
     
     def _parse_batch_response(self, content: str, expected_count: int) -> List[Dict]:
