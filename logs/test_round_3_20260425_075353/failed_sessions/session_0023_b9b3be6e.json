@@ -1,0 +1,90 @@
+{
+  "session_id": "session_0023_b9b3be6e",
+  "test_round": 3,
+  "test_time": "20260425_075353",
+  "session_data": {
+    "session_id": "session_0023_b9b3be6e",
+    "user_id": "jd_aidkljfmctfy",
+    "staff_name": "林内林小平",
+    "messages": [
+      {
+        "role": "user",
+        "sender": "jd_aidkljfmctfy",
+        "timestamp": "2026-03-12 23:13:13",
+        "content": "https://item.jd.com/100056736113.html?sdx=ehi-lLxFuZiE6JnIYYZai8UmsTGSRHtmwmtNsa5CY9uJPe_RLJpf5X7tpkHgX2OV"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:13:19",
+        "content": "人工客服【林小平】将为您竭诚服务"
+      },
+      {
+        "role": "user",
+        "sender": "jd_aidkljfmctfy",
+        "timestamp": "2026-03-12 23:13:22",
+        "content": "这个需要全屋循环吗"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:13:22",
+        "content": "亲爱哒，请问有什么可以帮您的呢"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:13:27",
+        "content": "零冷水需要您家预留回水管哦"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:13:43",
+        "content": "需要年级预留回水管的哈亲爱的"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:13:52",
+        "content": "需要您家预留回水管的哈亲爱的"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:16:52",
+        "content": "亲爱哒，您咨询的这款JSQ31-GD61R燃气热水器30分钟内下单购买，安装晒单后可享限量【飞利浦空气炸锅】，赠品库存有限，先到先得哦~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:19:52",
+        "content": "政府补贴立减15%限时开启随时可能会结束-\n-\n请抓紧时间享受政府补贴优惠下单付款啦，结束就没有啦~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:22:52",
+        "content": "您好，还没有收到您的订单，有什么顾虑吗，可以给我说下的呢，非常乐意帮您解决的哈～"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:23:52",
+        "content": "宝，喜欢就赶紧下单吧！"
+      }
+    ],
+    "start_time": "2026-03-12 23:13:13",
+    "end_time": "2026-03-12 23:23:52",
+    "is_transfer": false,
+    "transfer_reason": "",
+    "transfer_time": null,
+    "transfer_from": null,
+    "transfer_to": null,
+    "related_sessions": []
+  },
+  "error_info": {
+    "error": "评分结果不完整",
+    "retry_count": 3
+  }
+}

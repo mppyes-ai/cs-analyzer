@@ -1,0 +1,264 @@
+{
+  "session_id": "session_0001_7cc68e76",
+  "test_round": 4,
+  "test_time": "20260425_080710",
+  "session_data": {
+    "session_id": "session_0001_7cc68e76",
+    "user_id": "jd_4bc6548717eb6",
+    "staff_name": "林内林小孔",
+    "messages": [
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:27:38",
+        "content": "https://item.jd.com/100109903708.html?sdx=ehi-lLxFuZiE6JnIYINVhcYjtzCZRHtmwmtNsa5CY9uJPe_RLJpf5X7sp03rVGKT"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:27:39",
+        "content": "欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领取】\n【本店热水器诸多型号活动火爆进行中】\n戳👉E16PN电热购后参与直播间抽半价优惠\n戳👉E19PN电热购后参与直播间抽半价优惠\n#E-s19今晚支付购大升数产品 【享 300 元基金】"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:27:44",
+        "content": "人工客服【林小孔】将为您竭诚服务"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:27:45",
+        "content": "您好 请问有什么可以帮助您的~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:28:03",
+        "content": "包安装吗？"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:28:22",
+        "content": "本店热水器安装费用说明：\n购机首次安装产生的【上门费】和【人工费】均免费，师傅安装调试好后离场。\n=\n【机器配送辅材清单如下图所示】\n\n声明：\n1）安装前需业主预留好排烟孔，师傅安装范畴并不包含墙体排烟打孔。\n2）机器本身会附送辅材，如实际安装时附送辅材不够用，需自费购买。"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:28:23",
+        "content": "https://dd-static.jd.com/ddimg/jfs/t1/403416/35/3798/163170/69b28a43F381daece/022f3482b2769b7b.png"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:29:26",
+        "content": "冷热水球阀可以自己买吗？"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:29:52",
+        "content": "需要您自备好的哦~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:29:57",
+        "content": "目前林内厂家是会配送部分机器通用辅材的，不过您购买机器后仍需根据家中实际情况准备些辅材。\n=\n具体每款型号配送辅材和需自备辅材说明如图："
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:29:58",
+        "content": "https://dd-static.jd.com/ddimg/jfs/t1/399831/11/16584/273747/69b2a104Fdb35914a/022f6a64c34c59a6.png"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:30:13",
+        "content": "需自备的辅材途径共用两种：\n1）个人在五金店（或线上）购买三方配件（需提供购买时的发票）\n2）在师傅上门安装时根据家中实际所需辅材情况在师傅那里购买林内适配辅材。\n\n注意：个人购买第三方配件需带有发票，因辅材质量可能会影响热水器使用寿命如出现机器损坏可帮助业主进行综合判断并协助维权。"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:31:33",
+        "content": "自己买的辅材包售后吗"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:31:50",
+        "content": "请问您具体指的是什么呢~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:33:10",
+        "content": "买师傅的辅材是不是机器有问题你们就全负责，如果我自己买的，你们还需要判断是辅材的问题还是机器的问题"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:33:32",
+        "content": "自备辅材这部分"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:33:48",
+        "content": "您提供好带有发票的 辅材 师傅是可以为您安装的哦~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:34:43",
+        "content": "安装师傅带的有没有统一价格"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:35:09",
+        "content": "机器安装分为【上门费】和【人工费】，购机首次预约安装以上两项免费。\n本机购买后附送部分辅材，如安装实际不够用，可自费在师傅处购买。\n\n【各项收费标准】：https://pro.m.jd.com/mall/active/3X4a7yCSnA9UXa1KQzwV7htDuojR/index.html"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:36:27",
+        "content": "您可以参考下各项收费标准的哦~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:36:59",
+        "content": "好👌"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:37:04",
+        "content": "没问题了"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:37:25",
+        "content": "如果还有其他问题，可以再次联系我们哦~~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:40:25",
+        "content": "亲爱哒，您咨询的这款JSQ31-GD72燃气热水器30分钟内下单购买，安装晒单后可享限量【康巴赫三件套】，赠品库存有限，先到先得哦~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:43:25",
+        "content": "政府补贴立减15%限时开启随时可能会结束-\n-\n请抓紧时间享受政府补贴优惠下单付款啦，结束就没有啦~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:44:27",
+        "content": "现在下单一定有送吗\n引用：亲爱哒，您咨询的这款JSQ31-GD72燃气热水器30分钟内下单购买，安装晒单后可享限量【康巴赫三件套】，赠品库存有限，先到先得哦~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:44:53",
+        "content": "赠品需要您收到货后，安装完以后进行晒单（提供安装图）后，联系我们登记领取呢哦~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:45:04",
+        "content": "安装可能会晚几天"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:45:32",
+        "content": "会不会登记的时候没有了"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:45:33",
+        "content": "不影响的呢~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:46:11",
+        "content": "如 后续无赠品的话 会跟您协商其他赠品 或者等补货为您 发送赠品的哦~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:46:24",
+        "content": "安装完没法试用不影响吧"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:46:33",
+        "content": "我现在还没开通燃气"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:46:41",
+        "content": "燃热安装好后师傅会调试机器直至可以正常烧水才会撤离.\n=\n为此安装的时候需在以下两项符合后在进行安装机器：\n1）建议家中硬装结束（瓷砖上墙/墙面完工）\n2）建议入户天然气已经开通后"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:47:12",
+        "content": "入户天然气得等门装了才能开通"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:47:25",
+        "content": "也可以先安装的呢~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:47:33",
+        "content": "好"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:47:44",
+        "content": "那我先下单"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:47:56",
+        "content": "期待收到您的订单哦小主~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_4bc6548717eb6",
+        "timestamp": "2026-03-12 23:47:59",
+        "content": "赠品留一份哦"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小孔",
+        "timestamp": "2026-03-12 23:48:07",
+        "content": "下单后为您备注的呢~"
+      }
+    ],
+    "start_time": "2026-03-12 23:27:38",
+    "end_time": "2026-03-12 23:48:07"
+  },
+  "error_info": {
+    "error": "评分结果不完整",
+    "retry_count": 3
+  }
+}

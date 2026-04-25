@@ -1,0 +1,62 @@
+{
+  "session_id": "session_0004_bfd6501b",
+  "test_round": 1,
+  "test_time": "20260425_074022",
+  "session_data": {
+    "session_id": "session_0004_bfd6501b",
+    "user_id": "jd_aidkljfmctfy",
+    "staff_name": "林内林小平",
+    "messages": [
+      {
+        "role": "user",
+        "sender": "jd_aidkljfmctfy",
+        "timestamp": "2026-03-12 23:24:27",
+        "content": "恒温的一款热效是多少"
+      },
+      {
+        "role": "user",
+        "sender": "jd_aidkljfmctfy",
+        "timestamp": "2026-03-12 23:24:52",
+        "content": "小蛮腰恒温的"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:24:53",
+        "content": "咱家的机器能效是二级哈"
+      },
+      {
+        "role": "user",
+        "sender": "jd_aidkljfmctfy",
+        "timestamp": "2026-03-12 23:25:08",
+        "content": "百分之多少"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:25:16",
+        "content": "亲爱的，请您稍等我查询下马上为您回复~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小平",
+        "timestamp": "2026-03-12 23:26:49",
+        "content": "百分之85哈亲爱的"
+      }
+    ],
+    "start_time": "2026-03-12 23:24:27",
+    "end_time": "2026-03-12 23:26:49",
+    "is_transfer": true,
+    "transfer_reason": "时间关联",
+    "transfer_time": null,
+    "transfer_from": null,
+    "transfer_to": "session_0002_f6a9ddee",
+    "related_sessions": [
+      "session_0002_f6a9ddee"
+    ]
+  },
+  "error_info": {
+    "error": "评分结果不完整",
+    "retry_count": 3
+  }
+}

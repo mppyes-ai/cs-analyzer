@@ -1,0 +1,196 @@
+{
+  "analysis_time": "2026-04-25T08:15:05.946894",
+  "total_rounds": 5,
+  "failed_sessions": {
+    "session_0000_5b671094": {
+      "fail_count": 3,
+      "history": [
+        {
+          "round": 1,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 3,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0001_7cc68e76": {
+      "fail_count": 3,
+      "history": [
+        {
+          "round": 1,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 3,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0002_f6a9ddee": {
+      "fail_count": 3,
+      "history": [
+        {
+          "round": 1,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 3,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0004_bfd6501b": {
+      "fail_count": 1,
+      "history": [
+        {
+          "round": 1,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0023_b9b3be6e": {
+      "fail_count": 3,
+      "history": [
+        {
+          "round": 1,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 3,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0026_7eca689f": {
+      "fail_count": 2,
+      "history": [
+        {
+          "round": 3,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0027_4eda7634": {
+      "fail_count": 1,
+      "history": [
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0028_a7943191": {
+      "fail_count": 1,
+      "history": [
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0029_7b448953": {
+      "fail_count": 1,
+      "history": [
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0030_7b448953": {
+      "fail_count": 2,
+      "history": [
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        },
+        {
+          "round": 5,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0031_20c70762": {
+      "fail_count": 1,
+      "history": [
+        {
+          "round": 4,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0038_89e2e877": {
+      "fail_count": 1,
+      "history": [
+        {
+          "round": 5,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0039_28155809": {
+      "fail_count": 1,
+      "history": [
+        {
+          "round": 5,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    },
+    "session_0042_d5d7c6d1": {
+      "fail_count": 1,
+      "history": [
+        {
+          "round": 5,
+          "error": "评分结果不完整",
+          "retry_count": 3
+        }
+      ]
+    }
+  }
+}

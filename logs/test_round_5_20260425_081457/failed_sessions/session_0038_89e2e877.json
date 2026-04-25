@@ -1,0 +1,44 @@
+{
+  "session_id": "session_0038_89e2e877",
+  "test_round": 5,
+  "test_time": "20260425_081457",
+  "session_data": {
+    "session_id": "session_0038_89e2e877",
+    "user_id": "dancerprincess",
+    "staff_name": "林内林小朔",
+    "messages": [
+      {
+        "role": "user",
+        "sender": "dancerprincess",
+        "timestamp": "2026-03-12 22:59:34",
+        "content": "赠品发出给我单号哈"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小朔",
+        "timestamp": "2026-03-12 22:59:35",
+        "content": "欢迎莅临林内京东自营旗舰店\n【政府补贴优惠立减15%-点击领取】\n【本店热水器诸多型号活动火爆进行中】\n戳👉E16PN电热购后参与直播间抽半价优惠\n戳👉E19PN电热购后参与直播间抽半价优惠\n#E-s19今晚支付购大升数产品 【享 300 元基金】"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小朔",
+        "timestamp": "2026-03-12 22:59:46",
+        "content": "目前为您服务的是【燃热售前解答专员】，为更专业快速解决您的问题【马上为您转接专业售后专员】请留意窗口变化~"
+      }
+    ],
+    "start_time": "2026-03-12 22:59:34",
+    "end_time": "2026-03-12 22:59:46",
+    "is_transfer": true,
+    "transfer_reason": "售前转售后",
+    "transfer_time": "2026-03-12 22:59:46",
+    "transfer_from": null,
+    "transfer_to": "session_0037_a92c2105",
+    "related_sessions": [
+      "session_0037_a92c2105"
+    ]
+  },
+  "error_info": {
+    "error": "评分结果不完整",
+    "retry_count": 3
+  }
+}

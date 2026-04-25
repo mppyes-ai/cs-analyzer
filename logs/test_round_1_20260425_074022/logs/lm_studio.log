@@ -1,0 +1,1000 @@
+[2026-04-23 21:56:02.677] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: SahSW+EpASj+xOmdEq66kvNj
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:56:05.617] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: 87Xn47faPnfrmM7xURxfW6eq
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:56:07.513] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: +aD8c84JJlvo4B7QSQtXK/Sm
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:56:09.439] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: 9vJz2opMbHF5HBJt6Fwyh9DF
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:56:12.183] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: Iu382OSFr13Y/TNNQs/WflEg
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:56:14.150] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: LTK/C2KaLiNw+Qxc9o80B+Wr
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:56:16.054] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: JbYVRQNF+gYOZz6yljre+u2i
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:56:17.278] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: 2hb7vDyG/m6OekCxffz1xfNQ
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:56:18.866] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: P8seBomOS6RbRqcSRCmOpIbl
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:56:20.000] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: D/fD8Ddwn2oLZxsLGfeL8bGJ
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 21:57:19.102] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: T9MxvaR3MOH4dT7xHgafTr6g
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 22:59:41.658] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-23 22:59:41.662] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-23 22:59:41.663] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '4096':
+  Model: 658.63 MB
+  Context: 131.66 MB
+  Total: 790.30 MB
+[2026-04-23 22:59:41.663] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-23 22:59:41.663] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-23 22:59:57.446] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: hI1aIV25VxL6p0HrQZmW1KBy
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 23:04:15.843] [error] (node:63916) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 close listeners added to [Server]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
+(Use `LM Studio --trace-warnings ...` to show where the warning was created)
+[2026-04-23 23:12:10.118] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: cbGylAcWlyZqVaFS1d3AI/kr
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 23:32:20.340] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: 451LGdsUxKFM5L1ehE2H6tV3
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 23:32:28.712] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: 8WCIpVR2o9mjRumgTw6AHoVF
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 23:33:38.627] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: bl5CPJmXv+Tju61Elv+Rzn2S
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 23:39:07.141] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: LnVtg/McD6PLDyw6j8aP7FPL
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-23 23:39:12.927] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=markConversationLastUsedModelToBeInstanceReference] Error in RPC handler: Error: This model is not model with domain llm.
+    at _0x4ec823.<computed>.getInstanceBySpecifierOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:60513)
+    at async _0x1586cb.markConversationLastUsedModelToBeInstanceReference (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:262:2971)
+    at async Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:29226)
+[2026-04-23 23:43:16.338] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-23 23:43:16.338] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-23 23:43:16.339] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '4096':
+  Model: 658.63 MB
+  Context: 131.66 MB
+  Total: 790.30 MB
+[2026-04-23 23:43:16.339] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-23 23:43:16.340] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 08:14:41.666] [error] (node:63916) [DEP0147] DeprecationWarning: In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead
+[2026-04-24 08:14:41.951] [error] [LMSInternal][LMSAuthenticator][Client=plugin:builtin:lmstudio/default-prediction-loop-handler][Endpoint=predict] Error in channel handler: Error: Failed to parse input at pos 0: condskolertestertest donatedоз eyeconcon_supplyMU considered NEGLIGENCEing magnכה eksondau禳condocrates magicianens医院cond medicine NEGLIGENCEजens찰 Manhattan_exam Manhattancon quarantinecondMUNEY基础知识 NEGLIGENCEcondover NEGLIGENCE recommand开奖conditionally concerned|nullMU医学院 Librariesültüzençakol conventional Manhattan禳วย NEGLIGENCE� - caused by error without stack (Failed to parse input at pos 0: condskolertestertest donatedоз eyeconcon_supplyMU considered NEGLIGENCEing magnכה eksondau禳condocrates magicianens医院cond medicine NEGLIGENCEजens찰 Manhattan_exam Manhattancon quarantinecondMUNEY基础知识 NEGLIGENCEcondover NEGLIGENCE recommand开奖conditionally concerned|nullMU医学院 Librariesültüzençakol conventional Manhattan禳วย NEGLIGENCE�)
+    at _0x401233.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1570:151512)
+    at _0x2ca26e.subscriber (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:216:65087)
+    at _0x2ca26e.notifier (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1398:326245)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 08:14:41.953] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=sendMessage] Error in RPC handler: Error: Rehydrated error
+e input at pos 0: condskolertestertest donatedоз eyeconcon_supplyMU considered NEGLIGENCEing magnכה eksondau禳condocrates magicianens医院cond medicine NEGLIGENCEजens찰 Manhattan_exam Manhattancon quarantinecondMUNEY基础知识 NEGLIGENCEcondover NEGLIGENCE recommand开奖conditionally concerned|nullMU医学院 Librariesültüzençakol conventional Manhattan禳วย NEGLIGENCE�
+    at _0x401233.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1570:151512)
+    at _0x2ca26e.subscriber (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:496:1532)
+    at _0x2ca26e.notifier (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1398:326245)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+- Caused By: Error: Channel Error
+    at handle (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:629:855)
+- Caused By: Error: Failed to parse input at pos 0: condskolertestertest donatedоз eyeconcon_supplyMU considered NEGLIGENCEing magnכה eksondau禳condocrates magicianens医院cond medicine NEGLIGENCEजens찰 Manhattan_exam Manhattancon quarantinecondMUNEY基础知识 NEGLIGENCEcondover NEGLIGENCE recommand开奖conditionally concerned|nullMU医学院 Librariesültüzençakol conventional Manhattan禳วย NEGLIGENCE� - caused by error without stack (Failed to parse input at pos 0: condskolertestertest donatedоз eyeconcon_supplyMU considered NEGLIGENCEing magnכה eksondau禳condocrates magicianens医院cond medicine NEGLIGENCEजens찰 Manhattan_exam Manhattancon quarantinecondMUNEY基础知识 NEGLIGENCEcondover NEGLIGENCE recommand开奖conditionally concerned|nullMU医学院 Librariesültüzençakol conventional Manhattan禳วย NEGLIGENCE�)
+    at _0x401233.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1570:151512)
+    at _0x2ca26e.subscriber (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:216:65087)
+    at _0x2ca26e.notifier (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1398:326245)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 08:14:53.154] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 08:14:53.154] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 08:14:53.155] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '4092':
+  Model: 658.63 MB
+  Context: 131.55 MB
+  Total: 790.18 MB
+[2026-04-24 08:14:53.155] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 08:14:53.155] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 08:15:28.170] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: mnIkiE3BQADyECQlBU+Z9kPe
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:15:35.280] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: WevcxTw/X6LzRZ/zg5fAKago
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:16:10.864] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=predict] Error in channel handler: Error: Failed to parse input at pos 0:  recommendedcon only-Man极�ens - caused by error without stack (Failed to parse input at pos 0:  recommendedcon only-Man极�ens)
+    at _0x401233.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1570:151512)
+    at _0x2ca26e.subscriber (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:216:65087)
+    at _0x2ca26e.notifier (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1398:326245)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 08:16:11.280] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: oY9S2/bkKZLZbx/QB/sADOUC
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:18:02.280] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: F8BjJ7io+w2sn1otVMaZnFWB
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:18:05.037] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: 3QGknA1ANL/6dHEH1kWiMZTq
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:18:17.276] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: ofwx8vLEsnmz6w9RLATqFSBX
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:18:26.966] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: r4PYQvxYJRUElN7ytQqE2GW5
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:19:51.300] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: E6+P8S+G0+k++hPb053Sqb7f
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:22:17.201] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: ax6iDo3xtle69moCSdzrARsP
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:22:45.045] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: SYjqdINz5aWmrzWNyrnsz0pV
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:25:27.656] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: TgtG6TyDKQWH+Cr1Q9ZOslID
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:30:45.022] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: znIwFaAMWhWvljdcIVo3ZF7r
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 08:37:39.113] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=multiplexedOperationTimeConfigSchema] Error in signal handler: Error: Indexed model not found: mlx-community/Qwen3-Embedding-4B-4bit-DWQ
+    at _0x3c76f9.getOperationTimeConfigSchemaSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:4512)
+    at _0x4ec823.<computed>.getOperationTimeConfigSchemaSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:56459)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:90366)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1531:227
+[2026-04-24 08:37:39.113] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=multiplexedLoadTimeConfigSchema] Error in signal handler: Error: Indexed model not found: mlx-community/Qwen3-Embedding-4B-4bit-DWQ
+    at _0x3c76f9.getLoadTimeConfigSchemaSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:3568)
+    at _0x4ec823.<computed>.getLoadTimeConfigSchemaSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:55897)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:90165)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1531:227
+[2026-04-24 09:19:25.805] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=predict] Error in channel handler: Error: The model has crashed without additional information. (Exit code: null)
+    at _0x2a7c87.clientPortOnCloseErrorFactory (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:236:1582)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1481:7424
+    at _0x2ca26e.<anonymous> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1401:27146)
+    at _0x2ca26e.notifier (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1398:326245)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 09:29:16.996] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 09:29:16.997] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 09:29:16.999] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 09:29:16.999] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 09:29:16.999] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 09:29:17.000] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 09:29:17.000] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 09:29:17.000] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 09:52:31.407] [info]  Opening folder: /Users/jinlu/.lmstudio/server-logs
+[2026-04-24 11:47:20.415] [info]  [AppUpdater] Checking for updates... (current state: idle)
+[2026-04-24 11:47:20.419] [info]  AppUpdater state changed to checking-for-updates-active
+[2026-04-24 11:47:20.420] [info]  [AppUpdater] Fetching version info from https://versions-prod.lmstudio.ai/update/darwin/arm64/0.4.12
+[2026-04-24 11:47:21.465] [info]  [AppUpdater] Received version info response
+[2026-04-24 11:47:21.466] [info]  [AppUpdater] Current version: 0.4.12 (build: 1), new version: 0.4.12 (build: 1)
+[2026-04-24 11:47:21.466] [info]  No update available: 0.4.12 (build: 1) <= 0.4.12 (build: 1)
+[2026-04-24 11:47:21.467] [info]  AppUpdater state changed to idle
+[2026-04-24 11:50:20.041] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: 2k+FQ+m822+7K+qf+ulhc652
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 11:50:25.833] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: wS4kM62ShFdo94ED+kbpTr9w
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 11:50:35.526] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: /Q59zCnwOc574PTEICBsLiwp
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 11:50:44.765] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: jr57moeULMdJNybuU95VmfBn
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 11:50:47.643] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: LBE/bfXDOajDlXE6O/ldr285
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 12:17:53.763] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 12:17:53.764] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 12:17:53.764] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '4096':
+  Model: 22.73 GB
+  Context: 600.58 MB
+  Total: 23.33 GB
+[2026-04-24 12:17:53.765] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 12:17:53.765] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 12:17:54.180] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: nrqRKh9AsL11XW5s8oWOWA4B
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 12:19:22.832] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: tEX/HlJH8zbjgONGTX+RiKfj
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 12:20:09.433] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: pFkP9n8tJdwUU3ARN62rYzpY
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 12:20:40.540] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: r9BU+1v8N5mlv1OI1NuY4+5g
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 12:20:45.424] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: OP63hV+YX4W7B8rFmP/+xA/M
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 12:20:49.744] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: 7vjhMA3eo07vX83eqzsSjvQc
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 12:32:58.772] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=artifactDownloadResolutionSelectedDownloadOptionIndex] Error in writable signal handler: Error: Artifact download resolution task not found: nOCzfLgHGxK8tAOLc9NZJGTX
+    at _0x5d142f.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:792:7890)
+    at _0x283ad4.MultiplexedArtifactResolutionProvider.getArtifactDownloadResolutionSelectedDownloadOptionIndexWritableSignal (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:18328)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:612:81114)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1539:228
+[2026-04-24 12:34:45.239] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 12:34:45.239] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 12:34:45.240] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '262144':
+  Model: 22.73 GB
+  Context: 5.86 GB
+  Total: 28.59 GB
+[2026-04-24 12:34:45.240] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '262144'.
+[2026-04-24 12:34:45.240] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 12:34:45.240] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 12:35:25.126] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 12:35:25.126] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 12:35:25.126] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '262144':
+  Model: 22.73 GB
+  Context: 5.86 GB
+  Total: 28.59 GB
+[2026-04-24 12:35:25.127] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '262144'.
+[2026-04-24 12:35:25.127] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 12:35:25.127] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 12:44:22.085] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 12:44:22.085] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 12:44:22.086] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '262144':
+  Model: 22.73 GB
+  Context: 5.86 GB
+  Total: 28.59 GB
+[2026-04-24 12:44:22.086] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '262144'.
+[2026-04-24 12:44:22.086] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 12:44:22.086] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 12:44:34.917] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 12:44:34.917] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 12:44:34.918] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '262144':
+  Model: 22.73 GB
+  Context: 5.86 GB
+  Total: 28.59 GB
+[2026-04-24 12:44:34.918] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '262144'.
+[2026-04-24 12:44:34.918] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 12:44:34.918] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 22:53:08.424] [error] [SystemResourcesObserverProxyObject] System resources observer process exited unexpectedly (pid 63922, exitCode null).
+[2026-04-24 22:55:11.007] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.009] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.009] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.010] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.010] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.013] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.014] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.015] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.016] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.016] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.016] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.016] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.016] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.017] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.017] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.017] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.017] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.018] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.018] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.018] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.018] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:55:11.021] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 22:55:11.021] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 22:55:11.022] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '262144':
+  Model: 22.73 GB
+  Context: 5.86 GB
+  Total: 28.59 GB
+[2026-04-24 22:55:11.022] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '262144'.
+[2026-04-24 22:55:11.022] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 22:55:11.022] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 22:55:11.025] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:59:05.108] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 22:59:05.108] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 22:59:05.108] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '262144':
+  Model: 22.73 GB
+  Context: 5.86 GB
+  Total: 28.59 GB
+[2026-04-24 22:59:05.108] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '262144'.
+[2026-04-24 22:59:05.108] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 22:59:05.109] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 22:59:25.696] [error] [LMSInternal][LMSAuthenticator][Client=LM Studio][Endpoint=listLoaded] Error in RPC handler: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:59:25.698] [error] Error: RPC Error
+    at _0x347546.getModelV2 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:986:1849)
+    at _0x21dffe.<computed> (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1020:302)
+    at _0x61fcf2.handleChatCompletions (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:968:6753)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:1004:4372
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+    at _0x3849f6 (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458299)
+    at _0x3cf96a.<computed>.<computed> [as dispatch] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:458346)
+    at _0x58356d.<computed>.<computed> [as handle_request] (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:7:454907)
+- Caused By: Error: Model does not exist.
+    at _0x3c76f9.getModelOfDomainOrThrow (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:7028)
+    at _0x3c76f9.getModelInstanceInfoOfDomain (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:334:8362)
+    at _0x2f493f.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:291:6990)
+    at _0x27339f.<computed>.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:340:38366)
+    at _0x2b58b4.getModelInstanceInfo (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:473:42178)
+    at /Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10673
+    at Array.map (<anonymous>)
+    at Object.handler (/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js:477:10638)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-24 22:59:25.700] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 22:59:25.701] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 22:59:25.701] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '262144':
+  Model: 22.73 GB
+  Context: 5.86 GB
+  Total: 28.59 GB
+[2026-04-24 22:59:25.701] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '262144'.
+[2026-04-24 22:59:25.701] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 22:59:25.701] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 23:00:08.136] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 23:00:08.136] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 23:00:08.136] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '262144':
+  Model: 22.73 GB
+  Context: 5.86 GB
+  Total: 28.59 GB
+[2026-04-24 23:00:08.136] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '262144'.
+[2026-04-24 23:00:08.136] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 23:00:08.136] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 23:14:02.106] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 23:14:02.107] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 23:14:02.107] [error] [LM Studio] Model load size estimate with raw num offload layers 'max' and context length '262144':
+  Model: 22.73 GB
+  Context: 5.86 GB
+  Total: 28.59 GB
+[2026-04-24 23:14:02.107] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '262144'.
+[2026-04-24 23:14:02.107] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 23:14:02.108] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: max
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []
+[2026-04-24 23:19:30.607] [error] [LM Studio] GPU Configuration:
+  Strategy: evenly
+  Priority: []
+  Disabled GPUs: []
+  Limit weight offload to dedicated GPU Memory: OFF
+  Offload KV Cache to GPU: ON
+[2026-04-24 23:19:30.608] [error] [LM Studio] Live GPU memory info:
+No live GPU info available
+[2026-04-24 23:19:30.608] [error] [LM Studio] Model load size estimate with raw num offload layers '31' and context length '32768':
+  Model: 17.62 GB
+  Context: 920.10 MB
+  Total: 18.54 GB
+[2026-04-24 23:19:30.608] [error] [LM Studio] Not using full context length for VRAM overflow calculations due to single GPU setup. Instead, using '8192' as context length for the calculation. Original context length: '32768'.
+[2026-04-24 23:19:30.608] [error] [LM Studio] Strict GPU VRAM cap is OFF: GPU offload layers will not be checked for adjustment
+[2026-04-24 23:19:30.609] [error] [LM Studio] Resolved GPU config options:
+  Num Offload Layers: 31
+  Num CPU Expert Layers: 0
+  Main GPU: 0
+  Tensor Split: [0]
+  Disabled GPUs: []

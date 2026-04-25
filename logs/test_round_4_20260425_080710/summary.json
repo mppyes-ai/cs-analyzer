@@ -1,0 +1,59 @@
+{
+  "test_round": 4,
+  "test_time": "20260425_080710",
+  "total_tasks": 43,
+  "completed": 33,
+  "failed": 10,
+  "failed_sessions": [
+    {
+      "session_id": "session_0000_5b671094",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0001_7cc68e76",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0002_f6a9ddee",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0023_b9b3be6e",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0026_7eca689f",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0027_4eda7634",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0028_a7943191",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0029_7b448953",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0030_7b448953",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0031_20c70762",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    }
+  ]
+}

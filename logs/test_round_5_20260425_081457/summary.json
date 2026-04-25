@@ -1,0 +1,29 @@
+{
+  "test_round": 5,
+  "test_time": "20260425_081457",
+  "total_tasks": 43,
+  "completed": 39,
+  "failed": 4,
+  "failed_sessions": [
+    {
+      "session_id": "session_0030_7b448953",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0038_89e2e877",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0039_28155809",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    },
+    {
+      "session_id": "session_0042_d5d7c6d1",
+      "error": "评分结果不完整",
+      "retry_count": 3
+    }
+  ]
+}

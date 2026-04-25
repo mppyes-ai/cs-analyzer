@@ -1,0 +1,44 @@
+{
+  "session_id": "session_0002_f6a9ddee",
+  "test_round": 3,
+  "test_time": "20260425_075353",
+  "session_data": {
+    "session_id": "session_0002_f6a9ddee",
+    "user_id": "jd_aidkljfmctfy",
+    "staff_name": "林内林小盼",
+    "messages": [
+      {
+        "role": "user",
+        "sender": "jd_aidkljfmctfy",
+        "timestamp": "2026-03-12 23:27:08",
+        "content": "我看零冷水和恒温写的85%，小蛮腰没看到介绍"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小盼",
+        "timestamp": "2026-03-12 23:27:45",
+        "content": "https://dd-static.jd.com/ddimg/jfs/t1/401687/39/15015/16642/69b2db71F1ed39802/022f1df0d6bad8c0.jpg"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小盼",
+        "timestamp": "2026-03-12 23:27:47",
+        "content": "您看下哦"
+      }
+    ],
+    "start_time": "2026-03-12 23:27:08",
+    "end_time": "2026-03-12 23:27:47",
+    "is_transfer": true,
+    "transfer_reason": "时间关联",
+    "transfer_time": null,
+    "transfer_from": "session_0004_bfd6501b",
+    "transfer_to": null,
+    "related_sessions": [
+      "session_0004_bfd6501b"
+    ]
+  },
+  "error_info": {
+    "error": "评分结果不完整",
+    "retry_count": 3
+  }
+}

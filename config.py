@@ -34,7 +34,7 @@ LOCAL_LLM_CONFIG = {
     "enabled": LLM_MODE == "local",
     "base_url": os.getenv("LOCAL_MODEL_URL", "http://localhost:1234/v1"),
     "model": os.getenv("LOCAL_MODEL", "qwen3.6-35b-a3b"),
-    "temperature": float(os.getenv("LOCAL_TEMPERATURE", "0.1")),
+    "temperature": float(os.getenv("LOCAL_TEMPERATURE", "0.1")),  # 从 1 改为 0.1
     "max_tokens": int(os.getenv("LOCAL_MAX_TOKENS", "32000")),
     "timeout": int(os.getenv("LOCAL_TIMEOUT", "1200")),  # 本地模型可能需要更长时间
     "api_key": os.getenv("LOCAL_API_KEY", "not-needed"),  # LM Studio 通常不需要 API Key

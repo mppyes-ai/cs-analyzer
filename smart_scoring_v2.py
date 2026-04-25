@@ -63,7 +63,7 @@ class ScoringError(Exception):
 
 # ========== 评分Prompt模板 ==========
 
-SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，负责对客服会话进行4维度质量评分。
+SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，负责对客服会话进行4维度质量评分。严格按JSON格式输出评分结果。输出必须是合法JSON，不包含任何解释性文字。
 
 ## 评分维度
 1. **专业性 (Professionalism)** - 产品知识准确性
@@ -162,7 +162,7 @@ SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，负责对
 直接输出JSON，不要Markdown代码块。"""
 
 
-BATCH_SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，请对以下{count}个客服会话分别进行4维度质量评分。
+BATCH_SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，请对以下{count}个客服会话分别进行4维度质量评分。严格按JSON格式输出评分结果。输出必须是合法JSON数组，不包含任何解释性文字。
 
 ## 评分维度（每个会话单独评分）
 1. **专业性** - 产品知识准确性
@@ -178,18 +178,19 @@ BATCH_SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，请
 
 {sessions_content}
 
-## 输出格式
+## 输出格式（极其重要）
 
-请严格返回JSON数组，数组长度必须为{count}，每个元素对应一个会话的评分结果：
+你必须严格返回JSON数组，数组长度必须严格等于{count}。每个数组元素对应一个会话的评分结果。
 
+### 正确格式示例（3个会话）：
 ```json
 [
   {{
     "session_analysis": {{
-      "theme": "会话主题（20-30字）",
-      "user_intent": "用户意图",
-      "user_sentiment": "用户情绪",
-      "key_moments": ["关键轮次1"]
+      "theme": "会话1主题",
+      "user_intent": "意图1",
+      "user_sentiment": "情绪1",
+      "key_moments": ["关键1"]
     }},
     "dimension_scores": {{
       "professionalism": {{"score": 3, "reasoning": "...", "evidence": [], "referenced_rules": []}},
@@ -205,15 +206,64 @@ BATCH_SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，请
       "suggestions": ["建议1"]
     }}
   }},
-  ... // 共{count}个元素
+  {{
+    "session_analysis": {{
+      "theme": "会话2主题",
+      "user_intent": "意图2",
+      "user_sentiment": "情绪2",
+      "key_moments": ["关键2"]
+    }},
+    "dimension_scores": {{
+      "professionalism": {{"score": 4, "reasoning": "...", "evidence": [], "referenced_rules": []}},
+      "standardization": {{"score": 4, "reasoning": "...", "evidence": [], "referenced_rules": []}},
+      "policy_execution": {{"score": 3, "reasoning": "...", "evidence": [], "referenced_rules": []}},
+      "conversion": {{"score": 4, "reasoning": "...", "evidence": [], "referenced_rules": []}}
+    }},
+    "summary": {{
+      "total_score": 15,
+      "risk_level": "正常",
+      "strengths": ["亮点2"],
+      "issues": ["问题2"],
+      "suggestions": ["建议2"]
+    }}
+  }},
+  {{
+    "session_analysis": {{
+      "theme": "会话3主题",
+      "user_intent": "意图3",
+      "user_sentiment": "情绪3",
+      "key_moments": ["关键3"]
+    }},
+    "dimension_scores": {{
+      "professionalism": {{"score": 2, "reasoning": "...", "evidence": [], "referenced_rules": []}},
+      "standardization": {{"score": 2, "reasoning": "...", "evidence": [], "referenced_rules": []}},
+      "policy_execution": {{"score": 3, "reasoning": "...", "evidence": [], "referenced_rules": []}},
+      "conversion": {{"score": 2, "reasoning": "...", "evidence": [], "referenced_rules": []}}
+    }},
+    "summary": {{
+      "total_score": 9,
+      "risk_level": "中风险",
+      "strengths": ["亮点3"],
+      "issues": ["问题3"],
+      "suggestions": ["建议3"]
+    }}
+  }}
 ]
 ```
 
-注意：
-1. 必须返回JSON数组，数组长度严格等于{count}
-2. 数组元素顺序与输入会话顺序一致
-3. 每个会话独立评分，互不影响
-4. 直接输出JSON数组，不要Markdown代码块。"""
+### 格式要求（必须严格遵守）：
+1. **必须返回JSON数组** - 以 `[` 开头，`]` 结尾
+2. **数组长度必须等于{count}** - 当前有{count}个会话，必须返回{count}个评分结果
+3. **每个元素是独立对象** - 每个会话一个对象，包含完整的session_analysis、dimension_scores、summary
+4. **严禁合并结果** - 不要把多个会话的评分合并成1个对象
+5. **数组元素顺序** - 与输入会话顺序一致
+6. **直接输出JSON数组** - 不要Markdown代码块，不要解释性文字
+
+### 常见错误（会导致评分失败）：
+❌ 错误：返回单个对象 `{{...}}` 而不是数组 `[{{...}}, {{...}}]`
+❌ 错误：把多个会话合并成1个对象
+❌ 错误：数组长度不等于{count}
+❌ 错误：缺少session_analysis或dimension_scores字段"""
 
 
 # ========== 核心评分类 ==========
@@ -810,7 +860,7 @@ class SmartScoringEngine:
                         {"role": "user", "content": prompt}
                     ],
                     temperature=1,
-                    max_tokens=int(os.getenv('KIMI_MAX_TOKENS', 16000))
+                    max_tokens=int(os.getenv('KIMI_MAX_TOKENS', 16000)),
                 )
             
             elapsed = (datetime.now() - start_time).total_seconds()
@@ -889,12 +939,30 @@ class SmartScoringEngine:
         
         try:
             results = json.loads(cleaned)
-            if isinstance(results, list) and len(results) == expected_count:
-                return results
-            elif isinstance(results, dict):
-                if 'results' in results:
-                    return results['results']
+            
+            if isinstance(results, dict):
+                # 【修复】模型返回单个对象而不是数组
+                # 检查是否是合并的多个会话结果（包含多个session_analysis）
+                if 'session_analysis' in results and expected_count > 1:
+                    # 尝试拆分为多个结果
+                    print(f"   [DEBUG] Model returned dict, attempting to split into {expected_count} results")
+                    # 如果是合并结果，尝试提取各个维度评分
+                    if 'dimension_scores' in results:
+                        # 返回单个结果，但标记为需要复制
+                        return [results] + [{} for _ in range(expected_count - 1)]
+                
+                # 单个会话结果，包装为数组
+                print(f"   [DEBUG] Model returned dict instead of list, wrapping as single-item list")
                 return [results] + [{} for _ in range(expected_count - 1)]
+            elif isinstance(results, list):
+                if len(results) == expected_count:
+                    return results
+                elif len(results) < expected_count:
+                    # 补充空结果
+                    return results + [{} for _ in range(expected_count - len(results))]
+                else:
+                    # 结果过多，截取前expected_count个
+                    return results[:expected_count]
         except json.JSONDecodeError:
             pass
         

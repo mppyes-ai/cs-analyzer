@@ -1,0 +1,48 @@
+{
+  "session_id": "session_0000_5b671094",
+  "test_round": 1,
+  "test_time": "20260425_074022",
+  "session_data": {
+    "session_id": "session_0000_5b671094",
+    "user_id": "jd_ljtaxglwvcxe",
+    "staff_name": "",
+    "messages": [
+      {
+        "role": "user",
+        "sender": "jd_ljtaxglwvcxe",
+        "timestamp": "2026-03-12 23:28:56",
+        "content": "我现在不送货可以吗？"
+      },
+      {
+        "role": "staff",
+        "sender": "jimi_vender_1000007262",
+        "timestamp": "2026-03-12 23:28:57",
+        "content": "小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“（人工服务)\",我将马上为您转接哦~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_ljtaxglwvcxe",
+        "timestamp": "2026-03-12 23:30:30",
+        "content": "人工客服"
+      },
+      {
+        "role": "staff",
+        "sender": "jimi_vender_1000007262",
+        "timestamp": "2026-03-12 23:30:31",
+        "content": "您的问题【智能客服】暂时无法帮助您处理，请您稍等我帮您呼叫客服小姐姐为您进一步处理哦~~~"
+      }
+    ],
+    "start_time": "2026-03-12 23:28:56",
+    "end_time": "2026-03-12 23:30:31",
+    "is_transfer": true,
+    "transfer_reason": "售前转售后",
+    "transfer_time": "2026-03-12 23:28:57",
+    "transfer_from": null,
+    "transfer_to": null,
+    "related_sessions": []
+  },
+  "error_info": {
+    "error": "评分结果不完整",
+    "retry_count": 3
+  }
+}

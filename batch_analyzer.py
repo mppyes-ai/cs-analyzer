@@ -376,28 +376,24 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
         # 1. 重置超时任务（Worker崩溃恢复）
         self.reset_stale_tasks()
         
-        # 1. 解析日志
+        # 2. 解析日志
         print(f"📂 解析日志: {log_file}")
         sessions = parse_log_file(log_file)
         print(f"✅ 解析完成: {len(sessions)} 通会话")
         
-        # 2. 检查/启动Worker
-        if not self.check_worker_running():
-            print("🚀 启动Worker...")
-            if not self.start_worker():
-                return "❌ Worker启动失败，无法继续分析。请检查依赖安装。"
-            time.sleep(2)  # 等待Worker启动
-        
-        # 3. 生成批次ID并提交任务（前台模式也需要batch_id）
+        # 3. 生成批次ID并提交任务（先提交任务，再启动Worker）
         import uuid
         batch_id = str(uuid.uuid4())[:8]
         print("📤 提交任务到队列...")
         result = self.submit_sessions(sessions, batch_id=batch_id)
         print(f"✅ 提交完成: {result['submitted']} 个新任务, {result['skipped']} 个已存在")
         
-        # 4. 前台模式不启动监控代理（前台自己管理进度显示）
-        # 后台模式才需要监控代理推送进度
-        pass
+        # 4. 检查/启动Worker（任务提交后再启动，避免Worker因队列为空立即退出）
+        if not self.check_worker_running():
+            print("🚀 启动Worker...")
+            if not self.start_worker():
+                return "❌ Worker启动失败，无法继续分析。请检查依赖安装。"
+            time.sleep(3)  # 等待Worker初始化
         
         # 5. 轮询等待（使用当前批次队列统计）
         print("⏳ 等待分析完成...")

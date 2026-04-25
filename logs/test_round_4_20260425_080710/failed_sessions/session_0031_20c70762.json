@@ -1,0 +1,228 @@
+{
+  "session_id": "session_0031_20c70762",
+  "test_round": 4,
+  "test_time": "20260425_080710",
+  "session_data": {
+    "session_id": "session_0031_20c70762",
+    "user_id": "jd_60fbb1da86963",
+    "staff_name": "林内林小聪",
+    "messages": [
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 22:54:16",
+        "content": "排烟管那些有送吗"
+      },
+      {
+        "role": "staff",
+        "sender": "jimi_vender_1000007262",
+        "timestamp": "2026-03-12 22:54:17",
+        "content": "~ 亲爱的，您购买此款本店燃气热水器后，我们厂家将会赠送您：\n1）：波纹管（水管）两根；长是15厘米。\n2）：排烟管两根；一根直管，一根弯管。"
+      },
+      {
+        "role": "staff",
+        "sender": "jimi_vender_1000007262",
+        "timestamp": "2026-03-12 22:54:18",
+        "content": "您需要自己在准备一下：\n1）水阀门，气阀门，燃气管。\n2）如赠送的波纹管或排烟管实际安装不够用，您到时候在师傅哪里购买即可。"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:04:52",
+        "content": "送的电饭煲多少升的"
+      },
+      {
+        "role": "staff",
+        "sender": "jimi_vender_1000007262",
+        "timestamp": "2026-03-12 23:04:53",
+        "content": "~ 例如C系列采暖炉\n18KW是10L\n24KW是13.5L\n28KW是15.6L\n35KW是19.5L"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:05:13",
+        "content": "送的"
+      },
+      {
+        "role": "staff",
+        "sender": "jimi_vender_1000007262",
+        "timestamp": "2026-03-12 23:05:15",
+        "content": "小主，目前是【智能机器人】为您服务。\n如需要人工服务请发送“（人工服务)\",我将马上为您转接哦~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:05:41",
+        "content": "人工"
+      },
+      {
+        "role": "staff",
+        "sender": "jimi_vender_1000007262",
+        "timestamp": "2026-03-12 23:05:41",
+        "content": "您的问题【智能客服】暂时无法帮助您处理，请您稍等我帮您呼叫客服小姐姐为您进一步处理哦~~~"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:05:57",
+        "content": "这\n引用：送的电饭煲多少升的"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:06:09",
+        "content": "https://item.jd.com/100039706989.html?sdx=ehi-lLxFu5iE6JnIYYBVi8YmuTiYRHtmwmtNsa5CY9uJPe_RLJpf5X7irE7qUmeQ&utm_source=kong&utm_medium=cpc&utm_campaign=t_1001464481_tj&sdx=ehi-lLxFuZiE6JnIYYBVi8YmuTiYRHtmwmtNsa5CY9uJPe_RLJpf5X7irE7gVGST&position=customer"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:06:19",
+        "content": "对"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:06:19",
+        "content": "亲爱哒，您看的这款【 16gd32       】型号，主图写到的限时限量赠送【   电饭煲      】活动，客服给您争取到权限，您再在30分钟内付款即可所锁定名额，您安装晒单后直接享受哦~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:06:25",
+        "content": "电饭煲3升的哦"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:06:31",
+        "content": "小小的吗"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:06:39",
+        "content": "https://dd-static.jd.com/ddimg/jfs/t1/402844/10/6828/3551/69b2d67fF618de70d/022f0db03ddfd3f1.jpg"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:07:16",
+        "content": "咋样的"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:07:26",
+        "content": "请您看下这是膳魔师电饭煲的图片呢~"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:07:27",
+        "content": "https://dd-static.jd.com/ddimg/jfs/t1/401095/20/19869/23568/69b2d6afF05be9984/022f30d2da179c74.jpg"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:07:41",
+        "content": "https://dd-static.jd.com/ddimg/jfs/t1/403027/18/6813/2968/69b2d6bdF361267ce/022f08c03414ed07.jpg"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:08:23",
+        "content": "好的，那我下了"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:08:29",
+        "content": "保价吗"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:08:34",
+        "content": "期待您的订单哦"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:08:37",
+        "content": "本店目前支持30天保价，自您签收日的次日算起30天内如订单产生差价均可通过平台“自助保价”。"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:09:36",
+        "content": "好的"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:09:48",
+        "content": "祝您生活愉快哦"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:10:26",
+        "content": "安装是负责固定吗"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:10:34",
+        "content": "本店热水器安装费用说明：\n购机首次安装产生的【上门费】和【人工费】均免费，师傅安装调试好后离场。\n=\n【机器配送辅材清单如下图所示】\n\n声明：\n1）安装前需业主预留好排烟孔，师傅安装范畴并不包含墙体排烟打孔。\n2）机器本身会附送辅材，如实际安装时附送辅材不够用，需自费购买。"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:10:35",
+        "content": "https://dd-static.jd.com/ddimg/jfs/t1/402189/32/11714/163170/69b27663F7aac84f0/022f3482b2dd1902.png"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:10:35",
+        "content": "我燃气还没通"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:10:46",
+        "content": "建议先通气好后在预约师傅安装哦"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:11:00",
+        "content": "好，那就先不安装"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:11:02",
+        "content": "购机首次安装产生的【上门费】和【人工费】均免费，这样师傅安装调试好后离场。"
+      },
+      {
+        "role": "user",
+        "sender": "jd_60fbb1da86963",
+        "timestamp": "2026-03-12 23:11:07",
+        "content": "等后面需要再联系？"
+      },
+      {
+        "role": "staff",
+        "sender": "林内林小聪",
+        "timestamp": "2026-03-12 23:11:30",
+        "content": "好哒小主建议先通气好哦 ，有需要欢迎随时联系咨询，很乐意为您效劳"
+      }
+    ],
+    "start_time": "2026-03-12 22:54:16",
+    "end_time": "2026-03-12 23:11:30"
+  },
+  "error_info": {
+    "error": "评分结果不完整",
+    "retry_count": 3
+  }
+}
