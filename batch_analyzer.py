@@ -448,31 +448,31 @@ python3 -m pip install python-dotenv openai pandas sentence-transformers httpx s
         # 1. 重置超时任务（Worker崩溃恢复）
         self.reset_stale_tasks()
         
-        # 1. 解析日志
+        # 2. 解析日志
         sessions = parse_log_file(log_file)
         total = len(sessions)
         
-        # 2. 检查/启动Worker
+        # 3. 生成批次ID并提交任务（先提交任务，再启动Worker）
+        import uuid
+        batch_id = str(uuid.uuid4())[:8]
+        result = self.submit_sessions(sessions, batch_id=batch_id)
+        
+        # 4. 检查/启动Worker（任务提交后再启动，避免Worker因队列为空立即退出）
         worker_started = False
         if not self.check_worker_running():
             if not self.start_worker():
                 return "❌ Worker启动失败，无法继续分析。请检查依赖安装。"
             worker_started = True
-            time.sleep(2)
+            time.sleep(5)  # 等待Worker初始化并获取任务
         
-        # 3. 生成批次ID并提交任务
-        import uuid
-        batch_id = str(uuid.uuid4())[:8]
-        result = self.submit_sessions(sessions, batch_id=batch_id)
-        
-        # 4. 启动子代理（后台监控，传递batch_id）
+        # 5. 启动子代理（后台监控，传递batch_id）
         self.spawn_monitor_agent(
             total_tasks=result['submitted'],
             log_file=log_file,
             batch_id=batch_id
         )
         
-        # 5. 立即返回（后台模式：只返回启动状态，由monitor自动推送进度和报告）
+        # 6. 立即返回（后台模式：只返回启动状态，由monitor自动推送进度和报告）
         return f"""📊 CS-Analyzer 批量分析已启动（后台模式）
 
 ├─ 日志文件: {Path(log_file).name}

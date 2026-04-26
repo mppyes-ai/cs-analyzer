@@ -109,7 +109,7 @@ def _fetch_failed_tasks_for_retry(max_retries: int = 3) -> Dict[str, List[Dict]]
     
     # 【Opus修复】直接查询 failed 任务，不等待延迟时间
     cursor.execute("""
-        SELECT task_id, session_id, session_data, retry_count
+        SELECT task_id, session_id, session_data, scene, retry_count, error
         FROM analysis_tasks
         WHERE status = 'failed' AND retry_count < ?
         ORDER BY retry_count ASC, created_at ASC
@@ -134,7 +134,7 @@ def _fetch_failed_tasks_for_retry(max_retries: int = 3) -> Dict[str, List[Dict]]
     
     # 按 user_id 分组
     groups = defaultdict(list)
-    for task_id, session_id, session_data_json, retry_count in rows:
+    for task_id, session_id, session_data_json, scene, retry_count, error in rows:
         try:
             session_data = json.loads(session_data_json) if session_data_json else {}
         except Exception:
@@ -144,7 +144,9 @@ def _fetch_failed_tasks_for_retry(max_retries: int = 3) -> Dict[str, List[Dict]]
             'task_id': task_id,
             'session_id': session_id,
             'session_data': session_data,
-            'retry_count': retry_count
+            'scene': scene,
+            'retry_count': retry_count,
+            'error': error or ''
         })
     
     return dict(groups)

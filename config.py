@@ -8,7 +8,7 @@
 
 环境变量覆盖（生产环境推荐）:
     export LLM_MODE=local  # 或 cloud
-    export LOCAL_MODEL_URL=http://localhost:1234/v1
+    export LOCAL_MODEL_URL=http://localhost:8000/v1
     export MOONSHOT_API_KEY=your_key_here
 """
 
@@ -29,15 +29,15 @@ LOGS_DIR.mkdir(exist_ok=True)
 # 支持两种模式: "cloud" (云端) 或 "local" (本地)
 LLM_MODE = os.getenv("LLM_MODE", "cloud").lower()
 
-# ========== 本地模型配置 (LM Studio) ==========
+# ========== 本地模型配置 (oMLX) ==========
 LOCAL_LLM_CONFIG = {
     "enabled": LLM_MODE == "local",
-    "base_url": os.getenv("LOCAL_MODEL_URL", "http://localhost:1234/v1"),
-    "model": os.getenv("LOCAL_MODEL", "qwen3.6-35b-a3b"),
-    "temperature": float(os.getenv("LOCAL_TEMPERATURE", "0.1")),  # 从 1 改为 0.1
+    "base_url": os.getenv("LOCAL_MODEL_URL", "http://localhost:8000/v1"),
+    "model": os.getenv("LOCAL_MODEL", "Qwen3.6-35B-A3B-4bit"),
+    "temperature": float(os.getenv("LOCAL_TEMPERATURE", "0.1")),
     "max_tokens": int(os.getenv("LOCAL_MAX_TOKENS", "32000")),
-    "timeout": int(os.getenv("LOCAL_TIMEOUT", "1200")),  # 本地模型可能需要更长时间
-    "api_key": os.getenv("LOCAL_API_KEY", "not-needed"),  # LM Studio 通常不需要 API Key
+    "timeout": int(os.getenv("LOCAL_TIMEOUT", "1200")),
+    "api_key": os.getenv("LOCAL_API_KEY", "1234567890"),
 }
 
 # ========== 云端模型配置 (Moonshot) ==========
@@ -94,18 +94,18 @@ def get_llm_config():
 # 向后兼容的LLM_CONFIG
 LLM_CONFIG = get_llm_config()
 
-# ========== Ollama 配置 (已迁移到 LM Studio) ==========
-# 注意：所有本地模型现已统一使用 LM Studio，不再使用 Ollama
+# ========== Ollama 配置 (已迁移到 oMLX) ==========
+# 注意：所有本地模型现已统一使用 oMLX，不再使用 Ollama 或 LM Studio
 OLLAMA_CONFIG = {
-    "model": os.getenv("OLLAMA_MODEL", "qwen2.5-7b"),  # 默认使用 LM Studio 的 qwen2.5-7b
-    "url": os.getenv("OLLAMA_URL", "http://localhost:1234/v1"),  # LM Studio API 地址
+    "model": os.getenv("OLLAMA_MODEL", "Qwen2.5-7B-Instruct-1M-8bit"),  # 默认使用 oMLX 的 Qwen2.5-7B
+    "url": os.getenv("OLLAMA_URL", "http://localhost:8000/v1"),  # oMLX API 地址
     "timeout": int(os.getenv("OLLAMA_TIMEOUT", "30")),
     "max_retries": int(os.getenv("OLLAMA_MAX_RETRIES", "3")),
 }
 
 # ========== 模型版本配置 ==========
 MODEL_CONFIG = {
-    "intent_classifier": OLLAMA_CONFIG["model"],  # 意图分类使用 LM Studio 的 qwen2.5-7b
+    "intent_classifier": OLLAMA_CONFIG["model"],  # 意图分类使用 oMLX 的 Qwen2.5-7B
     "scoring_engine": LLM_CONFIG["scoring_model"],   # 评分引擎使用配置的LLM
     "rule_extractor": LLM_CONFIG["scoring_model"],   # 规则提取使用配置的LLM
 }
@@ -164,18 +164,18 @@ def validate_config():
         if not CLOUD_LLM_CONFIG["api_key"]:
             errors.append("Moonshot API Key 未设置")
     
-    # 2. 检查 Ollama 服务 (已迁移到 LM Studio)
+    # 2. 检查 oMLX 服务
     try:
         import requests
         r = requests.get(f"{OLLAMA_CONFIG['url']}/models", timeout=5)
         if r.status_code == 200:
             models = [m['id'] for m in r.json().get('data', [])]
             if OLLAMA_CONFIG['model'] not in models:
-                errors.append(f"LM Studio 模型未找到: {OLLAMA_CONFIG['model']}")
+                errors.append(f"oMLX 模型未找到: {OLLAMA_CONFIG['model']}")
         else:
-            errors.append(f"LM Studio 服务异常: HTTP {r.status_code}")
+            errors.append(f"oMLX 服务异常: HTTP {r.status_code}")
     except Exception as e:
-        errors.append(f"LM Studio 连接失败: {e}")
+        errors.append(f"oMLX 连接失败: {e}")
     
     # 3. 检查数据库目录
     if not DATA_DIR.exists():
@@ -191,7 +191,7 @@ def print_config():
     print("=" * 60)
     print(f"\n【LLM 模式】")
     print(f"  当前模式: {LLM_MODE}")
-    print(f"\n【本地模型 (LM Studio)】")
+    print(f"\n【本地模型 (oMLX)】")
     print(f"  启用: {LOCAL_LLM_CONFIG['enabled']}")
     print(f"  模型: {LOCAL_LLM_CONFIG['model']}")
     print(f"  URL: {LOCAL_LLM_CONFIG['base_url']}")
@@ -201,7 +201,7 @@ def print_config():
     print(f"  模型: {CLOUD_LLM_CONFIG['model']}")
     print(f"  URL: {CLOUD_LLM_CONFIG['base_url']}")
     print(f"  API Key: {'已设置' if CLOUD_LLM_CONFIG['api_key'] else '未设置'}")
-    print(f"\n【LM Studio (原Ollama)】")
+    print(f"\n【oMLX (原Ollama/LM Studio)】")
     print(f"  模型: {OLLAMA_CONFIG['model']}")
     print(f"  URL: {OLLAMA_CONFIG['url']}")
     print(f"\n【路径】")

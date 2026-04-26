@@ -130,6 +130,61 @@ import json
 # 所有配置常量、工具函数、全局变量已通过 `import worker_config as cfg` 共享
 # 详见 worker_config.py
 
+STRUCTURAL_RETRY_HINTS = (
+    '评分结果不完整',
+    'JSON_DECODE_FAILED',
+    'DICT_INSTEAD_OF_LIST',
+    'ARRAY_LENGTH_MISMATCH',
+    'BATCH_RECOVERED_SINGLE_RESULT',
+    'UNEXPECTED_FORMAT',
+    'JSON解析失败',
+)
+
+
+def _is_structural_retry_error(error_message: str) -> bool:
+    """识别应直接降级为单通的结构性失败"""
+    if not error_message:
+        return False
+    return any(hint in error_message for hint in STRUCTURAL_RETRY_HINTS)
+
+
+async def _smart_retry_failed_tasks(failed_tasks: List[Dict]) -> List[Dict]:
+    """按失败类型拆分重试策略，避免结构性错误重复走批量路径"""
+    structural_tasks = []
+    batch_tasks = []
+
+    for task in failed_tasks:
+        last_error = task.get('error', '') or ''
+        if _is_structural_retry_error(last_error):
+            structural_tasks.append(task)
+        else:
+            batch_tasks.append(task)
+
+    results = []
+
+    if structural_tasks:
+        print(f"   🔄 {len(structural_tasks)} 个结构性失败任务 → 单通并发重试")
+        single_results = await asyncio.gather(
+            *[_retry_single_task(task) for task in structural_tasks],
+            return_exceptions=True
+        )
+        for task, single_result in zip(structural_tasks, single_results):
+            if isinstance(single_result, Exception):
+                error_msg = f"单通重试异常: {single_result}"
+                fail_task(task['task_id'], error_msg)
+                results.append({'error': error_msg})
+            elif single_result is None:
+                results.append({'error': task.get('error', '单通重试失败')})
+            else:
+                results.append(single_result)
+
+    if batch_tasks:
+        print(f"   🔄 {len(batch_tasks)} 个非结构性失败任务 → 批量3通重试")
+        batch_results = await _retry_tasks_batch(batch_tasks, batch_size=3)
+        results.extend(batch_results)
+
+    return results
+
 def acquire_lock():
     """获取单例锁，防止多个 worker 同时运行"""
     if os.path.exists(cfg.PID_FILE):
@@ -192,8 +247,8 @@ def init_engines():
     print(f"   LLM模式: {llm_mode}")
     
     if llm_mode == "local":
-        # 本地模式 (LM Studio)
-        api_key = LLM_CONFIG.get("api_key", "not-needed")
+        # 本地模式 (oMLX)
+        api_key = LLM_CONFIG.get("api_key", "1234567890")
         base_url = LLM_CONFIG["base_url"]
         model = LLM_CONFIG["model"]
         print(f"   本地模型: {model}")
@@ -509,8 +564,7 @@ async def run_async_batch_worker(max_groups: int = 4, max_batch_size: int = 150,
                     all_failed_tasks = [t for tasks in failed_groups.values() for t in tasks]
                     print(f"🔄 发现 {len(all_failed_tasks)} 个失败任务，并发重试...")
                     
-                    # 【P2修复】改为批量重试（3-5通/批），而非单个重试
-                    retry_results = await _retry_tasks_batch(all_failed_tasks, batch_size=5)
+                    retry_results = await _smart_retry_failed_tasks(all_failed_tasks)
                     
                     # 统计成功数
                     successful_retries = sum(1 for r in retry_results if r and isinstance(r, dict) and 'error' not in r)

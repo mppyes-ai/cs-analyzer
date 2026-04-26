@@ -26,6 +26,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from knowledge_base_v2 import (
     get_approved_rules, search_rules_by_vector, generate_combined_text
 )
+from config import LLM_CONFIG
 
 # 导入本地意图分类器
 try:
@@ -265,6 +266,39 @@ BATCH_SCORING_PROMPT_TEMPLATE = """你是一位专业的客服质检专家，请
 ❌ 错误：数组长度不等于{count}
 ❌ 错误：缺少session_analysis或dimension_scores字段"""
 
+GENERIC_RULES_FALLBACK = """（当前知识库没有可用的已审批专项规则，请严格按以下通用标准评判）
+
+1. 专业性
+- 回答是否准确、直接、没有事实性错误
+- 面对安装/规格/售后问题时，是否给出清晰可执行的信息
+
+2. 标准化
+- 是否有基本礼貌与服务意识
+- 是否围绕用户问题作答，避免答非所问或机械重复
+
+3. 政策执行
+- 涉及活动、发货、安装、售后时，是否避免编造政策
+- 信息不确定时应明确说明，而不是主观臆断
+
+4. 转化能力
+- 是否主动澄清需求、补充关键信息
+- 在不误导用户的前提下推进成交或下一步动作
+
+如果会话很短、包含链接、或信息不足，也必须输出结构完整的JSON；证据数组和建议数组可以为空，但不能缺字段。"""
+
+SCENE_ALIASES = {
+    "售前": "售前阶段",
+    "售前咨询": "售前阶段",
+    "活动咨询": "售前阶段",
+    "售中": "售中阶段",
+    "售后": "售后阶段",
+    "安装咨询": "售后阶段",
+    "售后维修": "售后阶段",
+    "客诉": "客诉处理",
+    "投诉处理": "客诉处理",
+    "其他": "其他",
+}
+
 
 # ========== 核心评分类 ==========
 
@@ -343,7 +377,7 @@ class SmartScoringEngine:
         lines = []
         for m in messages:
             role = m.get('role', 'unknown')
-            content = m.get('content', '').strip()
+            content = self._sanitize_prompt_content(m.get('content', ''))
             if content:
                 if role in ('user', 'customer'):
                     lines.append(f"[用户] {content}")
@@ -352,6 +386,24 @@ class SmartScoringEngine:
                 else:
                     lines.append(f"[{role}] {content}")
         return '\n'.join(lines)
+
+    def _sanitize_prompt_content(self, content: str) -> str:
+        """清理提示词中的高噪声内容，降低链接/媒体文本对本地模型的干扰"""
+        if not content:
+            return ""
+
+        text = content.strip()
+        text = re.sub(r'https?://\S+', '[URL]', text)
+        text = re.sub(r'www\.\S+', '[URL]', text)
+        text = re.sub(r'\s+', ' ', text)
+        return text
+
+    def _normalize_scene_name(self, scene: Optional[str]) -> str:
+        """统一场景命名，避免不同入口的场景值漂移"""
+        if not scene:
+            return "其他"
+        normalized = SCENE_ALIASES.get(scene, scene)
+        return normalized.strip() if isinstance(normalized, str) else "其他"
     
     def _analyze_session_keyword_fallback(self, messages: List[Dict]) -> Dict:
         """关键词规则匹配（回退方案）
@@ -380,6 +432,7 @@ class SmartScoringEngine:
             scene_scores[scene] = score
         
         detected_scene = max(scene_scores, key=scene_scores.get) if max(scene_scores.values()) > 0 else "其他"
+        detected_scene = self._normalize_scene_name(detected_scene)
         
         # 情绪识别
         negative_words = ["骗子", "垃圾", "投诉", "退钱", "欺诈", "糊弄", "愤怒", "生气"]
@@ -434,12 +487,14 @@ class SmartScoringEngine:
             相关规则列表
         """
         # 优先使用混合检索
+        normalized_scene = self._normalize_scene_name(session_analysis.get('scene'))
+
         if HYBRID_RETRIEVER_AVAILABLE:
             try:
                 retriever = HybridRuleRetriever(embedding_model=self.embedding_model)
                 rules = retriever.search(
                     query=messages_text,
-                    scene_filter=session_analysis.get('scene'),
+                    scene_filter=normalized_scene,
                     top_k=5,
                     use_hybrid=True
                 )
@@ -454,7 +509,7 @@ class SmartScoringEngine:
         
         # 1. 基于元数据过滤获取规则
         scene_rules = get_approved_rules(
-            scene_category=session_analysis.get('scene')
+            scene_category=normalized_scene
         )
         rules.extend(scene_rules)
         
@@ -463,7 +518,7 @@ class SmartScoringEngine:
             vector_rules = search_rules_by_vector(
                 query_text=messages_text,
                 top_k=3,
-                scene_filter=session_analysis.get('scene'),
+                scene_filter=normalized_scene,
                 embedding_model=self.embedding_model
             )
             
@@ -487,7 +542,7 @@ class SmartScoringEngine:
             格式化后的规则文本
         """
         if not rules:
-            return "（知识库中暂无针对该场景的明确规则，请基于通用标准评判）"
+            return GENERIC_RULES_FALLBACK
         
         formatted = []
         for i, rule in enumerate(rules, 1):
@@ -569,7 +624,7 @@ class SmartScoringEngine:
                             {"role": "system", "content": "你是专业的客服质检专家，严格按JSON格式输出评分结果。"},
                             {"role": "user", "content": prompt}
                         ],
-                        temperature=1,
+                        temperature=LLM_CONFIG.get("temperature", 0.1),
                         max_tokens=int(os.getenv('KIMI_MAX_TOKENS', 16000)),
                         timeout=int(os.getenv('KIMI_API_TIMEOUT', 300))  # 【v2.5】从.env读取超时时间（默认300秒）
                     )
@@ -677,13 +732,13 @@ class SmartScoringEngine:
             return []
         
         # 收集所有场景
-        scenes = list(set(p.get('scene', '其他') for p in pre_analyses))
+        scenes = list(set(self._normalize_scene_name(p.get('scene', '其他')) for p in pre_analyses))
         print(f"   📚 跨场景评分: {len(sessions)}通会话, 场景: {scenes}")
         
         # 检索所有相关场景的规则（混合检索）
         messages_text = '\n'.join([
-            f"会话{i+1}({p.get('scene', '其他')}): " + '\n'.join([
-                f"{m.get('role')}: {m.get('content')}" 
+            f"会话{i+1}({self._normalize_scene_name(p.get('scene', '其他'))}): " + '\n'.join([
+                f"{m.get('role')}: {self._sanitize_prompt_content(m.get('content', ''))}" 
                 for m in session.get('messages', [])[:3]
             ])
             for i, (session, p) in enumerate(zip(sessions, pre_analyses))
@@ -695,7 +750,7 @@ class SmartScoringEngine:
         
         # 构建跨场景批量Prompt（标注场景信息）
         sessions_json = '\n\n'.join([
-               f"=== 会话{i+1} [场景: {pre_analyses[i].get('scene', '其他')}] ===\n{self._compact_session_for_prompt(s)}"
+               f"=== 会话{i+1} [场景: {self._normalize_scene_name(pre_analyses[i].get('scene', '其他'))}] ===\n{self._compact_session_for_prompt(s)}"
             for i, s in enumerate(sessions)
         ])
         
@@ -738,7 +793,7 @@ class SmartScoringEngine:
         seen_ids = set()
         
         # 去重场景列表
-        unique_scenes = list(set(scenes))
+        unique_scenes = list(set(self._normalize_scene_name(scene) for scene in scenes))
         print(f"   📚 为 {len(unique_scenes)} 个场景分别检索规则: {unique_scenes}")
         
         # 为每个场景分别检索规则
@@ -859,7 +914,7 @@ class SmartScoringEngine:
                         {"role": "system", "content": "你是专业的客服质检专家，严格按JSON格式输出评分结果。"},
                         {"role": "user", "content": prompt}
                     ],
-                    temperature=1,
+                    temperature=LLM_CONFIG.get("temperature", 0.1),
                     max_tokens=int(os.getenv('KIMI_MAX_TOKENS', 16000)),
                 )
             
@@ -937,34 +992,36 @@ class SmartScoringEngine:
             cleaned = cleaned[:-3]
         cleaned = cleaned.strip()
         
+        def make_retry_marker(error_code: str) -> Dict:
+            marker = {"error": error_code}
+            if expected_count > 1:
+                marker["_needs_single_retry"] = True
+            if cleaned:
+                marker["_raw"] = cleaned[:300]
+            return marker
+
         try:
             results = json.loads(cleaned)
             
             if isinstance(results, dict):
-                # 【修复】模型返回单个对象而不是数组
-                # 检查是否是合并的多个会话结果（包含多个session_analysis）
-                if 'session_analysis' in results and expected_count > 1:
-                    # 尝试拆分为多个结果
-                    print(f"   [DEBUG] Model returned dict, attempting to split into {expected_count} results")
-                    # 如果是合并结果，尝试提取各个维度评分
-                    if 'dimension_scores' in results:
-                        # 返回单个结果，但标记为需要复制
-                        return [results] + [{} for _ in range(expected_count - 1)]
-                
-                # 单个会话结果，包装为数组
-                print(f"   [DEBUG] Model returned dict instead of list, wrapping as single-item list")
-                return [results] + [{} for _ in range(expected_count - 1)]
+                if expected_count == 1:
+                    return [results]
+                print(f"   [DEBUG] Model returned dict instead of list, marking batch for single retry")
+                return [make_retry_marker("DICT_INSTEAD_OF_LIST") for _ in range(expected_count)]
             elif isinstance(results, list):
                 if len(results) == expected_count:
                     return results
                 elif len(results) < expected_count:
-                    # 补充空结果
-                    return results + [{} for _ in range(expected_count - len(results))]
+                    print(f"   [DEBUG] Batch result length mismatch: expected {expected_count}, got {len(results)}")
+                    return results + [
+                        make_retry_marker("ARRAY_LENGTH_MISMATCH")
+                        for _ in range(expected_count - len(results))
+                    ]
                 else:
-                    # 结果过多，截取前expected_count个
+                    print(f"   [DEBUG] Batch result length overflow: expected {expected_count}, got {len(results)}")
                     return results[:expected_count]
-        except json.JSONDecodeError:
-            pass
+        except json.JSONDecodeError as e:
+            print(f"   [DEBUG] JSON decode error: {e}")
         
         # 尝试逐个解析JSON对象
         try:
@@ -978,9 +1035,12 @@ class SmartScoringEngine:
         # 回退：尝试用单条解析器
         single_result = self._parse_json_robust(cleaned)
         if single_result:
-            return [single_result] + [{} for _ in range(expected_count - 1)]
+            if expected_count == 1:
+                return [single_result]
+            print(f"   [DEBUG] Recovered a single result from malformed batch output, marking batch for single retry")
+            return [make_retry_marker("BATCH_RECOVERED_SINGLE_RESULT") for _ in range(expected_count)]
         
-        return [{} for _ in range(expected_count)]
+        return [make_retry_marker("JSON_DECODE_FAILED") for _ in range(expected_count)]
     
     # ========== 通用工具方法 ==========
     
@@ -990,6 +1050,8 @@ class SmartScoringEngine:
         AI模型有时会给出超出1-5分范围的分数，需要截断
         """
         if not isinstance(result, dict):
+            return result
+        if 'error' in result or result.get('_needs_single_retry'):
             return result
         
         dims = ['professionalism', 'standardization', 'policy_execution', 'conversion']

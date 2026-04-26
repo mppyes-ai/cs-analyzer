@@ -25,6 +25,8 @@ MAX_TOKENS_PER_BATCH = int(os.getenv('MAX_TOKENS_PER_BATCH', '300000'))
 ADAPTIVE_BATCH_MIN = int(os.getenv('ADAPTIVE_BATCH_MIN', '3'))
 ADAPTIVE_BATCH_MAX = int(os.getenv('ADAPTIVE_BATCH_MAX', '5'))
 MAX_TOKENS_PER_TASK = 10000  # 单任务Token上限
+SHORT_MSG_THRESHOLD = int(os.getenv('SHORT_MSG_THRESHOLD', '6'))
+OVERSIZED_MSG_THRESHOLD = int(os.getenv('OVERSIZED_MSG_THRESHOLD', '40'))
 
 # ========== 全局运行参数 ==========
 MERGE_WINDOW_MINUTES = int(os.getenv('MERGE_WINDOW_MINUTES', '0'))

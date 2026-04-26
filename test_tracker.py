@@ -58,14 +58,14 @@ class TestTracker:
         if os.path.exists(worker_log):
             shutil.copy2(worker_log, os.path.join(self.logs_dir, "worker.log"))
         
-        # 复制LM Studio日志（最后1000行）
-        lm_studio_log = os.path.expanduser("~/Library/Logs/LM Studio/main.log")
-        if os.path.exists(lm_studio_log):
-            with open(lm_studio_log, 'r') as f:
+        # 复制oMLX日志（最后1000行）
+        omlx_log = os.path.expanduser("~/.omlx/logs/server.log")
+        if os.path.exists(omlx_log):
+            with open(omlx_log, 'r') as f:
                 lines = f.readlines()
                 last_lines = lines[-1000:] if len(lines) > 1000 else lines
             
-            with open(os.path.join(self.logs_dir, "lm_studio.log"), 'w') as f:
+            with open(os.path.join(self.logs_dir, "omlx.log"), 'w') as f:
                 f.writelines(last_lines)
     
     def save_summary(self):

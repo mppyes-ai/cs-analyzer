@@ -19,6 +19,113 @@ import worker_config as cfg
 from task_queue import fail_task
 
 
+def _extract_session_data(task: Dict) -> Dict:
+    """统一提取任务中的会话数据"""
+    session_data = task.get('session_data', {})
+    if isinstance(session_data, str):
+        session_data = json.loads(session_data)
+    return session_data
+
+
+def _has_valid_scores(result: Dict) -> bool:
+    """检查评分结果是否包含完整的结构化评分字段"""
+    return (
+        isinstance(result, dict) and
+        'error' not in result and
+        result.get('dimension_scores') is not None and
+        result.get('summary') is not None
+    )
+
+
+def _needs_single_retry(result: Dict) -> bool:
+    """识别需要降级为单通重试的批量结果"""
+    return isinstance(result, dict) and bool(result.get('_needs_single_retry'))
+
+
+def _result_error(result: Dict, default: str) -> str:
+    """提取统一的错误信息，避免日志和数据库写入不一致"""
+    if isinstance(result, dict):
+        return result.get('error', default)
+    return default
+
+
+async def _resolve_batch_results(
+    batch: List[Dict],
+    batch_results: List[Dict],
+    invalid_default_error: str,
+    invalid_log_prefix: str,
+) -> List[Dict]:
+    """处理批量结果，并将结构性失败降级为单通重试"""
+    from db_writer import queue_save_result
+
+    final_results = list(batch_results)
+    downgrade_items = []
+
+    for idx, (task, result) in enumerate(zip(batch, batch_results)):
+        if _needs_single_retry(result):
+            downgrade_items.append((idx, task, result))
+            print(f"   🔽 任务 {task['task_id']} 标记为单通降级")
+            continue
+
+        if _has_valid_scores(result):
+            queue_save_result(task, result)
+            continue
+
+        error_msg = _result_error(result, invalid_default_error)
+        print(f"   {invalid_log_prefix}: 任务 {str(task['task_id'])[:20]}... {error_msg}")
+        fail_task(task['task_id'], error_msg)
+        final_results[idx] = {'error': error_msg}
+
+    if downgrade_items:
+        print(f"   🔽 {len(downgrade_items)} 个任务降级为单通处理")
+        single_results = await asyncio.gather(
+            *[_retry_single_task(task) for _, task, _ in downgrade_items],
+            return_exceptions=True
+        )
+
+        for (idx, task, marker), single_result in zip(downgrade_items, single_results):
+            if isinstance(single_result, Exception):
+                error_msg = f"单通降级异常: {single_result}"
+                fail_task(task['task_id'], error_msg)
+                print(f"   ❌ 单通降级异常: {error_msg[:100]}")
+                final_results[idx] = {'error': error_msg}
+            elif single_result is None:
+                final_results[idx] = {'error': _result_error(marker, '单通降级失败')}
+            else:
+                final_results[idx] = single_result
+
+    return final_results
+
+
+async def _score_task_single(task: Dict, reason: str, default_error: str = '评分结果不完整') -> Dict:
+    """对单个任务走单会话评分，绕开批量Prompt的不稳定性"""
+    from db_writer import queue_save_result
+
+    task_id = task['task_id']
+    session_data = _extract_session_data(task)
+
+    try:
+        async with cfg.kimi_semaphore:
+            loop = asyncio.get_event_loop()
+            result = await loop.run_in_executor(None, cfg.scorer.score_session, session_data)
+
+        if _has_valid_scores(result):
+            queue_save_result(task, result)
+            print(f"   ✅ 单通处理成功: 任务 {task_id} ({reason})")
+            return result
+
+        error_msg = _result_error(result, default_error)
+        fail_task(task_id, error_msg)
+        print(f"   ❌ 单通处理失败: 任务 {task_id} ({reason}) {error_msg[:100]}")
+        return {'error': error_msg}
+
+    except Exception as e:
+        error_msg = f"{reason}异常: {e}"
+        fail_task(task_id, error_msg)
+        print(f"   ❌ 单通处理异常: 任务 {task_id} ({reason}) {str(e)[:100]}")
+        return {'error': error_msg}
+
+
 async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) -> List[Dict]:
     """【v2.6 Phase 2】带限流的批量评分（自适应批量大小）
     
@@ -31,25 +138,30 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
     if not tasks:
         return []
     
-    # 【优化A】拆分超长会话和正常会话
-    OVERSIZED_MSG_THRESHOLD = 100  # 超过100条消息视为超长会话
+    # 【优化A】拆分超短、超长和正常会话，降低异构批次对本地模型的干扰
+    short_msg_threshold = cfg.SHORT_MSG_THRESHOLD
+    oversized_msg_threshold = cfg.OVERSIZED_MSG_THRESHOLD
+    short_tasks = []
     normal_tasks = []
     oversized_tasks = []
     
     for task in tasks:
-        session_data = task.get('session_data', {})
-        if isinstance(session_data, str):
-            session_data = json.loads(session_data)
+        session_data = _extract_session_data(task)
         msg_count = len(session_data.get('messages', []))
         
-        if msg_count > OVERSIZED_MSG_THRESHOLD:
+        if msg_count < short_msg_threshold:
+            short_tasks.append(task)
+            print(f"   📦 BATCH_SPLIT|sid={task.get('session_id','')[:20]}|msgs={msg_count}|type=short(<{short_msg_threshold})")
+        elif msg_count > oversized_msg_threshold:
             oversized_tasks.append(task)
-            print(f"   📦 BATCH_SPLIT|sid={task.get('session_id','')[:20]}|msgs={msg_count}|type=oversized(>{OVERSIZED_MSG_THRESHOLD})")
+            print(f"   📦 BATCH_SPLIT|sid={task.get('session_id','')[:20]}|msgs={msg_count}|type=oversized(>{oversized_msg_threshold})")
         else:
             normal_tasks.append(task)
     
-    if oversized_tasks:
-        print(f"   📦 BATCH_SPLIT|normal={len(normal_tasks)}|oversized={len(oversized_tasks)}")
+    if short_tasks or oversized_tasks:
+        print(
+            f"   📦 BATCH_SPLIT|short={len(short_tasks)}|normal={len(normal_tasks)}|oversized={len(oversized_tasks)}"
+        )
     
     all_results = []
     completed_count = 0
@@ -97,27 +209,16 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
                 
                 # 执行批量评分（传入预分析结果，跳过内部预分析）
                 batch_results = await cfg.scorer.score_sessions_batch_async(batch_sessions, pre_analyses)
-                
-                # 【v2.6.5】异步写入队列：非阻塞入队，由后台线程处理数据库写入
-                # 局部导入避免循环导入
-                from db_writer import queue_save_result
-                
-                for task, result in zip(batch, batch_results):
-                    # 【Bug修复】检查result是否包含有效的评分字段
-                    has_valid_scores = (
-                        'error' not in result and
-                        result.get('dimension_scores') is not None and
-                        result.get('summary') is not None
-                    )
-                    if has_valid_scores:
-                        queue_save_result(task, result)  # 非阻塞入队
-                    else:
-                        error_msg = result.get('error', '评分结果不完整（缺少dimension_scores或summary）')
-                        print(f"   ⚠️ 任务 {str(task['task_id'])[:20]}... 评分无效: {error_msg}")
-                        fail_task(task['task_id'], error_msg)
-                
-                print(f"   ✅ 批次 {batch_idx+1}/{total_batches} 完成")
-                return batch_results
+
+            resolved_results = await _resolve_batch_results(
+                batch,
+                batch_results,
+                invalid_default_error='评分结果不完整（缺少dimension_scores或summary）',
+                invalid_log_prefix=f"⚠️ 任务批次 {batch_idx+1} 评分无效",
+            )
+
+            print(f"   ✅ 批次 {batch_idx+1}/{total_batches} 完成")
+            return resolved_results
         
         # 【Opus修复】使用 as_completed 替代 gather，避免木桶效应
         print(f"\n🚀 启动 {total_batches} 个评分批次（并发限制: {cfg.KIMI_MAX_CONCURRENT}，as_completed优化）")
@@ -136,47 +237,23 @@ async def _batch_score_with_limit_v2(tasks: List[Dict], base_batch_size: int) ->
                 print(f"   ❌ 批次异常: {e}")
                 completed_count += 1
     
+    # ===== 处理超短会话（降级为单通）=====
+    if short_tasks:
+        print(f"\n   📦 短会话单通处理: {len(short_tasks)} 个")
+        short_results = await asyncio.gather(*[
+            _score_task_single(task, reason='短会话单通处理')
+            for task in short_tasks
+        ])
+        all_results.extend(short_results)
+
     # ===== 处理超长会话（降级为单通串行）=====
-    for task in oversized_tasks:
-        print(f"   📦 OVERSIZED|sid={task.get('session_id','')[:20]}|降级为单通处理")
-        try:
-            session_data = task.get('session_data', {})
-            if isinstance(session_data, str):
-                session_data = json.loads(session_data)
-            
-            async with cfg.kimi_semaphore:
-                pre_analysis = {
-                    'scene': session_data.get('scene', '售前阶段'),
-                    'sub_scene': '其他',
-                    'intent': '咨询',
-                    'sentiment': 'neutral',
-                    'confidence': 0.8,
-                    'reasoning': '超长会话降级为单通处理',
-                    'source': 'oversized_fallback'
-                }
-                
-                results = await cfg.scorer.score_sessions_batch_async([session_data], [pre_analysis])
-                result = results[0] if results else {'error': '空结果'}
-                
-                has_valid_scores = (
-                    'error' not in result and
-                    result.get('dimension_scores') is not None and
-                    result.get('summary') is not None
-                )
-                
-                if has_valid_scores:
-                    from db_writer import queue_save_result
-                    queue_save_result(task, result)
-                    all_results.append(result)
-                else:
-                    error_msg = result.get('error', '超长会话评分无效')
-                    fail_task(task['task_id'], error_msg)
-                    all_results.append({'error': error_msg})
-                    
-        except Exception as e:
-            error_msg = f"超长会话处理异常: {str(e)}"
-            fail_task(task['task_id'], error_msg)
-            all_results.append({'error': error_msg})
+    if oversized_tasks:
+        print(f"\n   📦 超长会话单通处理: {len(oversized_tasks)} 个")
+        oversized_results = await asyncio.gather(*[
+            _score_task_single(task, reason='超长会话单通处理', default_error='超长会话评分无效')
+            for task in oversized_tasks
+        ])
+        all_results.extend(oversized_results)
     
     return all_results
 
@@ -286,24 +363,18 @@ async def _retry_tasks_batch(tasks: List[Dict], batch_size: int = 5) -> List[Dic
                 # 调用评分
                 results = await cfg.scorer.score_sessions_batch_async(batch_sessions, pre_analyses)
                 
-                # 保存结果
-                loop = asyncio.get_event_loop()
-                for task, result in zip(batch, results):
-                    has_valid_scores = (
-                        'error' not in result and
-                        result.get('dimension_scores') is not None and
-                        result.get('summary') is not None
-                    )
-                    if has_valid_scores:
-                        from db_writer import queue_save_result
-                        queue_save_result(task, result)  # 【Bug修复】使用异步写入队列，与主路径一致
-                        print(f"   ✅ 重试成功: 任务 {task['task_id']}")
-                        batch_results.append(result)
-                    else:
-                        error_msg = result.get('error', '评分结果不完整')
-                        fail_task(task['task_id'], error_msg)
-                        print(f"   ❌ 重试失败: {error_msg[:100]}")
-                        batch_results.append({'error': error_msg})
+            resolved_results = await _resolve_batch_results(
+                batch,
+                results,
+                invalid_default_error='评分结果不完整',
+                invalid_log_prefix="❌ 重试失败",
+            )
+            for task, result in zip(batch, resolved_results):
+                if _has_valid_scores(result):
+                    print(f"   ✅ 重试成功: 任务 {task['task_id']}")
+                else:
+                    print(f"   ❌ 重试失败: {_result_error(result, '评分结果不完整')[:100]}")
+            batch_results.extend(resolved_results)
                         
         except Exception as e:
             print(f"   ❌ 重试批次 {batch_idx+1} 异常: {e}")
@@ -353,55 +424,8 @@ async def _retry_single_task(task: Dict) -> Optional[Dict]:
     """
 
     task_id = task['task_id']
-    session_data = task['session_data']
     retry_count = task.get('retry_count', 0)
-    
     print(f"   🔄 重试任务 {task_id} (第{retry_count + 1}次重试)")
-    
-    try:
-        async with cfg.kimi_semaphore:
-            # 【Opus修复】单通评分，超时设置更宽松（600秒）
-            batch_sessions = [session_data]
-            
-            # 构建预分析
-            pre_analysis = {
-                'scene': session_data.get('scene', '售前阶段'),
-                'sub_scene': '其他',
-                'intent': '咨询',
-                'sentiment': 'neutral',
-                'confidence': 0.8,
-                'reasoning': '重试任务单通评分',
-                'source': 'retry_single'
-            }
-            
-            # 调用评分（单通）
-            results = await cfg.scorer.score_sessions_batch_async(
-                batch_sessions, 
-                [pre_analysis]
-            )
-            result = results[0] if results else {'error': '空结果'}
-            
-            # 检查结果有效性
-            has_valid_scores = (
-                'error' not in result and
-                result.get('dimension_scores') is not None and
-                result.get('summary') is not None
-            )
-            
-            if has_valid_scores:
-                # 【Bug修复】使用异步写入队列，与主路径一致
-                from db_writer import queue_save_result
-                queue_save_result(task, result)
-                print(f"   ✅ 重试成功: 任务 {task_id}")
-                return result
-            else:
-                error_msg = result.get('error', '评分结果不完整')
-                fail_task(task_id, error_msg)
-                print(f"   ❌ 重试失败: {error_msg[:100]}")
-                return None
-                
-    except Exception as e:
-        error_msg = str(e)
-        fail_task(task_id, error_msg)
-        print(f"   ❌ 重试异常: {error_msg[:100]}")
-        return None
+
+    result = await _score_task_single(task, reason='重试任务单通评分')
+    return result if _has_valid_scores(result) else None

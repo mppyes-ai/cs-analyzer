@@ -1,11 +1,15 @@
 """Embedding模型统一单例管理器
 
-解决多处重复加载Embedding模型导致的内存浪费问题
+支持LM Studio和oMLX两种本地部署方案
 """
 
 import os
 import logging
 import requests
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 logger = logging.getLogger('embedding_utils')
 
@@ -19,26 +23,32 @@ def get_embedding_model():
     if _embedding_model is None:
         logger.info("🔄 首次加载Embedding模型...")
         try:
-            # 优先使用LM Studio的嵌入模型
-            lm_studio_url = os.getenv('LOCAL_MODEL_URL', 'http://localhost:1234/v1')
-            import requests
+            # 获取配置
+            base_url = os.getenv('LOCAL_MODEL_URL', 'http://localhost:8000/v1')
+            api_key = os.getenv('LOCAL_API_KEY', '')
             
-            # 检查LM Studio可用嵌入模型
+            # 检查可用嵌入模型
             try:
-                resp = requests.get(f"{lm_studio_url}/models", timeout=5)
+                headers = {}
+                if api_key:
+                    headers['Authorization'] = f'Bearer {api_key}'
+                
+                resp = requests.get(f"{base_url}/models", headers=headers, timeout=5)
                 if resp.status_code == 200:
                     models = [m['id'] for m in resp.json().get('data', [])]
-                    # 优先使用Qwen3-Embedding，其次nomic-embed-text
-                    embed_models = [m for m in models if 'qwen3-embed' in m.lower()]
+                    # 优先使用jina-embeddings，其次Qwen3-Embedding
+                    embed_models = [m for m in models if 'jina-embed' in m.lower()]
                     if not embed_models:
-                        embed_models = [m for m in models if 'nomic-embed' in m.lower()]
+                        embed_models = [m for m in models if 'qwen3-embed' in m.lower() or 'qwen3-embedding' in m.lower()]
+                    if not embed_models:
+                        embed_models = [m for m in models if 'embed' in m.lower()]
                     if embed_models:
                         model_name = embed_models[0]
-                        logger.info(f"✅ 使用LM Studio嵌入模型: {model_name}")
-                        _embedding_model = LMStudioEmbeddingModel(lm_studio_url, model_name)
+                        logger.info(f"✅ 使用本地嵌入模型: {model_name} (服务: {base_url})")
+                        _embedding_model = LocalEmbeddingModel(base_url, model_name, api_key)
                         return _embedding_model
             except Exception as e:
-                logger.warning(f"LM Studio嵌入模型检查失败: {e}")
+                logger.warning(f"本地嵌入模型检查失败: {e}")
             
             # 回退到HuggingFace
             from sentence_transformers import SentenceTransformer
@@ -51,12 +61,13 @@ def get_embedding_model():
     
     return _embedding_model
 
-class LMStudioEmbeddingModel:
-    """LM Studio嵌入模型适配器"""
+class LocalEmbeddingModel:
+    """本地嵌入模型适配器（支持LM Studio和oMLX）"""
     
-    def __init__(self, base_url: str, model: str):
+    def __init__(self, base_url: str, model: str, api_key: str = ''):
         self.base_url = base_url
         self.model = model
+        self.api_key = api_key
         self.session = requests.Session()
     
     def encode(self, texts, **kwargs):
@@ -66,10 +77,15 @@ class LMStudioEmbeddingModel:
         if isinstance(texts, str):
             texts = [texts]
         
+        headers = {}
+        if self.api_key:
+            headers['Authorization'] = f'Bearer {self.api_key}'
+        
         embeddings = []
         for text in texts:
             resp = self.session.post(
                 f"{self.base_url}/embeddings",
+                headers=headers,
                 json={
                     "model": self.model,
                     "input": text

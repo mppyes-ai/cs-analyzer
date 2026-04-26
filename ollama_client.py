@@ -1,15 +1,16 @@
-"""Ollama客户端适配器 - 已迁移到LM Studio
+"""Ollama客户端适配器 - 已迁移到oMLX
 
-注意：此模块现在作为LM Studio的适配器使用，不再直接连接Ollama。
-所有本地模型调用统一通过LM Studio的OpenAI兼容API。
+注意：此模块现在作为oMLX的适配器使用，不再直接连接Ollama或LM Studio。
+所有本地模型调用统一通过oMLX的OpenAI兼容API。
 
 作者: 小虾米
-更新: 2026-04-23 (迁移到LM Studio)
+更新: 2026-04-26 (迁移到oMLX)
 """
 
 import json
 import time
 import logging
+import os
 from typing import Dict, List, Optional, Callable
 from dataclasses import dataclass
 from datetime import datetime
@@ -31,9 +32,10 @@ logger = logging.getLogger('ollama_client')
 
 @dataclass
 class OllamaConfig:
-    """LM Studio客户端配置 - 从集中配置读取"""
+    """oMLX客户端配置 - 从集中配置读取"""
     base_url: str = OLLAMA_CONFIG["url"]
     model: str = OLLAMA_CONFIG["model"]
+    api_key: str = os.getenv('LOCAL_API_KEY', '1234567890')
     
     # 超时配置（秒）
     connect_timeout: float = 5.0      # TCP连接建立
@@ -55,7 +57,7 @@ class OllamaConfig:
 
 
 class OllamaClient:
-    """LM Studio OpenAI兼容客户端（原Ollama适配器）"""
+    """oMLX OpenAI兼容客户端（原Ollama适配器）"""
     
     def __init__(self, config: Optional[OllamaConfig] = None):
         self.config = config or OllamaConfig()
@@ -87,11 +89,12 @@ class OllamaClient:
         session.mount("http://", adapter)
         session.mount("https://", adapter)
         
-        # 设置默认headers（keep-alive）
+        # 设置默认headers（keep-alive + API Key）
         session.headers.update({
             'Connection': 'keep-alive',
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': f'Bearer {self.config.api_key}',
         })
         
         return session
@@ -105,14 +108,14 @@ class OllamaClient:
             return self._is_healthy
         
         try:
-            # LM Studio使用/models端点
+            # oMLX使用/models端点
             response = self.session.get(
                 f"{self.config.base_url}/models",
                 timeout=(self.config.connect_timeout, 5.0)
             )
             
             if response.status_code != 200:
-                logger.warning(f"LM Studio健康检查失败: HTTP {response.status_code}")
+                logger.warning(f"oMLX健康检查失败: HTTP {response.status_code}")
                 self._is_healthy = False
                 return False
             
@@ -130,15 +133,15 @@ class OllamaClient:
             self._is_healthy = True
             self._last_health_check = now
             
-            logger.info(f"LM Studio健康检查通过，模型 {self.config.model} 已就绪")
+            logger.info(f"oMLX健康检查通过，模型 {self.config.model} 已就绪")
             return True
             
         except requests.exceptions.ConnectionError as e:
-            logger.error(f"LM Studio连接失败: {e}")
+            logger.error(f"oMLX连接失败: {e}")
             self._is_healthy = False
             return False
         except Exception as e:
-            logger.error(f"LM Studio健康检查异常: {e}")
+            logger.error(f"oMLX健康检查异常: {e}")
             self._is_healthy = False
             return False
     
@@ -154,7 +157,7 @@ class OllamaClient:
         
         # 快速健康检查（非阻塞）
         if not self.health_check():
-            logger.warning("LM Studio服务不健康，跳过生成")
+            logger.warning("oMLX服务不健康，跳过生成")
             return None
         
         # 构建OpenAI兼容的messages
@@ -270,7 +273,7 @@ def example_usage():
     
     # 健康检查
     if not client.health_check():
-        print("❌ LM Studio服务不可用")
+        print("❌ oMLX服务不可用")
         return
     
     # 生成文本
@@ -290,7 +293,7 @@ def example_usage():
 
 def benchmark_robustness():
     """健壮性基准测试"""
-    print("🧪 LM Studio健壮性测试")
+    print("🧪 oMLX健壮性测试")
     print("=" * 60)
     
     client = OllamaClient()
