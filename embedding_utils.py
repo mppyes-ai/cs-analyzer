@@ -37,9 +37,9 @@ def get_embedding_model():
                 if resp.status_code == 200:
                     models = [m['id'] for m in resp.json().get('data', [])]
                     # 优先使用jina-embeddings，其次Qwen3-Embedding
-                    embed_models = [m for m in models if 'jina-embed' in m.lower()]
+                    embed_models = [m for m in models if 'qwen3-embed' in m.lower() or 'qwen3-embedding' in m.lower()]
                     if not embed_models:
-                        embed_models = [m for m in models if 'qwen3-embed' in m.lower() or 'qwen3-embedding' in m.lower()]
+                        embed_models = [m for m in models if 'jina-embed' in m.lower()]
                     if not embed_models:
                         embed_models = [m for m in models if 'embed' in m.lower()]
                     if embed_models:
