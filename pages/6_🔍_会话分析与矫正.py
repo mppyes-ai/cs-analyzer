@@ -1,4 +1,4 @@
-"""会话分析与矫正中心 - 融合版（矫正中心风格）
+"""会话分析与矫正中心 - 融合版(矫正中心风格)
 
 整合功能：
 1. 矫正中心的侧边栏会话列表
@@ -13,6 +13,8 @@ import json
 import sys
 import os
 import importlib
+import re
+import sqlite3
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
@@ -22,6 +24,485 @@ importlib.reload(db_utils)
 
 from db_utils import load_sessions, get_corrected_ids, get_correction_by_session, save_correction_v2, is_session_corrected, init_correction_tables
 from knowledge_base_v2 import get_rule_by_id
+
+# ========== AI智能修正函数(支持云端LLM优先) ==========
+def generate_ai_correction(entity, user_feedback):
+    """AI智能修正实体内容 - 优先使用云端LLM"""
+    import json
+    import requests
+    
+    # 构建带强约束的提示词
+    prompt = f"""
+    【最高优先级指令 - 必须严格遵守】
+    质检员的反馈是最终标准，AI必须完全按照质检员的要求执行，不得添加质检员未提及的内容。
+    禁止过度解读、禁止补充背景知识、禁止添加合规/安全等未提及的维度。
+    
+    【角色定位】
+    你是一位客服质检助手，只负责格式化输出，不做业务判断。你的任务是理解质检员的修改要求，并精确执行。
+    
+    【当前实体】
+    类型: {entity['type']}
+    名称: {entity['name']}
+    属性:
+    {json.dumps(entity['attributes'], ensure_ascii=False, indent=2)}
+    
+    【质检员反馈】
+    {user_feedback}
+    
+    【任务要求】
+    1. 仔细阅读质检员反馈，提取明确的修改要求
+    2. 只修改质检员明确要求修改的点，其他内容保持原样
+    3. 不得添加新的维度、属性、解释或背景知识
+    4. 必须遵循"如无必要，勿增实体"原则
+    5. 如果质检员要求删除某内容，必须完全删除，不得保留或改写
+    
+    【禁止行为 - 违反将导致错误】
+    - ❌ 不得添加质检员未提及的合规性、安全性、法律风险等内容
+    - ❌ 不得过度解读用户意图或补充"常识"
+    - ❌ 不得将简单问题复杂化
+    - ❌ 不得保留质检员明确要求删除的内容
+    - ❌ 不得修改质检员未提及的属性
+    
+    【输出格式 - 严格JSON】
+    {{
+        "name": "修正后的实体名称(按质检员要求)",
+        "attributes": {{
+            "属性名": "修正后的值(只修改质检员提到的)"
+        }},
+        "correction_notes": ["只记录质检员明确要求的修改点"],
+        "knowledge_gaps": [
+            {{
+                "category": "知识类别",
+                "description": "需要补充的知识描述"
+            }}
+        ]
+    }}
+    
+    【重要提醒】
+    如果质检员说"删除XX"，则必须完全删除，不得保留。
+    如果质检员说"不需要XX"，则不得添加XX。
+    如果质检员说"只需XX"，则只保留XX，删除其他。
+    """
+    
+    # 优先使用云端LLM(Kimi)
+    try:
+        response = requests.post(
+            "https://api.moonshot.cn/v1/chat/completions",
+            headers={"Authorization": "Bearer sk-lsKZ3OyShSZJjjb91jSmD310M61dLZ4K6hgq1aOu24h8yZYN"},
+            json={
+                "model": "kimi-k2.5",
+                "messages": [
+                    {"role": "system", "content": "你是一位专业的客服质检专家"},
+                    {"role": "user", "content": prompt}
+                ],
+                "temperature": 0.3,
+                "max_tokens": 2000
+            },
+            timeout=60
+        )
+        
+        if response.status_code == 200:
+            result = response.json()
+            content = result['choices'][0]['message']['content']
+            
+            try:
+                json_start = content.find('{')
+                json_end = content.rfind('}') + 1
+                if json_start >= 0 and json_end > json_start:
+                    json_str = content[json_start:json_end]
+                    corrected = json.loads(json_str)
+                    
+                    return {
+                        'id': entity['id'],
+                        'type': entity['type'],
+                        'name': corrected.get('name', entity['name']),
+                        'attributes': corrected.get('attributes', entity['attributes']),
+                        'correction_notes': corrected.get('correction_notes', []),
+                        'knowledge_gaps': corrected.get('knowledge_gaps', [])
+                    }
+            except Exception as e:
+                print(f"解析AI修正结果失败: {e}")
+                return None
+        else:
+            print(f"云端LLM失败({response.status_code})，回退到本地模型")
+            
+    except Exception as e:
+        print(f"云端LLM请求失败: {e}，回退到本地模型")
+    
+    # 回退到本地模型
+    try:
+        response = requests.post(
+            "http://localhost:8000/v1/chat/completions",
+            headers={"Authorization": "Bearer 1234567890"},
+            json={
+                "model": "Qwen3.6-35B-A3B-4bit",
+                "messages": [
+                    {"role": "system", "content": "你是一位专业的客服质检专家"},
+                    {"role": "user", "content": prompt}
+                ],
+                "temperature": 0.3,
+                "max_tokens": 2000
+            },
+            timeout=60
+        )
+        
+        if response.status_code == 200:
+            result = response.json()
+            content = result['choices'][0]['message']['content']
+            
+            try:
+                json_start = content.find('{')
+                json_end = content.rfind('}') + 1
+                if json_start >= 0 and json_end > json_start:
+                    json_str = content[json_start:json_end]
+                    corrected = json.loads(json_str)
+                    
+                    return {
+                        'id': entity['id'],
+                        'type': entity['type'],
+                        'name': corrected.get('name', entity['name']),
+                        'attributes': corrected.get('attributes', entity['attributes']),
+                        'correction_notes': corrected.get('correction_notes', []),
+                        'knowledge_gaps': corrected.get('knowledge_gaps', [])
+                    }
+            except Exception as e:
+                print(f"解析本地模型修正结果失败: {e}")
+                return None
+        
+        return None
+    except Exception as e:
+        print(f"本地模型请求失败: {e}")
+        return None
+
+
+def generate_ai_correction_with_context(entity, user_feedback, context, session_messages=None, session_analysis=None):
+    """AI智能修正实体内容(支持多轮对话上下文)- 优先使用云端LLM"""
+    
+    import json
+    import requests
+    
+    # 构建完整的会话上下文
+    session_context = """【系统任务说明】
+我们正在对客服会话进行质量评估。你的任务是帮助质检员修正AI自动提取的"客服应答模式"实体。
+
+【重要背景】
+1. 原始AI提取可能错误地将"正确应答"标记为"问题模式"
+2. 质检员发现提取错误后，需要你修正实体内容
+3. 修正后的实体应该准确反映客服的实际表现，而非AI的初始判断
+4. 如果客服处理正确，实体名称应改为正面标签(如"合规型应答")
+5. 如果客服确实有问题，才保留负面标签(如"问题模式")
+
+【修正方向判断】
+请根据会话原文判断客服处理是否正确：
+- 正确：名称改为"合规型应答"或"正确应答"，问题维度清空
+- 错误：保留"问题模式"类名称，详细说明问题
+
+【示例 - 正确应答被误判(重点学习)】
+会话原文：
+用户：我家是人工煤气
+客服：本店只支持12T天然气，煤气暂时不支持
+
+原始提取(错误)：
+名称：否定型应答(无替代方案)
+问题维度：["conversion"]
+具体表现：未挖掘其他需求，错失转化机会
+
+正确修正：
+名称：合规型应答(安全优先)
+问题维度：[]
+具体表现：客服准确告知不支持，处理正确
+原因：客服正确拒绝不合理需求，不涉及转化问题
+
+【示例 - 错误应答(无需修正)】
+会话原文：
+用户：产品质量有问题
+客服：那你退货吧，我们不管
+
+原始提取(正确)：
+名称：推诿型应答
+问题维度：["standardization"]
+具体表现：未安抚用户，直接推诿责任
+
+无需修正，原始提取正确
+
+【失败案例 - 必须避免】
+质检员反馈：删除"品牌政策"相关内容，只保留客服实际说的话
+
+AI错误修正：
+具体表现：客服准确告知不支持，林内无人工煤气型号，处理正确
+原因：客服遵循品牌政策，正确拒绝不合理需求
+
+问题分析：
+1. 未执行删除指令——仍保留"林内无人工煤气型号"（背景知识）
+2. 未执行删除指令——仍保留"遵循品牌政策"（背景知识）
+3. 正确做法：只写"客服准确告知不支持，处理正确"
+
+【修改判定流程】
+1. 质检员说"XX不对" → 修改XX
+2. 质检员说"不要XX" → 删除XX
+3. 质检员说"只需XX" → 只保留XX，删除其他
+4. 质检员未提及的内容 → 保持原样
+
+【输出前自检】
+- 是否添加了质检员未提及的内容？
+- 是否删除了质检员要求保留的内容？
+- 是否使用了会话原文外的背景知识？
+- 如果任一答案为"是"，必须重新修正
+
+"""
+    if session_messages:
+        session_context += "【会话原文】\n"
+        for msg in session_messages[:20]:  # 限制长度
+            role = "用户" if msg.get('role') == 'user' else "客服"
+            content = msg.get('content', '')[:200]
+            session_context += f"{role}：{content}\n"
+    
+    if session_analysis:
+        session_context += "\n【原始评分分析】\n"
+        session_context += json.dumps(session_analysis, ensure_ascii=False, indent=2)[:1000]
+    
+    # 构建带完整上下文的提示词
+    prompt = f"""
+    【最高优先级指令 - 必须严格遵守】
+    质检员的反馈是最终标准，AI必须完全按照质检员的要求执行，不得添加质检员未提及的内容。
+    
+    【核心原则 - 违反将导致错误】
+    1. **只记录客服实际说了什么、做了什么**——不得将质检员补充的背景知识、行业常识、品牌政策写入客服行为特征
+    2. **行为特征必须直接引用会话原文**——客服原话是什么就写什么，不得概括、升华、补充
+    3. **具体表现必须基于事实陈述**——禁止加入"品牌政策""安全规范""国家规定"等客服未提及的内容
+    4. **改进建议必须针对客服可执行的动作**——不得建议客服"告知用户非法改装"等客服实际未执行的操作
+    5. **历史对话仅供理解质检员意图**——不得复述或保留历史轮次中已被否定的内容
+    
+    【角色定位】
+    你是一位客服质检助手，只负责格式化输出，不做业务判断。你的任务是理解质检员的修改要求，并精确执行。
+    
+    {session_context}
+    
+    【当前提取的实体】
+    类型: {entity['type']}
+    名称: {entity['name']}
+    属性:
+    {json.dumps(entity['attributes'], ensure_ascii=False, indent=2)}
+    
+    【质检员反馈】
+    {user_feedback}
+    
+    【任务要求】
+    1. 仔细阅读完整的会话原文
+    2. 理解质检员反馈的核心问题
+    3. 基于会话事实，修正实体内容
+    4. 只修改质检员明确要求修改的点
+    5. 不得添加新的维度或背景知识
+    
+    【输出格式 - 严格JSON】
+    {{
+        "name": "修正后的实体名称",
+        "attributes": {{
+            "属性名": "修正后的值"
+        }},
+        "correction_notes": ["修改说明"],
+        "knowledge_gaps": []
+    }}
+    """
+    
+    # 优先使用云端LLM(Kimi)
+    try:
+        response = requests.post(
+            "https://api.moonshot.cn/v1/chat/completions",
+            headers={"Authorization": "Bearer sk-lsKZ3OyShSZJjjb91jSmD310M61dLZ4K6hgq1aOu24h8yZYN"},
+            json={
+                "model": "kimi-k2.5",
+                "messages": [
+                    {"role": "system", "content": "你是一位专业的客服质检专家"},
+                    {"role": "user", "content": prompt}
+                ],
+                "temperature": 0.3,
+                "max_tokens": 2000
+            },
+            timeout=60
+        )
+        
+        if response.status_code == 200:
+            result = response.json()
+            content = result['choices'][0]['message']['content']
+            
+            try:
+                json_start = content.find('{')
+                json_end = content.rfind('}') + 1
+                if json_start >= 0 and json_end > json_start:
+                    json_str = content[json_start:json_end]
+                    corrected = json.loads(json_str)
+                    
+                    return {
+                        'id': entity['id'],
+                        'type': entity['type'],
+                        'name': corrected.get('name', entity['name']),
+                        'attributes': corrected.get('attributes', entity['attributes']),
+                        'correction_notes': corrected.get('correction_notes', []),
+                        'knowledge_gaps': corrected.get('knowledge_gaps', [])
+                    }
+            except Exception as e:
+                print(f"解析云端AI修正结果失败: {e}")
+                return None
+        else:
+            print(f"云端LLM失败({response.status_code})，回退到本地模型")
+            
+    except Exception as e:
+        print(f"云端LLM请求失败: {e}，回退到本地模型")
+    
+    # 回退到本地模型
+    try:
+        response = requests.post(
+            "http://localhost:8000/v1/chat/completions",
+            headers={"Authorization": "Bearer 1234567890"},
+            json={
+                "model": "Qwen3.6-35B-A3B-4bit",
+                "messages": [
+                    {"role": "system", "content": "你是一位专业的客服质检专家"},
+                    {"role": "user", "content": prompt}
+                ],
+                "temperature": 0.3,
+                "max_tokens": 2000
+            },
+            timeout=60
+        )
+        
+        if response.status_code == 200:
+            result = response.json()
+            content = result['choices'][0]['message']['content']
+            
+            try:
+                json_start = content.find('{')
+                json_end = content.rfind('}') + 1
+                if json_start >= 0 and json_end > json_start:
+                    json_str = content[json_start:json_end]
+                    corrected = json.loads(json_str)
+                    
+                    return {
+                        'id': entity['id'],
+                        'type': entity['type'],
+                        'name': corrected.get('name', entity['name']),
+                        'attributes': corrected.get('attributes', entity['attributes']),
+                        'correction_notes': corrected.get('correction_notes', []),
+                        'knowledge_gaps': corrected.get('knowledge_gaps', [])
+                    }
+            except Exception as e:
+                print(f"解析本地模型修正结果失败: {e}")
+                return None
+        
+        return None
+    except Exception as e:
+        print(f"本地模型请求失败: {e}")
+        return None
+
+
+def build_correction_context(dialog, entity, current_feedback):
+    """构建对话上下文"""
+    context_parts = []
+    
+    for msg in dialog['messages']:
+        if msg['role'] == 'user':
+            # 质检员消息 - 右侧绿色气泡（微信风格）
+            context_parts.append(f"""
+            <div style="display: flex; justify-content: flex-end; margin: 12px 0; align-items: flex-start;">
+                <div style="max-width: 70%; background-color: #95ec69; padding: 12px 16px; border-radius: 18px 4px 18px 18px; 
+                            box-shadow: 0 1px 2px rgba(0,0,0,0.1); position: relative; margin-right: 8px;">
+                    <div style="font-size: 13px; color: #333; line-height: 1.5; word-wrap: break-word;">
+                        <b>👤 质检员（第{msg['round']}轮）</b><br/>
+                        {msg['content']}
+                    </div>
+                    <div style="position: absolute; right: -6px; top: 14px; width: 0; height: 0; 
+                                border-top: 6px solid transparent; border-bottom: 6px solid transparent; 
+                                border-left: 6px solid #95ec69;"></div>
+                </div>
+                <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #07c160, #05a050); 
+                            display: flex; align-items: center; justify-content: center; flex-shrink: 0; 
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                    <span style="color: white; font-size: 18px;">👤</span>
+                </div>
+            </div>
+            """)
+        else:
+            # AI修正消息 - 左侧白色气泡
+            context_parts.append(f"""
+            <div style="display: flex; justify-content: flex-start; margin: 12px 0; align-items: flex-start;">
+                <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #1890ff, #096dd9); 
+                            display: flex; align-items: center; justify-content: center; flex-shrink: 0; 
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                    <span style="color: white; font-size: 18px;">🤖</span>
+                </div>
+                <div style="max-width: 70%; background-color: #ffffff; padding: 12px 16px; border-radius: 4px 18px 18px 18px; 
+                            box-shadow: 0 1px 2px rgba(0,0,0,0.1); position: relative; margin-left: 8px; border: 1px solid #e8e8e8;">
+                    <div style="font-size: 13px; color: #333; line-height: 1.5; word-wrap: break-word;">
+                        <b>🤖 AI修正（第{msg['round']}轮）</b><br/>
+                        {msg['content'][:300]}...
+                    </div>
+                    <div style="position: absolute; left: -6px; top: 14px; width: 0; height: 0; 
+                                border-top: 6px solid transparent; border-bottom: 6px solid transparent; 
+                                border-right: 6px solid #ffffff;"></div>
+                </div>
+            </div>
+            """)
+    
+    return '<div style="background-color: #f5f5f5; padding: 16px; border-radius: 8px; max-height: 500px; overflow-y: auto;">' + "\n".join(context_parts) + '</div>'
+
+
+def format_correction_result(corrected_entity):
+    """格式化修正结果用于显示"""
+    lines = []
+    
+    lines.append(f"实体名称: {corrected_entity['name']}")
+    lines.append("")
+    lines.append("修正后的属性:")
+    for key, value in corrected_entity['attributes'].items():
+        if value and str(value).strip():
+            lines.append(f"  • {key}: {value}")
+    
+    if corrected_entity.get('correction_notes'):
+        lines.append("")
+        lines.append("修正说明:")
+        for note in corrected_entity['correction_notes']:
+            lines.append(f"  • {note}")
+    
+    if corrected_entity.get('knowledge_gaps'):
+        lines.append("")
+        lines.append("发现知识缺口:")
+        for gap in corrected_entity['knowledge_gaps']:
+            if isinstance(gap, dict):
+                lines.append(f"  • [{gap.get('category', '未分类')}] {gap.get('description', '')}")
+            else:
+                lines.append(f"  • {str(gap)}")
+    
+    return "\n".join(lines)
+
+
+# ========== 知识缺口表初始化 ==========
+def init_knowledge_gaps_table():
+    """初始化知识缺口表"""
+    conn = sqlite3.connect('data/cs_analyzer_new.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS knowledge_gaps (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            category TEXT NOT NULL,
+            description TEXT NOT NULL,
+            source TEXT,
+            status TEXT DEFAULT '待补充',
+            priority TEXT DEFAULT '中',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            resolved_at TIMESTAMP,
+            resolved_by TEXT
+        )
+    """)
+    
+    conn.commit()
+    conn.close()
+
+
+# 初始化表
+init_knowledge_gaps_table()
+
 
 # 初始化矫正系统表
 init_correction_tables()
@@ -61,7 +542,7 @@ if df.empty:
     st.warning("暂无会话数据")
     st.stop()
 
-# 从URL参数读取session_id（支持从其他页面跳转）
+# 从URL参数读取session_id(支持从其他页面跳转)
 query_params = st.query_params
 if 'session_id' in query_params:
     target_session = query_params.get('session_id')
@@ -70,7 +551,7 @@ if 'session_id' in query_params:
         # 清除query参数避免刷新时重复跳转
         del st.query_params['session_id']
 
-# 从session_state读取跳转目标（支持从其他页面通过switch_page跳转）
+# 从session_state读取跳转目标(支持从其他页面通过switch_page跳转)
 if 'jump_to_session' in st.session_state:
     target_session = st.session_state.jump_to_session
     if target_session and target_session in df['session_id'].values:
@@ -90,7 +571,7 @@ with filter_cols[0]:
     staff_filter = st.selectbox("客服", options=staff_options, key="staff_select")
     
 with filter_cols[1]:
-    # 简化的矫正状态列表（移除未使用的复杂状态）
+    # 简化的矫正状态列表(移除未使用的复杂状态)
     status_options = [
         "待矫正",
         "全部",
@@ -130,7 +611,7 @@ st.divider()
 
 # ========== 左侧边栏：会话列表 ==========
 with st.sidebar:
-    st.markdown(f"##### 📋 会话列表（{len(filtered_df)}条）")
+    st.markdown(f"##### 📋 会话列表({len(filtered_df)}条)")
     st.markdown('<style>.stButton>button {padding: 0.15rem 0.3rem !important; font-size: 11px !important; margin: 1px 0 !important; min-height: 28px !important;}</style>', unsafe_allow_html=True)
     
     # ===== 分页功能 =====
@@ -138,7 +619,7 @@ with st.sidebar:
     total_items = len(filtered_df)
     total_pages = (total_items + ITEMS_PER_PAGE - 1) // ITEMS_PER_PAGE  # 向上取整
     
-    # 分页显示逻辑（超过20条才显示分页）
+    # 分页显示逻辑(超过20条才显示分页)
     if total_items > ITEMS_PER_PAGE:
         # 初始化当前页码
         if 'session_list_page' not in st.session_state:
@@ -197,16 +678,16 @@ with st.sidebar:
         except:
             chain_indicator = ""
 
-        # ===== 会话列表项（简洁版，居左显示）=====
+        # ===== 会话列表项(简洁版，居左显示)=====
         is_selected = st.session_state.get('selected_session') == sid
         
-        # 按钮标签：状态球 + ID + 会话链（全部居左）
+        # 按钮标签：状态球 + ID + 会话链(全部居左)
         btn_label = f"{risk_tag}  {sid[-10:]}  {chain_indicator}"
         
         # 根据选中状态设置按钮类型
         btn_type = "primary" if is_selected else "secondary"
         
-        # 使用 st.button 实现点击（简洁单元素，居左对齐）
+        # 使用 st.button 实现点击(简洁单元素，居左对齐)
         if st.button(btn_label, key=f"btn_{sid}", use_container_width=True, type=btn_type):
             st.session_state.selected_session = sid
             st.rerun()
@@ -240,7 +721,7 @@ pol_score = int(session_data.get('policy_execution_score', 0)) or 3
 con_score = int(session_data.get('conversion_score', 0)) or 3
 
 # ========== 会话头部信息 ==========
-st.markdown('# 💬 会话明细（带规则命中）')
+st.markdown('# 💬 会话明细(带规则命中)')
 summary = session_data.get('summary', '会话详情')
 st.markdown(f'### 📋 会话摘要\n{summary}')
 
@@ -265,7 +746,7 @@ try:
 except:
     st.markdown('<div style="font-size: 15px; margin-top: 3px;"><b>会话时间：</b>解析错误</div>', unsafe_allow_html=True)
 
-# 🔍 会话预分析详情（移到会话时间下面）
+# 🔍 会话预分析详情(移到会话时间下面)
 try:
     analysis_json = session_data.get('analysis_json', '{}')
     if analysis_json and analysis_json != '{}':
@@ -304,7 +785,7 @@ st.markdown(
 # 元信息 - 根据矫正状态显示
 uid = session_data.get('user_id', '未知')
 
-# 获取矫正状态（简化版 - 只区分"已矫正"和"待矫正"）
+# 获取矫正状态(简化版 - 只区分"已矫正"和"待矫正")
 has_correction = not corrections_df.empty
 
 # 简化的状态显示
@@ -335,7 +816,7 @@ else:
 
 st.markdown(f'<div style="font-size: 15px; margin-top: 3px;"><b>会话ID:</b> <code>{session_id}</code> │ <b>客服:</b> {session_data.get("staff_name", "未知")} │ <b>用户:</b> {uid[:20]} │ <b>状态:</b> <span style="color: {status_color}; font-weight: bold;">{status_text}</span>{merge_badge}{transfer_badge}</div>', unsafe_allow_html=True)
 
-# 显示转接链信息（如果有）
+# 显示转接链信息(如果有)
 # 先解析 related_list
 related = session_data.get('related_sessions', '[]')
 try:
@@ -390,7 +871,7 @@ if is_transfer and (transfer_from or transfer_to or related_list):
                         st.session_state.selected_session = sess['id']
                         st.rerun()
 
-# 🔍 会话预分析详情（移到头部信息区）
+# 🔍 会话预分析详情(移到头部信息区)
 # 添加tooltip样式
 st.markdown('''
 <style>
@@ -441,6 +922,548 @@ st.markdown('''
 # 使用紧凑分隔线替代 st.divider()
 st.markdown('<hr style="margin: 10px 0; border: none; border-top: 1px solid rgba(128,128,128,0.3);">', unsafe_allow_html=True)
 
+# 知识提取融合区域(基于LLM分析结果 - 完整版)
+st.markdown('<hr style="margin: 10px 0; border: none; border-top: 1px solid rgba(128,128,128,0.3);">', unsafe_allow_html=True)
+st.markdown('## 🧠 知识提取与审核(AI自动提取 + 人工审核)')
+
+# 从analysis_json获取LLM分析结果
+analysis_json = session_data.get('analysis_json', '{}')
+try:
+    analysis_data = json.loads(analysis_json) if isinstance(analysis_json, str) else analysis_json
+except:
+    analysis_data = {}
+
+# 获取LLM分析的核心信息
+session_analysis = analysis_data.get('session_analysis', {})
+dimension_scores = analysis_data.get('dimension_scores', {})
+summary = analysis_data.get('summary', {})
+pre = analysis_data.get('_metadata', {}).get('pre_analysis', {})
+
+# 提取所有消息内容
+all_messages = messages
+user_messages = [m for m in all_messages if m.get('role') == 'user' or m.get('sender', '').startswith('1')]
+staff_messages = [m for m in all_messages if m.get('role') == 'staff' or '林内' in m.get('sender', '')]
+
+user_combined = ' '.join([m.get('content', '') for m in user_messages])
+staff_combined = ' '.join([m.get('content', '') for m in staff_messages])
+all_combined = user_combined + ' ' + staff_combined
+
+# ========== 构建完整的知识实体 ==========
+extracted_entities = []
+
+# 【实体1】产品信息
+products = list(set(re.findall(r'(?:林内|燃气热水器|热水器|壁挂炉|灶具|油烟机|GD\d+|RUS-\d+)', all_combined)))
+if products or '热水器' in all_combined:
+    product_name = products[0] if products else '燃气热水器'
+    extracted_entities.append({
+        'id': f'product_{session_id}_{product_name}',
+        'type': '产品',
+        'name': product_name,
+        'attributes': {
+            '产品名称': product_name,
+            '品牌': '林内',
+            '识别方式': '关键词匹配' if products else '上下文推断',
+            '来源会话': session_id
+        },
+        'source': '规则提取'
+    })
+
+# 【实体2】气源适配规则(整合所有气源相关信息)
+gas_support = None
+gas_types = []
+
+if '天然气' in staff_combined or '12T' in staff_combined:
+    gas_types.append('天然气(12T)')
+    if '只支持' in staff_combined or '支持' in staff_combined:
+        gas_support = True
+
+if '人工煤气' in all_combined:
+    gas_types.append('人工煤气')
+    if '不支持' in staff_combined or '暂时不支持' in staff_combined:
+        gas_support = False
+
+if gas_types:
+    # 构建规则内容
+    rule_parts = []
+    if '只支持12T天然气' in staff_combined:
+        rule_parts.append('本店只支持12T天然气')
+    elif '支持' in staff_combined and '天然气' in staff_combined:
+        rule_parts.append('支持天然气(12T)')
+    
+    if '不支持' in staff_combined and '煤气' in staff_combined:
+        rule_parts.append('不支持人工煤气')
+    elif '暂时不支持' in staff_combined:
+        rule_parts.append('暂时不支持人工煤气')
+    
+    rule_content = '；'.join(rule_parts) if rule_parts else '气源适配政策'
+    
+    extracted_entities.append({
+        'id': f'rule_gas_{session_id}',
+        'type': '服务规则',
+        'name': '气源适配政策',
+        'attributes': {
+            '规则名称': '林内燃气热水器气源适配政策',
+            '规则内容': rule_content,
+            '支持气源': [g for g in gas_types if '天然气' in g],
+            '不支持气源': [g for g in gas_types if '煤气' in g or '液化' in g],
+            '风险等级': '高(涉及安全)',
+            '规则来源': '客服明确表述',
+            '来源会话': session_id
+        },
+        'source': '规则提取+LLM分析'
+    })
+
+# 【实体3】客服应答模式(整合问题诊断)
+problem_dims = []
+for dim_name, dim_data in dimension_scores.items():
+    score = dim_data.get('score', 0)
+    if score <= 2:
+        problem_dims.append({
+            '维度': dim_name,
+            '评分': score,
+            '问题': dim_data.get('reasoning', '')[:150]
+        })
+
+if problem_dims:
+    # 构建模式描述
+    pattern_desc = []
+    for p in problem_dims:
+        pattern_desc.append(f"{p['维度']}({p['评分']}分): {p['问题']}")
+    
+    # 获取改进建议
+    suggestions = summary.get('suggestions', [])
+    improvement = suggestions[0] if suggestions else '需改进客服应答策略'
+    
+    extracted_entities.append({
+        'id': f'pattern_{session_id}_negative',
+        'type': '应答模式',
+        'name': '否定型应答模式(无替代方案)',
+        'attributes': {
+            '模式名称': '否定型应答(无替代方案)',
+            '适用场景': '气源不匹配咨询',
+            '行为特征': '直接告知不支持，未提供替代型号或解决方案',
+            '问题维度': [p['维度'] for p in problem_dims],
+            '具体表现': '\n'.join(pattern_desc),
+            '转化影响': '客户流失风险高',
+            '改进建议': improvement,
+            '来源会话': session_id
+        },
+        'source': 'LLM问题诊断'
+    })
+
+# 【实体4】场景分类(从LLM预分析)
+scene_category = pre.get('scene', '其他')
+scene_sub = pre.get('sub_scene', '其他')
+intent = pre.get('intent', '咨询')
+sentiment = pre.get('sentiment', 'neutral')
+
+# 根据内容优化场景分类
+if '煤气' in all_combined or '天然气' in all_combined or '气源' in all_combined:
+    scene_category = '售前咨询'
+    scene_sub = '气源适配'
+elif '安装' in all_combined:
+    scene_category = '售前咨询'
+    scene_sub = '安装咨询'
+elif '价格' in all_combined or '多少钱' in all_combined:
+    scene_category = '售前咨询'
+    scene_sub = '价格决策'
+
+extracted_entities.append({
+    'id': f'scene_{session_id}',
+    'type': '场景',
+    'name': f'{scene_category}-{scene_sub}',
+    'attributes': {
+        '场景大类': scene_category,
+        '场景细分': scene_sub,
+        '用户意图': intent,
+        '用户情绪': sentiment,
+        '主题': session_analysis.get('theme', ''),
+        '置信度': pre.get('confidence', 0)
+    },
+    'source': 'LLM场景识别+规则优化'
+})
+
+# 显示提取结果 + 审核操作(合并为一栏)
+st.markdown("### 📦 自动提取结果")
+st.markdown(f"<div style='font-size: 12px; color: #888;'>基于模型: {pre.get('source', 'unknown')} | 置信度: {pre.get('confidence', 0)}</div>", unsafe_allow_html=True)
+
+if extracted_entities:
+    for i, entity in enumerate(extracted_entities):
+        with st.container():
+            # 卡片样式
+            type_colors = {
+                '产品': '#1890ff',
+                '服务规则': '#52c41a',
+                '场景': '#faad14',
+                '应答模式': '#ff4d4f'
+            }
+            color = type_colors.get(entity['type'], '#888')
+            
+            # 实体标题卡片
+            st.markdown(f"""
+            <div style="border: 1px solid rgba(128,128,128,0.3); border-radius: 8px; padding: 12px; margin: 8px 0; background: rgba(255,255,255,0.05);">
+                <div style="border-left: 4px solid {color}; padding-left: 10px; margin-bottom: 8px;">
+                    <b style="color: {color};">[{entity['type']}]</b> <b>{entity['name']}</b>
+                    <span style="font-size: 11px; color: #888;">({entity['source']})</span>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # 显示属性
+            for key, value in entity['attributes'].items():
+                if value and str(value).strip():
+                    if isinstance(value, list):
+                        value = ', '.join(value)
+                    display_value = str(value)[:120] + '...' if len(str(value)) > 120 else str(value)
+                    st.markdown(f"""
+                    <div style="margin-left: 14px; font-size: 13px; line-height: 1.5;">
+                        ├─ <b>{key}:</b> {display_value}
+                    </div>
+                    """, unsafe_allow_html=True)
+            
+            # 审核操作按钮(根据状态显示不同UI)
+            # 从数据库检查审核状态
+            conn = sqlite3.connect('data/cs_analyzer_new.db')
+            cursor = conn.cursor()
+            cursor.execute("SELECT status FROM kg_entities WHERE id = ?", (entity['id'],))
+            db_status = cursor.fetchone()
+            conn.close()
+            
+            is_approved = db_status and db_status[0] == '已通过'
+            is_rejected = db_status and db_status[0] == '已拒绝'
+            
+            if is_approved:
+                # 已通过状态：显示成功标识，禁用操作
+                st.markdown(f"""
+                <div style="padding: 8px 12px; background: rgba(82,196,26,0.1); 
+                            border: 1px solid #52c41a; border-radius: 6px; 
+                            font-size: 14px; color: #52c41a; text-align: center;"
+                >
+                    ✅ 此实体已审核通过
+                </div>
+                """, unsafe_allow_html=True)
+            elif is_rejected:
+                # 已拒绝状态：显示拒绝标识
+                st.markdown(f"""
+                <div style="padding: 8px 12px; background: rgba(255,77,79,0.1); 
+                            border: 1px solid #ff4d4f; border-radius: 6px; 
+                            font-size: 14px; color: #ff4d4f; text-align: center;"
+                >
+                    ❌ 此实体已拒绝
+                </div>
+                """, unsafe_allow_html=True)
+            else:
+                # 待审核状态：显示操作按钮
+                c1, c2, c3, c4 = st.columns(4)
+                
+                with c1:
+                    if st.button("✅ 通过", key=f"kg_pass_{session_id}_{i}", type="primary"):
+                        try:
+                            conn = sqlite3.connect('data/cs_analyzer_new.db')
+                            cursor = conn.cursor()
+                            cursor.execute("""
+                                INSERT OR REPLACE INTO kg_entities (id, type, name, attributes, status, _source_session_id)
+                                VALUES (?, ?, ?, ?, '已通过', ?)
+                            """, (
+                                entity['id'], entity['type'], entity['name'],
+                                json.dumps(entity['attributes'], ensure_ascii=False),
+                                session_id
+                            ))
+                            conn.commit()
+                            conn.close()
+                            st.session_state[f"kg_approved_{session_id}_{i}"] = True
+                            st.success(f"✅ [{entity['name']}] 已通过！")
+                            st.rerun()
+                        except Exception as e:
+                            st.error(f"入库失败: {e}")
+                
+                with c2:
+                    if st.button("✏️ 修改", key=f"kg_mod_{session_id}_{i}"):
+                        st.session_state[f"modifying_{session_id}_{i}"] = True
+                
+                with c3:
+                    if st.button("❌ 拒绝", key=f"kg_rej_{session_id}_{i}"):
+                        st.session_state[f"rejecting_{session_id}_{i}"] = True
+                
+                with c4:
+                    if st.button("🤖 AI修正", key=f"kg_ai_{session_id}_{i}_{entity['id']}"):
+                        st.session_state[f"ai_correcting_{session_id}_{i}_{entity['id']}"] = True
+                
+                # AI修正界面(多轮对话模式)
+                if st.session_state.get(f"ai_correcting_{session_id}_{i}_{entity['id']}"):
+                    st.markdown("""
+                    <div style="margin-left: 14px; padding: 12px; background: rgba(24,144,255,0.05); border: 1px solid #1890ff; border-radius: 8px;">
+                        <b>🤖 AI智能修正(多轮对话模式)</b>
+                        <div style="font-size: 12px; color: #888; margin-top: 4px;">
+                            可与AI反复沟通，直到结果完全正确再入库
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                    
+                    # 初始化对话历史
+                    dialog_key = f"ai_dialog_{session_id}_{i}_{entity['id']}"
+                    if dialog_key not in st.session_state:
+                        st.session_state[dialog_key] = {
+                            'round': 0,
+                            'messages': [],
+                            'current_entity': entity.copy()
+                        }
+                    
+                    dialog = st.session_state[dialog_key]
+                    
+                    # 显示对话历史
+                    for idx, msg in enumerate(dialog['messages']):
+                        if msg['role'] == 'user':
+                            st.markdown(f"""
+                            <div style="margin-left: 14px; margin-top: 8px; padding: 8px; 
+                                        background: rgba(255,255,255,0.05); border-radius: 8px;
+                                        border-left: 3px solid #1890ff;">
+                                <b>👤 质检员(第{msg['round']}轮):</b><br/>
+                                {msg['content']}
+                            </div>
+                            """, unsafe_allow_html=True)
+                        else:
+                            st.markdown(f"""
+                            <div style="margin-left: 14px; margin-top: 8px; padding: 8px; 
+                                        background: rgba(82,196,26,0.05); border-radius: 8px;
+                                        border-left: 3px solid #52c41a;">
+                                <b>🤖 AI(第{msg['round']}轮修正):</b><br/>
+                                <pre style="white-space: pre-wrap; font-size: 13px;">{msg['content']}</pre>
+                            </div>
+                            """, unsafe_allow_html=True)
+                    
+                    # 当前轮次输入
+                    current_round = dialog['round'] + 1
+                    
+                    # 如果是第一轮，显示原始实体
+                    if dialog['round'] == 0:
+                        st.markdown("""
+                        <div style="margin-left: 14px; margin-top: 8px; padding: 8px; 
+                                    background: rgba(255,77,79,0.05); border-radius: 8px;
+                                    border-left: 3px solid #ff4d4f;">
+                            <b>📋 原始提取结果(待修正):</b><br/>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        for key, value in entity['attributes'].items():
+                            if value and str(value).strip():
+                                st.markdown(f"  • **{key}:** {value}")
+                    
+                    # 输入框
+                    user_feedback = st.text_area(
+                        f"第{current_round}轮反馈(描述问题或提出修改意见)",
+                        key=f"ai_feedback_{session_id}_{i}_{entity['id']}_round_{current_round}",
+                        height=80,
+                        placeholder="例如：改进建议还不对，不应该推荐其他型号，因为林内所有产品都不支持人工煤气"
+                    )
+                    
+                    # 操作按钮
+                    c_generate, c_confirm, c_cancel = st.columns([2, 1, 1])
+                    
+                    with c_generate:
+                        if st.button(f"🔄 生成第{current_round}轮修正", key=f"ai_generate_{session_id}_{i}_{entity['id']}_round_{current_round}"):
+                            if user_feedback.strip():
+                                with st.spinner(f"AI正在生成第{current_round}轮修正方案..."):
+                                    # 构建对话上下文
+                                    context = build_correction_context(dialog, entity, user_feedback)
+                                    
+                                    # 准备会话上下文
+                                    session_messages = messages
+                                    session_analysis = analysis_data
+                                    
+                                    # 调用AI(传入完整上下文)
+                                    corrected_entity = generate_ai_correction_with_context(
+                                        entity, 
+                                        user_feedback, 
+                                        context,
+                                        session_messages=session_messages,
+                                        session_analysis=session_analysis
+                                    )
+                                    
+                                    if corrected_entity:
+                                        # 记录对话
+                                        dialog['messages'].append({
+                                            'role': 'user',
+                                            'content': user_feedback,
+                                            'round': current_round
+                                        })
+                                        dialog['messages'].append({
+                                            'role': 'assistant',
+                                            'content': format_correction_result(corrected_entity),
+                                            'round': current_round
+                                        })
+                                        dialog['round'] = current_round
+                                        dialog['current_entity'] = corrected_entity
+                                        
+                                        st.session_state[dialog_key] = dialog
+                                        st.success(f"✅ 第{current_round}轮修正已生成！")
+                                        st.rerun()
+                                    else:
+                                        st.error("❌ AI修正失败，请重试")
+                            else:
+                                st.warning("请先描述问题")
+                    
+                    with c_confirm:
+                        # 只有生成过修正后才能确认
+                        if dialog['round'] > 0:
+                            if st.button("✅ 确认入库", key=f"ai_confirm_{session_id}_{i}_{entity['id']}", type="primary"):
+                                conn = sqlite3.connect('data/cs_analyzer_new.db')
+                                cursor = conn.cursor()
+                                
+                                corrected = dialog['current_entity']
+                                updated_attrs = corrected['attributes'].copy()
+                                updated_attrs['_ai_corrected'] = True
+                                updated_attrs['_ai_correction_rounds'] = dialog['round']
+                                updated_attrs['_ai_correction_history'] = json.dumps([
+                                    {'round': m['round'], 'role': m['role'], 'content': m['content'][:200]} 
+                                    for m in dialog['messages']
+                                ], ensure_ascii=False)
+                                updated_attrs['_ai_corrected_at'] = datetime.now().isoformat()
+                                
+                                cursor.execute("""
+                                    INSERT OR REPLACE INTO kg_entities (id, type, name, attributes, status, _source_session_id)
+                                    VALUES (?, ?, ?, ?, '已通过', ?)
+                                """, (
+                                    entity['id'], entity['type'], corrected['name'],
+                                    json.dumps(updated_attrs, ensure_ascii=False),
+                                    session_id
+                                ))
+                                
+                                # 标记知识缺口
+                                for gap in corrected.get('knowledge_gaps', []):
+                                    cursor.execute("""
+                                        INSERT OR IGNORE INTO knowledge_gaps (category, description, source, status, created_at)
+                                        VALUES (?, ?, ?, '待补充', ?)
+                                    """, (
+                                        gap['category'], gap['description'], 
+                                        '质检员AI多轮修正', datetime.now().isoformat()
+                                    ))
+                                
+                                conn.commit()
+                                conn.close()
+                                
+                                # 清理对话状态
+                                st.session_state.pop(dialog_key, None)
+                                
+                                st.success(f"✅ [{corrected['name']}] AI多轮修正已入库！")
+                                st.rerun()
+                        else:
+                            st.markdown("<div style='text-align: center; color: #888; font-size: 12px;'>先生成修正方案</div>", unsafe_allow_html=True)
+                    
+                    with c_cancel:
+                        if st.button("❌ 放弃修正", key=f"ai_cancel_{session_id}_{i}_{entity['id']}"):
+                            # 清理对话状态
+                            st.session_state.pop(dialog_key, None)
+                            st.session_state.pop(f"ai_correcting_{session_id}_{i}_{entity['id']}", None)
+                            st.rerun()
+                
+                # 修改界面
+                if st.session_state.get(f"modifying_{session_id}_{i}"):
+                    st.markdown("""
+                    <div style="margin-left: 14px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 4px;">
+                        <b>修改此实体:</b>
+                    </div>
+                    """, unsafe_allow_html=True)
+                    
+                    new_name = st.text_input("名称", value=entity['name'], key=f"mod_name_{session_id}_{i}")
+                    
+                    new_attrs = {}
+                    for key, value in entity['attributes'].items():
+                        new_val = st.text_input(f"{key}", value=str(value), key=f"mod_attr_{session_id}_{i}_{key}")
+                        if new_val != str(value):
+                            new_attrs[key] = new_val
+                    
+                    if st.button("保存修改", key=f"save_mod_{session_id}_{i}"):
+                        conn = sqlite3.connect('data/cs_analyzer_new.db')
+                        cursor = conn.cursor()
+                        
+                        updated_attrs = entity['attributes'].copy()
+                        updated_attrs.update(new_attrs)
+                        updated_attrs['_modified_by'] = '质检员'
+                        updated_attrs['_modified_at'] = datetime.now().isoformat()
+                        
+                        cursor.execute("""
+                            INSERT OR REPLACE INTO kg_entities (id, type, name, attributes, status, _source_session_id)
+                            VALUES (?, ?, ?, ?, '已通过', ?)
+                        """, (
+                            entity['id'], entity['type'], new_name or entity['name'],
+                            json.dumps(updated_attrs, ensure_ascii=False),
+                            session_id
+                        ))
+                        
+                        conn.commit()
+                        conn.close()
+                        st.session_state[f"kg_approved_{session_id}_{i}"] = True
+                        st.success(f"✅ [{entity['name']}] 已修改并保存！")
+                        st.rerun()
+                
+                # 拒绝界面
+                if st.session_state.get(f"rejecting_{session_id}_{i}"):
+                    st.markdown("""
+                    <div style="margin-left: 14px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 4px;">
+                        <b>拒绝此实体:</b>
+                    </div>
+                    """, unsafe_allow_html=True)
+                    
+                    reason = st.text_input("拒绝原因", key=f"rej_reason_{session_id}_{i}")
+                    if st.button("确认拒绝", key=f"confirm_rej_{session_id}_{i}"):
+                        if reason:
+                            conn = sqlite3.connect('data/cs_analyzer_new.db')
+                            cursor = conn.cursor()
+                            cursor.execute("""
+                                INSERT OR REPLACE INTO kg_entities (id, type, name, attributes, status, reject_reason, _source_session_id)
+                                VALUES (?, ?, ?, ?, '已拒绝', ?, ?)
+                            """, (
+                                entity['id'], entity['type'], entity['name'],
+                                json.dumps(entity['attributes'], ensure_ascii=False),
+                                reason, session_id
+                            ))
+                            conn.commit()
+                            conn.close()
+                            st.session_state[f"kg_rejected_{session_id}_{i}"] = True
+                            st.error(f"❌ [{entity['name']}] 已拒绝")
+                            st.rerun()
+                        else:
+                            st.warning("请填写拒绝原因")
+            
+            st.markdown("---")
+else:
+    st.info("未提取到知识实体")
+
+# 底部统计
+st.markdown('<hr style="margin: 10px 0; border: none; border-top: 1px solid rgba(128,128,128,0.3);">', unsafe_allow_html=True)
+cols = st.columns(4)
+with cols[0]:
+    conn = sqlite3.connect('data/cs_analyzer_new.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM kg_entities")
+    total = cursor.fetchone()[0]
+    conn.close()
+    st.metric("知识图谱实体", total)
+
+with cols[1]:
+    conn = sqlite3.connect('data/cs_analyzer_new.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM kg_entities WHERE status = '待审核'")
+    pending = cursor.fetchone()[0]
+    conn.close()
+    st.metric("🔴 待审核", pending)
+
+with cols[2]:
+    conn = sqlite3.connect('data/cs_analyzer_new.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM kg_entities WHERE status = '已通过'")
+    approved = cursor.fetchone()[0]
+    conn.close()
+    st.metric("🟢 已通过", approved)
+
+with cols[3]:
+    conn = sqlite3.connect('data/cs_analyzer_new.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM kg_entities WHERE status = '已拒绝'")
+    rejected = cursor.fetchone()[0]
+    conn.close()
+    st.metric("🔴 已拒绝", rejected)
+
 # ========== 方案D：浮窗矫正功能 ==========
 @st.dialog("✅ 无需矫正", width="large")
 def show_no_correction_dialog():
@@ -463,7 +1486,7 @@ def show_no_correction_dialog():
     st.markdown(f"**总分：{session_data.get('total_score', 10)}/20**")
     
     st.markdown("---")
-    st.markdown("**确认备注（可选）**")
+    st.markdown("**确认备注(可选)**")
     reason = st.text_area("如有需要，可填写备注信息...", placeholder="例如：评分准确，符合实际情况", height=80, key="no_correction_reason")
     
     col1, col2 = st.columns(2)
@@ -488,12 +1511,12 @@ def show_no_correction_dialog():
 
 @st.dialog("✏️ 评分矫正", width="large")
 def show_correction_dialog():
-    """显示评分矫正浮窗对话框 - 动态结构化输入（上下布局）"""
+    """显示评分矫正浮窗对话框 - 动态结构化输入(上下布局)"""
     session_key_prefix = session_id.replace("-", "_").replace(".", "_")
     
     # 内容有效性检查函数
     def is_valid_content(text):
-        """检查内容是否有效（必须包含中文或有效文字）"""
+        """检查内容是否有效(必须包含中文或有效文字)"""
         if not text or not text.strip():
             return False, "内容不能为空"
         
@@ -511,7 +1534,7 @@ def show_correction_dialog():
         if not no_spaces:
             return False, "内容不能为空"
         
-        # 检查是否包含中文（必须包含至少一个中文字符）
+        # 检查是否包含中文(必须包含至少一个中文字符)
         if re.search(r'[\u4e00-\u9fa5]', no_spaces):
             return True, ""
         
@@ -552,7 +1575,7 @@ def show_correction_dialog():
     st.markdown(f"**当前会话:** `{session_id}`")
     st.caption(f"状态: {'✅ 已矫正' if session_data['is_corrected'] else '🔧 待矫正'}")
     
-    # 显示拒绝理由（如果有）
+    # 显示拒绝理由(如果有)
     if st.session_state.get('show_reject_reason'):
         reject_corr = st.session_state['show_reject_reason']
         st.error(f"❌ **上次矫正被拒绝**\n\n**拒绝理由：** {reject_corr.get('reject_reason', '未提供具体理由')}\n\n请根据拒绝理由修改后重新提交。")
@@ -562,7 +1585,7 @@ def show_correction_dialog():
     
     session_key_prefix = session_id.replace("-", "_").replace(".", "_")
     
-    # 获取AI分析数据（用于显示AI判定过程）
+    # 获取AI分析数据(用于显示AI判定过程)
     analysis_data = {}
     try:
         analysis_json = session_data.get('analysis_json', '{}')
@@ -580,7 +1603,7 @@ def show_correction_dialog():
         ('conversion', '转化能力', con_score)
     ]
     
-    # 初始化用户修改存储（独立存储，不受勾选状态影响）
+    # 初始化用户修改存储(独立存储，不受勾选状态影响)
     for key, name, score in dims:
         user_slider_key = f"user_slider_{key}_{session_key_prefix}"
         user_reason_key = f"user_reason_{key}_{session_key_prefix}"
@@ -594,7 +1617,7 @@ def show_correction_dialog():
         if check_key not in st.session_state:
             st.session_state[check_key] = False
     
-    # ===== 上部：维度选择（单行4个checkbox）=====
+    # ===== 上部：维度选择(单行4个checkbox)=====
     st.markdown("**维度选择**")
     
     dim_icons = {'professionalism': '📚', 'standardization': '📝', 'policy_execution': '📋', 'conversion': '🎯'}
@@ -610,10 +1633,10 @@ def show_correction_dialog():
                 key=check_key
             )
     
-    # 关闭固定头部区域，开始可滚动区域（合并为一行避免空div）
+    # 关闭固定头部区域，开始可滚动区域(合并为一行避免空div)
     st.markdown("</div><div class='scrollable-content'>", unsafe_allow_html=True)
     
-    # ===== 下部：矫正详情（动态生成）=====
+    # ===== 下部：矫正详情(动态生成)=====
     st.markdown(
         '**矫正详情**'
         '<span class="tooltip">'
@@ -633,7 +1656,7 @@ def show_correction_dialog():
             if st.session_state.get(check_key, False):
                 with st.container(border=True):
                     st.markdown(f"**{name}**")
-                    # 添加紧凑的分割线（无行间距）
+                    # 添加紧凑的分割线(无行间距)
                     st.markdown('<hr style="margin: 4px 0; border: none; border-top: 1px solid rgba(200,200,200,0.3);">', unsafe_allow_html=True)
                     
                     # 获取AI判定过程
@@ -642,10 +1665,10 @@ def show_correction_dialog():
                     is_generic = "知识库未覆盖" in ai_reasoning or "通用标准评判" in ai_reasoning
                     reasoning_bg = "rgba(250,173,20,0.15)" if is_generic else "rgba(240,240,240,0.1)"
                     
-                    # 使用2列布局：左侧AI判定过程，右侧上下两部分（高度1:3）
+                    # 使用2列布局：左侧AI判定过程，右侧上下两部分(高度1:3)
                     main_cols = st.columns([1, 4])
                     
-                    # 左侧：AI判定过程（无标题，占满整个高度）
+                    # 左侧：AI判定过程(无标题，占满整个高度)
                     with main_cols[0]:
                         warning_icon = "⚠️ " if is_generic else ""
                         # 使用CSS确保填满高度
@@ -673,16 +1696,16 @@ def show_correction_dialog():
                         """
                         st.markdown(ai_html, unsafe_allow_html=True)
                     
-                    # 右侧：上下两部分（高度1:3）
+                    # 右侧：上下两部分(高度1:3)
                     with main_cols[1]:
-                        # 右上：调整分值（占1/3高度）
+                        # 右上：调整分值(占1/3高度)
                         st.markdown('<p style="margin-bottom: 4px; font-weight: bold;">调整分值</p>', unsafe_allow_html=True)
                         
                         # 使用双key机制：独立存储用户修改
                         user_slider_key = f"user_slider_{key}_{session_key_prefix}"
                         slider_key = f"slider_{key}_{session_key_prefix}"
                         
-                        # 只在首次初始化时设置默认值，不强制覆盖（避免重置用户拖动）
+                        # 只在首次初始化时设置默认值，不强制覆盖(避免重置用户拖动)
                         if slider_key not in st.session_state:
                             st.session_state[slider_key] = st.session_state[user_slider_key]
                         
@@ -723,7 +1746,7 @@ def show_correction_dialog():
                         
                         st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
                         
-                        # 右下：矫正说明（占2/3高度）
+                        # 右下：矫正说明(占2/3高度)
                         st.markdown('<p style="margin-bottom: 4px; font-weight: bold;">矫正说明</p>', unsafe_allow_html=True)
                         
                         # 使用双key机制
@@ -747,7 +1770,7 @@ def show_correction_dialog():
         # 没有勾选任何维度时的提示
         st.info("👆 请在上方勾选需要矫正的维度，或直接在下方填写其他说明")
     
-    # 其他说明（不针对具体维度）
+    # 其他说明(不针对具体维度)
     st.markdown(
         '**其他说明**'
         '<span class="tooltip">'
@@ -845,7 +1868,7 @@ def show_correction_dialog():
                 elif invalid_content_dims:
                     error_placeholder.error(f"❌ 维度「{', '.join(invalid_content_dims)}」的矫正说明无效，请输入有效的说明文字")
                 else:
-                    # 检查其他说明的内容有效性（如果有）
+                    # 检查其他说明的内容有效性(如果有)
                     if other_reason_val:
                         is_valid, error_msg = is_valid_content(other_reason_val)
                         if not is_valid:
@@ -905,7 +1928,7 @@ def show_correction_confirm_dialog():
             has_change = dim['new'] != dim['old']
             has_reason = bool(dim['reason'])
             
-            change_text = f"{dim['old']} → {dim['new']}" if has_change else f"{dim['old']}分（保持）"
+            change_text = f"{dim['old']} → {dim['new']}" if has_change else f"{dim['old']}分(保持)"
             reason_text = f" | 说明: {dim['reason']}" if has_reason else ""
             
             st.markdown(f"- **{dim['name']}**: {change_text}{reason_text}")
@@ -999,7 +2022,7 @@ with left_col:
             is_staff = role == 'staff' or '林内' in sender
             is_bot = role == 'bot' or 'jimi_vender' in sender
             
-            # 格式化时间（显示时分秒）
+            # 格式化时间(显示时分秒)
             time_str = str(msg_time)[11:19] if msg_time and len(str(msg_time)) >= 19 else ''
             
             # 清理HTML并转义
@@ -1075,7 +2098,7 @@ with right_col:
     risk = "高风险" if total <= 8 else ("中风险" if total <= 12 else "正常")
     risk_color = "#f5222d" if total <= 8 else ("#faad14" if total <= 12 else "#52c41a")
     
-    # 主标题（H5）+ 总分/风险（同层，右对齐div）
+    # 主标题(H5)+ 总分/风险(同层，右对齐div)
     st.markdown(
         f'<div style="position:relative;">'
         f'<h5 style="margin:0;">📊 AI深度质检报告</h5>'
@@ -1086,7 +2109,7 @@ with right_col:
         unsafe_allow_html=True
     )
     
-    # === 四维度评分卡片（2x2，星级同行，固定高度100px，判定标题固定，内容带边框）===
+    # === 四维度评分卡片(2x2，星级同行，固定高度100px，判定标题固定，内容带边框)===
     # 维度详细说明数据
     dimension_tooltips = {
         'professionalism': '专业性评分维度：评估客服对产品参数、功能、使用方法的掌握程度。5分标准：参数准确、解释清晰、能举一反三；3分标准：基本正确但不完整；1分标准：错误或无法回答。',
@@ -1113,7 +2136,7 @@ with right_col:
                 tooltip_text = dimension_tooltips.get(key, '')
                 
                 with st.container(border=True):
-                    # 标题行：图标+名称+问号tooltip  分数+星级（同一行flex布局）
+                    # 标题行：图标+名称+问号tooltip  分数+星级(同一行flex布局)
                     st.markdown(
                         f'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">'
                         f'<span style="font-size:16px;font-weight:bold;">'
@@ -1139,7 +2162,7 @@ with right_col:
                     warning_icon = "⚠️ " if is_generic_reasoning else ""
                     
                     if evidence:
-                        # 有证据引用时，使用标签页（自定义样式让证据引用靠右）
+                        # 有证据引用时，使用标签页(自定义样式让证据引用靠右)
                         st.markdown('<style>.stTabs [data-baseweb="tab-list"] { justify-content: space-between; }</style>', unsafe_allow_html=True)
                         tab1, tab2 = st.tabs([f"{warning_icon}判定过程", "📎 证据引用"])
                         with tab1:
@@ -1168,19 +2191,19 @@ with right_col:
                             unsafe_allow_html=True
                         )
     
-    # 获取当前会话的最新矫正状态（从顶部移下来的逻辑）
+    # 获取当前会话的最新矫正状态(从顶部移下来的逻辑)
     latest_correction = None
     correction_status = None
     if not corrections_df.empty:
         latest_correction = corrections_df.iloc[0]
         correction_status = latest_correction['status']
     
-    # 判断按钮是否可用（简化版）
-    # 只要有矫正记录 → 按钮禁用（不可重复矫正）
+    # 判断按钮是否可用(简化版)
+    # 只要有矫正记录 → 按钮禁用(不可重复矫正)
     # 无矫正记录 → 按钮可用
     can_correct = not has_correction
     
-    # 矫正评分按钮（放在四维度卡片下方）
+    # 矫正评分按钮(放在四维度卡片下方)
     session_key_prefix = session_id.replace("-", "_").replace(".", "_")
     btn_cols = st.columns([1, 1])
     
@@ -1195,7 +2218,7 @@ with right_col:
         if not can_correct:
             st.button("✏️ 矫正评分", type="primary", use_container_width=True, disabled=True, key=f"corr_disabled_{session_id}")
         else:
-            # 检查是否需要重新打开评分矫正弹窗（从二次确认取消返回）
+            # 检查是否需要重新打开评分矫正弹窗(从二次确认取消返回)
             if st.session_state.get('reopen_correction_dialog'):
                 st.session_state.reopen_correction_dialog = False
                 show_correction_dialog()
@@ -1248,7 +2271,7 @@ with st.expander("📚 规则命中总览", expanded=False):
                 "color": status_color
             })
     
-    # 命中统计（真实数据）
+    # 命中统计(真实数据)
     st.markdown("**📊 命中统计**")
     with st.container(border=True):
         stats_cols = st.columns(4)
@@ -1261,11 +2284,11 @@ with st.expander("📚 规则命中总览", expanded=False):
         with stats_cols[3]:
             st.metric("部分命中", rule_hit_count["partial"], "⚠️" if rule_hit_count["partial"] > 0 else None)
     
-    # 具体规则明细（真实数据）
+    # 具体规则明细(真实数据)
     st.markdown("**📋 具体规则明细**")
     
     if not referenced_rules:
-        st.info("📭 本次分析未命中具体规则（使用通用标准评判）")
+        st.info("📭 本次分析未命中具体规则(使用通用标准评判)")
     else:
         # 2×2网格展示
         for i in range(0, len(referenced_rules), 2):
@@ -1280,12 +2303,12 @@ with st.expander("📚 规则命中总览", expanded=False):
                             st.caption(f"来源维度: {rule['dimension']} | 该维度得分: {rule['score']}/5")
                             st.markdown(f"<div style='text-align:right;color:{rule['color']};font-size:13px;margin-top:4px;'><b>{rule['emoji']} {rule['status']}</b></div>", unsafe_allow_html=True)
 
-# ========== 矫正记录显示（可折叠，默认折叠） ==========
+# ========== 矫正记录显示(可折叠，默认折叠) ==========
 if not corrections_df.empty:
     with st.expander(f"📝 矫正记录 ({len(corrections_df)}条)", expanded=False):
         for _, corr in corrections_df.iterrows():
             with st.container(border=True):
-                # 头部：时间 + 状态（使用与顶部元信息相同的样式）
+                # 头部：时间 + 状态(使用与顶部元信息相同的样式)
                 col1, col2 = st.columns([3, 1])
                 with col1:
                     st.caption(f"🕐 {corr['created_at']}")
@@ -1307,7 +2330,7 @@ if not corrections_df.empty:
                     # 使用与顶部元信息相同的样式
                     st.markdown(f"<div style='text-align:right;'><span style='color: {status_color}; font-weight: bold; font-size: 14px;'>{status_text}</span></div>", unsafe_allow_html=True)
                 
-                # 显示修改的维度（2×2网格布局）
+                # 显示修改的维度(2×2网格布局)
                 try:
                     changed_fields = json.loads(corr['changed_fields']) if corr['changed_fields'] else []
                     if changed_fields:
@@ -1324,7 +2347,7 @@ if not corrections_df.empty:
                                     new_val = field.get('new', '-')
                                     has_change = old_val != new_val
                                     change_icon = "🔄" if has_change else "✓"
-                                    change_text = f"{old_val} → {new_val}" if has_change else f"{old_val}分（确认）"
+                                    change_text = f"{old_val} → {new_val}" if has_change else f"{old_val}分(确认)"
                                     
                                     with cols[j]:
                                         with st.container(border=True):
@@ -1339,13 +2362,13 @@ if not corrections_df.empty:
                 if corr.get('other_reason'):
                     st.markdown(f"**其他说明：** 💬 {corr['other_reason']}")
                 
-                # 显示备注（reason字段中的非维度说明）
+                # 显示备注(reason字段中的非维度说明)
                 if corr.get('reason') and not corr.get('other_reason'):
                     reason_lines = corr['reason'].split('\n')
                     non_dim_lines = [l for l in reason_lines if ':' not in l and l.strip()]
                     if non_dim_lines:
                         st.markdown(f"**备注：** {' '.join(non_dim_lines)}")
                 
-                # 显示拒绝理由（如果被拒绝）
+                # 显示拒绝理由(如果被拒绝)
                 if corr['status'] == 'rejected' and corr.get('reject_reason'):
                     st.error(f"❌ 拒绝理由：{corr['reject_reason']}")

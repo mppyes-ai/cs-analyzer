@@ -97,7 +97,7 @@ LLM_CONFIG = get_llm_config()
 # ========== Ollama 配置 (已迁移到 oMLX) ==========
 # 注意：所有本地模型现已统一使用 oMLX，不再使用 Ollama 或 LM Studio
 OLLAMA_CONFIG = {
-    "model": os.getenv("OLLAMA_MODEL", "Qwen2.5-7B-Instruct-1M-8bit"),  # 默认使用 oMLX 的 Qwen2.5-7B
+    "model": os.getenv("OLLAMA_MODEL", "Qwen3.6-35B-A3B-4bit"),  # 统一使用 Qwen3.6-35B
     "url": os.getenv("OLLAMA_URL", "http://localhost:8000/v1"),  # oMLX API 地址
     "timeout": int(os.getenv("OLLAMA_TIMEOUT", "30")),
     "max_retries": int(os.getenv("OLLAMA_MAX_RETRIES", "3")),
@@ -105,7 +105,7 @@ OLLAMA_CONFIG = {
 
 # ========== 模型版本配置 ==========
 MODEL_CONFIG = {
-    "intent_classifier": OLLAMA_CONFIG["model"],  # 意图分类使用 oMLX 的 Qwen2.5-7B
+    "intent_classifier": "Qwen3.6-35B-A3B-4bit",  # 意图分类统一使用 Qwen3.6
     "scoring_engine": LLM_CONFIG["scoring_model"],   # 评分引擎使用配置的LLM
     "rule_extractor": LLM_CONFIG["scoring_model"],   # 规则提取使用配置的LLM
 }

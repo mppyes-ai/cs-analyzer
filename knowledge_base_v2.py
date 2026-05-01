@@ -127,26 +127,104 @@ def generate_combined_text(rule_data: Dict) -> str:
     
     格式: "场景描述：[xxx]。触发关键词：[xxx]。核心判定：[xxx]。标签：[xxx]"
     
+    支持两种数据结构：
+    - v2嵌套结构: {'scene': {'description': ...}, 'trigger': {'keywords': ...}, ...}
+    - 扁平结构: {'scene_description': ..., 'trigger_keywords': ..., ...}
+    
     Args:
         rule_data: 规则数据字典
         
     Returns:
         拼接后的复合文本
     """
-    scene_desc = rule_data.get('scene', {}).get('description', '')
+    # 支持嵌套结构（v2 schema）
+    if 'scene' in rule_data:
+        scene_desc = rule_data.get('scene', {}).get('description', '')
+        keywords = rule_data.get('trigger', {}).get('keywords', [])
+        criteria = rule_data.get('rule', {}).get('criteria', '')
+        tags = rule_data.get('tags', [])
+    else:
+        # 支持扁平结构（手动录入）
+        scene_desc = rule_data.get('scene_description', '')
+        keywords = rule_data.get('trigger_keywords', [])
+        criteria = rule_data.get('rule_criteria', '')
+        tags = rule_data.get('tags', [])
     
-    keywords = rule_data.get('trigger', {}).get('keywords', [])
-    keywords_str = ','.join(keywords) if keywords else ''
-    
-    criteria = rule_data.get('rule', {}).get('criteria', '')
-    
-    tags = rule_data.get('tags', [])
-    tags_str = ','.join(tags) if tags else ''
+    keywords_str = ','.join(keywords) if isinstance(keywords, list) else (keywords or '')
+    tags_str = ','.join(tags) if isinstance(tags, list) else (tags or '')
     
     combined = f"场景描述：{scene_desc}。触发关键词：{keywords_str}。核心判定：{criteria}。标签：{tags_str}"
     return combined
 
 # ========== 规则CRUD ==========
+
+def add_rule(rule_data: Dict) -> str:
+    """添加规则（兼容手动录入的扁平数据结构）
+    
+    Args:
+        rule_data: 规则数据字典（扁平结构）
+        
+    Returns:
+        rule_id: 生成的规则ID
+    """
+    init_rules_tables()
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    import uuid
+    rule_id = f"rule_{uuid.uuid4().hex[:8]}"
+    
+    now = datetime.now().isoformat()
+    
+    # 提取字段（支持扁平结构）
+    scene_category = rule_data.get('scene_category')
+    scene_sub_category = rule_data.get('scene_sub_category')
+    rule_dimension = rule_data.get('rule_dimension')
+    trigger_keywords = rule_data.get('trigger_keywords', [])
+    trigger_intent = rule_data.get('trigger_intent')
+    trigger_mood = rule_data.get('trigger_mood')
+    rule_score_guide = rule_data.get('rule_score_guide', {})
+    rule_criteria = rule_data.get('rule_criteria')
+    trigger_valid_from = rule_data.get('trigger_valid_from')
+    trigger_valid_to = rule_data.get('trigger_valid_to')
+    status = rule_data.get('status', 'pending')
+    source_type = rule_data.get('source_type', 'manual')
+    
+    cursor.execute("""
+        INSERT INTO rules (
+            rule_id, rule_type,
+            scene_category, scene_sub_category,
+            trigger_keywords, trigger_intent, trigger_mood,
+            rule_dimension, rule_criteria, rule_score_guide,
+            trigger_valid_from, trigger_valid_to,
+            status, created_at, updated_at, version, source_type,
+            full_json
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (
+        rule_id,
+        'scoring',
+        scene_category,
+        scene_sub_category,
+        json.dumps(trigger_keywords, ensure_ascii=False) if isinstance(trigger_keywords, list) else trigger_keywords,
+        trigger_intent,
+        trigger_mood,
+        rule_dimension,
+        rule_criteria,
+        json.dumps(rule_score_guide, ensure_ascii=False) if isinstance(rule_score_guide, dict) else rule_score_guide,
+        trigger_valid_from,
+        trigger_valid_to,
+        status,
+        now,
+        now,
+        1,
+        source_type,
+        json.dumps(rule_data, ensure_ascii=False)
+    ))
+    
+    conn.commit()
+    conn.close()
+    
+    return rule_id
 
 def save_rule_draft_v2(rule_data: Dict, correction_id: str = None) -> str:
     """保存规则草案（v2结构化存储）
@@ -354,6 +432,8 @@ def delete_rule(rule_id: str) -> bool:
 def get_rules_by_status(status: str = None, search_query: str = None) -> pd.DataFrame:
     """根据状态和搜索条件获取规则列表
     
+    同时查询rules表和rule_drafts表
+    
     Args:
         status: 状态筛选（pending/approved/rejected/all）
         search_query: 搜索关键词
@@ -379,7 +459,8 @@ def get_rules_by_status(status: str = None, search_query: str = None) -> pd.Data
     
     where_clause = "WHERE " + " AND ".join(conditions) if conditions else ""
     
-    df = pd.read_sql_query(f"""
+    # 查询rules表
+    df_rules = pd.read_sql_query(f"""
         SELECT 
             rule_id,
             rule_type,
@@ -395,8 +476,47 @@ def get_rules_by_status(status: str = None, search_query: str = None) -> pd.Data
         ORDER BY created_at DESC
     """, conn, params=params if params else None)
     
+    # 查询rule_drafts表（自动提取的规则）
+    # 【修复】状态映射：pending_approval -> pending
+    draft_conditions = []
+    draft_params = []
+    
+    if status == 'pending':
+        # 查询pending和pending_approval
+        draft_conditions.append("(status = 'pending' OR status = 'pending_approval')")
+    elif status and status != 'all':
+        draft_conditions.append("status = ?")
+        draft_params.append(status)
+    
+    if search_query:
+        draft_conditions.append("(rule_content LIKE ?)")
+        search_pattern = f"%{search_query}%"
+        draft_params.append(search_pattern)
+    
+    draft_where = "WHERE " + " AND ".join(draft_conditions) if draft_conditions else ""
+    
+    df_drafts = pd.read_sql_query(f"""
+        SELECT 
+            id as rule_id,
+            rule_type,
+            '自动提取' as scene_category,
+            trigger_condition as scene_sub_category,
+            '综合' as rule_dimension,
+            rule_content as rule_criteria,
+            correction_id as source_correction_id,
+            created_at,
+            status
+        FROM rule_drafts 
+        {draft_where}
+        ORDER BY created_at DESC
+    """, conn, params=draft_params if draft_params else None)
+    
+    # 合并两个表的数据
+    df_combined = pd.concat([df_rules, df_drafts], ignore_index=True)
+    df_combined = df_combined.sort_values('created_at', ascending=False).reset_index(drop=True)
+    
     conn.close()
-    return df
+    return df_combined
 
 def get_rule_by_id(rule_id: str) -> Optional[Dict]:
     """根据ID获取规则"""
@@ -504,20 +624,30 @@ def get_approved_rules(scene_category: str = None, dimension: str = None) -> Lis
 # ========== LanceDB 向量索引 ==========
 
 def init_lancedb_vector_store():
-    """初始化LanceDB向量存储"""
+    """初始化LanceDB向量存储（使用动态维度）"""
     try:
         import lancedb
         import pyarrow as pa
+        from embedding_utils import get_embedding_model
+        
+        # 获取实际模型维度
+        model = get_embedding_model()
+        test_vector = model.encode("测试文本").tolist()
+        # 处理2D数组情况
+        if isinstance(test_vector, list) and len(test_vector) == 1 and isinstance(test_vector[0], list):
+            test_vector = test_vector[0]
+        vector_dim = len(test_vector)
+        print(f"📊 检测到向量维度: {vector_dim}")
         
         # 连接数据库
         db = lancedb.connect(LANCE_DB_PATH)
         
         # 检查表是否存在
         if "rule_vectors" not in db.table_names():
-            # 创建向量表
+            # 创建向量表（使用实际维度）
             schema = pa.schema([
                 pa.field("rule_id", pa.string()),
-                pa.field("vector", pa.list_(pa.float32(), 2560)),  # Qwen3-Embedding-4B使用2560维向量
+                pa.field("vector", pa.list_(pa.float32(), vector_dim)),  # 动态维度
                 pa.field("scene_category", pa.string()),
                 pa.field("scene_sub_category", pa.string()),
                 pa.field("rule_dimension", pa.string()),
@@ -530,9 +660,18 @@ def init_lancedb_vector_store():
             
             # 创建空表
             table = db.create_table("rule_vectors", schema=schema)
-            print("✅ LanceDB向量表创建成功")
+            print(f"✅ LanceDB向量表创建成功（维度: {vector_dim}）")
         else:
-            print("✅ LanceDB向量表已存在")
+            # 检查现有维度
+            table = db.open_table("rule_vectors")
+            existing_schema = table.schema
+            existing_dim = existing_schema.field("vector").type.list_size
+            
+            if existing_dim != vector_dim:
+                print(f"⚠️ 维度不匹配: 现有{existing_dim}维 vs 当前{vector_dim}维")
+                print("💡 建议删除旧向量库并重新初始化")
+            else:
+                print(f"✅ LanceDB向量表已存在（维度: {vector_dim}）")
             
     except ImportError:
         print("⚠️ LanceDB未安装，向量功能不可用")
@@ -543,12 +682,14 @@ def init_lancedb_vector_store():
     
     return True
 
-def sync_rule_to_vector_db(rule_id: str, embedding_model = None) -> bool:
+def sync_rule_to_vector_db(rule_id: str, combined_text: str = None, rule_data: Dict = None, embedding_model = None) -> bool:
     """将规则同步到LanceDB向量索引
     
     Args:
         rule_id: 规则ID
-        embedding_model: 嵌入模型（如未提供，使用默认）
+        combined_text: 预生成的复合文本（可选）
+        rule_data: 规则数据字典（可选）
+        embedding_model: 嵌入模型（可选，默认使用全局单例）
         
     Returns:
         是否成功
@@ -557,66 +698,89 @@ def sync_rule_to_vector_db(rule_id: str, embedding_model = None) -> bool:
         import lancedb
         import numpy as np
         
-        # 获取规则
-        rule = get_rule_by_id(rule_id)
-        if not rule:
-            print(f"⚠️ 规则不存在: {rule_id}")
-            return False
+        # 使用统一Embedding单例（确保与检索使用同一模型）
+        from embedding_utils import get_embedding_model
+        model = embedding_model or get_embedding_model()
         
-        # 检查状态
-        if rule.get('status') != 'approved':
-            print(f"⚠️ 规则未审核通过: {rule_id}")
-            return False
+        # 获取规则数据
+        if rule_data is None:
+            rule_data = get_rule_by_id(rule_id)
+            if not rule_data:
+                print(f"❌ 规则不存在: {rule_id}")
+                return False
         
         # 生成复合文本
-        combined_text = generate_combined_text({
-            'scene': {
-                'description': rule.get('scene_description', '')
-            },
-            'trigger': {
-                'keywords': rule.get('trigger_keywords', [])
-            },
-            'rule': {
-                'criteria': rule.get('rule_criteria', '')
-            },
-            'tags': rule.get('tags', [])
-        })
+        if combined_text is None:
+            combined_text = generate_combined_text(rule_data)
         
-        # 生成向量
-        if embedding_model is None:
-            # 使用默认模型
-            from sentence_transformers import SentenceTransformer
-            embedding_model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+        # 生成向量（使用统一模型）
+        vector = model.encode(combined_text).tolist()
+        # 处理2D数组情况（如Qwen3-Embedding返回(1, 2560)）
+        if isinstance(vector, list) and len(vector) == 1 and isinstance(vector[0], list):
+            vector = vector[0]
+        vector_dim = len(vector)
         
-        vector = embedding_model.encode(combined_text).tolist()
-        
-        # 写入LanceDB
+        # 连接LanceDB
         db = lancedb.connect(LANCE_DB_PATH)
-        table = db.open_table("rule_vectors")
         
-        # 删除旧记录（如果存在）
-        table.delete(f"rule_id = '{rule_id}'")
+        # 检查表是否存在，不存在则创建（使用动态维度）
+        if "rule_vectors" not in db.table_names():
+            import pyarrow as pa
+            schema = pa.schema([
+                pa.field("rule_id", pa.string()),
+                pa.field("vector", pa.list_(pa.float32(), vector_dim)),  # 动态维度
+                pa.field("scene_category", pa.string()),
+                pa.field("scene_sub_category", pa.string()),
+                pa.field("rule_dimension", pa.string()),
+                pa.field("trigger_intent", pa.string()),
+                pa.field("trigger_mood", pa.string()),
+                pa.field("status", pa.string()),
+                pa.field("valid_from", pa.string()),
+                pa.field("valid_to", pa.string()),
+            ])
+            table = db.create_table("rule_vectors", schema=schema)
+            print(f"✅ LanceDB向量表创建成功（维度: {vector_dim}）")
+        else:
+            table = db.open_table("rule_vectors")
         
-        # 插入新记录
-        table.add([{
+        # 检查现有维度
+        existing_schema = table.schema
+        existing_dim = existing_schema.field("vector").type.list_size
+        
+        if existing_dim != vector_dim:
+            print(f"⚠️ 维度不匹配: 现有{existing_dim}维 vs 当前{vector_dim}维，需要重建向量库")
+            return False
+        
+        # 准备数据
+        data = {
             "rule_id": rule_id,
             "vector": vector,
-            "scene_category": rule.get('scene_category'),
-            "scene_sub_category": rule.get('scene_sub_category'),
-            "rule_dimension": rule.get('rule_dimension'),
-            "trigger_intent": rule.get('trigger_intent'),
-            "trigger_mood": rule.get('trigger_mood'),
-            "status": rule.get('status'),
-            "valid_from": rule.get('trigger_valid_from'),
-            "valid_to": rule.get('trigger_valid_to'),
-        }])
+            "scene_category": rule_data.get('scene_category', ''),
+            "scene_sub_category": rule_data.get('scene_sub_category', ''),
+            "rule_dimension": rule_data.get('rule_dimension', ''),
+            "trigger_intent": rule_data.get('trigger_intent', ''),
+            "trigger_mood": rule_data.get('trigger_mood', ''),
+            "status": rule_data.get('status', 'approved'),
+            "valid_from": rule_data.get('trigger_valid_from', ''),
+            "valid_to": rule_data.get('trigger_valid_to', ''),
+        }
         
-        print(f"✅ 规则已同步到向量库: {rule_id}")
+        # 删除旧记录（如果存在）
+        try:
+            table.delete(f"rule_id = '{rule_id}'")
+        except:
+            pass
+        
+        # 添加新记录
+        table.add([data])
+        
+        print(f"✅ 规则已同步到向量库: {rule_id} (维度: {vector_dim})")
         return True
         
     except Exception as e:
-        print(f"⚠️ 同步到向量库失败: {e}")
+        print(f"❌ 同步到向量库失败: {e}")
         return False
+
 
 # ========== 使用统一Embedding单例 ==========
 from embedding_utils import get_embedding_model as get_global_embedding_model
@@ -628,7 +792,7 @@ def search_rules_by_vector(query_text: str, top_k: int = 5,
                            scene_filter: str = None,
                            dimension_filter: str = None,
                            embedding_model = None) -> List[Dict]:
-    """向量检索规则
+    """向量检索规则（使用统一Embedding单例）
     
     Args:
         query_text: 查询文本
@@ -643,13 +807,32 @@ def search_rules_by_vector(query_text: str, top_k: int = 5,
     try:
         import lancedb
         
-        # 使用传入的模型或全局单例
+        # 使用统一Embedding单例（确保与同步使用同一模型）
+        from embedding_utils import get_embedding_model
         model = embedding_model or get_global_embedding_model()
         query_vector = model.encode(query_text).tolist()
+        # 处理2D数组情况
+        if isinstance(query_vector, list) and len(query_vector) == 1 and isinstance(query_vector[0], list):
+            query_vector = query_vector[0]
+        vector_dim = len(query_vector)
         
         # 连接LanceDB
         db = lancedb.connect(LANCE_DB_PATH)
+        
+        # 检查表是否存在
+        if "rule_vectors" not in db.table_names():
+            print("⚠️ LanceDB向量表不存在，跳过向量检索")
+            return []
+        
         table = db.open_table("rule_vectors")
+        
+        # 检查维度匹配
+        existing_schema = table.schema
+        existing_dim = existing_schema.field("vector").type.list_size
+        
+        if existing_dim != vector_dim:
+            print(f"⚠️ 维度不匹配: 查询{vector_dim}维 vs 库存{existing_dim}维，跳过向量检索")
+            return []
         
         # 构建过滤条件
         filters = ["status = 'approved'"]
@@ -680,25 +863,40 @@ def search_rules_by_vector(query_text: str, top_k: int = 5,
 # ========== 统计 ==========
 
 def get_rules_stats() -> Dict:
-    """获取规则库统计"""
+    """获取规则库统计（包含rule_drafts表）"""
     init_rules_tables()
     conn = get_connection()
     cursor = conn.cursor()
     
     stats = {}
     
-    # 总数
+    # 统计rules表
     cursor.execute("SELECT COUNT(*) FROM rules")
-    stats['total'] = cursor.fetchone()[0]
+    rules_total = cursor.fetchone()[0]
     
-    # 各状态数量
     cursor.execute("SELECT status, COUNT(*) FROM rules GROUP BY status")
-    for status, count in cursor.fetchall():
-        stats[f'status_{status}'] = count
+    rules_status = {status: count for status, count in cursor.fetchall()}
     
-    # 各场景数量
+    # 统计rule_drafts表（自动提取的规则）
+    cursor.execute("SELECT COUNT(*) FROM rule_drafts")
+    drafts_total = cursor.fetchone()[0]
+    
+    cursor.execute("SELECT status, COUNT(*) FROM rule_drafts GROUP BY status")
+    drafts_status = {status: count for status, count in cursor.fetchall()}
+    
+    # 合并统计
+    stats['total'] = rules_total + drafts_total
+    stats['status_pending'] = rules_status.get('pending', 0) + drafts_status.get('pending', 0) + drafts_status.get('pending_approval', 0)
+    stats['status_approved'] = rules_status.get('approved', 0) + drafts_status.get('approved', 0)
+    stats['status_rejected'] = rules_status.get('rejected', 0) + drafts_status.get('rejected', 0)
+    
+    # 各场景数量（合并两个表）
     cursor.execute("SELECT scene_category, COUNT(*) FROM rules WHERE status = 'approved' GROUP BY scene_category")
-    stats['by_scene'] = {scene: count for scene, count in cursor.fetchall() if scene}
+    rules_scene = {scene: count for scene, count in cursor.fetchall() if scene}
+    
+    # rule_drafts表没有scene_category字段，需要从rule_content解析
+    # 简化处理：只统计rules表的场景
+    stats['by_scene'] = rules_scene
     
     # 各维度数量
     cursor.execute("SELECT rule_dimension, COUNT(*) FROM rules WHERE status = 'approved' GROUP BY rule_dimension")

@@ -1,7 +1,7 @@
 """意图分类模块 v3.1 - 集成情绪判断与扩展关键词
 
 核心改进：
-1. 使用本地qwen2.5:7b进行语义级情绪分析（识别委婉投诉）
+1. 使用本地Qwen3.6:7b进行语义级情绪分析（识别委婉投诉）
 2. 扩展关键词库（减少未分类比例）
 3. 场景分类优化（生命周期4类）
 
@@ -299,8 +299,8 @@ class RobustIntentClassifier:
             "total_calls": 0,
             "rule_hits": 0,
             "extended_keyword_hits": 0,
-            "qwen2.5_hits": 0,
-            "qwen2.5_failures": 0,
+            "qwen3.6_hits": 0,
+            "qwen3.6_failures": 0,
             "sentiment_analysis_hits": 0,
             "complaint_detected": 0,
             "keyword_fallbacks": 0
@@ -378,7 +378,7 @@ class RobustIntentClassifier:
         # 第四层：Qwen3语义分类
         qwen_result = self._classify_with_qwen_safe(messages)
         if qwen_result:
-            self.stats["qwen2.5_hits"] += 1
+            self.stats["qwen3.6_hits"] += 1
             # 检查Qwen2.5结果是否是投诉
             if qwen_result.scene == "客诉处理":
                 self.stats["complaint_detected"] += 1
@@ -474,7 +474,7 @@ class RobustIntentClassifier:
             
             if not result:
                 logger.warning("Qwen3返回空结果")
-                self.stats["qwen2.5_failures"] += 1
+                self.stats["qwen3.6_failures"] += 1
                 return None
             
             content = self.ollama_client.extract_response(result)
@@ -500,13 +500,13 @@ class RobustIntentClassifier:
                 complaint_type=data.get('sub_scene', '') if is_complaint else "",
                 confidence=data.get('confidence', 0.5),
                 reasoning=data.get('reasoning', ''),
-                source="qwen2.5",
+                source="Qwen3.6",
                 latency_ms=latency
             )
             
         except Exception as e:
-            logger.error(f"Qwen2.5分类异常: {e}")
-            self.stats["qwen2.5_failures"] += 1
+            logger.error(f"Qwen3.6分类异常: {e}")
+            self.stats["qwen3.6_failures"] += 1
             return None
     
     def _classify_keyword_fallback(self, messages: List[Dict]) -> IntentClassificationResult:
@@ -563,8 +563,8 @@ class RobustIntentClassifier:
             "sentiment_analysis_hits": self.stats["sentiment_analysis_hits"],
             "complaint_detected": self.stats["complaint_detected"],
             "complaint_rate": self.stats["complaint_detected"] / total if total > 0 else 0,
-            "qwen2.5_hits": self.stats["qwen2.5_hits"],
-            "qwen2.5_failures": self.stats["qwen2.5_failures"],
+            "qwen3.6_hits": self.stats["qwen3.6_hits"],
+            "qwen3.6_failures": self.stats["qwen3.6_failures"],
             "keyword_fallbacks": self.stats["keyword_fallbacks"]
         }
     

@@ -21,7 +21,115 @@ sys.path.insert(0, os.path.dirname(__file__))
 from db_utils import get_correction_with_session, get_connection
 from knowledge_base_v2 import save_rule_draft_v2, generate_combined_text
 
-# Prompt模板（从docs/prompt-rule-extraction.md简化）
+def format_messages_for_prompt(messages):
+    """格式化消息用于Prompt"""
+    formatted = []
+    for msg in messages:
+        role = msg.get('role', 'unknown')
+        content = msg.get('content', '')
+        formatted.append(f"[{role}] {content}")
+    return "\n".join(formatted)
+
+
+def extract_rule_from_session(session_id, session_data, reason=""):
+    """从会话数据提取规则（V2版本 - 支持自动提取）
+    
+    Args:
+        session_id: 会话ID
+        session_data: 会话数据（DataFrame或Dict）
+        reason: 矫正原因（可选）
+    
+    Returns:
+        规则字典或None
+    """
+    try:
+        # 解析会话数据
+        if hasattr(session_data, 'to_dict'):
+            session_dict = session_data.to_dict()
+        else:
+            session_dict = session_data
+        
+        # 获取消息内容
+        messages = session_dict.get('messages', [])
+        if isinstance(messages, str):
+            messages = json.loads(messages)
+        
+        # 获取评分结果
+        analysis_json = session_dict.get('analysis_json', '{}')
+        if isinstance(analysis_json, str):
+            analysis = json.loads(analysis_json)
+        else:
+            analysis = analysis_json
+        
+        # 构建规则数据
+        rule_data = {
+            'rule_type': 'scoring',
+            'scene': {
+                'category': analysis.get('session_analysis', {}).get('scene_category', '其他'),
+                'sub_category': analysis.get('session_analysis', {}).get('user_intent', '其他'),
+                'description': analysis.get('session_analysis', {}).get('theme', '')
+            },
+            'trigger': {
+                'keywords': extract_keywords_from_messages(messages),
+                'intent': analysis.get('session_analysis', {}).get('user_intent', '其他'),
+                'mood': analysis.get('session_analysis', {}).get('user_sentiment', 'neutral')
+            },
+            'criteria': {
+                'dimension': '综合',
+                'checkpoints': [],
+                'score_guide': {
+                    'excellent': '回答准确，信息完整',
+                    'good': '回答基本正确',
+                    'average': '回答有瑕疵',
+                    'poor': '回答错误'
+                }
+            },
+            'example': {
+                'good': {
+                    'dialogue': format_messages_for_prompt(messages[:4]),
+                    'reason': '回答准确'
+                }
+            },
+            'source': {
+                'type': 'auto_extract',
+                'session_id': session_id,
+                'reason': reason or '自动提取'
+            }
+        }
+        
+        # 生成规则ID
+        import time
+        rule_id = f"rule_auto_{session_id}_{int(time.time())}"
+        rule_data['rule_id'] = rule_id
+        
+        return rule_data
+        
+    except Exception as e:
+        print(f"   ⚠️ 规则提取失败: {e}")
+        return None
+
+
+def extract_keywords_from_messages(messages):
+    """从消息中提取关键词"""
+    keywords = []
+    for msg in messages:
+        content = msg.get('content', '')
+        # 提取产品型号（如GD31, GD32）
+        models = re.findall(r'[A-Z]{2}\d+', content)
+        keywords.extend(models)
+        
+        # 提取关键名词（简单实现）
+        if '价格' in content or '多少钱' in content:
+            keywords.append('价格')
+        if '安装' in content:
+            keywords.append('安装')
+        if '维修' in content:
+            keywords.append('维修')
+    
+    return list(set(keywords))
+
+
+# 原有函数保留...
 # 注意：JSON示例中的大括号需要双写转义，避免被format()误解
 RULE_EXTRACTION_PROMPT = """你是一位客服质检专家，擅长从人工矫正记录中提炼可复用的评分规则。
 
