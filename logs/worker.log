@@ -21094,3 +21094,326 @@ INFO:db_operations:✅ 任务 7 结果保存成功
    成功处理: 17
    总API调用: 4次
 ============================================================
+INFO:embedding_utils:🔄 首次加载Embedding模型...
+INFO:embedding_utils:✅ 使用本地嵌入模型: Qwen3-Embedding-4B-4bit-DWQ (服务: http://localhost:8000/v1)
+✅ 获取锁成功 (PID: 5093)
+============================================================
+🚀 客服分析工作进程启动 [异步批量模式 v2.6.4 - Opus修复版]
+   最大并发组: 10
+   单次处理上限: 150
+   基础批量评分: 5通/批
+   自适应范围: [2, 5]
+   Token上限: 8,000
+   Kimi并发: 50
+============================================================
+🔄 初始化分析引擎...
+   LLM模式: local
+   本地模型: Qwen3.6-35B-A3B-4bit
+   Base URL: http://localhost:8000/v1
+✅ LLM并发控制: 最大50并发
+   📝 场景/意图/情绪识别 → 由LLM评分时统一识别（qwen2.5已弃用）
+✅ 场景/意图/情绪识别已移至LLM评分时（qwen2.5已弃用）
+✅ 引擎初始化完成
+🔄 数据库写入线程已启动
+✅ 数据库写入线程启动成功
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+⏳ 等待数据库写入完成...
+✅ 数据库写入完成
+⏳ 队列已空,--once模式:准备退出
+🛑 数据库写入线程收到退出信号
+✅ 数据库写入线程已退出
+✅ 锁已释放
+
+============================================================
+📊 异步批量工作进程结束
+   成功处理: 0
+   总API调用: 0次
+============================================================
+INFO:embedding_utils:🔄 首次加载Embedding模型...
+INFO:embedding_utils:✅ 使用本地嵌入模型: Qwen3-Embedding-4B-4bit-DWQ (服务: http://localhost:8000/v1)
+✅ 获取锁成功 (PID: 5208)
+============================================================
+🚀 客服分析工作进程启动 [异步批量模式 v2.6.4 - Opus修复版]
+   最大并发组: 10
+   单次处理上限: 150
+   基础批量评分: 5通/批
+   自适应范围: [2, 5]
+   Token上限: 8,000
+   Kimi并发: 50
+============================================================
+🔄 初始化分析引擎...
+   LLM模式: local
+   本地模型: Qwen3.6-35B-A3B-4bit
+   Base URL: http://localhost:8000/v1
+✅ LLM并发控制: 最大50并发
+   📝 场景/意图/情绪识别 → 由LLM评分时统一识别（qwen2.5已弃用）
+✅ 场景/意图/情绪识别已移至LLM评分时（qwen2.5已弃用）
+✅ 引擎初始化完成
+🔄 数据库写入线程已启动
+✅ 数据库写入线程启动成功
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+⏳ 等待数据库写入完成...
+✅ 数据库写入完成
+⏳ 队列已空,--once模式:准备退出
+🛑 数据库写入线程收到退出信号
+✅ 数据库写入线程已退出
+✅ 锁已释放
+
+============================================================
+📊 异步批量工作进程结束
+   成功处理: 0
+   总API调用: 0次
+============================================================
+INFO:embedding_utils:🔄 首次加载Embedding模型...
+INFO:embedding_utils:✅ 使用本地嵌入模型: Qwen3-Embedding-4B-4bit-DWQ (服务: http://localhost:8000/v1)
+✅ 获取锁成功 (PID: 5379)
+============================================================
+🚀 客服分析工作进程启动 [异步批量模式 v2.6.4 - Opus修复版]
+   最大并发组: 10
+   单次处理上限: 150
+   基础批量评分: 5通/批
+   自适应范围: [2, 5]
+   Token上限: 8,000
+   Kimi并发: 50
+============================================================
+🔄 初始化分析引擎...
+   LLM模式: local
+   本地模型: Qwen3.6-35B-A3B-4bit
+   Base URL: http://localhost:8000/v1
+✅ LLM并发控制: 最大50并发
+   📝 场景/意图/情绪识别 → 由LLM评分时统一识别（qwen2.5已弃用）
+✅ 场景/意图/情绪识别已移至LLM评分时（qwen2.5已弃用）
+✅ 引擎初始化完成
+🔄 数据库写入线程已启动
+✅ 数据库写入线程启动成功
+   📊 --once模式：队列共有 17 个任务，全部取出处理
+
+📦 获取 17 个任务,来自 17 个用户
+
+🔍 对 17 通会话进行场景检查...
+
+📊 场景分布(历史数据): {'售中阶段': 2, '售后阶段': 2, '售前阶段': 11, '客诉处理': 2}
+
+🚀 跨场景合并处理: 17 通会话
+   📝 场景/意图/情绪识别 → 移至LLM评分时
+   📊 SESSION_PROFILE|sid=session_0001_b2e88f7|msgs=13|user=4|staff=9|chars=228|merged=False
+   📊 SESSION_PROFILE|sid=session_0002_7df9487|msgs=4|user=2|staff=2|chars=106|merged=False
+   📊 SESSION_PROFILE|sid=session_0003_8286cf7|msgs=4|user=2|staff=2|chars=138|merged=False
+   📊 SESSION_PROFILE|sid=session_0004_231fb4c|msgs=8|user=2|staff=6|chars=399|merged=False
+   📊 SESSION_PROFILE|sid=session_0005_9a9fc50|msgs=24|user=5|staff=19|chars=2002|merged=False
+   📊 SESSION_PROFILE|sid=session_0006_1d44e70|msgs=17|user=9|staff=8|chars=716|merged=False
+   📊 SESSION_PROFILE|sid=session_0007_29145ad|msgs=5|user=2|staff=3|chars=63|merged=False
+   📊 SESSION_PROFILE|sid=session_0008_0b0ec42|msgs=9|user=2|staff=7|chars=530|merged=False
+   📊 SESSION_PROFILE|sid=session_0011_5bf8b16|msgs=10|user=2|staff=8|chars=479|merged=False
+   📊 SESSION_PROFILE|sid=session_0012_61277f2|msgs=13|user=4|staff=9|chars=841|merged=False
+   📊 SESSION_PROFILE|sid=session_0013_bb0bcc5|msgs=39|user=19|staff=20|chars=1471|merged=False
+   📊 SESSION_PROFILE|sid=session_0014_7eca689|msgs=14|user=4|staff=10|chars=811|merged=False
+   📊 SESSION_PROFILE|sid=session_0015_f79242f|msgs=18|user=8|staff=10|chars=720|merged=False
+   📊 SESSION_PROFILE|sid=session_0016_e4539dd|msgs=6|user=3|staff=3|chars=404|merged=False
+   📊 SESSION_PROFILE|sid=session_0017_5b67109|msgs=37|user=16|staff=21|chars=1417|merged=False
+   📊 SESSION_PROFILE|sid=session_0018_6e10841|msgs=20|user=6|staff=14|chars=1249|merged=False
+   📊 SESSION_PROFILE|sid=session_0019_3242b78|msgs=9|user=2|staff=7|chars=810|merged=False
+   📦 BATCH_SPLIT|sid=session_0002_7df9487|msgs=4|type=short(<6)
+   📦 BATCH_SPLIT|sid=session_0003_8286cf7|msgs=4|type=short(<6)
+   📦 BATCH_SPLIT|sid=session_0007_29145ad|msgs=5|type=short(<6)
+   📦 BATCH_SPLIT|short=3|normal=14|oversized=0
+   📦 BATCH_DECISION|sessions=14|estimated_tokens=11375|batch_size=3|reason=超出token上限(8000)
+
+   📊 自适应批量: 基础=5, 优化后=3, 正常任务=14
+   💾 预估总Token: 33,077 (上限: 8,000)
+
+🚀 启动 5 个评分批次（并发限制: 50，as_completed优化）
+   🔄 批次 4/5 (3通, ~7,041tokens) 启动
+[DEBUG] score_sessions_batch_async START - 3 sessions
+[DEBUG] Processing 3 sessions cross-scene
+   📚 跨场景评分: 3通会话, 场景: ['售前阶段']
+   📚 为 1 个场景分别检索规则: ['售前阶段']
+   📚 跨场景检索共 0 条规则（来自1个场景）
+   🔍 DEBUG_PREFIX_BATCH|hash=108b50a87b43|system_len=2874|fixed_prefix_len=6980|total_fixed=9854|prompt_total=12736|full_prompt=15611
+   📐 PROMPT_STRUCT|{"rules_chars": 300, "sessions_chars": 2545, "template_chars": 9891, "total_prompt_chars": 12736, "session_count": 3, "session_avg_chars": 848}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=3
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=3
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 5379
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: Qwen3.6-35B-A3B-4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 5/5 (2通, ~5,059tokens) 启动
+[DEBUG] score_sessions_batch_async START - 2 sessions
+[DEBUG] Processing 2 sessions cross-scene
+   📚 跨场景评分: 2通会话, 场景: ['售前阶段', '客诉处理']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '客诉处理']
+     ✓ 场景'客诉处理': 1条规则
+   📚 跨场景检索共 1 条规则（来自2个场景）
+   🔍 DEBUG_PREFIX_BATCH|hash=108b50a87b43|system_len=2874|fixed_prefix_len=6980|total_fixed=9854|prompt_total=11728|full_prompt=14603
+   📐 PROMPT_STRUCT|{"rules_chars": 206, "sessions_chars": 1631, "template_chars": 9891, "total_prompt_chars": 11728, "session_count": 2, "session_avg_chars": 815}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=2
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=2
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 5379
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: Qwen3.6-35B-A3B-4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 3/5 (3通, ~7,623tokens) 启动
+[DEBUG] score_sessions_batch_async START - 3 sessions
+[DEBUG] Processing 3 sessions cross-scene
+   📚 跨场景评分: 3通会话, 场景: ['售中阶段', '售前阶段', '客诉处理']
+   📚 为 3 个场景分别检索规则: ['售中阶段', '售前阶段', '客诉处理']
+     ✓ 场景'客诉处理': 1条规则
+   📚 跨场景检索共 1 条规则（来自3个场景）
+   🔍 DEBUG_PREFIX_BATCH|hash=108b50a87b43|system_len=2874|fixed_prefix_len=6980|total_fixed=9854|prompt_total=13030|full_prompt=15905
+   📐 PROMPT_STRUCT|{"rules_chars": 206, "sessions_chars": 2933, "template_chars": 9891, "total_prompt_chars": 13030, "session_count": 3, "session_avg_chars": 977}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=3
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=3
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 5379
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: Qwen3.6-35B-A3B-4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 2/5 (3通, ~6,225tokens) 启动
+[DEBUG] score_sessions_batch_async START - 3 sessions
+[DEBUG] Processing 3 sessions cross-scene
+   📚 跨场景评分: 3通会话, 场景: ['售前阶段', '售后阶段']
+   📚 为 2 个场景分别检索规则: ['售前阶段', '售后阶段']
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   🔍 DEBUG_PREFIX_BATCH|hash=108b50a87b43|system_len=2874|fixed_prefix_len=6980|total_fixed=9854|prompt_total=11376|full_prompt=14251
+   📐 PROMPT_STRUCT|{"rules_chars": 300, "sessions_chars": 1185, "template_chars": 9891, "total_prompt_chars": 11376, "session_count": 3, "session_avg_chars": 395}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=3
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=3
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 5379
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: Qwen3.6-35B-A3B-4bit
+   [DEBUG] Calling API with timeout=400s...
+   🔄 批次 1/5 (3通, ~7,129tokens) 启动
+[DEBUG] score_sessions_batch_async START - 3 sessions
+[DEBUG] Processing 3 sessions cross-scene
+   📚 跨场景评分: 3通会话, 场景: ['售中阶段', '售前阶段']
+   📚 为 2 个场景分别检索规则: ['售中阶段', '售前阶段']
+   📚 跨场景检索共 0 条规则（来自2个场景）
+   🔍 DEBUG_PREFIX_BATCH|hash=108b50a87b43|system_len=2874|fixed_prefix_len=6980|total_fixed=9854|prompt_total=11984|full_prompt=14859
+   📐 PROMPT_STRUCT|{"rules_chars": 300, "sessions_chars": 1793, "template_chars": 9891, "total_prompt_chars": 11984, "session_count": 3, "session_avg_chars": 597}
+INFO:smart_scoring_v2:[DEBUG] _call_llm_async START - expected_count=3
+   [DEBUG] === _call_llm_async START ===
+   [DEBUG] expected_count=3
+   [DEBUG] API Timeout: 400s
+   [DEBUG] Worker PID: 5379
+   [DEBUG] API Key exists: True
+   [DEBUG] Using model: Qwen3.6-35B-A3B-4bit
+   [DEBUG] Calling API with timeout=400s...
+INFO:httpx:HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+   [DEBUG] API call completed in 41.2s
+   💰 TOKEN_COST|{"batch_idx": 2, "prompt_tokens": 7817, "completion_tokens": 1489, "total_tokens": 9306, "elapsed_seconds": 41.156373, "prompt_chars": 11728, "model": "Qwen3.6-35B-A3B-4bit"}
+   [DEBUG] Parsed 2 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 2 results
+INFO:db_operations:✅ 任务 16 结果保存成功
+INFO:db_operations:✅ 任务 17 结果保存成功
+   ✅ 批次 5/5 完成
+   📊 进度: 1/5 批次完成
+✅ 数据库写入成功 (任务 16)
+✅ 数据库写入成功 (任务 17)
+   [DEBUG] API call completed in 52.1s
+   💰 TOKEN_COST|{"batch_idx": 3, "prompt_tokens": 8095, "completion_tokens": 2102, "total_tokens": 10197, "elapsed_seconds": 52.054237, "prompt_chars": 11984, "model": "Qwen3.6-35B-A3B-4bit"}
+   [DEBUG] Parsed 3 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 3 results
+INFO:db_operations:✅ 任务 1 结果保存成功
+INFO:db_operations:✅ 任务 4 结果保存成功
+INFO:db_operations:✅ 任务 5 结果保存成功
+   ✅ 批次 1/5 完成
+   📊 进度: 2/5 批次完成
+✅ 数据库写入成功 (任务 1)
+✅ 数据库写入成功 (任务 4)
+✅ 数据库写入成功 (任务 5)
+   [DEBUG] API call completed in 52.4s
+   💰 TOKEN_COST|{"batch_idx": 3, "prompt_tokens": 8658, "completion_tokens": 2111, "total_tokens": 10769, "elapsed_seconds": 52.37431, "prompt_chars": 13030, "model": "Qwen3.6-35B-A3B-4bit"}
+   [DEBUG] Parsed 3 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 3 results
+INFO:db_operations:✅ 任务 10 结果保存成功
+INFO:db_operations:✅ 任务 11 结果保存成功
+INFO:db_operations:✅ 任务 12 结果保存成功
+   ✅ 批次 3/5 完成
+   📊 进度: 3/5 批次完成
+✅ 数据库写入成功 (任务 10)
+✅ 数据库写入成功 (任务 11)
+✅ 数据库写入成功 (任务 12)
+   [DEBUG] API call completed in 53.7s
+   💰 TOKEN_COST|{"batch_idx": 3, "prompt_tokens": 7639, "completion_tokens": 2227, "total_tokens": 9866, "elapsed_seconds": 53.725817, "prompt_chars": 11376, "model": "Qwen3.6-35B-A3B-4bit"}
+   [DEBUG] Parsed 3 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 3 results
+INFO:db_operations:✅ 任务 6 结果保存成功
+INFO:db_operations:✅ 任务 8 结果保存成功
+INFO:db_operations:✅ 任务 9 结果保存成功
+   ✅ 批次 2/5 完成
+   📊 进度: 4/5 批次完成
+✅ 数据库写入成功 (任务 6)
+✅ 数据库写入成功 (任务 8)
+✅ 数据库写入成功 (任务 9)
+   [DEBUG] API call completed in 56.4s
+   💰 TOKEN_COST|{"batch_idx": 3, "prompt_tokens": 8589, "completion_tokens": 2448, "total_tokens": 11037, "elapsed_seconds": 56.412798, "prompt_chars": 12736, "model": "Qwen3.6-35B-A3B-4bit"}
+   [DEBUG] Parsed 3 results
+   [DEBUG] === _call_llm_async END (success) ===
+[DEBUG] score_sessions_batch_async END - returning 3 results
+INFO:db_operations:✅ 任务 13 结果保存成功
+INFO:db_operations:✅ 任务 14 结果保存成功
+INFO:db_operations:✅ 任务 15 结果保存成功
+INFO:ollama_client:oMLX健康检查通过，模型 Qwen3.6-35B-A3B-4bit 已就绪
+INFO:httpx:HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:intent_classifier_v3:初始化Ollama客户端...
+INFO:ollama_client:oMLX健康检查通过，模型 Qwen3.6-35B-A3B-4bit 已就绪
+INFO:httpx:HTTP Request: POST http://localhost:8000/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:db_operations:✅ 任务 3 结果保存成功
+INFO:db_operations:✅ 任务 2 结果保存成功
+INFO:db_operations:✅ 任务 7 结果保存成功
+   ✅ 批次 4/5 完成
+   📊 进度: 5/5 批次完成
+
+   📦 短会话单通处理: 3 个
+📊 预分析: {'scene': '售前阶段', 'sub_scene': '产品认知', 'intent': '物流能力咨询', 'sentiment': 'neutral', 'confidence': 0.85, 'reasoning': '命中规则: 售前物流能力咨询（泛化询问，用于购买决策）', 'source': 'rule', 'latency_ms': 0.017}
+📊 预分析: {'scene': '售前阶段', 'sub_scene': '产品认知', 'intent': '型号咨询', 'sentiment': 'neutral', 'confidence': 0.95, 'reasoning': '命中规则: product_model', 'source': 'rule', 'latency_ms': 0.423}
+✅ 数据库写入成功 (任务 13)
+✅ 数据库写入成功 (任务 14)
+✅ 数据库写入成功 (任务 15)
+📚 检索到 0 条规则
+   🔍 DEBUG_PREFIX|hash=108b50a87b43|system_len=2874|fixed_prefix_len=6980|total_fixed=9854|prompt_total=8181|full_prompt=11056
+   📏 DEBUG|system_prompt_chars=2874|fixed_prefix_chars=6980|total_fixed_chars=9854|prompt_total_chars=8181
+📚 检索到 0 条规则
+   🔍 DEBUG_PREFIX|hash=108b50a87b43|system_len=2874|fixed_prefix_len=6980|total_fixed=9854|prompt_total=8134|full_prompt=11009
+   📏 DEBUG|system_prompt_chars=2874|fixed_prefix_chars=6980|total_fixed_chars=9854|prompt_total_chars=8134
+📊 预分析: {'scene': '售前阶段', 'sub_scene': '气源类型咨询', 'intent': '咨询', 'sentiment': 'neutral', 'confidence': 0.95, 'reasoning': '用户询问产品气源类型（天然气vs人工煤气），属于购买前对商品规格参数的确认，未涉及投诉或售后问题。', 'source': 'Qwen3.6', 'latency_ms': 1444.0839999999998}
+📚 检索到 0 条规则
+   🔍 DEBUG_PREFIX|hash=108b50a87b43|system_len=2874|fixed_prefix_len=6980|total_fixed=9854|prompt_total=8220|full_prompt=11095
+   📏 DEBUG|system_prompt_chars=2874|fixed_prefix_chars=6980|total_fixed_chars=9854|prompt_total_chars=8220
+   ✅ 单通处理成功: 任务 3 (短会话单通处理)
+✅ 数据库写入成功 (任务 3)
+   ✅ 单通处理成功: 任务 2 (短会话单通处理)
+✅ 数据库写入成功 (任务 2)
+   ✅ 单通处理成功: 任务 7 (短会话单通处理)
+
+   ✅ 本批完成: 17通, API调用: 4次
+   📊 --once模式：队列共有 0 个任务，全部取出处理
+⏳ 等待数据库写入完成...
+✅ 数据库写入成功 (任务 7)
+✅ 数据库写入完成
+⏳ 队列已空,--once模式:准备退出
+🛑 数据库写入线程收到退出信号
+✅ 数据库写入线程已退出
+✅ 锁已释放
+
+============================================================
+📊 异步批量工作进程结束
+   成功处理: 17
+   总API调用: 4次
+============================================================

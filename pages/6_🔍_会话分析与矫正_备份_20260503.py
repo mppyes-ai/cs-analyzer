@@ -479,6 +479,25 @@ def format_correction_result(corrected_entity):
 # ========== 知识缺口表初始化 ==========
 def init_knowledge_gaps_table():
     """初始化知识缺口表"""
+    conn = sqlite3.connect('data/cs_analyzer_new.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS knowledge_gaps (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            category TEXT NOT NULL,
+            description TEXT NOT NULL,
+            source TEXT,
+            status TEXT DEFAULT '待补充',
+            priority TEXT DEFAULT '中',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            resolved_at TIMESTAMP,
+            resolved_by TEXT
+        )
+    """)
+    
+    conn.commit()
+    conn.close()
 
 
 # 初始化表
@@ -1412,6 +1431,40 @@ if extracted_entities:
                         # 只有生成过修正后才能确认
                         if dialog['round'] > 0:
                             if st.button("✅ 确认入库", key=f"ai_confirm_{session_id}_{i}_{entity['id']}", type="primary"):
+                                conn = sqlite3.connect('data/cs_analyzer_new.db')
+                                cursor = conn.cursor()
+                                
+                                corrected = dialog['current_entity']
+                                updated_attrs = corrected['attributes'].copy()
+                                updated_attrs['_ai_corrected'] = True
+                                updated_attrs['_ai_correction_rounds'] = dialog['round']
+                                updated_attrs['_ai_correction_history'] = json.dumps([
+                                    {'round': m['round'], 'role': m['role'], 'content': m['content'][:200]} 
+                                    for m in dialog['messages']
+                                ], ensure_ascii=False)
+                                updated_attrs['_ai_corrected_at'] = datetime.now().isoformat()
+                                
+                                cursor.execute("""
+                                    INSERT OR REPLACE INTO kg_entities (id, type, name, attributes, status, _source_session_id)
+                                    VALUES (?, ?, ?, ?, '已通过', ?)
+                                """, (
+                                    entity['id'], entity['type'], corrected['name'],
+                                    json.dumps(updated_attrs, ensure_ascii=False),
+                                    session_id
+                                ))
+                                
+                                # 标记知识缺口
+                                for gap in corrected.get('knowledge_gaps', []):
+                                    cursor.execute("""
+                                        INSERT OR IGNORE INTO knowledge_gaps (category, description, source, status, created_at)
+                                        VALUES (?, ?, ?, '待补充', ?)
+                                    """, (
+                                        gap['category'], gap['description'], 
+                                        '质检员AI多轮修正', datetime.now().isoformat()
+                                    ))
+                                
+                                conn.commit()
+                                conn.close()
                                 
                                 # 清理对话状态
                                 st.session_state.pop(dialog_key, None)
@@ -1445,6 +1498,25 @@ if extracted_entities:
                             new_attrs[key] = new_val
                     
                     if st.button("保存修改", key=f"save_mod_{session_id}_{i}"):
+                        conn = sqlite3.connect('data/cs_analyzer_new.db')
+                        cursor = conn.cursor()
+                        
+                        updated_attrs = entity['attributes'].copy()
+                        updated_attrs.update(new_attrs)
+                        updated_attrs['_modified_by'] = '质检员'
+                        updated_attrs['_modified_at'] = datetime.now().isoformat()
+                        
+                        cursor.execute("""
+                            INSERT OR REPLACE INTO kg_entities (id, type, name, attributes, status, _source_session_id)
+                            VALUES (?, ?, ?, ?, '已通过', ?)
+                        """, (
+                            entity['id'], entity['type'], new_name or entity['name'],
+                            json.dumps(updated_attrs, ensure_ascii=False),
+                            session_id
+                        ))
+                        
+                        conn.commit()
+                        conn.close()
                         st.session_state[f"kg_approved_{session_id}_{i}"] = True
                         st.success(f"✅ [{entity['name']}] 已修改并保存！")
                         st.rerun()
@@ -1460,6 +1532,18 @@ if extracted_entities:
                     reason = st.text_input("拒绝原因", key=f"rej_reason_{session_id}_{i}")
                     if st.button("确认拒绝", key=f"confirm_rej_{session_id}_{i}"):
                         if reason:
+                            conn = sqlite3.connect('data/cs_analyzer_new.db')
+                            cursor = conn.cursor()
+                            cursor.execute("""
+                                INSERT OR REPLACE INTO kg_entities (id, type, name, attributes, status, reject_reason, _source_session_id)
+                                VALUES (?, ?, ?, ?, '已拒绝', ?, ?)
+                            """, (
+                                entity['id'], entity['type'], entity['name'],
+                                json.dumps(entity['attributes'], ensure_ascii=False),
+                                reason, session_id
+                            ))
+                            conn.commit()
+                            conn.close()
                             st.session_state[f"kg_rejected_{session_id}_{i}"] = True
                             st.error(f"❌ [{entity['name']}] 已拒绝")
                             st.rerun()
